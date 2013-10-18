@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
+		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
+		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
+		B3900E6D18118102007BCE33 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6C18118102007BCE33 /* CoreData.framework */; };
+		B3900E7318118102007BCE33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3900E7118118102007BCE33 /* InfoPlist.strings */; };
+		B3900E7518118102007BCE33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E7418118102007BCE33 /* main.m */; };
+		B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E7818118102007BCE33 /* OIAppDelegate.m */; };
+		B3900E7C18118102007BCE33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3900E7A18118102007BCE33 /* Main.storyboard */; };
+		B3900E7F18118102007BCE33 /* OIDataNorth.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3900E7D18118102007BCE33 /* OIDataNorth.xcdatamodeld */; };
+		B3900E8218118102007BCE33 /* OIMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E8118118102007BCE33 /* OIMasterViewController.m */; };
+		B3900E8518118102007BCE33 /* OIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E8418118102007BCE33 /* OIDetailViewController.m */; };
+		B3900E8718118102007BCE33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3900E8618118102007BCE33 /* Images.xcassets */; };
+		B3900E8E18118102007BCE33 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E8D18118102007BCE33 /* XCTest.framework */; };
+		B3900E8F18118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
+		B3900E9018118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
+		B3900E9118118102007BCE33 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6C18118102007BCE33 /* CoreData.framework */; };
+		B3900E9918118102007BCE33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3900E9718118102007BCE33 /* InfoPlist.strings */; };
+		B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E9A18118102007BCE33 /* OIDataNorthTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B3900E9218118102007BCE33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3900E5B18118102007BCE33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B3900E6218118102007BCE33;
+			remoteInfo = OIDataNorth;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B3900E6A18118102007BCE33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B3900E6C18118102007BCE33 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B3900E7018118102007BCE33 /* OIDataNorth-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OIDataNorth-Info.plist"; sourceTree = "<group>"; };
+		B3900E7218118102007BCE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B3900E7418118102007BCE33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B3900E7618118102007BCE33 /* OIDataNorth-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OIDataNorth-Prefix.pch"; sourceTree = "<group>"; };
+		B3900E7718118102007BCE33 /* OIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OIAppDelegate.h; sourceTree = "<group>"; };
+		B3900E7818118102007BCE33 /* OIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIAppDelegate.m; sourceTree = "<group>"; };
+		B3900E7B18118102007BCE33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B3900E7E18118102007BCE33 /* OIDataNorth.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OIDataNorth.xcdatamodel; sourceTree = "<group>"; };
+		B3900E8018118102007BCE33 /* OIMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OIMasterViewController.h; sourceTree = "<group>"; };
+		B3900E8118118102007BCE33 /* OIMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIMasterViewController.m; sourceTree = "<group>"; };
+		B3900E8318118102007BCE33 /* OIDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OIDetailViewController.h; sourceTree = "<group>"; };
+		B3900E8418118102007BCE33 /* OIDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDetailViewController.m; sourceTree = "<group>"; };
+		B3900E8618118102007BCE33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B3900E8C18118102007BCE33 /* OIDataNorthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OIDataNorthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3900E8D18118102007BCE33 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B3900E9618118102007BCE33 /* OIDataNorthTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OIDataNorthTests-Info.plist"; sourceTree = "<group>"; };
+		B3900E9818118102007BCE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B3900E9A18118102007BCE33 /* OIDataNorthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDataNorthTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B3900E6018118102007BCE33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */,
+				B3900E6D18118102007BCE33 /* CoreData.framework in Frameworks */,
+				B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */,
+				B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3900E8918118102007BCE33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3900E8E18118102007BCE33 /* XCTest.framework in Frameworks */,
+				B3900E9118118102007BCE33 /* CoreData.framework in Frameworks */,
+				B3900E9018118102007BCE33 /* UIKit.framework in Frameworks */,
+				B3900E8F18118102007BCE33 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B3900E5A18118102007BCE33 = {
+			isa = PBXGroup;
+			children = (
+				B3900E6E18118102007BCE33 /* OIDataNorth */,
+				B3900E9418118102007BCE33 /* OIDataNorthTests */,
+				B3900E6518118102007BCE33 /* Frameworks */,
+				B3900E6418118102007BCE33 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B3900E6418118102007BCE33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3900E6318118102007BCE33 /* OIDataNorth.app */,
+				B3900E8C18118102007BCE33 /* OIDataNorthTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3900E6518118102007BCE33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3900E6618118102007BCE33 /* Foundation.framework */,
+				B3900E6818118102007BCE33 /* CoreGraphics.framework */,
+				B3900E6A18118102007BCE33 /* UIKit.framework */,
+				B3900E6C18118102007BCE33 /* CoreData.framework */,
+				B3900E8D18118102007BCE33 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B3900E6E18118102007BCE33 /* OIDataNorth */ = {
+			isa = PBXGroup;
+			children = (
+				B3900E7718118102007BCE33 /* OIAppDelegate.h */,
+				B3900E7818118102007BCE33 /* OIAppDelegate.m */,
+				B3900E7A18118102007BCE33 /* Main.storyboard */,
+				B3900E8018118102007BCE33 /* OIMasterViewController.h */,
+				B3900E8118118102007BCE33 /* OIMasterViewController.m */,
+				B3900E8318118102007BCE33 /* OIDetailViewController.h */,
+				B3900E8418118102007BCE33 /* OIDetailViewController.m */,
+				B3900E8618118102007BCE33 /* Images.xcassets */,
+				B3900E7D18118102007BCE33 /* OIDataNorth.xcdatamodeld */,
+				B3900E6F18118102007BCE33 /* Supporting Files */,
+			);
+			path = OIDataNorth;
+			sourceTree = "<group>";
+		};
+		B3900E6F18118102007BCE33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B3900E7018118102007BCE33 /* OIDataNorth-Info.plist */,
+				B3900E7118118102007BCE33 /* InfoPlist.strings */,
+				B3900E7418118102007BCE33 /* main.m */,
+				B3900E7618118102007BCE33 /* OIDataNorth-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3900E9418118102007BCE33 /* OIDataNorthTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3900E9A18118102007BCE33 /* OIDataNorthTests.m */,
+				B3900E9518118102007BCE33 /* Supporting Files */,
+			);
+			path = OIDataNorthTests;
+			sourceTree = "<group>";
+		};
+		B3900E9518118102007BCE33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B3900E9618118102007BCE33 /* OIDataNorthTests-Info.plist */,
+				B3900E9718118102007BCE33 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B3900E6218118102007BCE33 /* OIDataNorth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3900E9E18118102007BCE33 /* Build configuration list for PBXNativeTarget "OIDataNorth" */;
+			buildPhases = (
+				B3900E5F18118102007BCE33 /* Sources */,
+				B3900E6018118102007BCE33 /* Frameworks */,
+				B3900E6118118102007BCE33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OIDataNorth;
+			productName = OIDataNorth;
+			productReference = B3900E6318118102007BCE33 /* OIDataNorth.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B3900E8B18118102007BCE33 /* OIDataNorthTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3900EA118118102007BCE33 /* Build configuration list for PBXNativeTarget "OIDataNorthTests" */;
+			buildPhases = (
+				B3900E8818118102007BCE33 /* Sources */,
+				B3900E8918118102007BCE33 /* Frameworks */,
+				B3900E8A18118102007BCE33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3900E9318118102007BCE33 /* PBXTargetDependency */,
+			);
+			name = OIDataNorthTests;
+			productName = OIDataNorthTests;
+			productReference = B3900E8C18118102007BCE33 /* OIDataNorthTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B3900E5B18118102007BCE33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = OI;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Ilya Nikokoshev";
+				TargetAttributes = {
+					B3900E8B18118102007BCE33 = {
+						TestTargetID = B3900E6218118102007BCE33;
+					};
+				};
+			};
+			buildConfigurationList = B3900E5E18118102007BCE33 /* Build configuration list for PBXProject "OIDataNorth" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B3900E5A18118102007BCE33;
+			productRefGroup = B3900E6418118102007BCE33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B3900E6218118102007BCE33 /* OIDataNorth */,
+				B3900E8B18118102007BCE33 /* OIDataNorthTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B3900E6118118102007BCE33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3900E8718118102007BCE33 /* Images.xcassets in Resources */,
+				B3900E7318118102007BCE33 /* InfoPlist.strings in Resources */,
+				B3900E7C18118102007BCE33 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3900E8A18118102007BCE33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3900E9918118102007BCE33 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B3900E5F18118102007BCE33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3900E8518118102007BCE33 /* OIDetailViewController.m in Sources */,
+				B3900E7F18118102007BCE33 /* OIDataNorth.xcdatamodeld in Sources */,
+				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
+				B3900E8218118102007BCE33 /* OIMasterViewController.m in Sources */,
+				B3900E7518118102007BCE33 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3900E8818118102007BCE33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3900E9318118102007BCE33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B3900E6218118102007BCE33 /* OIDataNorth */;
+			targetProxy = B3900E9218118102007BCE33 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B3900E7118118102007BCE33 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3900E7218118102007BCE33 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B3900E7A18118102007BCE33 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3900E7B18118102007BCE33 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B3900E9718118102007BCE33 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3900E9818118102007BCE33 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B3900E9C18118102007BCE33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B3900E9D18118102007BCE33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B3900E9F18118102007BCE33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OIDataNorth/OIDataNorth-Prefix.pch";
+				INFOPLIST_FILE = "OIDataNorth/OIDataNorth-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B3900EA018118102007BCE33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OIDataNorth/OIDataNorth-Prefix.pch";
+				INFOPLIST_FILE = "OIDataNorth/OIDataNorth-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B3900EA218118102007BCE33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OIDataNorth.app/OIDataNorth";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OIDataNorth/OIDataNorth-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OIDataNorthTests/OIDataNorthTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B3900EA318118102007BCE33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OIDataNorth.app/OIDataNorth";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OIDataNorth/OIDataNorth-Prefix.pch";
+				INFOPLIST_FILE = "OIDataNorthTests/OIDataNorthTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B3900E5E18118102007BCE33 /* Build configuration list for PBXProject "OIDataNorth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3900E9C18118102007BCE33 /* Debug */,
+				B3900E9D18118102007BCE33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3900E9E18118102007BCE33 /* Build configuration list for PBXNativeTarget "OIDataNorth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3900E9F18118102007BCE33 /* Debug */,
+				B3900EA018118102007BCE33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B3900EA118118102007BCE33 /* Build configuration list for PBXNativeTarget "OIDataNorthTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3900EA218118102007BCE33 /* Debug */,
+				B3900EA318118102007BCE33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B3900E7D18118102007BCE33 /* OIDataNorth.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B3900E7E18118102007BCE33 /* OIDataNorth.xcdatamodel */,
+			);
+			currentVersion = B3900E7E18118102007BCE33 /* OIDataNorth.xcdatamodel */;
+			path = OIDataNorth.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B3900E5B18118102007BCE33 /* Project object */;
+}
