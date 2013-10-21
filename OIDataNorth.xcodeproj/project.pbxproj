@@ -25,6 +25,14 @@
 		B3900E9118118102007BCE33 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6C18118102007BCE33 /* CoreData.framework */; };
 		B3900E9918118102007BCE33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3900E9718118102007BCE33 /* InfoPlist.strings */; };
 		B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E9A18118102007BCE33 /* OIDataNorthTests.m */; };
+		B3900EA61811811A007BCE33 /* OIDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EA51811811A007BCE33 /* OIDataService.m */; };
+		B3900EA918118129007BCE33 /* OIDataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EA818118129007BCE33 /* OIDataOperation.m */; };
+		B3900EAC181191FE007BCE33 /* OIDataRetrieve.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EAB181191FE007BCE33 /* OIDataRetrieve.m */; };
+		B3900EAF18119337007BCE33 /* OIDataRetrieveCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EAE18119337007BCE33 /* OIDataRetrieveCollection.m */; };
+		B3900EB218119420007BCE33 /* OIDataResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB118119420007BCE33 /* OIDataResource.m */; };
+		B3900EB5181195A0007BCE33 /* OIDataCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB4181195A0007BCE33 /* OIDataCollection.m */; };
+		B3900EB818119619007BCE33 /* OIDataEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB718119619007BCE33 /* OIDataEntry.m */; };
+		B3900EBC181198CB007BCE33 /* NorthwindService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EBB181198CB007BCE33 /* NorthwindService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +69,22 @@
 		B3900E9618118102007BCE33 /* OIDataNorthTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OIDataNorthTests-Info.plist"; sourceTree = "<group>"; };
 		B3900E9818118102007BCE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3900E9A18118102007BCE33 /* OIDataNorthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDataNorthTests.m; sourceTree = "<group>"; };
+		B3900EA41811811A007BCE33 /* OIDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDataService.h; sourceTree = "<group>"; };
+		B3900EA51811811A007BCE33 /* OIDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDataService.m; sourceTree = "<group>"; };
+		B3900EA718118129007BCE33 /* OIDataOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDataOperation.h; sourceTree = "<group>"; };
+		B3900EA818118129007BCE33 /* OIDataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDataOperation.m; sourceTree = "<group>"; };
+		B3900EAA181191FE007BCE33 /* OIDataRetrieve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDataRetrieve.h; sourceTree = "<group>"; };
+		B3900EAB181191FE007BCE33 /* OIDataRetrieve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDataRetrieve.m; sourceTree = "<group>"; };
+		B3900EAD18119337007BCE33 /* OIDataRetrieveCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDataRetrieveCollection.h; sourceTree = "<group>"; };
+		B3900EAE18119337007BCE33 /* OIDataRetrieveCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDataRetrieveCollection.m; sourceTree = "<group>"; };
+		B3900EB018119420007BCE33 /* OIDataResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OIDataResource.h; path = ../OIDataResource.h; sourceTree = "<group>"; };
+		B3900EB118119420007BCE33 /* OIDataResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OIDataResource.m; path = ../OIDataResource.m; sourceTree = "<group>"; };
+		B3900EB3181195A0007BCE33 /* OIDataCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDataCollection.h; sourceTree = "<group>"; };
+		B3900EB4181195A0007BCE33 /* OIDataCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDataCollection.m; sourceTree = "<group>"; };
+		B3900EB618119619007BCE33 /* OIDataEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OIDataEntry.h; sourceTree = "<group>"; };
+		B3900EB718119619007BCE33 /* OIDataEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OIDataEntry.m; sourceTree = "<group>"; };
+		B3900EBA181198CB007BCE33 /* NorthwindService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorthwindService.h; sourceTree = "<group>"; };
+		B3900EBB181198CB007BCE33 /* NorthwindService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorthwindService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +157,7 @@
 				B3900E8618118102007BCE33 /* Images.xcassets */,
 				B3900E7D18118102007BCE33 /* OIDataNorth.xcdatamodeld */,
 				B3900E6F18118102007BCE33 /* Supporting Files */,
+				B3900EB9181198AC007BCE33 /* OIData Stack */,
 			);
 			path = OIDataNorth;
 			sourceTree = "<group>";
@@ -164,6 +189,29 @@
 				B3900E9718118102007BCE33 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3900EB9181198AC007BCE33 /* OIData Stack */ = {
+			isa = PBXGroup;
+			children = (
+				B3900EA41811811A007BCE33 /* OIDataService.h */,
+				B3900EA51811811A007BCE33 /* OIDataService.m */,
+				B3900EB018119420007BCE33 /* OIDataResource.h */,
+				B3900EB118119420007BCE33 /* OIDataResource.m */,
+				B3900EB3181195A0007BCE33 /* OIDataCollection.h */,
+				B3900EB4181195A0007BCE33 /* OIDataCollection.m */,
+				B3900EB618119619007BCE33 /* OIDataEntry.h */,
+				B3900EB718119619007BCE33 /* OIDataEntry.m */,
+				B3900EA718118129007BCE33 /* OIDataOperation.h */,
+				B3900EA818118129007BCE33 /* OIDataOperation.m */,
+				B3900EAA181191FE007BCE33 /* OIDataRetrieve.h */,
+				B3900EAB181191FE007BCE33 /* OIDataRetrieve.m */,
+				B3900EAD18119337007BCE33 /* OIDataRetrieveCollection.h */,
+				B3900EAE18119337007BCE33 /* OIDataRetrieveCollection.m */,
+				B3900EBA181198CB007BCE33 /* NorthwindService.h */,
+				B3900EBB181198CB007BCE33 /* NorthwindService.m */,
+			);
+			name = "OIData Stack";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,11 +312,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3900EBC181198CB007BCE33 /* NorthwindService.m in Sources */,
+				B3900EAF18119337007BCE33 /* OIDataRetrieveCollection.m in Sources */,
 				B3900E8518118102007BCE33 /* OIDetailViewController.m in Sources */,
 				B3900E7F18118102007BCE33 /* OIDataNorth.xcdatamodeld in Sources */,
 				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
+				B3900EB818119619007BCE33 /* OIDataEntry.m in Sources */,
+				B3900EAC181191FE007BCE33 /* OIDataRetrieve.m in Sources */,
 				B3900E8218118102007BCE33 /* OIMasterViewController.m in Sources */,
+				B3900EA918118129007BCE33 /* OIDataOperation.m in Sources */,
+				B3900EB218119420007BCE33 /* OIDataResource.m in Sources */,
 				B3900E7518118102007BCE33 /* main.m in Sources */,
+				B3900EA61811811A007BCE33 /* OIDataService.m in Sources */,
+				B3900EB5181195A0007BCE33 /* OIDataCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
