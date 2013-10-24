@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NorthwindExampl.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>NorthwindExample.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>NorthwindGetter.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>OIDataNorth.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +33,26 @@
 			<true/>
 		</dict>
 		<key>B3900E8B18118102007BCE33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B3900ECF18153D5F007BCE33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B3900EDC18153E04007BCE33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B3900EEB18153E46007BCE33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B3900F0A18153E47007BCE33</key>
 		<dict>
 			<key>primary</key>
 			<true/>

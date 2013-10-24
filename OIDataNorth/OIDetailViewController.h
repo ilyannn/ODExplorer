@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Product.h"
 
 @interface OIDetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) Product *detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *productDescription;
+@property (weak, nonatomic) IBOutlet UITextView *supplierDescription;
+
 @end

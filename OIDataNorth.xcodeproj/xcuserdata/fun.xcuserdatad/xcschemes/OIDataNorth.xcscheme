@@ -38,6 +38,16 @@
                ReferencedContainer = "container:OIDataNorth.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B3900F0A18153E47007BCE33"
+               BuildableName = "NorthwindGetterTests.xctest"
+               BlueprintName = "NorthwindGetterTests"
+               ReferencedContainer = "container:OIDataNorth.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

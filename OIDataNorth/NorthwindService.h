@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "OIDataService.h"
-#import "OIDataCollection.h"
+#import "ODService.h"
+#import "ODEntitySet.h"
 
-@interface NorthwindService : OIDataService
-@property (readonly) OIDataCollection *Products;
+@interface NorthwindService : ODService
+@property (readonly) ODEntitySet *Products, *Customers, *Employees;
 
 @end

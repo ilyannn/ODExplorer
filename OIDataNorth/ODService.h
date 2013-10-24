@@ -6,17 +6,18 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "OIDataResource.h"
+#import "ODResource.h"
 
-@class OIDataCollection;
+@class ODCollection;
 
 // Service is a parent OData resource.
 
-@interface OIDataService : OIDataResource
+@interface ODService : ODResource
 
 @property (readonly, nonatomic) NSURL *hostURL;
 @property (readonly, nonatomic) NSString *servicePath;
 
-- (OIDataCollection *)getCollection:(NSString *)collectionName;
+@property NSDictionary *entitySets;
+- (void)retrieveEntitySets;
 
 @end

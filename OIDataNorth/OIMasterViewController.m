@@ -10,11 +10,19 @@
 
 #import "OIDetailViewController.h"
 
+#import "NorthwindService.h"
+#import "ODCollectionCache.h"
+
+#import "ODBaseRequestManager.h"
+
 @interface OIMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation OIMasterViewController
+@implementation OIMasterViewController {
+    ODCollectionCache *collectionCache;
+    ODCollection *collection;
+}
 
 - (void)awakeFromNib
 {
@@ -27,8 +35,38 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
+    NorthwindService *service = [NorthwindService new];
+    collectionCache = [ODCollectionCache new];
+    collectionCache.collection = collection = service.Products;
+    collectionCache.expand = @"Supplier";
+
+    ODBaseRequestManager *readManager = [ODBaseRequestManager new];
+    readManager.operationQueue = [NSOperationQueue new];
+    collection.readManager = readManager;
+
+    [collection retrieveCount];
+    
+
+    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [collection addObserver:self forKeyPath:@"count"
+                    options:NSKeyValueObservingOptionInitial context:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [collection removeObserver:self forKeyPath:@"count"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (collection.count != [self.tableView numberOfRowsInSection:0]) {
+        [self.tableView performSelectorOnMainThread:@selector(reloadData)
+                                         withObject:nil waitUntilDone:NO
+         ];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,15 +97,13 @@
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[self.fetchedResultsController sections] count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return collectionCache.collection.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,7 +145,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        Product *object = collectionCache[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
@@ -215,8 +251,9 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    Product *product = collectionCache[indexPath.row];
+    cell.textLabel.text = [product ProductName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [product ProductID]];
 }
 
 @end
