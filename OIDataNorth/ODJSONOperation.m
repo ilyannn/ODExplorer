@@ -18,10 +18,8 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
     return _sharedResponseSerializer;
 }
 
-- (NSMutableURLRequest *)request {
-    NSMutableURLRequest *request = [super request];
-    [request setValue:[NSString stringWithFormat:@"application/json"] forHTTPHeaderField:@"Accept"];
-    return request;
+- (NSDictionary *)addedHTTPHeaders {
+    return @{@"Accept" : @"application/json"};
 }
 
 - (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data {

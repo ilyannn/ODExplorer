@@ -10,6 +10,7 @@
 
 @interface ODEntityRetrieval : NSObject
 - (NSURL *)retrievalURL;
+- (NSString *)shortDescription;
 @end
 
 @interface ODEntityRetrievalByIndex : ODEntityRetrieval

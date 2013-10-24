@@ -15,6 +15,10 @@
     return nil;
 }
 
+- (NSString *)shortDescription {
+    return @"";
+}
+
 @end
 
 @implementation ODEntityRetrievalByIndex
@@ -25,12 +29,20 @@
     return [NSURL URLWithString:relativePart relativeToURL:parent.URL];
 }
 
+-(NSString *)shortDescription {
+    return [NSString stringWithFormat:@"%lu", (unsigned long)self.index];
+}
+
 @end
 
 @implementation ODEntityRetrievalByProperty
 
 - (NSURL *)retrievalURL {
     return [self.fromEntity.URL URLByAppendingPathComponent: self.propertyName];
+}
+
+- (NSString *)shortDescription {
+    return self.propertyName;
 }
 
 @end

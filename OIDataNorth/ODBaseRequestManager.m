@@ -16,6 +16,12 @@
 
 @implementation ODBaseRequestManager
 
++ (instancetype)nonblockingManager {
+    ODBaseRequestManager *manager = [self new];
+    manager.operationQueue = [NSOperationQueue new];
+    return manager;
+}
+
 - (id)init
 {
     self = [super init];
@@ -25,6 +31,7 @@
     }
     return self;
 }
+
 
 - (void)retrieveProperty:(NSString *)propertyName ofEntity:(ODEntity *)entity {
     switch (self.propertyFaultStrategy) {

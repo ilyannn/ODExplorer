@@ -32,7 +32,7 @@
 
 - (void)setKeys:(id)keys {
     if ([keys isKindOfClass:NSString.class])
-        _keys = @{@"" : keys};
+        _keys = @{ @"" : keys };
     else
         _keys = keys;
 }
@@ -46,7 +46,7 @@
         }
         keyString = [keyStrings componentsJoinedByString:@"&"];
     }
-//    return [NSString stringWithFormat:@"%@(%@)", , keyString];
+    //    return [NSString stringWithFormat:@"%@(%@)", , keyString];
     return nil;
 }
 
@@ -63,12 +63,12 @@
 }
 
 + (ODEntityType *)entityType {
-//    static
+    //    static
     ODEntityType *_entityType;
-//   if (!_entityType) {
-        _entityType = [ODEntityType new];
-        _entityType.className = NSStringFromClass(self);
-//    }
+    //   if (!_entityType) {
+    _entityType = [ODEntityType new];
+    _entityType.className = NSStringFromClass(self);
+    //    }
     return _entityType;
 }
 
@@ -77,7 +77,7 @@
 }
 
 - (id)initFromDict:(NSDictionary *)dict {
-    if (self = [super init] ) {
+    if (self = [super init]) {
         [self updateFromDict:dict];
     }
     return self;
@@ -88,7 +88,7 @@
     _navigationProperties = [NSMutableDictionary new];
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:NSDictionary.class]) {
-            ODEntity *entity = [[ODEntity alloc] initFromDict: obj];
+            ODEntity *entity = [[ODEntity alloc] initFromDict:obj];
             ODEntityRetrievalByProperty *retrieval = [ODEntityRetrievalByProperty new];
             retrieval.fromEntity = self;
             retrieval.propertyName = key;
@@ -98,18 +98,17 @@
             _remoteProperties[key] = obj;
         }
     }];
+    
     _localProperties = [_remoteProperties mutableCopy];
 }
 
 - (id)valueForKey:(NSString *)key {
-    
     id value = self.localProperties[key];
     if (value) return value;
     if (self.retrievedOn) return nil;
     
     [self.readManager retrieveProperty:key ofEntity:self];
     return self.localProperties[key];
-    
 }
 
 - (void)retrieve {
@@ -144,8 +143,8 @@
 }
 
 - (NSString *)longDescription {
-    return [@[[self description], [self.localProperties description] ]
-            componentsJoinedByString:@"\n"];
+    return [@[[self description], [self.localProperties description]]
+            componentsJoinedByString: @"\n"];
 }
 
 @end

@@ -14,22 +14,44 @@
 
 @interface ODOperation : NSOperation
 
+// A factory to create operations. Note that subclasses should be chaging its singnature
+// to match that of |resource| property.
 + (instancetype)operationWithResource: (ODResource *)resource;
 
+#pragma mark - What do we access?
+// These properties are set to describe the operation. |parameters| can be accessed by KVO coding.
+
+// The resource with which the operation is being performed.
+@property (nonatomic) ODResource *resource;
+
+// This is mutable by default; if you change it to immutable, you won't be able to set parameters.
+@property NSDictionary *parameters;
+- (id)valueForKey:(NSString *)key;
+- (void)setValue:(id)value forKey:(NSString *)key;
+
+
+#pragma mark - How do we access it?
+// These methods should be overridden in subclasses to describe how the operation 'works'.
+
+// The HTTP method to access the resource. Defaults to GET.
 - (NSString *)method;
 
-@property (readonly) AFHTTPResponseSerializer <AFURLResponseSerialization> *responseSerializer;
-@property (readonly) AFHTTPRequestSerializer *requestSerializer;
+// Method to construct the URL. Defaults to resource URL.
+- (NSURL *)URL;
+
+// Additional header fields. Those are added, value-by-value, to existing HTTP Headers.
+// Defaults to nil.
+- (NSDictionary *)addedHTTPHeaders;
+
+// Serializer to construct the request.
+// - (AFHTTPResponseSerializer <AFURLResponseSerialization> *)responseSerializer;
+// @property (readonly) AFHTTPRequestSerializer *requestSerializer;
 
 
-@property (nonatomic) ODResource *resource;
-@property NSMutableDictionary *parameters;
-
-@property (nonatomic, readonly) NSURL *URL;
-@property (strong) void(^onSuccess)(ODOperation *operation);
-
-@property (readonly, nonatomic) NSMutableURLRequest *request;
+#pragma mark - What do we do with the results?
 
 - (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data;
+@property (strong) void(^onSuccess)(ODOperation *operation);
+
 
 @end

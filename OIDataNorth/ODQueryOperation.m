@@ -25,59 +25,53 @@ NSString* const ODQueryOrderByString = @"$orderby";
 }
 
 - (NSString *)filter {
-    return self.parameters[ODQueryFilterString];
+    return [self valueForKey:ODQueryFilterString];
 }
 
 - (NSString *)orderBy {
-    return self.parameters[ODQueryOrderByString];
+    return [self valueForKey:ODQueryOrderByString];
 }
 
 - (NSString *)select {
-    return self.parameters[ODQuerySelectString];
+    return [self valueForKey:ODQuerySelectString];
 }
 
 - (NSString *)expand {
-    return self.parameters[ODQueryExpandString];
+    return [self valueForKey:ODQueryExpandString];
 }
 
 - (NSUInteger)top {
-    return [self.parameters[ODQueryTopString] integerValue];
+    return [[self valueForKey:ODQueryTopString] integerValue];
 }
 
 - (NSUInteger)skip {
-    return [self.parameters[ODQuerySkipString] integerValue];
+    return [[self valueForKey:ODQuerySkipString] integerValue];
 }
 
 - (void)setSelect:(id)select {
-    self.parameters[ODQuerySelectString] = [select description];
+    [self setValue:[select description] forKey:ODQuerySelectString];
 }
 
 - (void)setFilter:(id)filter {
-    self.parameters[ODQueryFilterString] = [filter description];
+    [self setValue:[filter description] forKey:ODQueryFilterString];
 }
 
 - (void)setOrderBy:(id)orderBy {
-    self.parameters[ODQueryOrderByString] = [orderBy description];
+    [self setValue:[orderBy description] forKey:ODQueryOrderByString];
 }
 
 - (void)setExpand:(id)expandObject {
-    self.parameters[ODQueryExpandString] = [expandObject description];
+    [self setValue:[expandObject description] forKey:ODQueryExpandString];
 }
 
 - (void)setTop:(NSUInteger)top {
-    if (top) {
-        self.parameters[ODQueryTopString] = [NSString stringWithFormat:@"%lu", (unsigned long)top];
-    } else {
-        [self.parameters removeObjectForKey:ODQueryTopString];
-    }
+    NSString * value = !top ? nil : [NSString stringWithFormat:@"%lu", (unsigned long)top];
+    [self setValue:value forKey:ODQueryTopString];
 }
 
 - (void)setSkip:(NSUInteger)skip {
-    if (skip) {
-        self.parameters[ODQuerySkipString] = [NSString stringWithFormat:@"%lu", (unsigned long)skip];
-    } else {
-        [self.parameters removeObjectForKey:ODQuerySkipString];
-    }
+    NSString * value = !skip ? nil : [NSString stringWithFormat:@"%lu", (unsigned long)skip];
+    [self setValue:value forKey:ODQuerySkipString];
 }
 
 - (void)processJSONResponse:(id)response {
@@ -95,7 +89,7 @@ NSString* const ODQueryOrderByString = @"$orderby";
 
             ODEntityRetrievalByIndex *retrieval = [ODEntityRetrievalByIndex new];
             retrieval.collection = (ODCollection *)self.resource;
-            retrieval.index = self.skip + index;
+            retrieval.index = self.skip + index + 1;
             entity.retrievalInfo = retrieval;
         }
     }];

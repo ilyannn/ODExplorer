@@ -9,5 +9,7 @@
 #import "ODOperation.h"
 
 @interface ODJSONOperation : ODOperation
+
 - (void)processJSONResponse:(id)responseJSON;
+
 @end

@@ -8,7 +8,7 @@
 
 #import "ODOperation.h"
 
-NSString * const ODHTTPVerbGet = @"GET";
+NSString *const ODHTTPVerbGet = @"GET";
 
 @implementation ODOperation
 
@@ -47,20 +47,36 @@ NSString * const ODHTTPVerbGet = @"GET";
     return self.resource.URL;
 }
 
-- (NSMutableURLRequest *)request {
-    return [self.requestSerializer
-            requestWithMethod:[self method]
-                    URLString:self.URL.absoluteString
-                   // this helps to get rid of unnecesary ? in the URL
-                   parameters:self.parameters.count ? self.parameters:nil
-            ];
+- (NSDictionary *)addedHTTPHeaders {
+    return nil;
+}
+
+- (NSURLRequest *)request {
+    NSMutableURLRequest *mutableRequest = [self.requestSerializer
+                                           requestWithMethod:[self method]
+                                           URLString:self.URL.absoluteString
+                                           // this helps to get rid of unnecesary ? in the URL
+                                           parameters:self.parameters.count ? self.parameters:nil
+                                           ];
+    [[self addedHTTPHeaders] enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
+        [mutableRequest addValue:obj forHTTPHeaderField:key];
+    }];
+    return [mutableRequest copy];
+}
+
+- (id)valueForKey:(NSString *)key {
+    return [self.parameters valueForKey:key];
+}
+
+- (void)setValue:(id)value forKey:(NSString *)key {
+    [self.parameters setValue:value forKey:key];
 }
 
 - (void)main {
     NSHTTPURLResponse *response;
     NSError *error;
-    NSURLRequest *request = self.request;
-
+    NSURLRequest *request = [self request];
+    
     NSLog(@"%@: %@", NSStringFromClass(self.class), request);
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request
@@ -69,7 +85,7 @@ NSString * const ODHTTPVerbGet = @"GET";
     NSInteger status = error ? -1 : response.statusCode / 100;
     
     switch (status) {
-        case 2:
+        case 2 :
             [self processResponse:response data:data];
             if (self.onSuccess)
                 self.onSuccess(self);
@@ -79,15 +95,12 @@ NSString * const ODHTTPVerbGet = @"GET";
             [self processFailure:response data:data];
             break;
     }
-    
 }
 
 - (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data {
-
 }
 
 - (void)processFailure:(NSHTTPURLResponse *)response data:(NSData *)data {
-    
 }
 
 @end
