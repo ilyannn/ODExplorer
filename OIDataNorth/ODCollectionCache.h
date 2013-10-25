@@ -18,6 +18,8 @@
 
 - (void)performCount;
 
+- (NSString *)guessMediumDescriptionProperty;
+
 @property (readonly) NSOperationQueue *operationQueue;
 
 @end

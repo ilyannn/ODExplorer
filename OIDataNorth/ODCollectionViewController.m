@@ -12,11 +12,6 @@
 #import "ODEntityTableViewCell.h"
 #import "ODEntityViewController.h"
 
-NSString * const ODEntityCellReuseID = @"EntityCell";
-
-@interface ODCollectionViewController ()
-@end
-
 @implementation ODCollectionViewController {
     ODCollectionCache *collectionCache;
 }
@@ -29,29 +24,22 @@ NSString * const ODEntityCellReuseID = @"EntityCell";
 - (void)viewDidLoad
 {
 	// Do any additional setup after loading the view, typically from a nib.
-    [super viewDidLoad];
+    
+//     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(refreshChildren)];;
 
     collectionCache = [ODCollectionCache new];
     collectionCache.collection = self.resource;
-    
-    [self refreshData];
+
+    [super viewDidLoad];
+
 }
 
-- (void)loadView {
-    [super loadView];
-    
-    [self.tableView registerClass:[self entityCellClass] forCellReuseIdentifier:ODEntityCellReuseID];
-
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl target:self action:@selector(refreshData)];;
+- (NSDictionary *)cellClasses {
+    return @{ODGenericCellReuseID :[ODEntityTableViewCell class]};
 }
 
-- (Class)entityCellClass {
-    return [ODEntityTableViewCell class];
-}
-
-- (void)refreshData {
+- (void)refreshChildren {
     [self.resource retrieveCount];
 }
 
@@ -80,10 +68,6 @@ NSString * const ODEntityCellReuseID = @"EntityCell";
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.resource.count;
@@ -91,12 +75,18 @@ NSString * const ODEntityCellReuseID = @"EntityCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ODEntityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ODEntityCellReuseID forIndexPath:indexPath];
+    ODEntityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ODGenericCellReuseID forIndexPath:indexPath];
+    ODEntity *entity = collectionCache[indexPath.row];
+
+    if (!self.headlineProperties) {
+        self.headlineProperties = [NSMutableArray new];
+        NSString *guessed = [collectionCache guessMediumDescriptionProperty];
+        if (guessed) [self.headlineProperties addObject:guessed];
+    }
 
     cell.headlineProperties = self.headlineProperties;
-    ODEntity *entity = collectionCache[indexPath.row];
     cell.resource = entity;
-    
+
     return cell;
 }
 
@@ -128,14 +118,6 @@ NSString * const ODEntityCellReuseID = @"EntityCell";
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ODEntityTableViewCell *cell = (ODEntityTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    if (![cell isKindOfClass:[ODEntityTableViewCell class]]) return;
-    ODEntityViewController *vc = [ODEntityViewController new];
-    vc.resource = cell.resource;
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 
 @end

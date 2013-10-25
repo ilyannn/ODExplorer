@@ -10,16 +10,19 @@
 #import "ODCollection.h"
 #import "ODBaseRequestManager.h"
 
-@implementation ODService
-
-- (NSURL *)URL {
-    return [NSURL URLWithString:self.servicePath relativeToURL:self.hostURL];
+@implementation ODService {
+    NSURL *_serviceURL;
+    NSString *_shortDescription;
 }
+
+@synthesize URL = _serviceURL;
+@synthesize shortDescription = _shortDescription;
 
 - (id)init
 {
     self = [super init];
     if (self) {
+        self.kind = ODResourceKindCollection;
         ODBaseRequestManager *commonManager = [ODBaseRequestManager new];
         self.readManager = commonManager;
         self.changeManager = commonManager;

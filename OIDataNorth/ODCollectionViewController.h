@@ -14,7 +14,6 @@
 @interface ODCollectionViewController : ODResourceViewController
 @property (readwrite, nonatomic) ODCollection *resource;
 
-- (Class)entityCellClass;
 @property (nonatomic) NSMutableArray *headlineProperties;
 
 @end

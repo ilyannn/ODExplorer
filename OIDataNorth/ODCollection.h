@@ -8,9 +8,12 @@
 
 #import "ODResource.h"
 
+@protocol ODCollectionAccessing <ODResourceAccessing>
+@end
+
 @class ODEntity, ODEntityType;
 
-@interface ODCollection : ODResource
+@interface ODCollection : ODResource <ODCollectionAccessing>
 
 + (instancetype)collectionForProperty:(NSString *)propertyName
                            entityType:(ODEntityType *)entityType

@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEntity.h"
-
 @class ODEntity;
 
 @interface ODEntityType : NSObject

@@ -18,6 +18,16 @@
     NSString *_name;
 }
 
+// This is a designated initializer.
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.kind = ODResourceKindCollection;
+    }
+    return self;
+}
+
 - (ODResource *)parent {
     return _parent;
 }
@@ -37,7 +47,7 @@
 }
 
 - (instancetype)initWithName:(NSString *)name inParent:(ODResource *)parent {
-    self = [super init];
+    self = [self init];
     if (self) {
         _parent = parent;
         _name = name;

@@ -16,6 +16,16 @@
 		B34544D118195DFB0039BD67 /* ODResourceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544D018195DFB0039BD67 /* ODResourceTableViewCell.m */; };
 		B34544D418195E6B0039BD67 /* ODEntityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544D318195E6B0039BD67 /* ODEntityTableViewCell.m */; };
 		B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544D7181968370039BD67 /* ODPropertyTableViewCell.m */; };
+		B34544E11819C3050039BD67 /* ODResourceViewController+ViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E01819C3050039BD67 /* ODResourceViewController+ViewControllers.m */; };
+		B34544E41819DFC70039BD67 /* ODServiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E31819DFC70039BD67 /* ODServiceListViewController.m */; };
+		B34544EA181A6AA20039BD67 /* ODServiceList.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E9181A6AA20039BD67 /* ODServiceList.m */; };
+		B34544ED181B03280039BD67 /* ODServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */; };
+		B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */; };
+		B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EBB181198CB007BCE33 /* NorthwindService.m */; };
+		B34544F4181B36A30039BD67 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC81815318B007BCE33 /* Product.m */; };
+		B34544F5181B36A30039BD67 /* Supplier.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F5518168C99007BCE33 /* Supplier.m */; };
+		B34544F6181B36A30039BD67 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F2D18155FBC007BCE33 /* Employee.m */; };
+		B34544F7181B36A30039BD67 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3018155FCC007BCE33 /* Customer.m */; };
 		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
 		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
@@ -38,12 +48,8 @@
 		B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EAE18119337007BCE33 /* ODQueryOperation.m */; };
 		B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB4181195A0007BCE33 /* ODCollection.m */; };
 		B3900EB818119619007BCE33 /* ODEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB718119619007BCE33 /* ODEntity.m */; };
-		B3900EBC181198CB007BCE33 /* NorthwindService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EBB181198CB007BCE33 /* NorthwindService.m */; };
 		B3900EC318152F08007BCE33 /* ODEntitySet.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC218152F08007BCE33 /* ODEntitySet.m */; };
 		B3900EC61815310C007BCE33 /* ODEntityType.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC51815310C007BCE33 /* ODEntityType.m */; };
-		B3900EC91815318B007BCE33 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC81815318B007BCE33 /* Product.m */; };
-		B3900F2E18155FBC007BCE33 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F2D18155FBC007BCE33 /* Employee.m */; };
-		B3900F3118155FCC007BCE33 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3018155FCC007BCE33 /* Customer.m */; };
 		B3900F3A1815BA75007BCE33 /* ODCollectionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F391815BA75007BCE33 /* ODCollectionCache.m */; };
 		B3900F3D1815C0AC007BCE33 /* ODCountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */; };
 		B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */; };
@@ -51,7 +57,6 @@
 		B3900F4D18167765007BCE33 /* ODResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F4C18167765007BCE33 /* ODResource.m */; };
 		B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F4F18168161007BCE33 /* ODBaseRequestManager.m */; };
 		B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F5218168170007BCE33 /* ODBatchRequestManager.m */; };
-		B3900F5618168C99007BCE33 /* Supplier.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F5518168C99007BCE33 /* Supplier.m */; };
 		B3900F591816962C007BCE33 /* ODRetrieveOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F581816962C007BCE33 /* ODRetrieveOperation.m */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +89,15 @@
 		B34544D318195E6B0039BD67 /* ODEntityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEntityTableViewCell.m; sourceTree = "<group>"; };
 		B34544D6181968370039BD67 /* ODPropertyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPropertyTableViewCell.h; sourceTree = "<group>"; };
 		B34544D7181968370039BD67 /* ODPropertyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPropertyTableViewCell.m; sourceTree = "<group>"; };
+		B34544E01819C3050039BD67 /* ODResourceViewController+ViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ODResourceViewController+ViewControllers.m"; sourceTree = "<group>"; };
+		B34544E21819DFC70039BD67 /* ODServiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceListViewController.h; sourceTree = "<group>"; };
+		B34544E31819DFC70039BD67 /* ODServiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceListViewController.m; sourceTree = "<group>"; };
+		B34544E8181A6AA20039BD67 /* ODServiceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceList.h; sourceTree = "<group>"; };
+		B34544E9181A6AA20039BD67 /* ODServiceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceList.m; sourceTree = "<group>"; };
+		B34544EB181B03280039BD67 /* ODServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceTableViewCell.h; sourceTree = "<group>"; };
+		B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceTableViewCell.m; sourceTree = "<group>"; };
+		B34544EE181B278D0039BD67 /* ODRetrievalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRetrievalInfo.h; sourceTree = "<group>"; };
+		B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRetrievalInfo.m; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -197,14 +211,17 @@
 		B34544CE181958460039BD67 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B34544CB181948450039BD67 /* ODServiceViewController.h */,
-				B34544CC181948450039BD67 /* ODServiceViewController.m */,
 				B34544C8181932E60039BD67 /* ODResourceViewController.h */,
 				B34544C9181932E60039BD67 /* ODResourceViewController.m */,
+				B34544E01819C3050039BD67 /* ODResourceViewController+ViewControllers.m */,
+				B34544CB181948450039BD67 /* ODServiceViewController.h */,
+				B34544CC181948450039BD67 /* ODServiceViewController.m */,
 				B3900E8018118102007BCE33 /* ODCollectionViewController.h */,
 				B3900E8118118102007BCE33 /* ODCollectionViewController.m */,
 				B34544C5181932A50039BD67 /* ODEntityViewController.h */,
 				B34544C6181932A50039BD67 /* ODEntityViewController.m */,
+				B34544E21819DFC70039BD67 /* ODServiceListViewController.h */,
+				B34544E31819DFC70039BD67 /* ODServiceListViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -218,8 +235,30 @@
 				B34544D7181968370039BD67 /* ODPropertyTableViewCell.m */,
 				B34544D218195E6B0039BD67 /* ODEntityTableViewCell.h */,
 				B34544D318195E6B0039BD67 /* ODEntityTableViewCell.m */,
+				B34544EB181B03280039BD67 /* ODServiceTableViewCell.h */,
+				B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */,
 			);
 			name = " Cells";
+			sourceTree = "<group>";
+		};
+		B34544F1181B27DF0039BD67 /* Retrieval */ = {
+			isa = PBXGroup;
+			children = (
+				B34544EE181B278D0039BD67 /* ODRetrievalInfo.h */,
+				B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */,
+				B3900F4418167018007BCE33 /* ODEntityRetrieval.h */,
+				B3900F4518167018007BCE33 /* ODEntityRetrieval.m */,
+			);
+			name = Retrieval;
+			sourceTree = "<group>";
+		};
+		B34544F2181B2E3E0039BD67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3900EC41815310C007BCE33 /* ODEntityType.h */,
+				B3900EC51815310C007BCE33 /* ODEntityType.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		B3900E5A18118102007BCE33 = {
@@ -312,7 +351,9 @@
 				B34544CE181958460039BD67 /* View Controllers */,
 				B34544D518195F990039BD67 /*  Cells */,
 				B3900F48181675F7007BCE33 /* Managers */,
+				B34544F2181B2E3E0039BD67 /* Model */,
 				B3900F421815D84A007BCE33 /* Resources */,
+				B34544F1181B27DF0039BD67 /* Retrieval */,
 				B3900F411815D82B007BCE33 /* Operations */,
 				B3900F431815D85E007BCE33 /* Bridges */,
 			);
@@ -414,18 +455,16 @@
 			children = (
 				B3900F4B18167765007BCE33 /* ODResource.h */,
 				B3900F4C18167765007BCE33 /* ODResource.m */,
+				B34544E8181A6AA20039BD67 /* ODServiceList.h */,
+				B34544E9181A6AA20039BD67 /* ODServiceList.m */,
 				B3900EA41811811A007BCE33 /* ODService.h */,
 				B3900EA51811811A007BCE33 /* ODService.m */,
-				B3900EB3181195A0007BCE33 /* ODCollection.h */,
-				B3900EB4181195A0007BCE33 /* ODCollection.m */,
-				B3900EB618119619007BCE33 /* ODEntity.h */,
-				B3900EB718119619007BCE33 /* ODEntity.m */,
-				B3900EC41815310C007BCE33 /* ODEntityType.h */,
-				B3900EC51815310C007BCE33 /* ODEntityType.m */,
 				B3900EC118152F08007BCE33 /* ODEntitySet.h */,
 				B3900EC218152F08007BCE33 /* ODEntitySet.m */,
-				B3900F4418167018007BCE33 /* ODEntityRetrieval.h */,
-				B3900F4518167018007BCE33 /* ODEntityRetrieval.m */,
+				B3900EB618119619007BCE33 /* ODEntity.h */,
+				B3900EB718119619007BCE33 /* ODEntity.m */,
+				B3900EB3181195A0007BCE33 /* ODCollection.h */,
+				B3900EB4181195A0007BCE33 /* ODCollection.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -584,15 +623,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3900EBC181198CB007BCE33 /* NorthwindService.m in Sources */,
 				B3900EC318152F08007BCE33 /* ODEntitySet.m in Sources */,
+				B34544E11819C3050039BD67 /* ODResourceViewController+ViewControllers.m in Sources */,
 				B3900F591816962C007BCE33 /* ODRetrieveOperation.m in Sources */,
-				B3900F3118155FCC007BCE33 /* Customer.m in Sources */,
 				B3900F4618167018007BCE33 /* ODEntityRetrieval.m in Sources */,
 				B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */,
+				B34544F4181B36A30039BD67 /* Product.m in Sources */,
 				B3900E8518118102007BCE33 /* OIDetailViewController.m in Sources */,
+				B34544E41819DFC70039BD67 /* ODServiceListViewController.m in Sources */,
 				B34544CA181932E60039BD67 /* ODResourceViewController.m in Sources */,
-				B3900EC91815318B007BCE33 /* Product.m in Sources */,
 				B3900F4D18167765007BCE33 /* ODResource.m in Sources */,
 				B34544C7181932A50039BD67 /* ODEntityViewController.m in Sources */,
 				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
@@ -600,22 +639,27 @@
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
+				B34544ED181B03280039BD67 /* ODServiceTableViewCell.m in Sources */,
 				B34544C1181846340039BD67 /* ODActionOperation.m in Sources */,
 				B3900EB818119619007BCE33 /* ODEntity.m in Sources */,
 				B3900F3A1815BA75007BCE33 /* ODCollectionCache.m in Sources */,
 				B3900E8218118102007BCE33 /* ODCollectionViewController.m in Sources */,
 				B34544CD181948450039BD67 /* ODServiceViewController.m in Sources */,
 				B3900EA918118129007BCE33 /* ODOperation.m in Sources */,
+				B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */,
 				B3900EC61815310C007BCE33 /* ODEntityType.m in Sources */,
+				B34544F5181B36A30039BD67 /* Supplier.m in Sources */,
 				B34544D418195E6B0039BD67 /* ODEntityTableViewCell.m in Sources */,
 				B3900E7518118102007BCE33 /* main.m in Sources */,
 				B3900EA61811811A007BCE33 /* ODService.m in Sources */,
-				B3900F2E18155FBC007BCE33 /* Employee.m in Sources */,
 				B3900F3D1815C0AC007BCE33 /* ODCountOperation.m in Sources */,
 				B34544D118195DFB0039BD67 /* ODResourceTableViewCell.m in Sources */,
-				B3900F5618168C99007BCE33 /* Supplier.m in Sources */,
+				B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */,
 				B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */,
+				B34544F6181B36A30039BD67 /* Employee.m in Sources */,
+				B34544EA181A6AA20039BD67 /* ODServiceList.m in Sources */,
 				B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */,
+				B34544F7181B36A30039BD67 /* Customer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

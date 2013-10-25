@@ -9,46 +9,23 @@
 #import "ODEntityViewController.h"
 #import "ODPropertyTableViewCell.h"
 
-NSString *const ODPropertyCellReuseID = @"PropertyCell";
+@implementation ODEntityViewController
 
-@implementation ODEntityViewController {
-    NSArray *listedProperties;
+- (NSDictionary *)cellClasses {
+    return @{ODGenericCellReuseID : [ODPropertyTableViewCell class]};
 }
 
-- (Class)propertyCellClass {
-    return [ODPropertyTableViewCell class];
+- (void)refreshChildren {
+    self.childIdentifiers = [[self.resource localProperties] allKeys];
 }
 
-- (void)loadView {
-    [super loadView];
-    [self.tableView registerClass:[self propertyCellClass]
-           forCellReuseIdentifier:ODPropertyCellReuseID];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self reloadProperties];
-}
-
-- (void)reloadProperties {
-    listedProperties = [[self.resource localProperties] allKeys];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return listedProperties.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ODPropertyTableViewCell *cell = [tableView
-                                     dequeueReusableCellWithIdentifier:ODPropertyCellReuseID
-                                     forIndexPath:indexPath
-                                     ];
-    cell.propertyName = listedProperties[indexPath.row];
+- (void)configureCell:(ODPropertyTableViewCell *)cell forChild:(id)childID {
+    cell.propertyName = childID;
     cell.resource = self.resource;
-    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // do nothing
 }
 
 @end

@@ -19,4 +19,8 @@
     return entitySet;
 }
 
+- (NSString *)shortDescription {
+    return self.name;
+}
+
 @end

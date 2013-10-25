@@ -8,7 +8,9 @@
 
 #import "ODQueryOperation.h"
 #import "ODCollection.h"
+#import "ODEntity.h"
 #import "ODEntityType.h"
+#import "ODEntityRetrieval.h"
 
 NSString* const ODQuerySelectString  = @"$select";
 NSString* const ODQueryFilterString  = @"$filter";

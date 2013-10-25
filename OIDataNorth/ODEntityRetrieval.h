@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
+#import "ODRetrievalInfo.h"
+
 @class ODEntitySet, ODCollection, ODEntity;
 
-@interface ODEntityRetrieval : NSObject
-- (NSURL *)retrievalURL;
-- (NSString *)shortDescription;
+@interface ODEntityRetrieval : ODRetrievalInfo
 @end
 
 @interface ODEntityRetrievalByIndex : ODEntityRetrieval

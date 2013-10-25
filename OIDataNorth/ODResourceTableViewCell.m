@@ -10,6 +10,14 @@
 
 @implementation ODResourceTableViewCell
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [super initWithStyle:[self cellStyle]  reuseIdentifier:reuseIdentifier];
+}
+
+- (UITableViewCellStyle)cellStyle {
+    return UITableViewCellStyleDefault;
+}
+
 - (void)setResource:(ODResource *)resource {
     if (_resource != resource) {
         _resource = resource;
@@ -18,6 +26,9 @@
 }
 
 - (void)configure {
+    self.textLabel.text = [self.resource shortDescription];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
+
 
 @end

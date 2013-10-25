@@ -8,9 +8,10 @@
 
 #import "OIAppDelegate.h"
 
-#import "ODCollectionViewController.h"
-#import "NorthwindService.h"
+#import "ODResourceViewController.h"
 #import "ODBaseRequestManager.h"
+#import "ODServiceList.h"
+#import "ODService.h"
 
 @implementation OIAppDelegate
 
@@ -18,15 +19,25 @@
 {
     
     // Override point for customization after application launch.
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    ODCollectionViewController *controller = (ODCollectionViewController *)navigationController.topViewController;
-
-    NorthwindService *service = [NorthwindService new];
-    service.readManager = [ODBaseRequestManager nonblockingManager];
-    service.changeManager = [ODBaseRequestManager nonblockingManager];
+    ODServiceList *serviceList = [[ODServiceList alloc] initFromDefaults];
+    serviceList.readManager = [ODBaseRequestManager nonblockingManager];
+    serviceList.changeManager = [ODBaseRequestManager nonblockingManager];
     
-    controller.resource = service.Products;
-    controller.headlineProperties = [@[@"ProductName", @"ProductID"] mutableCopy];
+    UINavigationController *nc = (UINavigationController *)self.window.rootViewController;
+    [nc pushViewController:[ODResourceViewController controllerForResource:serviceList] animated:YES];
+
+    NSURL *URL = launchOptions[UIApplicationLaunchOptionsURLKey];
+    if (URL) {
+        ODService *service = [ODService new];
+        service.URL = URL;
+        service.shortDescription = @"from parameters";
+        [serviceList.services addObject:service];
+        [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
+    }
+    
+    
+    
+//    controller.headlineProperties = [@[@"ProductName", @"ProductID"] mutableCopy];
 
     return YES;
 }

@@ -10,10 +10,9 @@
 
 @implementation ODPropertyTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:reuseIdentifier]) {
-    }
-    return self;
+
+- (UITableViewCellStyle)cellStyle {
+    return UITableViewCellStyleValue2;
 }
 
 - (void)setPropertyName:(NSString *)propertyName {

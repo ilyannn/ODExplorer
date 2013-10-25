@@ -10,8 +10,6 @@
 #import "ODEntityType.h"
 #import "ODEntitySet.h"
 
-#import "ODEntityRetrieval.h"
-
 @interface ODEntity : ODResource
 - (NSDictionary *)keys;
 - (void)setKeys:(id)keys;
@@ -21,8 +19,6 @@
 
 + (ODEntityType *)entityType;
 - (ODEntityType *)entityType;
-
-@property ODEntityRetrieval *retrievalInfo;
 
 @property (readonly, nonatomic) NSDictionary *localProperties;
 @property (readonly, nonatomic) NSDictionary *remoteProperties;

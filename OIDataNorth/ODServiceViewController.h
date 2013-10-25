@@ -10,5 +10,7 @@
 #import "ODService.h"
 
 @interface ODServiceViewController : ODResourceViewController
+
 @property (readwrite, nonatomic) ODService *resource;
+
 @end

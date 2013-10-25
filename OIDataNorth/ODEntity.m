@@ -23,6 +23,16 @@
     NSMutableDictionary *_remoteProperties;
 }
 
+// This is a designated initializer.
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.kind = ODResourceKindEntity;
+    }
+    return self;
+}
+
 @synthesize localProperties = _localProperties;
 @synthesize remoteProperties = _remoteProperties;
 
@@ -77,7 +87,7 @@
 }
 
 - (id)initFromDict:(NSDictionary *)dict {
-    if (self = [super init]) {
+    if (self = [self init]) {
         [self updateFromDict:dict];
     }
     return self;
@@ -140,6 +150,10 @@
 
 - (void)performAction:(NSString *)actionName withParameters:(NSDictionary *)params {
     [self.changeManager performAction:actionName for:self withParameters:params];
+}
+
+- (NSString *)shortDescription {
+    return [self.retrievalInfo shortDescription];
 }
 
 - (NSString *)longDescription {

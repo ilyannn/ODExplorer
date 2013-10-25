@@ -17,13 +17,18 @@
     return [super operationWithResource:service];
 }
 
-- (void)processJSONResponse:(NSArray *)responseJSON {
-    if ([responseJSON isKindOfClass:NSArray.class]) {
+- (void)processJSONResponse:(id)responseJSON {
+    NSArray *responseArray = responseJSON;
+    if ([responseJSON isKindOfClass:[NSDictionary class]]) {
+        responseArray = responseJSON[@"value"];
+    }
+    
+    if ([responseArray isKindOfClass:NSArray.class]) {
         NSMutableDictionary *entitySets = [NSMutableDictionary new];
-        [responseJSON enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+        [responseArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
             if ([obj isKindOfClass:NSDictionary.class]) {
                 NSString *name = obj[@"name"];
-                NSString *uri = obj[@"uri"];
+                NSString *uri = obj[@"url"];
                 if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
                      entitySets[name] =[ODEntitySet entitySetWithService:self.resource
                                                                     name:uri

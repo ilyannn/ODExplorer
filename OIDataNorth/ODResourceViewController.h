@@ -8,17 +8,31 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ODResource.h"
+@class ODResource, ODResourceTableViewCell;
+
+extern NSString * const ODGenericCellReuseID;
 
 @interface ODResourceViewController : UITableViewController
++ (ODResourceViewController *)controllerForResource:(ODResource *)resourc;
+
 @property (readwrite, nonatomic) ODResource *resource;
+@property (readwrite, nonatomic) NSArray *childIdentifiers;
+
 @property (getter = isSubscribed, nonatomic) BOOL subscribed;
 
-- (void)refreshData;
+- (NSDictionary *)cellClasses;
+- (void)refreshChildren;
+- (NSString *)cellReuseIDForChild:(id)childID;
+- (void)configureCell:(ODResourceTableViewCell *)cell forChild:(id)childID;
+
 
 // This method will be called when the view becomes visible to retrieve active data
 // and continue retrieving them further.
 - (void)subscribeToResource;
 - (void)unsubscribeFromResource;
 
+@end
+
+@interface ODResourceViewController (ViewControllers)
++ (Class)viewControllerClassFor:(Class)resourceClass;
 @end

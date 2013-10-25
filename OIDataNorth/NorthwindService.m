@@ -15,6 +15,10 @@
 
 @implementation NorthwindService
 
+- (NSString *)shortDescription {
+    return @"Northwind Service";
+}
+
 - (NSURL *)URL {
     return [NSURL URLWithString:@"http://services.odata.org/V3/Northwind/Northwind.svc/"];
 }
@@ -22,10 +26,10 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _Products  = [ODEntitySet entitySetWithService:self name:@"Products" entityType:[Product entityType]];
+/*        _Products  = [ODEntitySet entitySetWithService:self name:@"Products" entityType:[Product entityType]];
         _Customers = [ODEntitySet entitySetWithService:self name:@"Customers" entityType:[Customer entityType]];
         _Employees = [ODEntitySet entitySetWithService:self name:@"Employees" entityType:[Employee entityType]];
-    }
+*/    }
     return self;
 }
 

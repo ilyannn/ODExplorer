@@ -13,8 +13,5 @@
 
 @interface ODEntityViewController : ODResourceViewController
 @property (readwrite, nonatomic) ODEntity *resource;
-- (void)reloadProperties;
-
-- (Class)propertyCellClass;
 
 @end

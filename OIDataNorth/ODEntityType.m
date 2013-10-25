@@ -7,6 +7,7 @@
 //
 
 #import "ODEntityType.h"
+#import "ODEntity.h"
 
 @implementation ODEntityType
 
@@ -15,7 +16,8 @@
 }
 
 - (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict {
-    return [[NSClassFromString(self.className) alloc] initFromDict:entityDict];
+    ODEntity *entity = [NSClassFromString(self.className) alloc];
+    return [entity initFromDict:entityDict];
 }
 
 @end

@@ -11,11 +11,8 @@
 
 @implementation ODEntityTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier]) {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    return self;
+- (UITableViewCellStyle)cellStyle {
+    return UITableViewCellStyleValue1;
 }
 
 - (void)setHeadlineProperties:(NSMutableArray *)headlineProperties {
@@ -37,6 +34,7 @@
         }];
         self.textLabel.text = headline ? headline : self.resource.URL.relativePath;
         self.detailTextLabel.text = [self.resource.retrievalInfo shortDescription];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 }
 
