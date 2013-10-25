@@ -9,7 +9,7 @@
 #import "ODResourceViewController.h"
 #import "ODResourceTableViewCell.h"
 
-NSString * const ODGenericCellReuseID = @"GenericCell";
+NSString *const ODGenericCellReuseID = @"GenericCell";
 
 @implementation ODResourceViewController
 
@@ -25,10 +25,10 @@ NSString * const ODGenericCellReuseID = @"GenericCell";
 }
 
 - (void)viewDidLoad {
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
     
-    [[self cellClasses] enumerateKeysAndObjectsUsingBlock:^(NSString *key, Class obj, BOOL *stop) {
+    [[self cellClasses] enumerateKeysAndObjectsUsingBlock: ^(NSString *key, Class obj, BOOL *stop) {
         [self.tableView registerClass:obj forCellReuseIdentifier:key];
     }];
     
@@ -36,7 +36,7 @@ NSString * const ODGenericCellReuseID = @"GenericCell";
 }
 
 - (NSDictionary *)cellClasses {
-    return @{ ODGenericCellReuseID : [ODResourceTableViewCell class]};
+    return @{ ODGenericCellReuseID : [ODResourceTableViewCell class] };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,7 +87,6 @@ NSString * const ODGenericCellReuseID = @"GenericCell";
 }
 
 - (void)unsubscribeFromResource {
-
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -98,9 +97,8 @@ NSString * const ODGenericCellReuseID = @"GenericCell";
     return self.childIdentifiers.count;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ODResourceTableViewCell *cell = (ODResourceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];    
+    ODResourceTableViewCell *cell = (ODResourceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     if (![cell isKindOfClass:[ODResourceTableViewCell class]]) return;
     
     ODResourceViewController *vc = [[self class] controllerForResource:cell.resource];
@@ -109,8 +107,7 @@ NSString * const ODGenericCellReuseID = @"GenericCell";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id childIdentifier = self.childIdentifiers[indexPath.row];
     NSString *cellID = [self cellReuseIDForChild:childIdentifier];
     ODResourceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
@@ -126,8 +123,4 @@ NSString * const ODGenericCellReuseID = @"GenericCell";
     cell.resource = childID;
 }
 
-
-
 @end
-
-

@@ -19,7 +19,7 @@
                            entityType:(ODEntityType *)entityType
                              inEntity:(ODEntity *)entity;
 
-@property (nonatomic) ODEntityType* entityType;
+@property (nonatomic) ODEntityType *entityType;
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) ODResource *parent;
@@ -31,8 +31,8 @@
 - (ODEntity *)objectForKey:(id)objectKey;
 - (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index;
 
-- (void)countAndPerform:(void(^)(NSUInteger count))block;
-- (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void(^)(NSArray *items))block
+- (void)countAndPerform:(void (^)(NSUInteger count))block;
+- (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *items))block
 ;
 
 @end

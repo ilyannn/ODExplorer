@@ -33,11 +33,11 @@
     return nil; // we're abstract
 }
 
-- (id<ODFaultManaging>)readManager {
+- (id <ODFaultManaging> )readManager {
     return _readManager ? _readManager : [self parent].readManager;
 }
 
-- (id<ODChangeManaging>)changeManager {
+- (id <ODChangeManaging> )changeManager {
     return _changeManager ? _changeManager : [self parent].changeManager;
 }
 

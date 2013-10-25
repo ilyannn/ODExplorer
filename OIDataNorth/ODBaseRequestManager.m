@@ -22,8 +22,7 @@
     return manager;
 }
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.propertyFaultStrategy = ODPropertyFaultReturn;
@@ -32,14 +31,13 @@
     return self;
 }
 
-
 - (void)retrieveProperty:(NSString *)propertyName ofEntity:(ODEntity *)entity {
     switch (self.propertyFaultStrategy) {
         case ODPropertyFaultReturn:
             // do nothing;
         default:
             break;
-    } ;
+    }
 }
 
 - (void)enqueueOperation:(ODOperation *)operation {
@@ -56,7 +54,6 @@
 }
 
 - (void)performAction:(NSString *)actionName for:(ODEntity *)entity withParameters:(NSDictionary *)params {
-    
     ODActionOperation *operation = [ODActionOperation new];
     operation.resource = entity;
     operation.parameters = [params mutableCopy];
@@ -78,6 +75,5 @@
     };
     [self enqueueOperation:operation];
 }
-
 
 @end

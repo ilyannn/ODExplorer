@@ -12,12 +12,12 @@
 #import "ODEntityType.h"
 #import "ODEntityRetrieval.h"
 
-NSString* const ODQuerySelectString  = @"$select";
-NSString* const ODQueryFilterString  = @"$filter";
-NSString* const ODQueryTopString     = @"$top";
-NSString* const ODQuerySkipString    = @"$skip";
-NSString* const ODQueryExpandString  = @"$expand";
-NSString* const ODQueryOrderByString = @"$orderby";
+NSString *const ODQuerySelectString  = @"$select";
+NSString *const ODQueryFilterString  = @"$filter";
+NSString *const ODQueryTopString     = @"$top";
+NSString *const ODQuerySkipString    = @"$skip";
+NSString *const ODQueryExpandString  = @"$expand";
+NSString *const ODQueryOrderByString = @"$orderby";
 
 
 @implementation ODQueryOperation
@@ -67,12 +67,12 @@ NSString* const ODQueryOrderByString = @"$orderby";
 }
 
 - (void)setTop:(NSUInteger)top {
-    NSString * value = !top ? nil : [NSString stringWithFormat:@"%lu", (unsigned long)top];
+    NSString *value = !top ? nil : [NSString stringWithFormat:@"%lu", (unsigned long)top];
     [self setValue:value forKey:ODQueryTopString];
 }
 
 - (void)setSkip:(NSUInteger)skip {
-    NSString * value = !skip ? nil : [NSString stringWithFormat:@"%lu", (unsigned long)skip];
+    NSString *value = !skip ? nil : [NSString stringWithFormat:@"%lu", (unsigned long)skip];
     [self setValue:value forKey:ODQuerySkipString];
 }
 
@@ -83,12 +83,12 @@ NSString* const ODQueryOrderByString = @"$orderby";
     if (![values isKindOfClass:NSArray.class]) return;
     
     NSMutableArray *list = [[NSMutableArray alloc] initWithCapacity:values.count];
-    [values enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger index, BOOL *stop) {
+    [values enumerateObjectsUsingBlock: ^(NSDictionary *dict, NSUInteger index, BOOL *stop) {
         if ([dict isKindOfClass:NSDictionary.class]) {
             ODEntity *entity = [[self.resource entityType] deserializeEntityFrom:dict];
             entity.parent = self.resource;
             [list addObject:entity];
-
+            
             ODEntityRetrievalByIndex *retrieval = [ODEntityRetrievalByIndex new];
             retrieval.collection = (ODCollection *)self.resource;
             retrieval.index = self.skip + index + 1;

@@ -1,4 +1,3 @@
-
 //
 //  ODServiceViewController.m
 //  OIDataNorth
@@ -31,8 +30,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (self.resource.entitySets.count != [self.tableView numberOfRowsInSection:0]) {
-        
-        self.childIdentifiers = [[self.resource.entitySets allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString * obj2) {
+        self.childIdentifiers = [[self.resource.entitySets allKeys] sortedArrayUsingComparator: ^NSComparisonResult (NSString *obj1, NSString *obj2) {
             return [obj1 compare:obj2];
         }];
         
@@ -41,7 +39,5 @@
          ];
     }
 }
-
-
 
 @end

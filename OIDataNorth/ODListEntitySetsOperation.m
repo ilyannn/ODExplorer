@@ -25,12 +25,12 @@
     
     if ([responseArray isKindOfClass:NSArray.class]) {
         NSMutableDictionary *entitySets = [NSMutableDictionary new];
-        [responseArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+        [responseArray enumerateObjectsUsingBlock: ^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
             if ([obj isKindOfClass:NSDictionary.class]) {
                 NSString *name = obj[@"name"];
                 NSString *uri = obj[@"url"];
                 if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
-                     entitySets[name] =[ODEntitySet entitySetWithService:self.resource
+                    entitySets[name] = [ODEntitySet entitySetWithService:self.resource
                                                                     name:uri
                                                               entityType:ODEntity.entityType];
                 }

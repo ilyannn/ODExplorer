@@ -19,17 +19,16 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
 }
 
 - (NSDictionary *)addedHTTPHeaders {
-    return @{@"Accept" : @"application/json"};
+    return @{ @"Accept" : @"application/json" };
 }
 
 - (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data {
     NSError *error;
     id responseObject = [self.responseSerializer responseObjectForResponse:response data:data error:&error];
-    [self processJSONResponse: responseObject];
+    [self processJSONResponse:responseObject];
 }
 
 - (void)processJSONResponse:(id)responseJSON {
-
 }
 
 @end

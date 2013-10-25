@@ -102,7 +102,7 @@
     }
     
     propertyValues = nil; // drop ASAP
-
+    
     // Sort our guesses.
     NSMutableArray *sortedProperties = [NSMutableArray new];
     [propertyWeight enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
@@ -161,7 +161,7 @@
     
     if ([propertyName rangeOfString:@"Name"].location != NSNotFound) weight += 0.5;
     if ([propertyName rangeOfString:@"name"].location != NSNotFound) weight += 0.2;
-
+    
     if ([propertyName rangeOfString:@"ID"].location != NSNotFound) weight += 0.2;
     if ([propertyName rangeOfString:@"id"].location != NSNotFound) weight += 0.1;
     

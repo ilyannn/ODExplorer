@@ -11,8 +11,7 @@
 
 @implementation ODServiceList
 
-- (instancetype)initFromDefaults
-{
+- (instancetype)initFromDefaults {
     self = [self init];
     if (self) {
         [self loadFromDefaults];
@@ -25,14 +24,13 @@
 }
 
 - (void)saveToDefaults {
-    
 }
 
 - (void)loadFromDefaults {
     ODService *exampleService = [ODService new];
     exampleService.URL = [NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"];
     exampleService.shortDescription = @"OData Example";
-    self.services = [NSMutableArray arrayWithObjects: exampleService, [NorthwindService new], nil];
+    self.services = [NSMutableArray arrayWithObjects:exampleService, [NorthwindService new], nil];
 }
 
 - (NSString *)shortDescription {

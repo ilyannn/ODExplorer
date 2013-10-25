@@ -8,7 +8,7 @@
 
 #import "ODCountOperation.h"
 
-NSString * const ODQueryCountString  = @"$count";
+NSString *const ODQueryCountString  = @"$count";
 
 @implementation ODCountOperation
 

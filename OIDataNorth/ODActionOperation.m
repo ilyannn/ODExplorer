@@ -9,7 +9,7 @@
 #import "ODActionOperation.h"
 #import "ODEntity.h"
 
-NSString * const ODHTTPVerbPost = @"POST";
+NSString *const ODHTTPVerbPost = @"POST";
 
 @implementation ODActionOperation
 

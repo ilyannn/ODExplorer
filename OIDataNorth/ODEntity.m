@@ -24,8 +24,7 @@
 }
 
 // This is a designated initializer.
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.kind = ODResourceKindEntity;
@@ -96,7 +95,7 @@
 - (void)updateFromDict:(NSDictionary *)dict {
     _remoteProperties = [NSMutableDictionary new];
     _navigationProperties = [NSMutableDictionary new];
-    [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [dict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:NSDictionary.class]) {
             ODEntity *entity = [[ODEntity alloc] initFromDict:obj];
             ODEntityRetrievalByProperty *retrieval = [ODEntityRetrievalByProperty new];

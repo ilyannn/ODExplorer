@@ -16,7 +16,7 @@
 }
 
 - (NSDictionary *)cellClasses {
-    return @{ODGenericCellReuseID : [ODServiceTableViewCell class]};
+    return @{ ODGenericCellReuseID : [ODServiceTableViewCell class] };
 }
 
 @end

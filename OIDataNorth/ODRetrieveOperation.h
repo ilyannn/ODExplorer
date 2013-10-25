@@ -12,7 +12,7 @@
 
 @interface ODRetrieveOperation : ODJSONOperation
 
-+ (instancetype)operationWithResource: (ODEntity *)entity;
++ (instancetype)operationWithResource:(ODEntity *)entity;
 @property ODEntity *resource;
 
 @end

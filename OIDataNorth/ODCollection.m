@@ -19,8 +19,7 @@
 }
 
 // This is a designated initializer.
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.kind = ODResourceKindCollection;
@@ -56,8 +55,8 @@
 }
 
 - (ODEntity *)objectForKey:(id)keys {
-//    ODEntity *entry = [[ODEntity alloc] initWithParent:self];
-//    return entry;
+    //    ODEntity *entry = [[ODEntity alloc] initWithParent:self];
+    //    return entry;
     return nil;
 }
 
@@ -69,7 +68,6 @@
     };
     [operation start];
 }
-
 
 - (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *))block {
     ODQueryOperation *operation = [ODQueryOperation new];
@@ -89,7 +87,7 @@
 
 - (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
     ODEntity *entity = [self.entityType createEntity];
-
+    
     ODEntityRetrievalByIndex *retrieval = [ODEntityRetrievalByIndex new];
     retrieval.collection = self;
     retrieval.index = index;
@@ -99,7 +97,7 @@
 }
 
 - (void)retrieveCount {
-    [self.readManager retrieveCount: self];
+    [self.readManager retrieveCount:self];
 }
 
 @end

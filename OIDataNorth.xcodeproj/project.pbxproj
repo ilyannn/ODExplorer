@@ -35,7 +35,6 @@
 		B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E7818118102007BCE33 /* OIAppDelegate.m */; };
 		B3900E7C18118102007BCE33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3900E7A18118102007BCE33 /* Main.storyboard */; };
 		B3900E8218118102007BCE33 /* ODCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E8118118102007BCE33 /* ODCollectionViewController.m */; };
-		B3900E8518118102007BCE33 /* OIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E8418118102007BCE33 /* OIDetailViewController.m */; };
 		B3900E8718118102007BCE33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3900E8618118102007BCE33 /* Images.xcassets */; };
 		B3900E8E18118102007BCE33 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E8D18118102007BCE33 /* XCTest.framework */; };
 		B3900E8F18118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
@@ -112,8 +111,6 @@
 		B3900E7B18118102007BCE33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B3900E8018118102007BCE33 /* ODCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODCollectionViewController.h; sourceTree = "<group>"; };
 		B3900E8118118102007BCE33 /* ODCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ODCollectionViewController.m; sourceTree = "<group>"; };
-		B3900E8318118102007BCE33 /* OIDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OIDetailViewController.h; sourceTree = "<group>"; };
-		B3900E8418118102007BCE33 /* OIDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDetailViewController.m; sourceTree = "<group>"; };
 		B3900E8618118102007BCE33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B3900E8C18118102007BCE33 /* OIDataNorthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OIDataNorthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E8D18118102007BCE33 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -306,8 +303,6 @@
 				B3900E7718118102007BCE33 /* OIAppDelegate.h */,
 				B3900E7818118102007BCE33 /* OIAppDelegate.m */,
 				B3900E7A18118102007BCE33 /* Main.storyboard */,
-				B3900E8318118102007BCE33 /* OIDetailViewController.h */,
-				B3900E8418118102007BCE33 /* OIDetailViewController.m */,
 				B3900E8618118102007BCE33 /* Images.xcassets */,
 				B3900E6F18118102007BCE33 /* Supporting Files */,
 				B3900EBD18152D1E007BCE33 /* Northwind Service */,
@@ -629,7 +624,6 @@
 				B3900F4618167018007BCE33 /* ODEntityRetrieval.m in Sources */,
 				B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */,
 				B34544F4181B36A30039BD67 /* Product.m in Sources */,
-				B3900E8518118102007BCE33 /* OIDetailViewController.m in Sources */,
 				B34544E41819DFC70039BD67 /* ODServiceListViewController.m in Sources */,
 				B34544CA181932E60039BD67 /* ODResourceViewController.m in Sources */,
 				B3900F4D18167765007BCE33 /* ODResource.m in Sources */,

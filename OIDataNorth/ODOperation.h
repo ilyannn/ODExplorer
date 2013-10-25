@@ -16,7 +16,7 @@
 
 // A factory to create operations. Note that subclasses should be chaging its singnature
 // to match that of |resource| property.
-+ (instancetype)operationWithResource: (ODResource *)resource;
++ (instancetype)operationWithResource:(ODResource *)resource;
 
 #pragma mark - What do we access?
 // These properties are set to describe the operation. |parameters| can be accessed by KVO coding.
@@ -51,7 +51,7 @@
 #pragma mark - What do we do with the results?
 
 - (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data;
-@property (strong) void(^onSuccess)(ODOperation *operation);
+@property (strong) void (^onSuccess)(ODOperation *operation);
 
 
 @end

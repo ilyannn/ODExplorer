@@ -18,7 +18,7 @@
 - (void)processJSONResponse:(id)response {
     if (!response) return;
     if (![response isKindOfClass:NSDictionary.class]) return;
-
+    
     [self.resource updateFromDict:response];
 }
 

@@ -19,4 +19,3 @@
 - (void)retrieveProperty:(NSString *)propertyName ofEntity:(ODEntity *)entity;
 - (void)retrieveEntitySetsForService:(ODService *)service;
 @end
-

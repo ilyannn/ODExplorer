@@ -10,7 +10,7 @@
 
 @class ODResource, ODResourceTableViewCell;
 
-extern NSString * const ODGenericCellReuseID;
+extern NSString *const ODGenericCellReuseID;
 
 @interface ODResourceViewController : UITableViewController
 + (ODResourceViewController *)controllerForResource:(ODResource *)resourc;

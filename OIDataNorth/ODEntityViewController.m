@@ -12,7 +12,7 @@
 @implementation ODEntityViewController
 
 - (NSDictionary *)cellClasses {
-    return @{ODGenericCellReuseID : [ODPropertyTableViewCell class]};
+    return @{ ODGenericCellReuseID : [ODPropertyTableViewCell class] };
 }
 
 - (void)refreshChildren {

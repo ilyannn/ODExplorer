@@ -11,7 +11,7 @@
 #import "ODRetrievalInfo.h"
 #import "ODEntityType.h"
 
-typedef NS_ENUM(NSInteger, ODResourceKind) {
+typedef NS_ENUM (NSInteger, ODResourceKind) {
     ODResourceKindUnknown = 0,
     ODResourceKindEntity,
     ODResourceKindCollection
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, ODResourceKind) {
 @end
 
 
-// This class implements all of functionality for 
+// This class implements all of functionality for resources, but declares only the base part.
 @interface ODResource : NSObject <ODResourceAccessing>
 
 

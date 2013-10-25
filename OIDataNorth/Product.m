@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-NSString* const kProduct_ProductName = @"ProductName";
-NSString* const kProduct_ProductID = @"ProductID";
-NSString* const kProduct_Supplier = @"Supplier";
+NSString *const kProduct_ProductName = @"ProductName";
+NSString *const kProduct_ProductID = @"ProductID";
+NSString *const kProduct_Supplier = @"Supplier";
 
 #import "Product.h"
 #import "Supplier.h"

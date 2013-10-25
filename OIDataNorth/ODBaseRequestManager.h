@@ -8,7 +8,7 @@
 
 #import "ODManagingProtocols.h"
 
-typedef NS_ENUM(NSInteger, ODPropertyChangeStrategy) {ODPropertyChangeIgnore, ODPropertyChangeReplace, ODPropertyChangeMerge, ODPropertyChangeUpdate};
+typedef NS_ENUM (NSInteger, ODPropertyChangeStrategy) { ODPropertyChangeIgnore, ODPropertyChangeReplace, ODPropertyChangeMerge, ODPropertyChangeUpdate };
 
 typedef NS_ENUM (NSInteger, ODPropertyFaultStrategy) { ODPropertyFaultReturn, ODPropertyFaultExcept, ODPropertyUnfaultEntity, ODPropertyUnfaultProperty };
 

@@ -10,8 +10,7 @@
 
 @implementation ODBatchRequestManager
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.propertyFaultStrategy = ODPropertyUnfaultEntity;
@@ -19,4 +18,5 @@
     }
     return self;
 }
+
 @end

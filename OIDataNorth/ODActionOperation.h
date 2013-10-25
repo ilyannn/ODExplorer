@@ -10,7 +10,7 @@
 
 @interface ODActionOperation : ODJSONOperation
 
-+ (instancetype)operationWithResource: (ODEntity *)entity;
++ (instancetype)operationWithResource:(ODEntity *)entity;
 @property ODEntity *resource;
 
 @property NSString *actionName;

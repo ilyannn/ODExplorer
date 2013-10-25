@@ -16,27 +16,24 @@
     ODCollectionCache *collectionCache;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad
-{
-	// Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    // Do any additional setup after loading the view, typically from a nib.
     
-//     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(refreshChildren)];;
-
+    //     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(refreshChildren)];;
+    
     collectionCache = [ODCollectionCache new];
     collectionCache.collection = self.resource;
-
+    
     [super viewDidLoad];
-
 }
 
 - (NSDictionary *)cellClasses {
-    return @{ODGenericCellReuseID :[ODEntityTableViewCell class]};
+    return @{ ODGenericCellReuseID :[ODEntityTableViewCell class] };
 }
 
 - (void)refreshChildren {
@@ -45,7 +42,7 @@
 
 - (void)subscribeToResource {
     [self.resource addObserver:self forKeyPath:@"count"
-                    options:NSKeyValueObservingOptionInitial context:nil];
+                       options:NSKeyValueObservingOptionInitial context:nil];
 }
 
 - (void)unsubscribeFromResource {
@@ -60,64 +57,54 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table View
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.resource.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ODEntityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ODGenericCellReuseID forIndexPath:indexPath];
     ODEntity *entity = collectionCache[indexPath.row];
-
+    
     if (!self.headlineProperties) {
         self.headlineProperties = [NSMutableArray new];
         NSString *guessed = [collectionCache guessMediumDescriptionProperty];
         if (guessed) [self.headlineProperties addObject:guessed];
     }
-
+    
     cell.headlineProperties = self.headlineProperties;
     cell.resource = entity;
-
+    
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // The table view should not be re-orderable.
     return NO;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showEntity"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ODResourceViewController *target = [segue destinationViewController];
         [target setResource:collectionCache[indexPath.row]];
     }
 }
-
-
 
 @end

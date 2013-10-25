@@ -18,8 +18,7 @@
 @synthesize URL = _serviceURL;
 @synthesize shortDescription = _shortDescription;
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.kind = ODResourceKindCollection;

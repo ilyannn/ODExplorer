@@ -11,7 +11,6 @@
 @implementation ODEntitySet
 
 + (instancetype)entitySetWithService:(ODService *)service name:(NSString *)name entityType:(ODEntityType *)entityType {
-
     ODEntitySet *entitySet = [self new];
     entitySet.parent = service;
     entitySet.name = name;

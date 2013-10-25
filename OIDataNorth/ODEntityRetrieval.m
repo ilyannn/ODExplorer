@@ -25,11 +25,11 @@
 
 - (NSURL *)retrievalURL {
     ODResource *parent = [self.collection parent];
-    NSString * relativePart = [NSString stringWithFormat:@"%@(%lu)", [self.collection name], (unsigned long)self.index];
+    NSString *relativePart = [NSString stringWithFormat:@"%@(%lu)", [self.collection name], (unsigned long)self.index];
     return [NSURL URLWithString:relativePart relativeToURL:parent.URL];
 }
 
--(NSString *)shortDescription {
+- (NSString *)shortDescription {
     return [NSString stringWithFormat:@"%lu", (unsigned long)self.index];
 }
 
@@ -38,7 +38,7 @@
 @implementation ODEntityRetrievalByProperty
 
 - (NSURL *)retrievalURL {
-    return [self.fromEntity.URL URLByAppendingPathComponent: self.propertyName];
+    return [self.fromEntity.URL URLByAppendingPathComponent:self.propertyName];
 }
 
 - (NSString *)shortDescription {
@@ -53,5 +53,5 @@
 @end
 
 @implementation ODEntityRetrievalByURL
-  // don't need anything here
+// don't need anything here
 @end

@@ -10,7 +10,7 @@
 
 @interface ODListEntitySetsOperation : ODJSONOperation
 
-+ (instancetype)operationWithResource: (ODService *)service;
++ (instancetype)operationWithResource:(ODService *)service;
 @property ODService *resource;
 
 @end
