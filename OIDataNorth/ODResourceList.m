@@ -28,7 +28,7 @@
     ODService *exampleService = [ODService
                                  resourceWithURL:[NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"] description:@"OData Example"];
     exampleService.retrievalInfo.parent = self.retrievalInfo;
-    self.childResources = [NSMutableArray arrayWithObjects:exampleService, [NorthwindService new], nil];
+    self.childResources = [NSMutableArray arrayWithObjects:exampleService, [NorthwindService unique], nil];
 }
 
 - (NSString *)shortDescription {

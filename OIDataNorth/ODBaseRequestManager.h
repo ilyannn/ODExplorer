@@ -15,9 +15,7 @@ typedef NS_ENUM (NSInteger, ODPropertyFaultStrategy) { ODPropertyFaultReturn, OD
 
 @interface ODBaseRequestManager : NSObject <ODChangeManaging, ODFaultManaging>
 
-// Manager becomes non-blocking simply by creating NSOperationsQueue for him.
-+ (instancetype)nonblockingManager;
-
+// New manager gets separate operations queue by default
 @property NSOperationQueue *operationQueue;
 @property ODPropertyFaultStrategy propertyFaultStrategy;
 @property ODPropertyChangeStrategy propertyChangeStrategy;

@@ -97,6 +97,7 @@ NSString *const ODQueryOrderByString = @"$orderby";
             entity.retrievalInfo = retrieval;
         }
     }];
+    
     _responseResults = [list copy];
     return nil;
 }

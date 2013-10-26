@@ -29,6 +29,7 @@
 		B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */; };
 		B34544FD181BEA270039BD67 /* ODPlainOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544FC181BEA270039BD67 /* ODPlainOperation.m */; };
 		B3454503181BF2010039BD67 /* ODOperationError.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454502181BF2010039BD67 /* ODOperationError.m */; };
+		B3454509181C7CEA0039BD67 /* OperationWithSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454508181C7CEA0039BD67 /* OperationWithSteps.m */; };
 		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
 		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
@@ -106,6 +107,8 @@
 		B3454501181BF2010039BD67 /* ODOperationError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODOperationError.h; sourceTree = "<group>"; };
 		B3454502181BF2010039BD67 /* ODOperationError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODOperationError.m; sourceTree = "<group>"; };
 		B3454506181C0F850039BD67 /* ODOperationError+Parsing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODOperationError+Parsing.h"; sourceTree = "<group>"; };
+		B3454507181C7CEA0039BD67 /* OperationWithSteps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationWithSteps.h; sourceTree = "<group>"; };
+		B3454508181C7CEA0039BD67 /* OperationWithSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationWithSteps.m; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -483,6 +486,8 @@
 		B3900F411815D82B007BCE33 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				B3454507181C7CEA0039BD67 /* OperationWithSteps.h */,
+				B3454508181C7CEA0039BD67 /* OperationWithSteps.m */,
 				B3900EA718118129007BCE33 /* ODOperation.h */,
 				B3900EA818118129007BCE33 /* ODOperation.m */,
 				B3454501181BF2010039BD67 /* ODOperationError.h */,
@@ -685,6 +690,7 @@
 				B3900E8218118102007BCE33 /* ODCollectionViewController.m in Sources */,
 				B34544CD181948450039BD67 /* ODServiceViewController.m in Sources */,
 				B3900EA918118129007BCE33 /* ODOperation.m in Sources */,
+				B3454509181C7CEA0039BD67 /* OperationWithSteps.m in Sources */,
 				B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */,
 				B3900EC61815310C007BCE33 /* ODEntityType.m in Sources */,
 				B34544F5181B36A30039BD67 /* Supplier.m in Sources */,

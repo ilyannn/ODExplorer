@@ -12,6 +12,7 @@
 #import "ODBaseRequestManager.h"
 #import "ODResourceList.h"
 #import "ODService.h"
+#import "ODCollection.h"
 
 @implementation OIAppDelegate
 
@@ -20,8 +21,6 @@
     
     // Override point for customization after application launch.
     ODResourceList *root = [[ODResourceList alloc] initFromDefaults];
-    root.retrievalInfo.readManager = [ODBaseRequestManager nonblockingManager];
-    root.retrievalInfo.changeManager = [ODBaseRequestManager nonblockingManager];
     
     UINavigationController *nc = (UINavigationController *)self.window.rootViewController;
     [nc pushViewController:[ODResourceViewController controllerForResource:root] animated:YES];
@@ -33,9 +32,53 @@
         [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
     }
     
+    NSURL *localURL = [NSURL fileURLWithPath:@"~/Library/favorites.json"];
     return YES;
 }
-							
+
+- (void)loadArticles
+{/*
+    RKObjectMapping* articleMapping = [RKObjectMapping mappingForClass:[Article class]];
+    [articleMapping addAttributeMappingsFromDictionary:@{
+                                                         @"title": @"title",
+                                                         @"body": @"body",
+                                                         @"author": @"author",
+                                                         @"publication_date": @"publicationDate"
+                                                         }];
+    
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articleMapping pathPattern:nil keyPath:@"articles" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSURL *URL = [NSURL URLWithString:@"http://restkit.org/articles"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor ]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RKLogInfo(@"Load collection of Articles: %@", mappingResult.array);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        RKLogError(@"Operation failed with error: %@", error);
+    }];
+    
+    [objectRequestOperation start];
+*/
+    
+}
+
+- (void)loadArticles_OD {
+    // Instantiating ODCollection ensures that that operation will fail if server tries to return something else.
+    ODCollection *articles = [ODCollection resourceWithURL:[NSURL URLWithString:@"http://restkit.org/articles"]
+                              // Description is useful for debugging or displaying the resource to user.
+                                               description:@"My article list"];
+//    articles.entityType = [Article entityType];
+    //    [articles.readManager addCompletionHandler:]
+    [articles retrieve];
+    
+    // start using articles.childrenArray; it will be updated in the background as necessary
+}
+
+- (id)loadArticles_minimal {
+//    [ODResource sharedReadManager].autoretrieve = YES;
+    return [[ODCollection resourceWithURLString:@"http://restkit.org/articles"] autoretrieve].childrenArray;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

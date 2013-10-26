@@ -49,10 +49,12 @@
 - (void)countAndPerform:(void (^)(NSUInteger))block {
     ODCountOperation *operation = [ODCountOperation new];
     operation.resource = self;
-    operation.onSuccess = ^(ODOperation *op) {
-        if (block) block([(ODCountOperation *)op responseCount]);
-        return (NSError *)nil;
-    };
+    if (block) {
+        [operation addOperationStep:^NSError *(ODCountOperation *operation) {
+            block(operation.responseCount);
+            return nil;
+        }];
+    }
     [operation start];
 }
 
@@ -62,10 +64,12 @@
     operation.top = top;
     operation.skip = skip;
     operation.expand = expanding;
-    operation.onSuccess = ^(ODOperation *op) {
-        if (block) block([(ODQueryOperation *)op responseResults]);
-        return (NSError *)nil;
-    };
+    if (block) {
+        [operation addOperationStep:^NSError *(ODQueryOperation *operation) {
+            block(operation.responseResults);
+            return nil;
+        }];
+    }
     [operation start];
 }
 

@@ -15,12 +15,10 @@
 
 @implementation NorthwindService
 
-- (NSString *)shortDescription {
-    return @"Northwind Service";
-}
-
-- (NSURL *)URL {
-    return [NSURL URLWithString:@"http://services.odata.org/V3/Northwind/Northwind.svc/"];
++ (NSDictionary *)serviceDict {
+    return @{@"uri":@"http://services.odata.org/V3/Northwind/Northwind.svc/",
+             @"name":@"Northwind Service"
+             };
 }
 
 - (id)init {

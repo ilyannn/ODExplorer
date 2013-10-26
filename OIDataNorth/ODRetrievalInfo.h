@@ -8,17 +8,17 @@
 
 @protocol ODFaultManaging, ODChangeManaging;
 
-// Protocol to retrieve information about a resource within a context.
+/// Protocol to retrieve information about a resource within a context.
 @protocol ODRetrieving <NSObject>
 
-@property id<ODRetrieving> parent;
+- (id<ODRetrieving>) parent;
 - (id)performHierarchically:(SEL)selector;
-
-@property (nonatomic) id <ODFaultManaging> readManager;
-@property (nonatomic) id <ODChangeManaging> changeManager;
 
 - (NSURL *)URL;
 - (NSString *)shortDescription;
+
+- (id <ODFaultManaging>) readManager;
+- (id <ODChangeManaging>) changeManager;
 
 @end
 

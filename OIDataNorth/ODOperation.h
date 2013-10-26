@@ -8,12 +8,14 @@
 
 #import "AFNetworking/AFNetworking.h"
 
+#import "OperationWithSteps.h"
+
 #import "ODOperationResponse.h"
 #import "ODResource.h"
 
 /// This is contructed from parameters, then you use its URLRequest property
 /// This is an abstract class; specific operations are its subclasses.
-@interface ODOperation : NSOperation
+@interface ODOperation : OperationWithSteps
 
 /// A factory to create operations. Note that subclasses should be chaging its signature
 /// to match that of resource property.
@@ -56,7 +58,6 @@
 
 - (NSError *)processResponse:(ODOperationResponse *)response;
 
-@property (strong) NSError * (^onSuccess)(ODOperation *operation);
 
 
 @end

@@ -16,17 +16,12 @@
 
 @implementation ODBaseRequestManager
 
-+ (instancetype)nonblockingManager {
-    ODBaseRequestManager *manager = [self new];
-    manager.operationQueue = [NSOperationQueue new];
-    return manager;
-}
-
 - (id)init {
     self = [super init];
     if (self) {
         self.propertyFaultStrategy = ODPropertyFaultReturn;
         self.propertyChangeStrategy = ODPropertyChangeIgnore;
+        self.operationQueue = [NSOperationQueue new];
     }
     return self;
 }
@@ -49,10 +44,10 @@
         }
     };
     
-    if (self.operationQueue)
-        [self.operationQueue addOperation:operation];
-    else
-        [operation start];
+//    if (self.operationQueue)
+    [self.operationQueue addOperation:operation];
+//    else
+//        [operation start];
 }
 
 - (void)retrieveEntity:(ODEntity *)entity {
@@ -78,10 +73,10 @@
 - (void)retrieveCount:(ODCollection *)collection {
     ODCountOperation *operation = [ODCountOperation new];
     operation.resource = collection;
-    operation.onSuccess = ^(ODOperation *op) {
-        collection.count = [(ODCountOperation *)op responseCount];
-        return (NSError *)nil;
-    };
+    [operation addOperationStep:^NSError *(ODCountOperation *operation) {
+        collection.count = operation.responseCount;
+        return nil;
+    }];
     [self enqueueOperation:operation];
 }
 

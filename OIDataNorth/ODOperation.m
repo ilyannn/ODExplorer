@@ -84,14 +84,14 @@ NSString *const ODHTTPVerbGet = @"GET";
     NSError *URLError;
     NSURLResponse *URLResponse;
     
-    NSLog(@"%@: %@", NSStringFromClass(self.class), request);
+    //    NSLog(@"%@: %@", NSStringFromClass(self.class), request);
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&URLResponse
                                                      error:&URLError];
     if (URLError) {
         return /*[ODOperationError errorWithCode:kODOperationErrorCommunication
-                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/ URLError;
+                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/URLError;
     }
     
     *response = [ODOperationResponse new];
@@ -104,41 +104,20 @@ NSString *const ODHTTPVerbGet = @"GET";
     return nil;
 }
 
-- (void)main {
-    __block NSURLRequest *request;
-    __block ODOperationResponse *response;
-
-    NSArray *steps = @[  ^{ return [self formRequest:&request]; },
-                         ^{ return [self performRequest:request intoResponse:&response]; },
-                         ^{ return [response statusCodeError]; },
-                         ^{ return [self processResponse:response]; },
-                         ^{ return self.onSuccess && self.onSuccess(self); }
-                         ];
-
-    self.error = [self synchronousPerformSteps:steps];
-    
-}
-
-- (NSError *)synchronousPerformSteps:(NSArray *)steps {
-    
-    __block NSError *error;
-    [steps enumerateObjectsUsingBlock: ^( NSError * (^step)() , NSUInteger idx, BOOL *stop) {
-        *stop = [self isCancelled] || (error = step());
-    }];
-    
-    /*
-     if ([self isCancelled] || (error = formRequest:&request])) return error;
-     if ([self isCancelled] || (error = [self performRequest:request intoResponse:&response])) return error;
-     if ([self isCancelled] || (error = [response statusCodeError])) return error;
-     if ([self isCancelled] || (error = [self processResponse:response])) return error;
-     if ([self isCancelled] || !self.onSuccess || (error = self.onSuccess(self))) return error;
-     */
-    
-    return error;
-}
-
 - (NSError *)processResponse:(ODOperationResponse *)response {
     return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation userInfo:nil];
+}
+
+- (NSArray *)steps {
+    __block NSURLRequest *request;
+    __block ODOperationResponse *response;
+    
+    return  @[  ^{ return [self formRequest:&request]; },
+                 ^{ return [self performRequest:request intoResponse:&response]; },
+                 ^{ return [response statusCodeError]; },
+                 ^{ return [self processResponse:response]; },
+                 ];
+    
 }
 
 @end

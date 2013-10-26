@@ -55,6 +55,8 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 - (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info;
 
 + (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
++ (instancetype)resourceWithDict:(id)dict;
++ (instancetype)resourceWithURLString:(NSString *)URLString;
 
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;
@@ -78,11 +80,11 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 @property NSDate *retrievedOn;
 @property __weak id childrenArray;
 
-
 #pragma mark - (5) things that can be done with a resource
 
 // This is the most important action for a resource.
 - (void)retrieve;
+- (instancetype)autoretrieve;
 
 // Drop known data, but keep type information.
 - (void)clean; // forget, clean, drop, unretrieve, nullify, break, free, unload
@@ -101,6 +103,14 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 /// This class implements all of functionality for resources, but declares only the base part.
 @interface ODResource : NSObject <ODResourceAccessing>
+
+// Use unique initializer in subclasses if you defined +resourceDict.
++ (instancetype)unique;
++ (NSDictionary *)resourceDict;
+
+// Values of resources are weakly held in a global table. The key is [self resourceDict].
++ (instancetype)uniqueWithDict:(NSDictionary *)dict;
+
 - (id <ODFaultManaging> )readManager;
 - (id <ODChangeManaging> )changeManager;
 @end

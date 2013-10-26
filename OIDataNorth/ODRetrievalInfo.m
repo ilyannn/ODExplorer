@@ -12,26 +12,36 @@
 
 @implementation ODRetrievalInfo
 
++ (ODRetrievalInfo *)sharedRoot {
+    static ODRetrievalInfo *_sharedRootInfo;
+    if (!_sharedRootInfo) {
+        ODBaseRequestManager *commonManager = [ODBaseRequestManager new];
+        _sharedRootInfo = [self new];
+        _sharedRootInfo.readManager = commonManager;
+        _sharedRootInfo.changeManager = commonManager;
+    }
+    return _sharedRootInfo;
+}
+
 - (id)init {
     self = [super init];
     if (self) {
-        ODBaseRequestManager *commonManager = [ODBaseRequestManager new];
-        self.readManager = commonManager;
-        self.changeManager = commonManager;
+        
     }
     return self;
 }
 
-- (id)performHierarchically:(SEL)selector {
-    for (ODRetrievalInfo *info = self; info; info = info.parent) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+- (id)performHierarchically:(SEL)selector {
+    for (ODRetrievalInfo *info = self; info; info = info.parent) {
         id value = [info performSelector:selector];
-#pragma clang diagnostic pop
         if (value) return value;
     }
-    return nil;
+    return [[self.class sharedRoot] performSelector:selector];
 }
+
+#pragma clang diagnostic pop
 
 - (NSURL *)URL {
     return nil; // we're abstract
