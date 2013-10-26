@@ -10,13 +10,7 @@
 #import "ODCollection.h"
 #import "ODBaseRequestManager.h"
 
-@implementation ODService {
-    NSURL *_serviceURL;
-    NSString *_shortDescription;
-}
-
-@synthesize URL = _serviceURL;
-@synthesize shortDescription = _shortDescription;
+@implementation ODService
 
 - (id)init {
     self = [super init];

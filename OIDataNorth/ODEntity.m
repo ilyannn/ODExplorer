@@ -65,7 +65,7 @@
     }
     
     if (self.retrievalInfo) {
-        return [self.retrievalInfo retrievalURL];
+        return [self.retrievalInfo URL];
     }
     
     return nil;
@@ -98,8 +98,8 @@
     [dict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
         if ([obj isKindOfClass:NSDictionary.class]) {
             ODEntity *entity = [[ODEntity alloc] initFromDict:obj];
-            ODEntityRetrievalByProperty *retrieval = [ODEntityRetrievalByProperty new];
-            retrieval.fromEntity = self;
+            ODRetrievalOfProperty *retrieval = [ODRetrievalOfProperty new];
+            retrieval.parent = self.retrievalInfo;
             retrieval.propertyName = key;
             entity.retrievalInfo = retrieval;
             _navigationProperties[key] = entity;
@@ -131,8 +131,8 @@
     ODEntity *target = [entityType createEntity];
     target.retrievalInfo.parent = self.retrievalInfo;
     
-    ODEntityRetrievalByProperty *retrievalInfo = [ODEntityRetrievalByProperty new];
-    retrievalInfo.fromEntity = self;
+    ODRetrievalOfProperty *retrievalInfo = [ODRetrievalOfProperty new];
+    retrievalInfo.parent = self.retrievalInfo;
     retrievalInfo.propertyName = name;
     
     target.retrievalInfo = retrievalInfo;

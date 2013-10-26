@@ -47,8 +47,8 @@
     if (entity) return entity;
     entity = [self.collection.entityType createEntity];
     
-    ODEntityRetrievalByIndex *retrieval = [ODEntityRetrievalByIndex new];
-    retrieval.collection = self.collection;
+    ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
+    retrieval.parent = self.collection.retrievalInfo;
     retrieval.index = index;
     entity.retrievalInfo = retrieval;
     

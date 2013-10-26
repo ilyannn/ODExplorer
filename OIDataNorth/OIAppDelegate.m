@@ -28,9 +28,7 @@
 
     NSURL *URL = launchOptions[UIApplicationLaunchOptionsURLKey];
     if (URL) {
-        ODService *service = [ODService new];
-        service.URL = URL;
-        service.shortDescription = @"from parameters";
+        ODService *service = [ODService resourceWithURL:URL description:@"from parameters"];
         [root.childResources addObject:service];
         [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
     }

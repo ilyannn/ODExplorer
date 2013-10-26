@@ -9,21 +9,14 @@
 #import "ODResource.h"
 
 @protocol ODCollectionAccessing <ODResourceAccessing>
+
 @end
 
 @class ODEntity, ODEntityType;
 
 @interface ODCollection : ODResource <ODCollectionAccessing>
 
-+ (instancetype)collectionForProperty:(NSString *)propertyName
-                           entityType:(ODEntityType *)entityType
-                             inEntity:(ODEntity *)entity;
-
-@property (nonatomic) ODEntityType *entityType;
-
-@property (nonatomic) NSString *name;
-@property (nonatomic) ODResource *parent;
-
+@property (nonatomic) id<ODRetrievingByPath> retrievalInfo;
 @property NSUInteger count;
 
 - (void)retrieveCount;
@@ -34,5 +27,10 @@
 - (void)countAndPerform:(void (^)(NSUInteger count))block;
 - (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *items))block
 ;
+
+
++ (instancetype)collectionForProperty:(NSString *)propertyName
+                           entityType:(ODEntityType *)entityType
+                             inEntity:(ODEntity *)entity;
 
 @end

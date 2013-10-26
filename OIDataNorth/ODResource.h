@@ -49,6 +49,8 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 // We can create a resource object by different means.
 @property (nonatomic) ODRetrievalInfo *retrievalInfo;
++ (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
+- (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info;
 
 // This is the most important action for a resource.
 - (void)retrieve;
@@ -89,8 +91,5 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 // This class implements all of functionality for resources, but declares only the base part.
 @interface ODResource : NSObject <ODResourceAccessing>
-
-//@property (nonatomic) NSMutableDictionary *strongChildren;
-
 
 @end

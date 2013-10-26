@@ -14,9 +14,6 @@
 
 @interface ODService : ODResource
 
-@property (nonatomic) NSURL *URL;
-@property (nonatomic) NSString *shortDescription;
-
 @property NSDictionary *entitySets;
 - (void)retrieveEntitySets;
 

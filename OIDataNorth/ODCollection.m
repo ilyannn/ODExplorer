@@ -26,10 +26,6 @@
     return self;
 }
 
-- (NSString *)relativePath {
-    return self.name;
-}
-
 + (instancetype)collectionForProperty:(NSString *)propertyName entityType:(ODEntityType *)entityType inEntity:(ODEntity *)entity {
     ODCollection *collection = [[self alloc] initWithName:propertyName inParent:entity];
     collection.entityType = entityType;
@@ -39,8 +35,7 @@
 - (instancetype)initWithName:(NSString *)name inParent:(ODResource *)parent {
     self = [self init];
     if (self) {
-        _parent = parent;
-        _name = name;
+        
     }
     return self;
 }
@@ -72,15 +67,11 @@
     [operation start];
 }
 
-- (NSURL *)URL {
-    return [NSURL URLWithString:[self relativePath] relativeToURL:[self parent].URL];
-}
-
 - (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
     ODEntity *entity = [self.entityType createEntity];
     
-    ODEntityRetrievalByIndex *retrieval = [ODEntityRetrievalByIndex new];
-    retrieval.collection = self;
+    ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
+    retrieval.parent = self.retrievalInfo;
     retrieval.index = index;
     entity.retrievalInfo = retrieval;
     

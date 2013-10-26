@@ -20,23 +20,35 @@
     __weak id _cachedChildren;
 }
 
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    return self.retrievalInfo;
+}
+
 @synthesize kind = _kind;
 @synthesize retrievalInfo = _retrievalInfo;
 @synthesize entityType = _entityType;
 @synthesize childrenArray = _cachedChildren;
 
++ (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description {
+    ODRetrievalByURL *info = [ODRetrievalByURL new];
+    info.URL = URL;
+    info.shortDescription = description;
+    
+    return [[self alloc] initWithRetrievalInfo:info];
+}
+
+- (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info {
+    self = [self init];
+    if (self) {
+        self.retrievalInfo = info;
+    }
+    return self;
+}
+
 - (void)setKind:(ODResourceKind)kind {
     NSAssert(kind != ODResourceKindUnknown, @"You're required to be specific when setting resource kind.");
     NSAssert(self.kind == ODResourceKindUnknown, @"Resource kind cannot be set more then one time.");
     _kind = kind;
-}
-
-- (NSURL *)URL {
-    return nil; // we're abstract
-}
-
-- (NSString *)shortDescription {
-    return [self.retrievalInfo shortDescription];
 }
 
 - (NSString *)description {
@@ -48,12 +60,20 @@
 }
 
 
+- (NSURL *)URL {
+    return [self.retrievalInfo performHierarchically:_cmd];
+}
+
+- (NSString *)shortDescription {
+    return [self.retrievalInfo performHierarchically:_cmd];
+}
+
 - (id <ODFaultManaging> )readManager {
-    return [self.retrievalInfo getFromHierarhy:_cmd];
+    return [self.retrievalInfo performHierarchically:_cmd];
 }
 
 - (id <ODChangeManaging> )changeManager {
-    return [self.retrievalInfo getFromHierarhy:_cmd];
+    return [self.retrievalInfo performHierarchically:_cmd];
 }
 
 

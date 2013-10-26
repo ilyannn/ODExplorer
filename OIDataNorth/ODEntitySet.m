@@ -7,20 +7,20 @@
 //
 
 #import "ODEntitySet.h"
+#import "ODRetrievalInfo.h"
 
 @implementation ODEntitySet
 
 + (instancetype)entitySetWithService:(ODService *)service name:(NSString *)name entityType:(ODEntityType *)entityType {
+    ODRetrievalOfEntitySet * info = [ODRetrievalOfEntitySet new];
+    info.parent = service.retrievalInfo;
+    info.shortDescription = name;
+    info.entitySetPath = name;
+
     ODEntitySet *entitySet = [self new];
-    entitySet.retrievalInfo = [ODRetrievalInfo new];
-    entitySet.retrievalInfo.parent = service.retrievalInfo;
-    entitySet.name = name;
+    entitySet.retrievalInfo = info;
     entitySet.entityType = entityType;
     return entitySet;
-}
-
-- (NSString *)shortDescription {
-    return self.name;
 }
 
 @end

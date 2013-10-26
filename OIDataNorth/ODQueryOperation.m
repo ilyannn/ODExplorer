@@ -89,8 +89,8 @@ NSString *const ODQueryOrderByString = @"$orderby";
             entity.retrievalInfo.parent = self.resource.retrievalInfo;
             [list addObject:entity];
             
-            ODEntityRetrievalByIndex *retrieval = [ODEntityRetrievalByIndex new];
-            retrieval.collection = (ODCollection *)self.resource;
+            ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
+            retrieval.parent = self.resource.retrievalInfo;
             retrieval.index = self.skip + index + 1;
             entity.retrievalInfo = retrieval;
         }
