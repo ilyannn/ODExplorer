@@ -56,7 +56,7 @@
 
 - (NSError *)processResponse:(ODOperationResponse *)response;
 
-@property (strong) void (^onSuccess)(ODOperation *operation);
+@property (strong) NSError * (^onSuccess)(ODOperation *operation);
 
 
 @end

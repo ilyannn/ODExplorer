@@ -24,7 +24,10 @@
 
 - (id)performHierarchically:(SEL)selector {
     for (ODRetrievalInfo *info = self; info; info = info.parent) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         id value = [info performSelector:selector];
+#pragma clang diagnostic pop
         if (value) return value;
     }
     return nil;

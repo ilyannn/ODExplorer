@@ -34,8 +34,8 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 // An ODResource is using memory for the following infoation --
 //   (1) how to get an object (|retrievalInfo|)
-//   (2) whether it's an entity or a collection and what type is the object
-//   (3) properties of an entity, collection count -- always stored strongly; something you can change
+//   (2) type - whether it's an entity or a collection and what type is the object
+//   (3) values - retrieved date, properties of an entity, collection count
 //   (4) cached children, if they are strongly held by someone else
 // A resource can't exist without information about its retrieval, so it's not possible to get
 // rid of (1). It's trivial to get rid of (4) by not keeping the returned pointer.
@@ -48,19 +48,44 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 @protocol ODResourceAccessing <NSObject>
 
+#pragma mark - (1) how to get a resource
+
 // We can create a resource object by different means.
 @property (nonatomic) ODRetrievalInfo *retrievalInfo;
-+ (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
 - (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info;
+
++ (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
+
+// In any case a resource has an URL and a description.
+@property (readonly, nonatomic) NSURL *URL;
+
+
+#pragma mark - (2) information about the resource
+
+// A resource is either an entity, or collection, or to be determined.
+@property (nonatomic) ODResourceKind kind;
+
+// This is either this entity's entity type or collection's entity type.
+@property (nonatomic) ODEntityType *entityType;
+
+
+#pragma mark - (3) and (4) values of resource and its children
+
+// This property will be re-computed every time if not stored strongly.
+// The result should respond to |-count| and |-objectAtIndexedSubscript:|.
+// For example, for an entity, this will be a real NSArray, but for a collection a proxy class
+// that returns entities by those methods.
+@property NSDate *retrievedOn;
+@property __weak id childrenArray;
+
+
+#pragma mark - (5) things that can be done with a resource
 
 // This is the most important action for a resource.
 - (void)retrieve;
 
 // Drop known data, but keep type information.
 - (void)clean; // forget, clean, drop, unretrieve, nullify, break, free, unload
-
-// In any case a resource has an URL and a description.
-@property (readonly, nonatomic) NSURL *URL;
 
 // Short description incldes only human-readable name, ideally 10-30 characters in length.
 - (NSString *)shortDescription;
@@ -71,26 +96,11 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 // Long description aims to disclose complete inner state of an object.
 - (NSString *)longDescription;
 
-// A resource is either an entity, or collection, or to be determined.
-@property (nonatomic) ODResourceKind kind;
-
-// This is either this entity's entity type or collection's entity type.
-@property (nonatomic) ODEntityType *entityType;
-
-// This property will be re-computed every time if not stored strongly.
-// The result should respond to |-count| and |-objectAtIndexedSubscript:|.
-// For example, for an entity, this will be a real NSArray, but for a collection a proxy class
-// that returns entities by those methods.
-@property __weak id childrenArray;
-
-// Managers come from |retrievalInfo| hierarchy.
-- (id <ODFaultManaging> )readManager;
-- (id <ODChangeManaging> )changeManager;
-
 @end
 
 
 /// This class implements all of functionality for resources, but declares only the base part.
 @interface ODResource : NSObject <ODResourceAccessing>
-
+- (id <ODFaultManaging> )readManager;
+- (id <ODChangeManaging> )changeManager;
 @end

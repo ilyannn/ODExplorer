@@ -26,6 +26,4 @@
 
 - (void)performAction:(NSString *)actionName;
 
-@property NSDate *retrievedOn;
-
 @end

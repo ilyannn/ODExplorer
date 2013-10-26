@@ -10,7 +10,8 @@
 #import "ODService.h"
 #import "ODEntitySet.h"
 #import "ODEntity.h"
-#import "ODOperationError.h"
+
+#import "ODOperationError+Parsing.h"
 
 @implementation ODListEntitySetsOperation
 

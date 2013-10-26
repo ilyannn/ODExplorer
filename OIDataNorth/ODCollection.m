@@ -51,6 +51,7 @@
     operation.resource = self;
     operation.onSuccess = ^(ODOperation *op) {
         if (block) block([(ODCountOperation *)op responseCount]);
+        return (NSError *)nil;
     };
     [operation start];
 }
@@ -63,6 +64,7 @@
     operation.expand = expanding;
     operation.onSuccess = ^(ODOperation *op) {
         if (block) block([(ODQueryOperation *)op responseResults]);
+        return (NSError *)nil;
     };
     [operation start];
 }

@@ -10,7 +10,6 @@
 
 NSString * const ODOperationErrorDomain = @"com.ilya";
 
-
 @implementation ODOperationError
 + (instancetype)errorWithCode:(ODOperationErrorType)code userInfo:(NSDictionary *)userInfo {
     return [self errorWithDomain:ODOperationErrorDomain

@@ -7,7 +7,7 @@
 //
 
 #import "ODPlainOperation.h"
-#import "ODOperationError.h"
+#import "ODOperationError+Parsing.h"
 
 @implementation ODPlainOperation
 

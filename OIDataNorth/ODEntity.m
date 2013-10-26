@@ -17,7 +17,6 @@
 @end
 
 @implementation ODEntity {
-    NSDictionary *_keys;
     NSURL *_knownURL;
     NSMutableDictionary *_localProperties;
     NSMutableDictionary *_remoteProperties;
@@ -35,29 +34,6 @@
 @synthesize localProperties = _localProperties;
 @synthesize remoteProperties = _remoteProperties;
 
-- (NSDictionary *)keys {
-    return _keys;
-}
-
-- (void)setKeys:(id)keys {
-    if ([keys isKindOfClass:NSString.class])
-        _keys = @{ @"" : keys };
-    else
-        _keys = keys;
-}
-
-- (NSString *)relativePath {
-    NSString *keyString = _keys[@""];
-    if (!keyString) {
-        NSMutableArray *keyStrings = [NSMutableArray new];
-        for (NSString *property in _keys) {
-            [keyStrings addObject:[NSString stringWithFormat:@"%@=%@", property, _keys[property]]];
-        }
-        keyString = [keyStrings componentsJoinedByString:@"&"];
-    }
-    //    return [NSString stringWithFormat:@"%@(%@)", , keyString];
-    return nil;
-}
 
 - (NSURL *)URL {
     if (_knownURL) {
@@ -116,12 +92,12 @@
     if (value) return value;
     if (self.retrievedOn) return nil;
     
-    [[self readManager] retrieveProperty:key ofEntity:self];
+    [[self.retrievalInfo readManager] retrieveProperty:key ofEntity:self];
     return self.localProperties[key];
 }
 
 - (void)retrieve {
-    [[self readManager] retrieveEntity:self];
+    [[self.retrievalInfo readManager] retrieveEntity:self];
 }
 
 - (id)navigationProperty:(NSString *)name propertyType:(ODEntityType *)entityType {

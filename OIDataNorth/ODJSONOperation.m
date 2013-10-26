@@ -8,7 +8,7 @@
 
 #import "ODJSONOperation.h"
 #import "ODOperationResponse.h"
-#import "ODOperationError.h"
+#import "ODOperationError+Parsing.h"
 
 @implementation ODJSONOperation
 

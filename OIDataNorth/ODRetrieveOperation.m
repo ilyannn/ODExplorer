@@ -8,7 +8,8 @@
 
 #import "ODRetrieveOperation.h"
 #import "ODEntity.h"
-#import "ODOperationError.h"
+
+#import "ODOperationError+Parsing.h"
 
 @implementation ODRetrieveOperation
 

@@ -12,7 +12,7 @@
 #import "ODEntityType.h"
 #import "ODEntityRetrieval.h"
 
-#import "ODOperationError.h"
+#import "ODOperationError+Parsing.h"
 
 NSString *const ODQuerySelectString  = @"$select";
 NSString *const ODQueryFilterString  = @"$filter";

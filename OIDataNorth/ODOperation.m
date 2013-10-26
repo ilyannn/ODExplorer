@@ -7,9 +7,9 @@
 //
 
 #import "ODOperation.h"
-#import "ODOperationError.h"
+#import "ODOperationError+Parsing.h"
 
-NSString * const ODHTTPVerbGet = @"GET";
+NSString *const ODHTTPVerbGet = @"GET";
 
 @implementation ODOperation
 
@@ -73,38 +73,31 @@ NSString * const ODHTTPVerbGet = @"GET";
     [self.parameters setValue:value forKey:key];
 }
 
-- (NSError *)synchronousPerformWithError {
-    NSURLRequest *request = [self request];
-    
-    if (!request) {
-        return [ODOperationError errorWithCode:kODOperationErrorBadRequest userInfo:nil];
-    }
-
+- (NSError *)synchronousPerformRequest:(NSURLRequest *)request {
     ODOperationResponse *response;
     NSError *error;
-
-    if ((error = [self performRequest:request intoResponse:&response])) return error;
-    if ((error = [response statusCodeError])) return error;
-    if ((error = [self processResponse:response])) return error;
-    if (self.onSuccess) self.onSuccess(self);
+    
+    if ([self isCancelled] || (error = [self performRequest:request intoResponse:&response])) return error;
+    if ([self isCancelled] || (error = [response statusCodeError])) return error;
+    if ([self isCancelled] || (error = [self processResponse:response])) return error;
+    if ([self isCancelled] || self.onSuccess || (error = self.onSuccess(self))) return error;
     
     return nil;
 }
 
 // Marshalling the result of sending an asynchronous request into
 - (NSError *)performRequest:(NSURLRequest *)request intoResponse:(ODOperationResponse **)response {
-
     NSError *URLError;
     NSURLResponse *URLResponse;
-
+    
     NSLog(@"%@: %@", NSStringFromClass(self.class), request);
-
+    
     NSData *data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&URLResponse
                                                      error:&URLError];
     if (URLError) {
         return /*[ODOperationError errorWithCode:kODOperationErrorCommunication
-                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/ URLError;
+                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/URLError;
     }
     
     *response = [ODOperationResponse new];
@@ -113,18 +106,21 @@ NSString * const ODHTTPVerbGet = @"GET";
     
     if ([URLResponse isKindOfClass:[NSHTTPURLResponse class]])
         (*response).HTTPResponse = (NSHTTPURLResponse *)URLResponse;
-
+    
     return nil;
 }
 
 - (void)main {
-    self.error = [self synchronousPerformWithError];
+    NSURLRequest *request = [self request];
+    if (!request) {
+        self.error = [ODOperationError errorWithCode:kODOperationErrorBadRequest userInfo:nil];
+    } else {
+        self.error = [self synchronousPerformRequest:request];
+    }
 }
 
 - (NSError *)processResponse:(ODOperationResponse *)response {
     return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation userInfo:nil];
 }
-
-
 
 @end

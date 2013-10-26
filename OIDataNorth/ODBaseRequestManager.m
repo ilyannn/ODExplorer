@@ -80,6 +80,7 @@
     operation.resource = collection;
     operation.onSuccess = ^(ODOperation *op) {
         collection.count = [(ODCountOperation *)op responseCount];
+        return (NSError *)nil;
     };
     [self enqueueOperation:operation];
 }

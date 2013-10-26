@@ -33,10 +33,6 @@
         [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
     }
     
-    
-    
-//    controller.headlineProperties = [@[@"ProductName", @"ProductID"] mutableCopy];
-
     return YES;
 }
 							

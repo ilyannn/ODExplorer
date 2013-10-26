@@ -8,7 +8,7 @@
 
 #import "ODCountOperation.h"
 #import "ODOperationResponse.h"
-#import "ODOperationError.h"
+#import "ODOperationError+Parsing.h"
 
 NSString *const ODQueryCountString  = @"$count";
 
