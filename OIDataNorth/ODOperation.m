@@ -7,6 +7,7 @@
 //
 
 #import "ODOperation.h"
+#import "ODOperationResponse.h"
 
 NSString *const ODHTTPVerbGet = @"GET";
 
@@ -73,34 +74,45 @@ NSString *const ODHTTPVerbGet = @"GET";
 }
 
 - (void)main {
-    NSHTTPURLResponse *response;
     NSError *error;
     NSURLRequest *request = [self request];
+    NSURLResponse *URLResponse;
     
     NSLog(@"%@: %@", NSStringFromClass(self.class), request);
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response
+                                         returningResponse:&URLResponse
                                                      error:&error];
-    NSInteger status = error ? -1 : response.statusCode / 100;
+    
+    ODOperationResponse *response = [ODOperationResponse new];
+    response.request = request;
+    response.data = data;
+    response.HTTPError = error;
+    if ([URLResponse isKindOfClass:[NSHTTPURLResponse class]])
+        response.HTTPResponse = (NSHTTPURLResponse *)URLResponse;
+    
+    NSInteger status = error ? -1 : [response.HTTPResponse statusCode] / 100;
     
     switch (status) {
         case 2 :
-            [self processResponse:response data:data];
+            [self processResponse:response];
             if (self.onSuccess)
                 self.onSuccess(self);
             break;
             
         default:
-            [self processFailure:response data:data];
+            [self processFailure:response];
             break;
     }
 }
 
-- (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data {
+- (void)processResponse:(ODOperationResponse *)response {
+    
 }
 
-- (void)processFailure:(NSHTTPURLResponse *)response data:(NSData *)data {
+- (void)processFailure:(ODOperationResponse *)response {
+    
 }
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ODJSONOperation.h"
+#import "ODOperationResponse.h"
 
 @implementation ODJSONOperation
 
@@ -22,13 +23,16 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
     return @{ @"Accept" : @"application/json" };
 }
 
-- (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data {
+- (void)processResponse:(ODOperationResponse *)response {
     NSError *error;
-    id responseObject = [self.responseSerializer responseObjectForResponse:response data:data error:&error];
+    id responseObject = [self.responseSerializer responseObjectForResponse:response.HTTPResponse
+                                                                      data:response.data
+                                                                     error:&error];
     [self processJSONResponse:responseObject];
 }
 
 - (void)processJSONResponse:(id)responseJSON {
+    
 }
 
 @end

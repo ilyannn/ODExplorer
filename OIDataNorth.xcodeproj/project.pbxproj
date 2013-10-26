@@ -26,6 +26,7 @@
 		B34544F5181B36A30039BD67 /* Supplier.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F5518168C99007BCE33 /* Supplier.m */; };
 		B34544F6181B36A30039BD67 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F2D18155FBC007BCE33 /* Employee.m */; };
 		B34544F7181B36A30039BD67 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3018155FCC007BCE33 /* Customer.m */; };
+		B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */; };
 		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
 		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
@@ -96,6 +97,8 @@
 		B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceTableViewCell.m; sourceTree = "<group>"; };
 		B34544EE181B278D0039BD67 /* ODRetrievalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRetrievalInfo.h; sourceTree = "<group>"; };
 		B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRetrievalInfo.m; sourceTree = "<group>"; };
+		B34544F8181BCDCF0039BD67 /* ODOperationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODOperationResponse.h; sourceTree = "<group>"; };
+		B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODOperationResponse.m; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -436,6 +439,8 @@
 				B34544C0181846340039BD67 /* ODActionOperation.m */,
 				B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */,
 				B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */,
+				B34544F8181BCDCF0039BD67 /* ODOperationResponse.h */,
+				B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				B34544C7181932A50039BD67 /* ODEntityViewController.m in Sources */,
 				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
 				B34544C4181868E50039BD67 /* ODListEntitySetsOperation.m in Sources */,
+				B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */,
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,

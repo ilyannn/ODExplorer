@@ -9,6 +9,8 @@
 #import "ODService.h"
 #import "AFNetworking/AFNetworking.h"
 
+@class ODOperationResponse;
+
 // This is contructed from parameters, then you use its |URLRequest| property
 // This is an abstract class; specific operations are subclasses.
 
@@ -50,7 +52,8 @@
 
 #pragma mark - What do we do with the results?
 
-- (void)processResponse:(NSHTTPURLResponse *)response data:(NSData *)data;
+- (void)processResponse:(ODOperationResponse *)response;
+- (void)processFailure:(ODOperationResponse *)response;
 @property (strong) void (^onSuccess)(ODOperation *operation);
 
 

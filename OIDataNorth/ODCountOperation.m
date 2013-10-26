@@ -7,6 +7,7 @@
 //
 
 #import "ODCountOperation.h"
+#import "ODOperationResponse.h"
 
 NSString *const ODQueryCountString  = @"$count";
 
@@ -16,8 +17,8 @@ NSString *const ODQueryCountString  = @"$count";
     return [[super URL] URLByAppendingPathComponent:ODQueryCountString];
 }
 
-- (void)processResponse:(NSURLResponse *)response data:(NSData *)data {
-    _responseCount = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] integerValue];
+- (void)processResponse:(ODOperationResponse *)response {
+    _responseCount = [[[NSString alloc] initWithData:response.data encoding:NSUTF8StringEncoding] integerValue];
 }
 
 @end
