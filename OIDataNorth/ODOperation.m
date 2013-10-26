@@ -52,17 +52,23 @@ NSString *const ODHTTPVerbGet = @"GET";
     return nil;
 }
 
-- (NSURLRequest *)request {
+- (NSError *)formRequest:(NSURLRequest **)request {
     NSMutableURLRequest *mutableRequest = [self.requestSerializer
                                            requestWithMethod:[self method]
                                            URLString:self.URL.absoluteString
                                            // this helps to get rid of unnecesary ? in the URL
                                            parameters:self.parameters.count ? self.parameters:nil
                                            ];
+    if (!mutableRequest) {
+        return [ODOperationError errorWithCode:kODOperationErrorBadRequest userInfo:nil];
+    }
+    
     [[self addedHTTPHeaders] enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
         [mutableRequest addValue:obj forHTTPHeaderField:key];
     }];
-    return [mutableRequest copy];
+    
+    *request = [mutableRequest copy];
+    return nil;
 }
 
 - (id)valueForKey:(NSString *)key {
@@ -71,18 +77,6 @@ NSString *const ODHTTPVerbGet = @"GET";
 
 - (void)setValue:(id)value forKey:(NSString *)key {
     [self.parameters setValue:value forKey:key];
-}
-
-- (NSError *)synchronousPerformRequest:(NSURLRequest *)request {
-    ODOperationResponse *response;
-    NSError *error;
-    
-    if ([self isCancelled] || (error = [self performRequest:request intoResponse:&response])) return error;
-    if ([self isCancelled] || (error = [response statusCodeError])) return error;
-    if ([self isCancelled] || (error = [self processResponse:response])) return error;
-    if ([self isCancelled] || self.onSuccess || (error = self.onSuccess(self))) return error;
-    
-    return nil;
 }
 
 // Marshalling the result of sending an asynchronous request into
@@ -97,7 +91,7 @@ NSString *const ODHTTPVerbGet = @"GET";
                                                      error:&URLError];
     if (URLError) {
         return /*[ODOperationError errorWithCode:kODOperationErrorCommunication
-                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/URLError;
+                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/ URLError;
     }
     
     *response = [ODOperationResponse new];
@@ -111,12 +105,36 @@ NSString *const ODHTTPVerbGet = @"GET";
 }
 
 - (void)main {
-    NSURLRequest *request = [self request];
-    if (!request) {
-        self.error = [ODOperationError errorWithCode:kODOperationErrorBadRequest userInfo:nil];
-    } else {
-        self.error = [self synchronousPerformRequest:request];
-    }
+    __block NSURLRequest *request;
+    __block ODOperationResponse *response;
+
+    NSArray *steps = @[  ^{ return [self formRequest:&request]; },
+                         ^{ return [self performRequest:request intoResponse:&response]; },
+                         ^{ return [response statusCodeError]; },
+                         ^{ return [self processResponse:response]; },
+                         ^{ return self.onSuccess && self.onSuccess(self); }
+                         ];
+
+    self.error = [self synchronousPerformSteps:steps];
+    
+}
+
+- (NSError *)synchronousPerformSteps:(NSArray *)steps {
+    
+    __block NSError *error;
+    [steps enumerateObjectsUsingBlock: ^( NSError * (^step)() , NSUInteger idx, BOOL *stop) {
+        *stop = [self isCancelled] || (error = step());
+    }];
+    
+    /*
+     if ([self isCancelled] || (error = formRequest:&request])) return error;
+     if ([self isCancelled] || (error = [self performRequest:request intoResponse:&response])) return error;
+     if ([self isCancelled] || (error = [response statusCodeError])) return error;
+     if ([self isCancelled] || (error = [self processResponse:response])) return error;
+     if ([self isCancelled] || !self.onSuccess || (error = self.onSuccess(self))) return error;
+     */
+    
+    return error;
 }
 
 - (NSError *)processResponse:(ODOperationResponse *)response {
