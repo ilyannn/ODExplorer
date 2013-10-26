@@ -7,6 +7,7 @@
 //
 
 #import "ODJSONOperation.h"
+#import "ODService.h"
 
 @interface ODListEntitySetsOperation : ODJSONOperation
 

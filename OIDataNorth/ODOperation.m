@@ -7,9 +7,9 @@
 //
 
 #import "ODOperation.h"
-#import "ODOperationResponse.h"
+#import "ODOperationError.h"
 
-NSString *const ODHTTPVerbGet = @"GET";
+NSString * const ODHTTPVerbGet = @"GET";
 
 @implementation ODOperation
 
@@ -73,46 +73,58 @@ NSString *const ODHTTPVerbGet = @"GET";
     [self.parameters setValue:value forKey:key];
 }
 
-- (void)main {
-    NSError *error;
+- (NSError *)synchronousPerformWithError {
     NSURLRequest *request = [self request];
+    
+    if (!request) {
+        return [ODOperationError errorWithCode:kODOperationErrorBadRequest userInfo:nil];
+    }
+
+    ODOperationResponse *response;
+    NSError *error;
+
+    if ((error = [self performRequest:request intoResponse:&response])) return error;
+    if ((error = [response statusCodeError])) return error;
+    if ((error = [self processResponse:response])) return error;
+    if (self.onSuccess) self.onSuccess(self);
+    
+    return nil;
+}
+
+// Marshalling the result of sending an asynchronous request into
+- (NSError *)performRequest:(NSURLRequest *)request intoResponse:(ODOperationResponse **)response {
+
+    NSError *URLError;
     NSURLResponse *URLResponse;
-    
+
     NSLog(@"%@: %@", NSStringFromClass(self.class), request);
-    
+
     NSData *data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&URLResponse
-                                                     error:&error];
-    
-    ODOperationResponse *response = [ODOperationResponse new];
-    response.request = request;
-    response.data = data;
-    response.HTTPError = error;
-    if ([URLResponse isKindOfClass:[NSHTTPURLResponse class]])
-        response.HTTPResponse = (NSHTTPURLResponse *)URLResponse;
-    
-    NSInteger status = error ? -1 : [response.HTTPResponse statusCode] / 100;
-    
-    switch (status) {
-        case 2 :
-            [self processResponse:response];
-            if (self.onSuccess)
-                self.onSuccess(self);
-            break;
-            
-        default:
-            [self processFailure:response];
-            break;
+                                                     error:&URLError];
+    if (URLError) {
+        return /*[ODOperationError errorWithCode:kODOperationErrorCommunication
+                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/ URLError;
     }
+    
+    *response = [ODOperationResponse new];
+    (*response).request = request;
+    (*response).data = data;
+    
+    if ([URLResponse isKindOfClass:[NSHTTPURLResponse class]])
+        (*response).HTTPResponse = (NSHTTPURLResponse *)URLResponse;
+
+    return nil;
 }
 
-- (void)processResponse:(ODOperationResponse *)response {
-    
+- (void)main {
+    self.error = [self synchronousPerformWithError];
 }
 
-- (void)processFailure:(ODOperationResponse *)response {
-    
+- (NSError *)processResponse:(ODOperationResponse *)response {
+    return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation userInfo:nil];
 }
+
 
 
 @end

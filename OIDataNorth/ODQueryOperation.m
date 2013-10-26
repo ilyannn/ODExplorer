@@ -12,6 +12,8 @@
 #import "ODEntityType.h"
 #import "ODEntityRetrieval.h"
 
+#import "ODOperationError.h"
+
 NSString *const ODQuerySelectString  = @"$select";
 NSString *const ODQueryFilterString  = @"$filter";
 NSString *const ODQueryTopString     = @"$top";
@@ -76,11 +78,11 @@ NSString *const ODQueryOrderByString = @"$orderby";
     [self setValue:value forKey:ODQuerySkipString];
 }
 
-- (void)processJSONResponse:(id)response {
+- (NSError *)processJSONResponse:(id)response {
     NSArray *values = response[@"value"];
     
-    if (!values) return;
-    if (![values isKindOfClass:NSArray.class]) return;
+    ODAssert(values, nil);
+    ODAssertClass(values, NSArray);
     
     NSMutableArray *list = [[NSMutableArray alloc] initWithCapacity:values.count];
     [values enumerateObjectsUsingBlock: ^(NSDictionary *dict, NSUInteger index, BOOL *stop) {
@@ -96,6 +98,7 @@ NSString *const ODQueryOrderByString = @"$orderby";
         }
     }];
     _responseResults = [list copy];
+    return nil;
 }
 
 @end

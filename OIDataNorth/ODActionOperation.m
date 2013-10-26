@@ -25,4 +25,8 @@ NSString *const ODHTTPVerbPost = @"POST";
     return [[super URL] URLByAppendingPathComponent:self.actionName];
 }
 
+- (NSError *)processJSONResponse:(id)responseJSON {
+    return nil;
+}
+
 @end

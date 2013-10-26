@@ -45,6 +45,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 @class ODResource, ODCollection, ODEntity, ODEntitySet;
 
+
 @protocol ODResourceAccessing <NSObject>
 
 // We can create a resource object by different means.
@@ -89,7 +90,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 @end
 
 
-// This class implements all of functionality for resources, but declares only the base part.
+/// This class implements all of functionality for resources, but declares only the base part.
 @interface ODResource : NSObject <ODResourceAccessing>
 
 @end

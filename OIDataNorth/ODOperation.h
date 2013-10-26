@@ -6,19 +6,19 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODService.h"
 #import "AFNetworking/AFNetworking.h"
 
-@class ODOperationResponse;
+#import "ODOperationResponse.h"
+#import "ODResource.h"
 
-// This is contructed from parameters, then you use its |URLRequest| property
-// This is an abstract class; specific operations are subclasses.
-
+/// This is contructed from parameters, then you use its URLRequest property
+/// This is an abstract class; specific operations are its subclasses.
 @interface ODOperation : NSOperation
 
-// A factory to create operations. Note that subclasses should be chaging its singnature
-// to match that of |resource| property.
+/// A factory to create operations. Note that subclasses should be chaging its signature
+/// to match that of resource property.
 + (instancetype)operationWithResource:(ODResource *)resource;
+
 
 #pragma mark - What do we access?
 // These properties are set to describe the operation. |parameters| can be accessed by KVO coding.
@@ -51,9 +51,11 @@
 
 
 #pragma mark - What do we do with the results?
+/// There are quite a few steps that can fail in the process of performing an operation.
+@property NSError *error;
 
-- (void)processResponse:(ODOperationResponse *)response;
-- (void)processFailure:(ODOperationResponse *)response;
+- (NSError *)processResponse:(ODOperationResponse *)response;
+
 @property (strong) void (^onSuccess)(ODOperation *operation);
 
 

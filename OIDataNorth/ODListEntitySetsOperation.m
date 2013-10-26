@@ -10,6 +10,7 @@
 #import "ODService.h"
 #import "ODEntitySet.h"
 #import "ODEntity.h"
+#import "ODOperationError.h"
 
 @implementation ODListEntitySetsOperation
 
@@ -17,27 +18,30 @@
     return [super operationWithResource:service];
 }
 
-- (void)processJSONResponse:(id)responseJSON {
+- (NSError *)processJSONResponse:(id)responseJSON {
     NSArray *responseArray = responseJSON;
     if ([responseJSON isKindOfClass:[NSDictionary class]]) {
         responseArray = responseJSON[@"value"];
     }
     
-    if ([responseArray isKindOfClass:NSArray.class]) {
-        NSMutableDictionary *entitySets = [NSMutableDictionary new];
-        [responseArray enumerateObjectsUsingBlock: ^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-            if ([obj isKindOfClass:NSDictionary.class]) {
-                NSString *name = obj[@"name"];
-                NSString *uri = obj[@"url"];
-                if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
-                    entitySets[name] = [ODEntitySet entitySetWithService:self.resource
-                                                                    name:uri
-                                                              entityType:ODEntity.entityType];
-                }
+    ODAssertClass(responseArray, NSArray);
+
+    NSMutableDictionary *entitySets = [NSMutableDictionary new];
+    [responseArray enumerateObjectsUsingBlock: ^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:NSDictionary.class]) {
+            NSString *name = obj[@"name"];
+            NSString *uri = obj[@"url"];
+            if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
+                entitySets[name] = [ODEntitySet entitySetWithService:self.resource
+                                                                name:uri
+                                                          entityType:ODEntity.entityType];
             }
-        }];
-        self.resource.entitySets = entitySets;
-    }
+        }
+    }];
+    
+    self.resource.entitySets = entitySets;
+    
+    return nil;
 }
 
 @end

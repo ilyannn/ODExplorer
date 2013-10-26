@@ -43,7 +43,7 @@
 
 - (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
     ODEntity *entity = _objects[@(index)];
-    //    if ([[NSNull null] isEqual:entity]) return nil;
+    if ([[NSNull null] isEqual:entity]) return nil;
     if (entity) return entity;
     entity = [self.collection.entityType createEntity];
     

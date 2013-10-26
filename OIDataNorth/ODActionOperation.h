@@ -7,6 +7,7 @@
 //
 
 #import "ODJSONOperation.h"
+#import "ODEntity.h"
 
 @interface ODActionOperation : ODJSONOperation
 

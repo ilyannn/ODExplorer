@@ -27,6 +27,8 @@
 		B34544F6181B36A30039BD67 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F2D18155FBC007BCE33 /* Employee.m */; };
 		B34544F7181B36A30039BD67 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3018155FCC007BCE33 /* Customer.m */; };
 		B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */; };
+		B34544FD181BEA270039BD67 /* ODPlainOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544FC181BEA270039BD67 /* ODPlainOperation.m */; };
+		B3454503181BF2010039BD67 /* ODOperationError.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454502181BF2010039BD67 /* ODOperationError.m */; };
 		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
 		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
@@ -99,6 +101,10 @@
 		B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRetrievalInfo.m; sourceTree = "<group>"; };
 		B34544F8181BCDCF0039BD67 /* ODOperationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODOperationResponse.h; sourceTree = "<group>"; };
 		B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODOperationResponse.m; sourceTree = "<group>"; };
+		B34544FB181BEA270039BD67 /* ODPlainOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPlainOperation.h; sourceTree = "<group>"; };
+		B34544FC181BEA270039BD67 /* ODPlainOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPlainOperation.m; sourceTree = "<group>"; };
+		B3454501181BF2010039BD67 /* ODOperationError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODOperationError.h; sourceTree = "<group>"; };
+		B3454502181BF2010039BD67 /* ODOperationError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODOperationError.m; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -254,6 +260,34 @@
 				B3900EC51815310C007BCE33 /* ODEntityType.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B34544FE181BEA430039BD67 /* Plain return type */ = {
+			isa = PBXGroup;
+			children = (
+				B34544FB181BEA270039BD67 /* ODPlainOperation.h */,
+				B34544FC181BEA270039BD67 /* ODPlainOperation.m */,
+				B3900F3B1815C0AC007BCE33 /* ODCountOperation.h */,
+				B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */,
+			);
+			name = "Plain return type";
+			sourceTree = "<group>";
+		};
+		B34544FF181BEA580039BD67 /* JSON return type */ = {
+			isa = PBXGroup;
+			children = (
+				B3900F3E1815CB8D007BCE33 /* ODJSONOperation.h */,
+				B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */,
+				B3900EAD18119337007BCE33 /* ODQueryOperation.h */,
+				B3900EAE18119337007BCE33 /* ODQueryOperation.m */,
+				B3900F571816962C007BCE33 /* ODRetrieveOperation.h */,
+				B3900F581816962C007BCE33 /* ODRetrieveOperation.m */,
+				B34544BF181846340039BD67 /* ODActionOperation.h */,
+				B34544C0181846340039BD67 /* ODActionOperation.m */,
+				B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */,
+				B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */,
+			);
+			name = "JSON return type";
 			sourceTree = "<group>";
 		};
 		B3900E5A18118102007BCE33 = {
@@ -427,20 +461,12 @@
 			children = (
 				B3900EA718118129007BCE33 /* ODOperation.h */,
 				B3900EA818118129007BCE33 /* ODOperation.m */,
-				B3900F3E1815CB8D007BCE33 /* ODJSONOperation.h */,
-				B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */,
-				B3900EAD18119337007BCE33 /* ODQueryOperation.h */,
-				B3900EAE18119337007BCE33 /* ODQueryOperation.m */,
-				B3900F3B1815C0AC007BCE33 /* ODCountOperation.h */,
-				B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */,
-				B3900F571816962C007BCE33 /* ODRetrieveOperation.h */,
-				B3900F581816962C007BCE33 /* ODRetrieveOperation.m */,
-				B34544BF181846340039BD67 /* ODActionOperation.h */,
-				B34544C0181846340039BD67 /* ODActionOperation.m */,
-				B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */,
-				B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */,
+				B3454501181BF2010039BD67 /* ODOperationError.h */,
+				B3454502181BF2010039BD67 /* ODOperationError.m */,
 				B34544F8181BCDCF0039BD67 /* ODOperationResponse.h */,
 				B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */,
+				B34544FE181BEA430039BD67 /* Plain return type */,
+				B34544FF181BEA580039BD67 /* JSON return type */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -627,6 +653,7 @@
 				B34544CA181932E60039BD67 /* ODResourceViewController.m in Sources */,
 				B3900F4D18167765007BCE33 /* ODResource.m in Sources */,
 				B34544C7181932A50039BD67 /* ODEntityViewController.m in Sources */,
+				B3454503181BF2010039BD67 /* ODOperationError.m in Sources */,
 				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
 				B34544C4181868E50039BD67 /* ODListEntitySetsOperation.m in Sources */,
 				B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */,
@@ -643,6 +670,7 @@
 				B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */,
 				B3900EC61815310C007BCE33 /* ODEntityType.m in Sources */,
 				B34544F5181B36A30039BD67 /* Supplier.m in Sources */,
+				B34544FD181BEA270039BD67 /* ODPlainOperation.m in Sources */,
 				B34544D418195E6B0039BD67 /* ODEntityTableViewCell.m in Sources */,
 				B3900E7518118102007BCE33 /* main.m in Sources */,
 				B3900EA61811811A007BCE33 /* ODService.m in Sources */,

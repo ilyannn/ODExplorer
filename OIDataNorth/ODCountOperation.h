@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODOperation.h"
+#import "ODPlainOperation.h"
 
-@interface ODCountOperation : ODOperation
+@interface ODCountOperation : ODPlainOperation
 @property (readonly) NSUInteger responseCount;
 @end

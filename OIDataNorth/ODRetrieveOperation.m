@@ -8,6 +8,7 @@
 
 #import "ODRetrieveOperation.h"
 #import "ODEntity.h"
+#import "ODOperationError.h"
 
 @implementation ODRetrieveOperation
 
@@ -15,11 +16,12 @@
     return [super operationWithResource:entity];
 }
 
-- (void)processJSONResponse:(id)response {
-    if (!response) return;
-    if (![response isKindOfClass:NSDictionary.class]) return;
+- (NSError *)processJSONResponse:(id)response {
+    ODAssert(response, nil);
+    ODAssertClass(response, NSDictionary);
     
     [self.resource updateFromDict:response];
+    return nil;
 }
 
 @end

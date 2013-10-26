@@ -41,6 +41,14 @@
 }
 
 - (void)enqueueOperation:(ODOperation *)operation {
+    
+    __weak ODOperation *op = operation;
+    operation.completionBlock = ^ {
+        if (op.error) {
+            NSLog(@"%@", op.error);
+        }
+    };
+    
     if (self.operationQueue)
         [self.operationQueue addOperation:operation];
     else
