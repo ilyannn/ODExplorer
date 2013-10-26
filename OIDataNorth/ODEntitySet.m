@@ -12,7 +12,8 @@
 
 + (instancetype)entitySetWithService:(ODService *)service name:(NSString *)name entityType:(ODEntityType *)entityType {
     ODEntitySet *entitySet = [self new];
-    entitySet.parent = service;
+    entitySet.retrievalInfo = [ODRetrievalInfo new];
+    entitySet.retrievalInfo.parent = service.retrievalInfo;
     entitySet.name = name;
     entitySet.entityType = entityType;
     return entitySet;

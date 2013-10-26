@@ -116,12 +116,12 @@
     if (value) return value;
     if (self.retrievedOn) return nil;
     
-    [self.readManager retrieveProperty:key ofEntity:self];
+    [[self readManager] retrieveProperty:key ofEntity:self];
     return self.localProperties[key];
 }
 
 - (void)retrieve {
-    [self.readManager retrieveEntity:self];
+    [[self readManager] retrieveEntity:self];
 }
 
 - (id)navigationProperty:(NSString *)name propertyType:(ODEntityType *)entityType {
@@ -129,7 +129,7 @@
     if (result) return result;
     
     ODEntity *target = [entityType createEntity];
-    target.parent = self;
+    target.retrievalInfo.parent = self.retrievalInfo;
     
     ODEntityRetrievalByProperty *retrievalInfo = [ODEntityRetrievalByProperty new];
     retrievalInfo.fromEntity = self;
@@ -143,21 +143,18 @@
     return [ODCollection collectionForProperty:name entityType:entityType inEntity:self];
 }
 
+- (NSString *)longDescription {
+    return [@[[self description], [self.localProperties description]]
+            componentsJoinedByString: @"\n"];
+}
+
 - (void)performAction:(NSString *)actionName {
     [self performAction:actionName withParameters:nil];
 }
 
 - (void)performAction:(NSString *)actionName withParameters:(NSDictionary *)params {
+    NSAssert(self.kind != ODResourceKindCollection, @"Actions can't be performed on collections");
     [self.changeManager performAction:actionName for:self withParameters:params];
-}
-
-- (NSString *)shortDescription {
-    return [self.retrievalInfo shortDescription];
-}
-
-- (NSString *)longDescription {
-    return [@[[self description], [self.localProperties description]]
-            componentsJoinedByString: @"\n"];
 }
 
 @end

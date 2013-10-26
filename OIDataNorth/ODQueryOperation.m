@@ -86,7 +86,7 @@ NSString *const ODQueryOrderByString = @"$orderby";
     [values enumerateObjectsUsingBlock: ^(NSDictionary *dict, NSUInteger index, BOOL *stop) {
         if ([dict isKindOfClass:NSDictionary.class]) {
             ODEntity *entity = [[self.resource entityType] deserializeEntityFrom:dict];
-            entity.parent = self.resource;
+            entity.retrievalInfo.parent = self.resource.retrievalInfo;
             [list addObject:entity];
             
             ODEntityRetrievalByIndex *retrieval = [ODEntityRetrievalByIndex new];

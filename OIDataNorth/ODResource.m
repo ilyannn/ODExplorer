@@ -14,14 +14,16 @@
 @end
 
 @implementation ODResource {
-    ODResourceKind _kind;
     ODRetrievalInfo *_retrievalInfo;
+    ODResourceKind _kind;
     ODEntityType *_entityType;
+    __weak id _cachedChildren;
 }
 
 @synthesize kind = _kind;
 @synthesize retrievalInfo = _retrievalInfo;
 @synthesize entityType = _entityType;
+@synthesize childrenArray = _cachedChildren;
 
 - (void)setKind:(ODResourceKind)kind {
     NSAssert(kind != ODResourceKindUnknown, @"You're required to be specific when setting resource kind.");
@@ -33,16 +35,26 @@
     return nil; // we're abstract
 }
 
-- (id <ODFaultManaging> )readManager {
-    return _readManager ? _readManager : [self parent].readManager;
-}
-
-- (id <ODChangeManaging> )changeManager {
-    return _changeManager ? _changeManager : [self parent].changeManager;
+- (NSString *)shortDescription {
+    return [self.retrievalInfo shortDescription];
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@ -> %@", [super description], self.URL];
+    return [NSString stringWithFormat:@"%@ = [%@](%@)", [super description], [self shortDescription], self.URL];
 }
+
+- (NSString *)longDescription {
+    return [NSString stringWithFormat:@"%@; kind = %i; %@", [self description], self.kind, [self.childrenArray description]];
+}
+
+
+- (id <ODFaultManaging> )readManager {
+    return [self.retrievalInfo getFromHierarhy:_cmd];
+}
+
+- (id <ODChangeManaging> )changeManager {
+    return [self.retrievalInfo getFromHierarhy:_cmd];
+}
+
 
 @end

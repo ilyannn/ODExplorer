@@ -18,7 +18,7 @@
 		B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544D7181968370039BD67 /* ODPropertyTableViewCell.m */; };
 		B34544E11819C3050039BD67 /* ODResourceViewController+ViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E01819C3050039BD67 /* ODResourceViewController+ViewControllers.m */; };
 		B34544E41819DFC70039BD67 /* ODServiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E31819DFC70039BD67 /* ODServiceListViewController.m */; };
-		B34544EA181A6AA20039BD67 /* ODServiceList.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E9181A6AA20039BD67 /* ODServiceList.m */; };
+		B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E9181A6AA20039BD67 /* ODResourceList.m */; };
 		B34544ED181B03280039BD67 /* ODServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */; };
 		B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */; };
 		B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EBB181198CB007BCE33 /* NorthwindService.m */; };
@@ -91,8 +91,8 @@
 		B34544E01819C3050039BD67 /* ODResourceViewController+ViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ODResourceViewController+ViewControllers.m"; sourceTree = "<group>"; };
 		B34544E21819DFC70039BD67 /* ODServiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceListViewController.h; sourceTree = "<group>"; };
 		B34544E31819DFC70039BD67 /* ODServiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceListViewController.m; sourceTree = "<group>"; };
-		B34544E8181A6AA20039BD67 /* ODServiceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceList.h; sourceTree = "<group>"; };
-		B34544E9181A6AA20039BD67 /* ODServiceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceList.m; sourceTree = "<group>"; };
+		B34544E8181A6AA20039BD67 /* ODResourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResourceList.h; sourceTree = "<group>"; };
+		B34544E9181A6AA20039BD67 /* ODResourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODResourceList.m; sourceTree = "<group>"; };
 		B34544EB181B03280039BD67 /* ODServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceTableViewCell.h; sourceTree = "<group>"; };
 		B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceTableViewCell.m; sourceTree = "<group>"; };
 		B34544EE181B278D0039BD67 /* ODRetrievalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRetrievalInfo.h; sourceTree = "<group>"; };
@@ -450,8 +450,8 @@
 			children = (
 				B3900F4B18167765007BCE33 /* ODResource.h */,
 				B3900F4C18167765007BCE33 /* ODResource.m */,
-				B34544E8181A6AA20039BD67 /* ODServiceList.h */,
-				B34544E9181A6AA20039BD67 /* ODServiceList.m */,
+				B34544E8181A6AA20039BD67 /* ODResourceList.h */,
+				B34544E9181A6AA20039BD67 /* ODResourceList.m */,
 				B3900EA41811811A007BCE33 /* ODService.h */,
 				B3900EA51811811A007BCE33 /* ODService.m */,
 				B3900EC118152F08007BCE33 /* ODEntitySet.h */,
@@ -651,7 +651,7 @@
 				B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */,
 				B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */,
 				B34544F6181B36A30039BD67 /* Employee.m in Sources */,
-				B34544EA181A6AA20039BD67 /* ODServiceList.m in Sources */,
+				B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */,
 				B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */,
 				B34544F7181B36A30039BD67 /* Customer.m in Sources */,
 			);

@@ -12,7 +12,7 @@
 @implementation ODServiceListViewController
 
 - (void)refreshChildren {
-    self.childIdentifiers = self.resource.services;
+    self.childIdentifiers = self.resource.childResources;
 }
 
 - (NSDictionary *)cellClasses {

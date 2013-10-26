@@ -14,7 +14,6 @@
 #import "ODEntityRetrieval.h"
 
 @implementation ODCollection {
-    ODResource *_parent;
     NSString *_name;
 }
 
@@ -25,14 +24,6 @@
         self.kind = ODResourceKindCollection;
     }
     return self;
-}
-
-- (ODResource *)parent {
-    return _parent;
-}
-
-- (void)setParent:(ODResource *)parent {
-    _parent = parent;
 }
 
 - (NSString *)relativePath {

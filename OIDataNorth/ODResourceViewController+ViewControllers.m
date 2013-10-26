@@ -12,20 +12,25 @@
 #import "ODServiceListViewController.h"
 
 @implementation ODResourceViewController (ViewControllers)
-+ (Class)viewControllerClassFor:(Class)resourceClass {
-    if ([resourceClass isSubclassOfClass:[ODService class]]) {
-        return [ODServiceViewController class];
++ (Class)viewControllerClassFor:(ODResource *)resource {
+    switch (resource.kind) {
+        case ODResourceKindEntity:
+            return [ODEntityViewController class];
+            
+        case ODResourceKindCollection:
+            if ([resource isKindOfClass:[ODService class]]) {
+                return [ODServiceViewController class];
+            }
+            if ([resource isKindOfClass:[ODCollection class]]) {
+                return [ODCollectionViewController class];
+            }
+            if ([resource isKindOfClass:[ODResourceList class]]) {
+                return [ODServiceListViewController class];
+            }
+            
+        default:
+            return nil;
     }
-    if ([resourceClass isSubclassOfClass:[ODEntity class]]) {
-        return [ODEntityViewController class];
-    }
-    if ([resourceClass isSubclassOfClass:[ODCollection class]]) {
-        return [ODCollectionViewController class];
-    }
-    if ([resourceClass isSubclassOfClass:[ODServiceList class]]) {
-        return [ODServiceListViewController class];
-    }
-    return nil;
 }
 
 @end

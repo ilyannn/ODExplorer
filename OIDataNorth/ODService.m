@@ -22,9 +22,6 @@
     self = [super init];
     if (self) {
         self.kind = ODResourceKindCollection;
-        ODBaseRequestManager *commonManager = [ODBaseRequestManager new];
-        self.readManager = commonManager;
-        self.changeManager = commonManager;
     }
     return self;
 }

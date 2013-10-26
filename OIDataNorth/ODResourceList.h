@@ -8,10 +8,10 @@
 
 #import "ODResource.h"
 
-@interface ODServiceList : ODResource
+@interface ODResourceList : ODResource
 - (instancetype)initFromDefaults;
 
-@property NSMutableArray *services;
+@property NSMutableArray *childResources;
 - (void)saveToDefaults;
 - (void)loadFromDefaults;
 

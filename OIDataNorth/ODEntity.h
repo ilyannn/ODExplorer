@@ -11,9 +11,6 @@
 #import "ODEntitySet.h"
 
 @interface ODEntity : ODResource
-- (NSDictionary *)keys;
-- (void)setKeys:(id)keys;
-
 - (instancetype)initFromDict:(NSDictionary *)dict;
 - (void)updateFromDict:(NSDictionary *)dict;
 
@@ -28,10 +25,7 @@
 - (id)navigationCollection:(NSString *)name entityType:(ODEntityType *)entityType;
 
 - (void)performAction:(NSString *)actionName;
-- (void)retrieve;
 
 @property NSDate *retrievedOn;
-
-- (NSString *)longDescription;
 
 @end

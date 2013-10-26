@@ -14,7 +14,7 @@ NSString *const ODGenericCellReuseID = @"GenericCell";
 @implementation ODResourceViewController
 
 + (ODResourceViewController *)controllerForResource:(ODResource *)resource {
-    Class vcClass = [self viewControllerClassFor:[resource class]];
+    Class vcClass = [self viewControllerClassFor:resource];
     if (!vcClass) return nil;
     
     ODResourceViewController *vc = [vcClass new];

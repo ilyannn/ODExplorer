@@ -10,7 +10,7 @@
 
 #import "ODResourceViewController.h"
 #import "ODBaseRequestManager.h"
-#import "ODServiceList.h"
+#import "ODResourceList.h"
 #import "ODService.h"
 
 @implementation OIAppDelegate
@@ -19,19 +19,19 @@
 {
     
     // Override point for customization after application launch.
-    ODServiceList *serviceList = [[ODServiceList alloc] initFromDefaults];
-    serviceList.readManager = [ODBaseRequestManager nonblockingManager];
-    serviceList.changeManager = [ODBaseRequestManager nonblockingManager];
+    ODResourceList *root = [[ODResourceList alloc] initFromDefaults];
+    root.retrievalInfo.readManager = [ODBaseRequestManager nonblockingManager];
+    root.retrievalInfo.changeManager = [ODBaseRequestManager nonblockingManager];
     
     UINavigationController *nc = (UINavigationController *)self.window.rootViewController;
-    [nc pushViewController:[ODResourceViewController controllerForResource:serviceList] animated:YES];
+    [nc pushViewController:[ODResourceViewController controllerForResource:root] animated:YES];
 
     NSURL *URL = launchOptions[UIApplicationLaunchOptionsURLKey];
     if (URL) {
         ODService *service = [ODService new];
         service.URL = URL;
         service.shortDescription = @"from parameters";
-        [serviceList.services addObject:service];
+        [root.childResources addObject:service];
         [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
     }
     

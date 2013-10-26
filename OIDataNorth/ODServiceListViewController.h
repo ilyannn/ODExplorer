@@ -8,9 +8,9 @@
 
 #import "ODResourceViewController.h"
 
-#import "ODServiceList.h"
+#import "ODResourceList.h"
 
 @interface ODServiceListViewController : ODResourceViewController
-@property (nonatomic) ODServiceList *resource;
+@property (nonatomic) ODResourceList *resource;
 
 @end

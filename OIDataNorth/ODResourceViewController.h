@@ -34,5 +34,5 @@ extern NSString *const ODGenericCellReuseID;
 @end
 
 @interface ODResourceViewController (ViewControllers)
-+ (Class)viewControllerClassFor:(Class)resourceClass;
++ (Class)viewControllerClassFor:(ODResource *)resource;
 @end
