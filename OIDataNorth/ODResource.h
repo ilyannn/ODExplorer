@@ -51,12 +51,13 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 #pragma mark - (1) how to get a resource
 
 // We can create a resource object by different means.
-@property (nonatomic) ODRetrievalInfo *retrievalInfo;
-- (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info;
+@property (nonatomic) id<ODRetrieving> retrievalInfo;
+- (instancetype)initWithRetrievalInfo:(id<ODRetrieving>)info;
 
 + (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
 + (instancetype)resourceWithDict:(id)dict;
 + (instancetype)resourceWithURLString:(NSString *)URLString;
++ (instancetype)resourceWithInfo:(ODRetrievalInfo *)info;
 
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;
@@ -104,8 +105,10 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 /// This class implements all of functionality for resources, but declares only the base part.
 @interface ODResource : NSObject <ODResourceAccessing>
 
-// Use unique initializer in subclasses if you defined +resourceDict.
+// Use +new or +unique initializer in subclasses if you defined +resourceDict.
++ (instancetype)new;
 + (instancetype)unique;
+
 + (NSDictionary *)resourceDict;
 
 // Values of resources are weakly held in a global table. The key is [self resourceDict].

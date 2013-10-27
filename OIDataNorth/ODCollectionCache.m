@@ -45,12 +45,12 @@
     ODEntity *entity = _objects[@(index)];
     if ([[NSNull null] isEqual:entity]) return nil;
     if (entity) return entity;
-    entity = [self.collection.entityType createEntity];
     
     ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
     retrieval.parent = self.collection.retrievalInfo;
     retrieval.index = index;
-    entity.retrievalInfo = retrieval;
+
+    entity = [self.collection.entityType entityWithInfo:retrieval];
     
     __block NSArray *results;
     

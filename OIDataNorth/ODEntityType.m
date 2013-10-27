@@ -11,13 +11,15 @@
 
 @implementation ODEntityType
 
-- (ODEntity *)createEntity {
-    return [self deserializeEntityFrom:nil];
+- (ODEntity *)entityWithInfo:(id)info {
+    return [NSClassFromString(self.className) resourceWithInfo:info];
 }
 
-- (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict {
-    ODEntity *entity = [NSClassFromString(self.className) alloc];
-    return [entity initFromDict:entityDict];
+- (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict
+                         withInfo:(id<ODRetrieving>)info {
+    ODEntity *entity = [self entityWithInfo:info];
+    [entity updateFromDict:entityDict];
+    return entity;
 }
 
 @end

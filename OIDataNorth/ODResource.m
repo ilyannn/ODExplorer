@@ -14,7 +14,7 @@
 @end
 
 @implementation ODResource {
-    ODRetrievalInfo *_retrievalInfo;
+    id<ODRetrieving> _retrievalInfo;
     ODResourceKind _kind;
     ODEntityType *_entityType;
     __weak id _cachedChildren;
@@ -29,6 +29,10 @@
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     return self.retrievalInfo;
+}
+
++ (instancetype)new {
+    return [self resourceWithDict:[self resourceDict]];
 }
 
 + (instancetype)unique {
@@ -57,12 +61,15 @@
     return nil;
 }
 
++ (instancetype)resourceWithInfo:(ODRetrievalInfo *)info {
+    return [[self alloc] initWithRetrievalInfo:info];
+}
+
 + (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description {
     ODRetrievalByURL *info = [ODRetrievalByURL new];
     info.URL = URL;
     info.shortDescription = description;
-    
-    return [[self alloc] initWithRetrievalInfo:info];
+    return [self resourceWithInfo:info];
 }
 
 + (instancetype)resourceWithDict:(id)dict {

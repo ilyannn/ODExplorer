@@ -7,11 +7,14 @@
 //
 
 @class ODEntity;
+@protocol ODRetrieving;
 
 @interface ODEntityType : NSObject
 
-- (ODEntity *)createEntity;
-- (ODEntity *)deserializeEntityFrom: (NSDictionary *)entityDict;
+- (ODEntity *)entityWithInfo:(id<ODRetrieving>)info;
+- (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict
+                           withInfo:(id<ODRetrieving>)info;
+
 @property NSString *className;
 
 @end

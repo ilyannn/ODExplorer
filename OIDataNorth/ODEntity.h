@@ -11,7 +11,7 @@
 #import "ODEntitySet.h"
 
 @interface ODEntity : ODResource
-- (instancetype)initFromDict:(NSDictionary *)dict;
+- (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo;
 - (void)updateFromDict:(NSDictionary *)dict;
 
 + (ODEntityType *)entityType;

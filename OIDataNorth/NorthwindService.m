@@ -15,7 +15,7 @@
 
 @implementation NorthwindService
 
-+ (NSDictionary *)serviceDict {
++ (NSDictionary *)resourceDict {
     return @{@"uri":@"http://services.odata.org/V3/Northwind/Northwind.svc/",
              @"name":@"Northwind Service"
              };

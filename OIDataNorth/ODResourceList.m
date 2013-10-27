@@ -25,9 +25,13 @@
 }
 
 - (void)loadFromDefaults {
-    ODService *exampleService = [ODService
-                                 resourceWithURL:[NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"] description:@"OData Example"];
-    exampleService.retrievalInfo.parent = self.retrievalInfo;
+    ODRetrievalByURL *info = [ODRetrievalByURL new];
+    info.URL = [NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"] ;
+    info.shortDescription = @"OData Example";
+    info.parent = self.retrievalInfo;
+    
+    ODService *exampleService = [ODService resourceWithInfo:info];
+    
     self.childResources = [NSMutableArray arrayWithObjects:exampleService, [NorthwindService unique], nil];
 }
 

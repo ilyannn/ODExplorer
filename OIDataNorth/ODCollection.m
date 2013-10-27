@@ -74,14 +74,11 @@
 }
 
 - (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
-    ODEntity *entity = [self.entityType createEntity];
-    
     ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
     retrieval.parent = self.retrievalInfo;
     retrieval.index = index;
-    entity.retrievalInfo = retrieval;
-    
-    return entity;
+
+    return [self.entityType entityWithInfo:retrieval];
 }
 
 - (void)retrieveCount {

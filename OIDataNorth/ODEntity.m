@@ -34,6 +34,10 @@
 @synthesize localProperties = _localProperties;
 @synthesize remoteProperties = _remoteProperties;
 
+- (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo {
+    ODRetrievalInfo * info;
+    return [self initWithRetrievalInfo:info];
+}
 
 - (NSURL *)URL {
     if (_knownURL) {
@@ -104,15 +108,13 @@
     ODResource *result = self.navigationProperties[name];
     if (result) return result;
     
-    ODEntity *target = [entityType createEntity];
-    target.retrievalInfo.parent = self.retrievalInfo;
+//    target.retrievalInfo.parent = self.retrievalInfo;
     
     ODRetrievalOfProperty *retrievalInfo = [ODRetrievalOfProperty new];
     retrievalInfo.parent = self.retrievalInfo;
     retrievalInfo.propertyName = name;
     
-    target.retrievalInfo = retrievalInfo;
-    return target;
+    return [entityType entityWithInfo:retrievalInfo];
 }
 
 - (id)navigationCollection:(NSString *)name entityType:(ODEntityType *)entityType {

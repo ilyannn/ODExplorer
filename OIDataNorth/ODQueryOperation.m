@@ -87,14 +87,12 @@ NSString *const ODQueryOrderByString = @"$orderby";
     NSMutableArray *list = [[NSMutableArray alloc] initWithCapacity:values.count];
     [values enumerateObjectsUsingBlock: ^(NSDictionary *dict, NSUInteger index, BOOL *stop) {
         if ([dict isKindOfClass:NSDictionary.class]) {
-            ODEntity *entity = [[self.resource entityType] deserializeEntityFrom:dict];
-            entity.retrievalInfo.parent = self.resource.retrievalInfo;
-            [list addObject:entity];
-            
             ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
             retrieval.parent = self.resource.retrievalInfo;
             retrieval.index = self.skip + index + 1;
-            entity.retrievalInfo = retrieval;
+
+            ODEntity *entity = [[self.resource entityType] deserializeEntityFrom:dict withInfo:retrieval];
+            [list addObject:entity];
         }
     }];
     
