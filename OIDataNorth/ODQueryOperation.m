@@ -81,8 +81,8 @@ NSString *const ODQueryOrderByString = @"$orderby";
 - (NSError *)processJSONResponse:(id)response {
     NSArray *values = response[@"value"];
     
-    ODAssert(values, nil);
-    ODAssertClass(values, NSArray);
+    ODAssertOData(values, nil);
+    ODAssertODataClass(values, NSArray);
     
     NSMutableArray *list = [[NSMutableArray alloc] initWithCapacity:values.count];
     [values enumerateObjectsUsingBlock: ^(NSDictionary *dict, NSUInteger index, BOOL *stop) {

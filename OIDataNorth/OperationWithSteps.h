@@ -12,6 +12,7 @@
 - (void)addOperationStep:(NSError * (^)(id operation))step;
 - (void)cleanOperationSteps;
 
+- (void)addCompletionBlock:(void (^)(id operation))added;
 @property NSError *error;
 
 // Redefine this instead of -main.

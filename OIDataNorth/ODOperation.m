@@ -108,11 +108,16 @@ NSString *const ODHTTPVerbGet = @"GET";
     return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation userInfo:nil];
 }
 
+- (NSError *)validate {
+    return nil;
+}
+
 - (NSArray *)steps {
     __block NSURLRequest *request;
     __block ODOperationResponse *response;
     
-    return  @[  ^{ return [self formRequest:&request]; },
+    return  @[   ^{ return [self validate]; },
+                 ^{ return [self formRequest:&request]; },
                  ^{ return [self performRequest:request intoResponse:&response]; },
                  ^{ return [response statusCodeError]; },
                  ^{ return [self processResponse:response]; },

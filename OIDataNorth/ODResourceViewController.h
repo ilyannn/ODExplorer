@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class ODResource, ODResourceTableViewCell;
 
 extern NSString *const ODGenericCellReuseID;
+extern NSString *const ODLoadingCellReuseID;
 
 @interface ODResourceViewController : UITableViewController
 + (ODResourceViewController *)controllerForResource:(ODResource *)resourc;
@@ -31,8 +33,19 @@ extern NSString *const ODGenericCellReuseID;
 - (void)subscribeToResource;
 - (void)unsubscribeFromResource;
 
+// TEMPorary
+- (void)update;
+
 @end
 
 @interface ODResourceViewController (ViewControllers)
 + (Class)viewControllerClassFor:(ODResource *)resource;
 @end
+
+#import "ODNotifyingManager.h"
+
+@interface ODResourceViewController () <ODNotifyingManagerDelegate>
+@property (nonatomic) BOOL loadingRowPresent;
+@property NSInteger loadingRowIndex;
+@end
+

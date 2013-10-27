@@ -30,6 +30,9 @@
 		B34544FD181BEA270039BD67 /* ODPlainOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544FC181BEA270039BD67 /* ODPlainOperation.m */; };
 		B3454503181BF2010039BD67 /* ODOperationError.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454502181BF2010039BD67 /* ODOperationError.m */; };
 		B3454509181C7CEA0039BD67 /* OperationWithSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454508181C7CEA0039BD67 /* OperationWithSteps.m */; };
+		B345450D181D500E0039BD67 /* ODOperationError.strings in Resources */ = {isa = PBXBuildFile; fileRef = B345450C181D500E0039BD67 /* ODOperationError.strings */; };
+		B3454510181D581E0039BD67 /* ODNotifyingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B345450F181D581E0039BD67 /* ODNotifyingManager.m */; };
+		B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */; };
 		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
 		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
@@ -109,6 +112,11 @@
 		B3454506181C0F850039BD67 /* ODOperationError+Parsing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODOperationError+Parsing.h"; sourceTree = "<group>"; };
 		B3454507181C7CEA0039BD67 /* OperationWithSteps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationWithSteps.h; sourceTree = "<group>"; };
 		B3454508181C7CEA0039BD67 /* OperationWithSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationWithSteps.m; sourceTree = "<group>"; };
+		B345450C181D500E0039BD67 /* ODOperationError.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ODOperationError.strings; sourceTree = "<group>"; };
+		B345450E181D581E0039BD67 /* ODNotifyingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODNotifyingManager.h; sourceTree = "<group>"; };
+		B345450F181D581E0039BD67 /* ODNotifyingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODNotifyingManager.m; sourceTree = "<group>"; };
+		B3454511181D61770039BD67 /* ODLoadingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODLoadingTableViewCell.h; sourceTree = "<group>"; };
+		B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLoadingTableViewCell.m; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -175,7 +183,7 @@
 		B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCountOperation.m; sourceTree = "<group>"; };
 		B3900F3E1815CB8D007BCE33 /* ODJSONOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODJSONOperation.h; sourceTree = "<group>"; };
 		B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODJSONOperation.m; sourceTree = "<group>"; };
-		B3900F491816765B007BCE33 /* ODManagingProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODManagingProtocols.h; sourceTree = "<group>"; };
+		B3900F491816765B007BCE33 /* ODManaging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODManaging.h; sourceTree = "<group>"; };
 		B3900F4B18167765007BCE33 /* ODResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResource.h; sourceTree = "<group>"; };
 		B3900F4C18167765007BCE33 /* ODResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODResource.m; sourceTree = "<group>"; };
 		B3900F4E18168161007BCE33 /* ODBaseRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODBaseRequestManager.h; sourceTree = "<group>"; };
@@ -244,6 +252,8 @@
 				B34544D318195E6B0039BD67 /* ODEntityTableViewCell.m */,
 				B34544EB181B03280039BD67 /* ODServiceTableViewCell.h */,
 				B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */,
+				B3454511181D61770039BD67 /* ODLoadingTableViewCell.h */,
+				B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -319,6 +329,28 @@
 				B34544D518195F990039BD67 /* Cells */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		B345450A181D1F380039BD67 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B3454507181C7CEA0039BD67 /* OperationWithSteps.h */,
+				B3454508181C7CEA0039BD67 /* OperationWithSteps.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		B345450B181D4FCB0039BD67 /* Auxiliary */ = {
+			isa = PBXGroup;
+			children = (
+				B3454501181BF2010039BD67 /* ODOperationError.h */,
+				B3454506181C0F850039BD67 /* ODOperationError+Parsing.h */,
+				B3454502181BF2010039BD67 /* ODOperationError.m */,
+				B345450C181D500E0039BD67 /* ODOperationError.strings */,
+				B34544F8181BCDCF0039BD67 /* ODOperationResponse.h */,
+				B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */,
+			);
+			name = Auxiliary;
 			sourceTree = "<group>";
 		};
 		B3900E5A18118102007BCE33 = {
@@ -406,6 +438,7 @@
 		B3900EB9181198AC007BCE33 /* OData Stack */ = {
 			isa = PBXGroup;
 			children = (
+				B345450A181D1F380039BD67 /* Helpers */,
 				B3454505181C0CE20039BD67 /* UI */,
 				B3900F48181675F7007BCE33 /* Managers */,
 				B3900F421815D84A007BCE33 /* Resources */,
@@ -486,15 +519,9 @@
 		B3900F411815D82B007BCE33 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				B3454507181C7CEA0039BD67 /* OperationWithSteps.h */,
-				B3454508181C7CEA0039BD67 /* OperationWithSteps.m */,
 				B3900EA718118129007BCE33 /* ODOperation.h */,
 				B3900EA818118129007BCE33 /* ODOperation.m */,
-				B3454501181BF2010039BD67 /* ODOperationError.h */,
-				B3454506181C0F850039BD67 /* ODOperationError+Parsing.h */,
-				B3454502181BF2010039BD67 /* ODOperationError.m */,
-				B34544F8181BCDCF0039BD67 /* ODOperationResponse.h */,
-				B34544F9181BCDCF0039BD67 /* ODOperationResponse.m */,
+				B345450B181D4FCB0039BD67 /* Auxiliary */,
 				B34544FE181BEA430039BD67 /* Plain return type */,
 				B34544FF181BEA580039BD67 /* JSON return type */,
 			);
@@ -525,11 +552,13 @@
 		B3900F48181675F7007BCE33 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				B3900F491816765B007BCE33 /* ODManagingProtocols.h */,
+				B3900F491816765B007BCE33 /* ODManaging.h */,
 				B3900F4E18168161007BCE33 /* ODBaseRequestManager.h */,
 				B3900F4F18168161007BCE33 /* ODBaseRequestManager.m */,
 				B3900F5118168170007BCE33 /* ODBatchRequestManager.h */,
 				B3900F5218168170007BCE33 /* ODBatchRequestManager.m */,
+				B345450E181D581E0039BD67 /* ODNotifyingManager.h */,
+				B345450F181D581E0039BD67 /* ODNotifyingManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -615,6 +644,7 @@
 			files = (
 				B3900E8718118102007BCE33 /* Images.xcassets in Resources */,
 				B3900E7318118102007BCE33 /* InfoPlist.strings in Resources */,
+				B345450D181D500E0039BD67 /* ODOperationError.strings in Resources */,
 				B3900E7C18118102007BCE33 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,6 +701,7 @@
 				B34544E11819C3050039BD67 /* ODResourceViewController+ViewControllers.m in Sources */,
 				B3900F591816962C007BCE33 /* ODRetrieveOperation.m in Sources */,
 				B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */,
+				B3454510181D581E0039BD67 /* ODNotifyingManager.m in Sources */,
 				B34544F4181B36A30039BD67 /* Product.m in Sources */,
 				B34544E41819DFC70039BD67 /* ODServiceListViewController.m in Sources */,
 				B34544CA181932E60039BD67 /* ODResourceViewController.m in Sources */,
@@ -685,6 +716,7 @@
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
 				B34544ED181B03280039BD67 /* ODServiceTableViewCell.m in Sources */,
 				B34544C1181846340039BD67 /* ODActionOperation.m in Sources */,
+				B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */,
 				B3900EB818119619007BCE33 /* ODEntity.m in Sources */,
 				B3900F3A1815BA75007BCE33 /* ODCollectionCache.m in Sources */,
 				B3900E8218118102007BCE33 /* ODCollectionViewController.m in Sources */,

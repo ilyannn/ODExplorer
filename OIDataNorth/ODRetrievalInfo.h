@@ -8,32 +8,38 @@
 
 @protocol ODFaultManaging, ODChangeManaging;
 
+@class ODOperation;
+
+#import "ODManaging.h"
+
 /// Protocol to retrieve information about a resource within a context.
+/// Retrieval infomation is organized into hierarchy.
 @protocol ODRetrieving <NSObject>
 
-- (id<ODRetrieving>) parent;
-- (id)performHierarchically:(SEL)selector;
+- (id<ODRetrieving>)parent;
+- (id)getFromHierarchy:(SEL)selector;
 
 - (NSURL *)URL;
 - (NSString *)shortDescription;
 
-- (id <ODFaultManaging>) readManager;
-- (id <ODChangeManaging>) changeManager;
+- (void)handleOperation: (ODOperation *)operation;
 
 @end
 
 // Base class to retrieve information about a resource within a context.
 // It is kind of abstract. Since the URL is nil and can't be changed, the only
 // way to get something useful from object of this class is by setting a non-trivial parent.
-// So directly instantiating ODRetrievalInfo is a way to create a separate copy of the resource.
+// So directly instantiating ODRetrievalInfo with a parent is a way to create a separate copy of the resource.
 @interface ODRetrievalInfo : NSObject <ODRetrieving>
 @property id<ODRetrieving> parent;
-@property (nonatomic) id <ODFaultManaging> readManager;
-@property (nonatomic) id <ODChangeManaging> changeManager;
+
+- (void)addManager:(id<ODManaging>)manager;
+@property (readonly) NSArray *managers;
+
 @end
 
 // You have to retrieve at least something by URL. This class encapsulates an idea of retrieval
-// information where URL and description are set manually.
+// where the information - URL and description - are set manually.
 @interface ODRetrievalByURL : ODRetrievalInfo
 
 @property NSURL *URL;

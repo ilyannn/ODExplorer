@@ -21,11 +21,11 @@
 
 - (NSError *)processJSONResponse:(id)responseJSON {
     NSArray *responseArray = responseJSON;
-    if ([responseJSON isKindOfClass:[NSDictionary class]]) {
+    if ([responseArray isKindOfClass:[NSDictionary class]]) {
         responseArray = responseJSON[@"value"];
     }
     
-    ODAssertClass(responseArray, NSArray);
+    ODAssertODataClass(responseArray, NSArray);
 
     NSMutableDictionary *entitySets = [NSMutableDictionary new];
     [responseArray enumerateObjectsUsingBlock: ^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {

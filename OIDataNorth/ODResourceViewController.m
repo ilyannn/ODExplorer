@@ -8,8 +8,15 @@
 
 #import "ODResourceViewController.h"
 #import "ODResourceTableViewCell.h"
+#import "ODRetrievalInfo.h"
+#import "ODNotifyingManager.h"
+#import "ODLoadingTableViewCell.h"
+
+#import "ODOperation.h"
 
 NSString *const ODGenericCellReuseID = @"GenericCell";
+NSString *const ODLoadingCellReuseID = @"LoadingCell";
+
 
 @implementation ODResourceViewController
 
@@ -36,7 +43,9 @@ NSString *const ODGenericCellReuseID = @"GenericCell";
 }
 
 - (NSDictionary *)cellClasses {
-    return @{ ODGenericCellReuseID : [ODResourceTableViewCell class] };
+    return @{ ODGenericCellReuseID : [ODResourceTableViewCell class] ,
+              ODLoadingCellReuseID : [ODLoadingTableViewCell class]
+            };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,7 +72,16 @@ NSString *const ODGenericCellReuseID = @"GenericCell";
     if (resource != _resource) {
         BOOL wasSubscribed = self.subscribed;
         self.subscribed = NO;
+
+/*        ODRetrievalInfo *info = [ODRetrievalInfo new ];
+        info.parent = resource.retrievalInfo;
+        [info
+        
+        _resource = [ODResource resourceWithInfo:info];
+*/
         _resource = resource;
+        [(ODRetrievalInfo *)(_resource.retrievalInfo) addManager:[[ODNotifyingManager alloc] initWithDelegate: self]];
+
         // this should automatically start refresh as well
         self.subscribed = wasSubscribed;
     }
@@ -94,7 +112,7 @@ NSString *const ODGenericCellReuseID = @"GenericCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.childIdentifiers.count;
+    return self.childIdentifiers.count + !!self.loadingRowPresent;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,11 +126,24 @@ NSString *const ODGenericCellReuseID = @"GenericCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id childIdentifier = self.childIdentifiers[indexPath.row];
-    NSString *cellID = [self cellReuseIDForChild:childIdentifier];
-    ODResourceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    [self configureCell:cell forChild:childIdentifier];
+    
+    if (self.loadingRowPresent && (indexPath.row == self.loadingRowIndex)) {
+        return [tableView dequeueReusableCellWithIdentifier:ODLoadingCellReuseID forIndexPath:indexPath];
+    }
+    
+    id resourceID = [self childIDForIndexPath:indexPath];
+    NSString *cellID = [self cellReuseIDForChild:resourceID];
+    
+    id cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    [self configureCell:cell forChild:resourceID];
+
     return cell;
+}
+
+- (id)childIDForIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    row -= self.loadingRowPresent && (row > self.loadingRowIndex);
+    return self.childIdentifiers[row];
 }
 
 - (NSString *)cellReuseIDForChild:(id)childID {
@@ -121,6 +152,42 @@ NSString *const ODGenericCellReuseID = @"GenericCell";
 
 - (void)configureCell:(ODResourceTableViewCell *)cell forChild:(id)childID {
     cell.resource = childID;
+}
+
+- (void)setLoadingRowPresent:(BOOL)loadingRowPresent {
+    if (_loadingRowPresent != loadingRowPresent) {
+        _loadingRowPresent = loadingRowPresent;
+
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.loadingRowIndex inSection:0];
+        if (!loadingRowPresent) {
+            [self.tableView reloadData];
+//            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        } else {
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+
+- (void)manager:(ODNotifyingManager *)manager willStart:(ODOperation *)operation {
+    if (operation.resource == self.resource && !self.loadingRowPresent) {
+        self.loadingRowPresent = YES;
+    }
+}
+
+- (void)manager:(ODNotifyingManager *)manager didFinish:(ODOperation *)operation {
+    if (operation.resource == self.resource && self.loadingRowPresent) {
+        self.loadingRowPresent = NO;
+    }
+    [self update];
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return !(self.loadingRowPresent && self.loadingRowIndex == indexPath.row);
+}
+
+- (void)update {
+    
 }
 
 @end

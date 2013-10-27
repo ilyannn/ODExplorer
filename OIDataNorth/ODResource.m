@@ -105,24 +105,20 @@
 }
 
 - (NSURL *)URL {
-    return [self.retrievalInfo performHierarchically:_cmd];
+    return [self.retrievalInfo getFromHierarchy:_cmd];
 }
 
 - (NSString *)shortDescription {
-    return [self.retrievalInfo performHierarchically:_cmd];
-}
-
-- (id <ODFaultManaging> )readManager {
-    return [self.retrievalInfo performHierarchically:_cmd];
-}
-
-- (id <ODChangeManaging> )changeManager {
-    return [self.retrievalInfo performHierarchically:_cmd];
+    return [self.retrievalInfo getFromHierarchy:_cmd];
 }
 
 - (instancetype)autoretrieve {
     [self retrieve];
     return self;
+}
+
+- (void)handleOperation:(ODOperation *)operation {
+    [self.retrievalInfo handleOperation:operation];
 }
 
 @end

@@ -26,4 +26,9 @@ NSString *const ODQueryCountString  = @"$count";
     return nil;
 }
 
+- (NSError *)validate {
+    ODAssertOperation(self.resource.kind != ODResourceKindEntity, @"You can't count an entity.");
+    return nil;
+}
+
 @end

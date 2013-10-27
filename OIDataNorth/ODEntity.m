@@ -9,6 +9,8 @@
 #import "ODEntity.h"
 #import "ODCollection.h"
 #import "ODEntityRetrieval.h"
+#import "ODRetrieveOperation.h"
+#import "ODActionOperation.h"
 
 @interface ODEntity ()
 @property (nonatomic) NSMutableDictionary *localProperties;
@@ -83,7 +85,7 @@
             retrieval.propertyName = key;
             entity.retrievalInfo = retrieval;
             _navigationProperties[key] = entity;
-        } else {
+        } else if (![obj isKindOfClass:[NSNull class]]) {
             _remoteProperties[key] = obj;
         }
     }];
@@ -96,12 +98,14 @@
     if (value) return value;
     if (self.retrievedOn) return nil;
     
-    [[self.retrievalInfo readManager] retrieveProperty:key ofEntity:self];
+//    [[self.retrievalInfo readManager] retrieveProperty:key ofEntity:self];
     return self.localProperties[key];
 }
 
 - (void)retrieve {
-    [[self.retrievalInfo readManager] retrieveEntity:self];
+    ODRetrieveOperation *operation = [ODRetrieveOperation new];
+    operation.resource = self;
+    [self handleOperation:operation];
 }
 
 - (id)navigationProperty:(NSString *)name propertyType:(ODEntityType *)entityType {
@@ -131,8 +135,12 @@
 }
 
 - (void)performAction:(NSString *)actionName withParameters:(NSDictionary *)params {
-    NSAssert(self.kind != ODResourceKindCollection, @"Actions can't be performed on collections");
-    [self.changeManager performAction:actionName for:self withParameters:params];
+    ODActionOperation *operation = [ODActionOperation new];
+    operation.resource = self;
+    operation.parameters = [params mutableCopy];
+    operation.actionName = actionName;
+
+    [self handleOperation:operation];
 }
 
 @end

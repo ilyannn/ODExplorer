@@ -8,10 +8,16 @@
 
 #import "ODOperationError.h"
 
-#define ODAssert(x, ui) { if (!(x)) \
+#define ODAssertOData(x, ui) { if (!(x)) \
 return [ODOperationError errorWithCode:kODOperationErrorJSONNotOData userInfo:(ui)]; };
 
-#define ODAssertClass(x, cls) ODAssert([(x) isKindOfClass:cls.class], \
+/// The test for contition; if fails, create kODOperationErrorInvalid error.
+// @param x condition to be tested
+// @param desc will be localized
+#define ODAssertOperation(x, reason) { if (!(x)) \
+return [ODOperationError errorInvalidWithReason:reason]; };
+
+#define ODAssertODataClass(x, cls) ODAssertOData([(x) isKindOfClass:cls.class], \
 (@{@"object": (x), @"expectedClass": NSStringFromClass(cls.class)}))
 
 #define ODErrorAbstractOp    { return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation \

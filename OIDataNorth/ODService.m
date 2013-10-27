@@ -9,6 +9,7 @@
 #import "ODService.h"
 #import "ODCollection.h"
 #import "ODBaseRequestManager.h"
+#import "ODListEntitySetsOperation.h"
 
 @implementation ODService
 
@@ -21,7 +22,9 @@
 }
 
 - (void)retrieveEntitySets {
-    [self.readManager retrieveEntitySetsForService:self];
+    ODListEntitySetsOperation *operation = [ODListEntitySetsOperation new];
+    operation.resource = self;
+    [self handleOperation:operation];
 }
 
 @end

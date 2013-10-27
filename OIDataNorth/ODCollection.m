@@ -82,7 +82,14 @@
 }
 
 - (void)retrieveCount {
-    [self.readManager retrieveCount:self];
+    ODCountOperation *operation = [ODCountOperation new];
+    operation.resource = self;
+    [operation addOperationStep:^NSError *(ODCountOperation *operation) {
+        self.count = operation.responseCount;
+        return nil;
+    }];
+
+    [self handleOperation:operation];
 }
 
 @end

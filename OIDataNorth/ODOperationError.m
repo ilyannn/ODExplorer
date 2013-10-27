@@ -9,6 +9,7 @@
 #import "ODOperationError.h"
 
 NSString * const ODOperationErrorDomain = @"com.ilya";
+NSString * const ODOperationErrorTable = @"ODOperationError";
 
 @implementation ODOperationError
 + (instancetype)errorWithCode:(ODOperationErrorType)code userInfo:(NSDictionary *)userInfo {
@@ -18,16 +19,16 @@ NSString * const ODOperationErrorDomain = @"com.ilya";
             ];
 }
 
-- (NSString *)localizedDescription {
-    static NSArray *descriptions;
-    if (!descriptions) {
-        descriptions = @[ODOPERATIONERRORTYPEDESCRIPTIONS];
-    }
-    
-    if (self.code >= 0 && self.code < descriptions.count)
-        return descriptions[self.code];
++ (instancetype)errorInvalidWithReason:(NSString *)reason {
+    NSString *value = NSLocalizedStringFromTable(reason, ODOperationErrorTable, nil);
+    return [self errorWithCode:kODOperationErrorInvalid
+                      userInfo:@{NSLocalizedFailureReasonErrorKey: value} ];
+}
 
-    return [super localizedDescription];
+- (NSString *)localizedDescription {
+    NSString *key = [NSString stringWithFormat:@"%i", self.code];
+    NSString *value = NSLocalizedStringFromTable(key, ODOperationErrorTable, nil);
+    return value ? value : [super localizedDescription];
 }
 
 @end

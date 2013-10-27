@@ -17,6 +17,9 @@
     self = [super init];
     if (self) {
         [self cleanOperationSteps];
+        [self addCompletionBlock:^(id operation) {
+            [operation cleanOperationSteps];
+        }];
     }
     return self;
 }
@@ -28,15 +31,18 @@
     }];
 }
 
-- (void)main {
-    NSArray *all = [[self steps] arrayByAddingObjectsFromArray:_userSteps];
-    [self cleanOperationSteps];
-    self.error = [self performSteps:all];
+- (void)addCompletionBlock:(void (^)(id))added {
+    __weak id weakSelf = self;
+    void (^block)(void) = self.completionBlock;
+    self.completionBlock = ^() {
+        if (added) added (weakSelf);
+        if (block) block();
+    };
 }
 
-- (void)cancel {
-    [self cleanOperationSteps];
-    [super cancel];
+- (void)main {
+    NSArray *all = [[self steps] arrayByAddingObjectsFromArray:_userSteps];
+    self.error = [self performSteps:all];
 }
 
 - (NSArray *)steps {

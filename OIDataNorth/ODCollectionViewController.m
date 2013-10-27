@@ -33,7 +33,9 @@
 }
 
 - (NSDictionary *)cellClasses {
-    return @{ ODGenericCellReuseID :[ODEntityTableViewCell class] };
+    NSMutableDictionary *dict =[[super cellClasses] mutableCopy];
+    dict[ODGenericCellReuseID] = [ODEntityTableViewCell class];
+    return dict;
 }
 
 - (void)refreshChildren {
@@ -51,9 +53,9 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (self.resource.count != [self.tableView numberOfRowsInSection:0]) {
-        [self.tableView performSelectorOnMainThread:@selector(reloadData)
-                                         withObject:nil waitUntilDone:NO
-         ];
+//        [self.tableView performSelectorOnMainThread:@selector(reloadData)
+//                                         withObject:nil waitUntilDone:NO
+//         ];
     }
 }
 
@@ -65,12 +67,17 @@
 #pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.resource.count;
+    return self.resource.count + !!self.loadingRowPresent;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (self.loadingRowPresent && (indexPath.row == self.loadingRowIndex)) {
+        return [tableView dequeueReusableCellWithIdentifier:ODLoadingCellReuseID forIndexPath:indexPath];
+    }
+
     ODEntityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ODGenericCellReuseID forIndexPath:indexPath];
-    ODEntity *entity = collectionCache[indexPath.row];
+    ODEntity *entity = collectionCache[indexPath.row - !!(self.loadingRowPresent && (indexPath.row > self.loadingRowIndex)) ];
     
     if (!self.headlineProperties) {
         self.headlineProperties = [NSMutableArray new];
@@ -82,6 +89,10 @@
     cell.resource = entity;
     
     return cell;
+}
+
+- (void)update {
+    [self.tableView reloadData];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

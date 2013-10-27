@@ -18,8 +18,8 @@
 }
 
 - (NSError *)processJSONResponse:(id)response {
-    ODAssert(response, nil);
-    ODAssertClass(response, NSDictionary);
+    ODAssertOData(response, nil);
+    ODAssertODataClass(response, NSDictionary);
     
     [self.resource updateFromDict:response];
     return nil;

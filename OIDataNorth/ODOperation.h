@@ -37,19 +37,17 @@
 #pragma mark - How do we access it?
 // These methods should be overridden in subclasses to describe how the operation 'works'.
 
-// The HTTP method to access the resource. Defaults to GET.
+/// Check the operation's parameters.
+- (NSError *)validate;
+
+/// The HTTP method to access the resource. Defaults to GET.
 - (NSString *)method;
 
-// Method to construct the URL. Defaults to resource URL.
+/// Method to construct the URL. Defaults to resource URL.
 - (NSURL *)URL;
 
-// Additional header fields. Those are added, value-by-value, to existing HTTP Headers.
-// Defaults to nil.
+/// Additional header fields. Those are added, value-by-value, to existing HTTP Headers.
 - (NSDictionary *)addedHTTPHeaders;
-
-// Serializer to construct the request.
-// - (AFHTTPResponseSerializer <AFURLResponseSerialization> *)responseSerializer;
-// @property (readonly) AFHTTPRequestSerializer *requestSerializer;
 
 
 #pragma mark - What do we do with the results?

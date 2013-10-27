@@ -7,41 +7,53 @@
 //
 
 #import "ODRetrievalInfo.h"
-#import "ODManagingProtocols.h"
 #import "ODBaseRequestManager.h"
 
-@implementation ODRetrievalInfo
+@implementation ODRetrievalInfo {
+    NSMutableArray *_managers;
+}
 
 + (ODRetrievalInfo *)sharedRoot {
     static ODRetrievalInfo *_sharedRootInfo;
     if (!_sharedRootInfo) {
-        ODBaseRequestManager *commonManager = [ODBaseRequestManager new];
         _sharedRootInfo = [self new];
-        _sharedRootInfo.readManager = commonManager;
-        _sharedRootInfo.changeManager = commonManager;
+        [_sharedRootInfo addManager: [ODBaseRequestManager new]];
     }
     return _sharedRootInfo;
+}
+
+- (NSArray *)managers {
+    return [_managers copy];
+}
+
+- (void)addManager:(id)manager {
+    [_managers insertObject:manager atIndex:0];
 }
 
 - (id)init {
     self = [super init];
     if (self) {
-        
+        _managers = [NSMutableArray new];
     }
     return self;
 }
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-- (id)performHierarchically:(SEL)selector {
-    for (ODRetrievalInfo *info = self; info; info = info.parent) {
-        id value = [info performSelector:selector];
-        if (value) return value;
-    }
-    return [[self.class sharedRoot] performSelector:selector];
+- (id)getFromHierarchy:(SEL)selector {
+    id value = [self performSelector:selector];
+    if (value) return value;
+    return [self.parent getFromHierarchy:selector];
 }
-
 #pragma clang diagnostic pop
+
+- (void)handleOperation:(id)operation {
+    for (id<ODManaging> manager in [self managers]) {
+        if ([manager handleOperation:operation]) return;
+    }
+    ODRetrievalInfo *target = self.parent ? self.parent : [self.class sharedRoot];
+    [target handleOperation:operation];
+}
 
 - (NSURL *)URL {
     return nil; // we're abstract
@@ -100,9 +112,6 @@
     return [[self.parent.parent URL] URLByAppendingPathComponent:relative];
 }
 
-- (NSString *)shortDescription {
-    return [self bracketPart];
-}
 
 @end
 
@@ -110,6 +119,10 @@
 
 - (NSString *)bracketPart {
     return [NSString stringWithFormat:@"%lu", (unsigned long)self.index];
+}
+
+- (NSString *)shortDescription {
+    return [NSString stringWithFormat:@"#%@", [self bracketPart]];
 }
 
 @end
@@ -130,6 +143,10 @@
         [list addObject:[NSString stringWithFormat:@"%@=%@", key, [obj description]]];
     }];
     return [list componentsJoinedByString:@"&"];
+}
+
+- (NSString *)shortDescription {
+    return [self bracketPart];
 }
 
 @end

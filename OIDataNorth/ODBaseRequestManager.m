@@ -35,49 +35,16 @@
     }
 }
 
-- (void)enqueueOperation:(ODOperation *)operation {
-    
-    __weak ODOperation *op = operation;
-    operation.completionBlock = ^ {
+- (BOOL)handleOperation:(ODOperation *)operation {
+    [operation addCompletionBlock: ^ (ODOperation * op) {
         if (op.error) {
+            // Set the BREAKPOINT here to debug operation failures.
             NSLog(@"%@", op.error);
         }
-    };
-    
-//    if (self.operationQueue)
-    [self.operationQueue addOperation:operation];
-//    else
-//        [operation start];
-}
-
-- (void)retrieveEntity:(ODEntity *)entity {
-    ODRetrieveOperation *operation = [ODRetrieveOperation new];
-    operation.resource = entity;
-    [self enqueueOperation:operation];
-}
-
-- (void)performAction:(NSString *)actionName for:(ODEntity *)entity withParameters:(NSDictionary *)params {
-    ODActionOperation *operation = [ODActionOperation new];
-    operation.resource = entity;
-    operation.parameters = [params mutableCopy];
-    operation.actionName = actionName;
-    [self enqueueOperation:operation];
-}
-
-- (void)retrieveEntitySetsForService:(id)service {
-    ODListEntitySetsOperation *operation = [ODListEntitySetsOperation new];
-    operation.resource = service;
-    [self enqueueOperation:operation];
-}
-
-- (void)retrieveCount:(ODCollection *)collection {
-    ODCountOperation *operation = [ODCountOperation new];
-    operation.resource = collection;
-    [operation addOperationStep:^NSError *(ODCountOperation *operation) {
-        collection.count = operation.responseCount;
-        return nil;
     }];
-    [self enqueueOperation:operation];
+    [self.operationQueue addOperation:operation];
+    return YES;
 }
+
 
 @end

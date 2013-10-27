@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODManagingProtocols.h"
+#import "ODManaging.h"
 
 #import "ODRetrievalInfo.h"
 #import "ODEntityType.h"
@@ -78,25 +78,30 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 // The result should respond to |-count| and |-objectAtIndexedSubscript:|.
 // For example, for an entity, this will be a real NSArray, but for a collection a proxy class
 // that returns entities by those methods.
-@property NSDate *retrievedOn;
+@property (readonly) NSDate *retrievedOn;
 @property __weak id childrenArray;
 
 #pragma mark - (5) things that can be done with a resource
 
-// This is the most important action for a resource.
+/// Generic handler.
+- (void)handleOperation:(ODOperation *)operation;
+
+/// Retrieving is the most important action for a resource.
 - (void)retrieve;
+
+/// This is used to retrieve a resource once, but not more.
 - (instancetype)autoretrieve;
 
-// Drop known data, but keep type information.
+/// This erases known data, but keeps type information.
 - (void)clean; // forget, clean, drop, unretrieve, nullify, break, free, unload
 
-// Short description incldes only human-readable name, ideally 10-30 characters in length.
+/// Short description incldes only human-readable name, ideally 10-30 characters in length.
 - (NSString *)shortDescription;
 
-// Medium description includes also type and URL.
+/// Medium description includes also type and URL.
 - (NSString *)description;
 
-// Long description aims to disclose complete inner state of an object.
+/// Long description aims to disclose complete inner state of an object.
 - (NSString *)longDescription;
 
 @end
@@ -114,6 +119,6 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 // Values of resources are weakly held in a global table. The key is [self resourceDict].
 + (instancetype)uniqueWithDict:(NSDictionary *)dict;
 
-- (id <ODFaultManaging> )readManager;
-- (id <ODChangeManaging> )changeManager;
+@property (readonly) NSDate *retrievedOn;
+
 @end

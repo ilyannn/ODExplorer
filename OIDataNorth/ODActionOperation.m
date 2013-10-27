@@ -9,6 +9,8 @@
 #import "ODActionOperation.h"
 #import "ODEntity.h"
 
+#import "ODOperationError+Parsing.h"
+
 NSString *const ODHTTPVerbPost = @"POST";
 
 @implementation ODActionOperation
@@ -26,6 +28,11 @@ NSString *const ODHTTPVerbPost = @"POST";
 }
 
 - (NSError *)processJSONResponse:(id)responseJSON {
+    return nil;
+}
+
+- (NSError *)validate {
+    ODAssertOperation(self.resource.kind != ODResourceKindCollection, @"You can't perform action on a collection.");
     return nil;
 }
 
