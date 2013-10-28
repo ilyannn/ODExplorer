@@ -26,13 +26,19 @@
 
 - (void)loadFromDefaults {
     ODRetrievalByURL *info = [ODRetrievalByURL new];
-    info.URL = [NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"] ;
+    info.URL = [NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"];
     info.shortDescription = @"OData Example";
     info.parent = self.retrievalInfo;
     
     ODService *exampleService = [ODService resourceWithInfo:info];
     
-    self.childResources = [NSMutableArray arrayWithObjects:exampleService, [NorthwindService unique], nil];
+    self.childResources = [NSMutableArray arrayWithObjects:exampleService,
+                           [NorthwindService unique],
+//                           [ODCollection resourceWithDict:@{
+//                                                            @"uri":  @"https://alpha-api.app.net/stream/0/posts/stream/global",
+//                                                            @"name": @"App.net Global Stream"
+//                                                            }],
+                           nil];
 }
 
 - (NSString *)shortDescription {

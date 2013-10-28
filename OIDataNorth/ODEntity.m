@@ -12,6 +12,8 @@
 #import "ODRetrieveOperation.h"
 #import "ODActionOperation.h"
 
+#import "NSData+Base64.h"
+
 @interface ODEntity ()
 @property (nonatomic) NSMutableDictionary *localProperties;
 @property (nonatomic) NSMutableDictionary *remoteProperties;
@@ -36,8 +38,8 @@
 @synthesize localProperties = _localProperties;
 @synthesize remoteProperties = _remoteProperties;
 
-- (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo {
-    ODRetrievalInfo * info;
+- (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id <ODRetrieving> )parentInfo {
+    ODRetrievalInfo *info;
     return [self initWithRetrievalInfo:info];
 }
 
@@ -85,7 +87,22 @@
             retrieval.propertyName = key;
             entity.retrievalInfo = retrieval;
             _navigationProperties[key] = entity;
-        } else if (![obj isKindOfClass:[NSNull class]]) {
+        } else if ([obj isKindOfClass:[NSNull class]]) {
+            // "convert" to nil
+        } else if ([obj isKindOfClass:[NSString class]]) {
+            // Is this a date?
+            if ([obj length] < 1000) {
+                NSDate *date = [self.dateTimeFormatter dateFromString:obj];
+                if (date) obj = date;
+            } else {
+                NSData *data  = [NSData dataFromBase64String:obj];
+                if (data)  {
+                    UIImage *image = [UIImage imageWithData:data];
+                    obj = image ? image : data;
+                }
+            }
+            _remoteProperties[key] = obj;
+        } else {
             _remoteProperties[key] = obj;
         }
     }];
@@ -98,7 +115,7 @@
     if (value) return value;
     if (self.retrievedOn) return nil;
     
-//    [[self.retrievalInfo readManager] retrieveProperty:key ofEntity:self];
+    //    [[self.retrievalInfo readManager] retrieveProperty:key ofEntity:self];
     return self.localProperties[key];
 }
 
@@ -112,7 +129,7 @@
     ODResource *result = self.navigationProperties[name];
     if (result) return result;
     
-//    target.retrievalInfo.parent = self.retrievalInfo;
+    //    target.retrievalInfo.parent = self.retrievalInfo;
     
     ODRetrievalOfProperty *retrievalInfo = [ODRetrievalOfProperty new];
     retrievalInfo.parent = self.retrievalInfo;
@@ -139,8 +156,9 @@
     operation.resource = self;
     operation.parameters = [params mutableCopy];
     operation.actionName = actionName;
-
+    
     [self handleOperation:operation];
 }
+
 
 @end

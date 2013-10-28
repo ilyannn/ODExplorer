@@ -36,7 +36,7 @@
 - (void)update {
     if (self.resource.entitySets.count != [self.tableView numberOfRowsInSection:0]) {
         self.childIdentifiers = [[self.resource.entitySets allKeys] sortedArrayUsingComparator: ^NSComparisonResult (NSString *obj1, NSString *obj2) {
-            return [obj1 compare:obj2];
+            return [obj1 localizedCaseInsensitiveCompare:obj2];
         }];
         
         [self.tableView reloadData];

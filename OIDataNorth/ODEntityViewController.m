@@ -16,7 +16,11 @@
 }
 
 - (void)refreshChildren {
-    self.childIdentifiers = [[self.resource localProperties] allKeys];
+    self.loadingRowIndex = NSNotFound;
+    self.childIdentifiers = [[[self.resource localProperties] allKeys] sortedArrayUsingComparator:
+                             ^NSComparisonResult(NSString *obj1, NSString * obj2) {
+                                 return [obj1 localizedCaseInsensitiveCompare:obj2];
+                             }];
 }
 
 - (void)configureCell:(ODPropertyTableViewCell *)cell forChild:(id)childID {
@@ -24,8 +28,8 @@
     cell.resource = self.resource;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // do nothing
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
 }
 
 @end

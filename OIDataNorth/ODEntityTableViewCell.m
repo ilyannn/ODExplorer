@@ -24,6 +24,8 @@
 
 - (void)configure {
     if (self.resource) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         __block NSString *headline = nil;
         [self.headlineProperties enumerateObjectsUsingBlock: ^(NSString *key, NSUInteger idx, BOOL *stop) {
             id value = self.resource.localProperties[key];
@@ -32,6 +34,7 @@
                 *stop = YES;
             }
         }];
+        
         self.textLabel.text = headline ? headline : self.resource.URL.relativePath;
         self.detailTextLabel.text = [self.resource.retrievalInfo shortDescription];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

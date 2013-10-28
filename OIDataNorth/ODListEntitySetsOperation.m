@@ -21,10 +21,14 @@
 
 - (NSError *)processJSONResponse:(id)responseJSON {
     NSArray *responseArray = responseJSON;
-    if ([responseArray isKindOfClass:[NSDictionary class]]) {
+    if ([responseArray isKindOfClass:[NSDictionary class]] && responseJSON[@"value"]) {
         responseArray = responseJSON[@"value"];
     }
-    
+
+    if ([responseArray isKindOfClass:[NSDictionary class]] && responseJSON[@"data"]) {
+        responseArray = responseJSON[@"data"];
+    }
+
     ODAssertODataClass(responseArray, NSArray);
 
     NSMutableDictionary *entitySets = [NSMutableDictionary new];

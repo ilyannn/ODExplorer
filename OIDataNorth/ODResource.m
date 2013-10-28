@@ -26,6 +26,14 @@
 @synthesize entityType = _entityType;
 @synthesize childrenArray = _cachedChildren;
 
+- (NSDateFormatter *)dateTimeFormatter {
+    static NSDateFormatter *shared ;
+    if (!shared) {
+        shared = [NSDateFormatter new];
+        shared.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
+    }
+    return shared;
+}
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     return self.retrievalInfo;

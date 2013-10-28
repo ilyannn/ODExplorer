@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8286066B64554EB289873BF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01CB4325C22B4BC6BB25D101 /* libPods.a */; };
+		B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A652181E611400B2D8B9 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B34544C1181846340039BD67 /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C0181846340039BD67 /* ODActionOperation.m */; };
 		B34544C4181868E50039BD67 /* ODListEntitySetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */; };
 		B34544C7181932A50039BD67 /* ODEntityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C6181932A50039BD67 /* ODEntityViewController.m */; };
@@ -78,6 +79,8 @@
 /* Begin PBXFileReference section */
 		01CB4325C22B4BC6BB25D101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B32D1985D36467C94A4C41F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B329A651181E611400B2D8B9 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData_Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
+		B329A652181E611400B2D8B9 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "NSData_Base64/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
 		B34544BF181846340039BD67 /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B34544C0181846340039BD67 /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
 		B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODListEntitySetsOperation.h; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 		B345450A181D1F380039BD67 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B329A651181E611400B2D8B9 /* NSData+Base64.h */,
+				B329A652181E611400B2D8B9 /* NSData+Base64.m */,
 				B3454507181C7CEA0039BD67 /* OperationWithSteps.h */,
 				B3454508181C7CEA0039BD67 /* OperationWithSteps.m */,
 			);
@@ -714,6 +719,7 @@
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
+				B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */,
 				B34544ED181B03280039BD67 /* ODServiceTableViewCell.m in Sources */,
 				B34544C1181846340039BD67 /* ODActionOperation.m in Sources */,
 				B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */,

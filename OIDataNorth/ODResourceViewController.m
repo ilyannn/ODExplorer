@@ -158,12 +158,14 @@ NSString *const ODLoadingCellReuseID = @"LoadingCell";
     if (_loadingRowPresent != loadingRowPresent) {
         _loadingRowPresent = loadingRowPresent;
 
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.loadingRowIndex inSection:0];
-        if (!loadingRowPresent) {
-            [self.tableView reloadData];
-//            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        } else {
-            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if (self.loadingRowIndex >= 0) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.loadingRowIndex inSection:0];
+            if (!loadingRowPresent) {
+                [self.tableView reloadData];
+                //            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            } else {
+                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
         }
     }
 }

@@ -122,7 +122,7 @@
 }
 
 - (NSString *)shortDescription {
-    return [NSString stringWithFormat:@"#%@", [self bracketPart]];
+    return [NSString stringWithFormat:@"%@", [self bracketPart]];
 }
 
 @end

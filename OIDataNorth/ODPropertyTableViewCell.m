@@ -10,6 +10,15 @@
 
 @implementation ODPropertyTableViewCell
 
+- (NSDateFormatter *)dateFormatter {
+    static NSDateFormatter *shared;
+    if (!shared) {
+        shared = [NSDateFormatter new];
+        shared.dateStyle = NSDateFormatterMediumStyle;
+        shared.timeStyle = NSDateFormatterMediumStyle;
+    }
+    return shared;
+}
 
 - (UITableViewCellStyle)cellStyle {
     return UITableViewCellStyleValue2;
@@ -25,7 +34,23 @@
 - (void)configure {
     if (self.resource && self.propertyName) {
         self.textLabel.text = self.propertyName;
-        self.detailTextLabel.text = [self.resource.localProperties[self.propertyName] description];
+        id value = self.resource.localProperties[self.propertyName];
+        NSString *formatted;
+        UIColor *color;
+        
+        if ([value isKindOfClass:[NSDate class]]) {
+            formatted = [self.dateFormatter stringFromDate:value];
+            color = [UIColor brownColor];
+        } else if ([value isKindOfClass:[NSData class]]) {
+            formatted = [NSString stringWithFormat:@"data (%lu bytes)", (unsigned long)[value length]];
+            color = [UIColor darkGrayColor];
+        } else {
+            formatted = [value description];
+            color = [UIColor darkTextColor];
+        }
+        
+        self.detailTextLabel.text = formatted;
+        self.detailTextLabel.textColor = color;
     }
 }
 

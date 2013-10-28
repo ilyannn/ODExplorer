@@ -62,6 +62,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;
 
+@property (readonly) NSDateFormatter *dateFormatter;
 
 #pragma mark - (2) information about the resource
 
@@ -120,5 +121,6 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 + (instancetype)uniqueWithDict:(NSDictionary *)dict;
 
 @property (readonly) NSDate *retrievedOn;
+@property (readonly) NSDateFormatter *dateTimeFormatter;
 
 @end
