@@ -8,9 +8,9 @@
 
 #import "ODResource.h"
 #import "ODCollection.h"
+#import "JSONDateReader.h"
 
 @interface ODResource () <ODCollectionAccessing>
-
 @end
 
 @implementation ODResource {
@@ -26,20 +26,19 @@
 @synthesize entityType = _entityType;
 @synthesize childrenArray = _cachedChildren;
 
-- (NSDateFormatter *)dateTimeFormatter {
-    static NSDateFormatter *shared ;
+- (id)dateTimeFormatterV2 {
+    static JSONDateReader *shared ;
     if (!shared) {
-        shared = [NSDateFormatter new];
-        shared.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
+        shared = [JSONDateReader new];
     }
     return shared;
 }
 
-- (NSDateFormatter *)oldDateTimeFormatter {
+- (id)dateTimeFormatterV3 {
     static NSDateFormatter *shared ;
     if (!shared) {
         shared = [NSDateFormatter new];
-        shared.dateFormat = @"/Date(yyyy-MM-dd'T'HH:mm:ss)/";
+        shared.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
     }
     return shared;
 }

@@ -18,9 +18,9 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 };
 
 
-// The fundamental dichotonomy between resources; a resource is either best represented with a dictionary (entity-kind), or
-// with array (collection-kind). Here property is an entity with a standard type and service is a collection (albeit non-standard
-// in the sense that it contains collections).
+// Fundamentally resource is either best represented with a dictionary (entity-kind), or
+// with array (collection-kind). Here property is an entity with a standard type and service
+// is a collection (albeit non-standard in the sense that it contains collections).
 
 // Kind can be changed in the following situations:
 //   * retrieving: we know from JSON about kind;
@@ -48,6 +48,9 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 @protocol ODResourceAccessing <NSObject>
 
+@property (readonly) id dateTimeFormatterV2;
+@property (readonly) id dateTimeFormatterV3;
+
 #pragma mark - (1) how to get a resource
 
 // We can create a resource object by different means.
@@ -61,8 +64,6 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;
-
-@property (readonly) NSDateFormatter *dateFormatter;
 
 #pragma mark - (2) information about the resource
 
@@ -121,6 +122,5 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 + (instancetype)uniqueWithDict:(NSDictionary *)dict;
 
 @property (readonly) NSDate *retrievedOn;
-@property (readonly) NSDateFormatter *dateTimeFormatter;
 
 @end

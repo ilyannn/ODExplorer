@@ -11,8 +11,10 @@
 @interface ODResourceList : ODResource
 - (instancetype)initFromDefaults;
 
-@property NSMutableArray *childResources;
 - (void)saveToDefaults;
 - (void)loadFromDefaults;
+
+- (void)addResourceToList:(ODResource *)resource;
+- (void)removeResourceFromList:(ODResource *)resource;
 
 @end

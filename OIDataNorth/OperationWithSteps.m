@@ -8,25 +8,29 @@
 
 #import "OperationWithSteps.h"
 
-@implementation OperationWithSteps {
-    NSMutableArray *_userSteps;
-}
+@interface OperationWithSteps ()
+@property (nonatomic) NSMutableArray *allSteps;
+@end
+
+@implementation OperationWithSteps
 
 - (id)init
 {
     self = [super init];
+
     if (self) {
         [self cleanOperationSteps];
         [self addCompletionBlock:^(id operation) {
             [operation cleanOperationSteps];
         }];
     }
+
     return self;
 }
 
 - (void)addOperationStep:(NSError *(^)(id))step {
     __weak id weakSelf = self;
-    [_userSteps addObject: ^() {
+    [_allSteps addObject: ^() {
         return step(weakSelf);
     }];
 }
@@ -34,24 +38,23 @@
 - (void)addCompletionBlock:(void (^)(id))added {
     __weak id weakSelf = self;
     void (^block)(void) = self.completionBlock;
+    
     self.completionBlock = ^() {
-        if (added) added (weakSelf);
+        if (added) added(weakSelf);
         if (block) block();
     };
 }
 
 - (void)main {
-    NSArray *all = [[self steps] arrayByAddingObjectsFromArray:_userSteps];
-    self.error = [self performSteps:all];
+    _error = [self performSteps:_allSteps];
 }
 
 - (NSArray *)steps {
     return @[];
 }
 
-/// Breaks the retain cycle in case self was strongly captured.
 - (void)cleanOperationSteps {
-    _userSteps = [NSMutableArray new];
+    self.allSteps = ([self isFinished] || [self isCancelled]) ? nil : [[self steps] mutableCopy];
 }
 
 - (NSError *)performSteps:(NSArray *)steps {
@@ -59,8 +62,9 @@
     [steps enumerateObjectsUsingBlock: ^(NSError * (^step)(), NSUInteger idx, BOOL *stop) {
         *stop = [self isCancelled] || (error = step());
     }];
-    
+
     return error;
 }
+
 
 @end

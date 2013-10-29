@@ -17,8 +17,8 @@
 @interface ODCollection : ODResource <ODCollectionAccessing>
 
 @property (nonatomic) id<ODRetrievingByPath> retrievalInfo;
-@property NSUInteger count;
 
+@property NSUInteger count;
 - (void)retrieveCount;
 
 - (ODEntity *)objectForKey:(id)objectKey;

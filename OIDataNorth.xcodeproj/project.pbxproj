@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8286066B64554EB289873BF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01CB4325C22B4BC6BB25D101 /* libPods.a */; };
 		B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A652181E611400B2D8B9 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B329A657181F991A00B2D8B9 /* ODResourceViewControllerMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A656181F991A00B2D8B9 /* ODResourceViewControllerMenu.m */; };
+		B329A65B181FB5C700B2D8B9 /* JSONDateReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */; };
 		B34544C1181846340039BD67 /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C0181846340039BD67 /* ODActionOperation.m */; };
 		B34544C4181868E50039BD67 /* ODListEntitySetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */; };
 		B34544C7181932A50039BD67 /* ODEntityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C6181932A50039BD67 /* ODEntityViewController.m */; };
@@ -81,6 +83,10 @@
 		0B32D1985D36467C94A4C41F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B329A651181E611400B2D8B9 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData_Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
 		B329A652181E611400B2D8B9 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "NSData_Base64/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
+		B329A655181F991A00B2D8B9 /* ODResourceViewControllerMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResourceViewControllerMenu.h; sourceTree = "<group>"; };
+		B329A656181F991A00B2D8B9 /* ODResourceViewControllerMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODResourceViewControllerMenu.m; sourceTree = "<group>"; };
+		B329A659181FB5C700B2D8B9 /* JSONDateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDateReader.h; sourceTree = "<group>"; };
+		B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDateReader.m; sourceTree = "<group>"; };
 		B34544BF181846340039BD67 /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B34544C0181846340039BD67 /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
 		B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODListEntitySetsOperation.h; sourceTree = "<group>"; };
@@ -233,6 +239,15 @@
 			name = Collections;
 			sourceTree = "<group>";
 		};
+		B329A658181F991F00B2D8B9 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				B329A655181F991A00B2D8B9 /* ODResourceViewControllerMenu.h */,
+				B329A656181F991A00B2D8B9 /* ODResourceViewControllerMenu.m */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
 		B34544CE181958460039BD67 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +350,7 @@
 		B3454505181C0CE20039BD67 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B329A658181F991F00B2D8B9 /* Actions */,
 				B34544CE181958460039BD67 /* View Controllers */,
 				B34544D518195F990039BD67 /* Cells */,
 			);
@@ -348,6 +364,8 @@
 				B329A652181E611400B2D8B9 /* NSData+Base64.m */,
 				B3454507181C7CEA0039BD67 /* OperationWithSteps.h */,
 				B3454508181C7CEA0039BD67 /* OperationWithSteps.m */,
+				B329A659181FB5C700B2D8B9 /* JSONDateReader.h */,
+				B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -748,6 +766,8 @@
 				B34544D118195DFB0039BD67 /* ODResourceTableViewCell.m in Sources */,
 				B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */,
 				B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */,
+				B329A65B181FB5C700B2D8B9 /* JSONDateReader.m in Sources */,
+				B329A657181F991A00B2D8B9 /* ODResourceViewControllerMenu.m in Sources */,
 				B34544F6181B36A30039BD67 /* Employee.m in Sources */,
 				B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */,
 				B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */,

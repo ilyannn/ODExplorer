@@ -15,6 +15,5 @@
 @interface ODService : ODResource
 
 @property NSDictionary *entitySets;
-- (void)retrieveEntitySets;
 
 @end

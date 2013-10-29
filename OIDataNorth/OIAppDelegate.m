@@ -14,6 +14,8 @@
 #import "ODService.h"
 #import "ODCollection.h"
 
+#import "ODResourceViewControllerMenu.h"
+
 @implementation OIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,15 +24,19 @@
     // Override point for customization after application launch.
     ODResourceList *root = [[ODResourceList alloc] initFromDefaults];
     
+    ODResourceViewControllerMenu *sharedMenu = [ODResourceViewControllerMenu sharedMenu];
+    sharedMenu.favorites = root;
+
     UINavigationController *nc = (UINavigationController *)self.window.rootViewController;
     [nc pushViewController:[ODResourceViewController controllerForResource:root] animated:YES];
 
     NSURL *URL = launchOptions[UIApplicationLaunchOptionsURLKey];
     if (URL) {
         ODService *service = [ODService resourceWithURL:URL description:@"from parameters"];
-        [root.childResources addObject:service];
+        [root.childrenArray addObject:service];
         [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
     }
+    
     
     NSURL *localURL = [NSURL fileURLWithPath:@"~/Library/favorites.json"];
     return YES;

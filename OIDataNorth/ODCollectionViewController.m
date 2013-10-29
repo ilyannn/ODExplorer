@@ -110,12 +110,5 @@
     return NO;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showEntity"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ODResourceViewController *target = [segue destinationViewController];
-        [target setResource:collectionCache[indexPath.row]];
-    }
-}
 
 @end

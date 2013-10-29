@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void)retrieveEntitySets {
+- (void)retrieve {
     ODListEntitySetsOperation *operation = [ODListEntitySetsOperation new];
     operation.resource = self;
     [self handleOperation:operation];

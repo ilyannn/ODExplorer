@@ -12,7 +12,7 @@
 @implementation ODServiceViewController
 
 - (void)refreshChildren {
-    [self.resource retrieveEntitySets];
+    [self.resource retrieve];
 }
 
 - (void)configureCell:(ODResourceTableViewCell *)cell forChild:(id)childID {

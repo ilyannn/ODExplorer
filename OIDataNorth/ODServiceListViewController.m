@@ -12,11 +12,16 @@
 @implementation ODServiceListViewController
 
 - (void)refreshChildren {
-    self.childIdentifiers = self.resource.childResources;
+    self.childIdentifiers = self.resource.childrenArray;
 }
 
 - (NSDictionary *)cellClasses {
     return @{ ODGenericCellReuseID : [ODServiceTableViewCell class] };
+}
+
+- (void)subscribeToResource {
+    [self refreshChildren];
+    [self.tableView reloadData];
 }
 
 @end

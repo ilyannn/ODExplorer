@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@class ODResource, ODResourceTableViewCell;
+@class ODResource, ODResourceTableViewCell, ODResourceViewControllerMenu;
 
 extern NSString *const ODGenericCellReuseID;
 extern NSString *const ODLoadingCellReuseID;
@@ -19,6 +19,8 @@ extern NSString *const ODLoadingCellReuseID;
 
 @property (readwrite, nonatomic) ODResource *resource;
 @property (readwrite, nonatomic) NSArray *childIdentifiers;
+
+@property (weak) UIBarButtonItem *actionButton;
 
 @property (getter = isSubscribed, nonatomic) BOOL subscribed;
 

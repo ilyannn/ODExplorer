@@ -46,6 +46,7 @@
     return nil;
 }
 
+
 - (void)countAndPerform:(void (^)(NSUInteger))block {
     ODCountOperation *operation = [ODCountOperation new];
     operation.resource = self;
