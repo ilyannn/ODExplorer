@@ -226,6 +226,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B329A654181F974B00B2D8B9 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
 		B34544CE181958460039BD67 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +545,7 @@
 			children = (
 				B3900F4B18167765007BCE33 /* ODResource.h */,
 				B3900F4C18167765007BCE33 /* ODResource.m */,
+				B329A654181F974B00B2D8B9 /* Collections */,
 				B34544F1181B27DF0039BD67 /* Retrieval */,
 				B34544F2181B2E3E0039BD67 /* Model */,
 				B3454504181C0C910039BD67 /* Specific */,

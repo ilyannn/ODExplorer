@@ -13,13 +13,17 @@
     NSMutableArray *_managers;
 }
 
+static ODRetrievalInfo *_sharedRootInfo;
 + (ODRetrievalInfo *)sharedRoot {
-    static ODRetrievalInfo *_sharedRootInfo;
     if (!_sharedRootInfo) {
         _sharedRootInfo = [self new];
         [_sharedRootInfo addManager: [ODBaseRequestManager new]];
     }
     return _sharedRootInfo;
+}
+
++ (void)setSharedRoot:(ODRetrievalInfo *)info {
+    _sharedRootInfo = info;
 }
 
 - (NSArray *)managers {

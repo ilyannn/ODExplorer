@@ -44,9 +44,12 @@
         } else if ([value isKindOfClass:[NSData class]]) {
             formatted = [NSString stringWithFormat:@"data (%lu bytes)", (unsigned long)[value length]];
             color = [UIColor darkGrayColor];
+        } else if ([value isKindOfClass:[NSURL class]]) {
+            formatted = [value absoluteString];
+            color = [UIColor blueColor];
         } else {
             formatted = [value description];
-            color = [UIColor darkTextColor];
+            color = [UIColor blackColor];
         }
         
         self.detailTextLabel.text = formatted;

@@ -35,6 +35,15 @@
     return shared;
 }
 
+- (NSDateFormatter *)oldDateTimeFormatter {
+    static NSDateFormatter *shared ;
+    if (!shared) {
+        shared = [NSDateFormatter new];
+        shared.dateFormat = @"/Date(yyyy-MM-dd'T'HH:mm:ss)/";
+    }
+    return shared;
+}
+
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     return self.retrievalInfo;
 }

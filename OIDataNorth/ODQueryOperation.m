@@ -81,6 +81,12 @@ NSString *const ODQueryOrderByString = @"$orderby";
 - (NSError *)processJSONResponse:(id)response {
     NSArray *values = response[@"value"];
     
+    if (!values && [response isKindOfClass:[NSDictionary class]] ) {
+        values = [(NSDictionary *)response objectForKey: @"d"];
+        if ([values isKindOfClass:[NSDictionary class]])
+            values = [(NSDictionary *)response objectForKey:@"results"];
+    }
+    
     ODAssertOData(values, nil);
     ODAssertODataClass(values, NSArray);
     

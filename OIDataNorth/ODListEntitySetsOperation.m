@@ -21,6 +21,15 @@
 
 - (NSError *)processJSONResponse:(id)responseJSON {
     NSArray *responseArray = responseJSON;
+
+    if ([responseArray isKindOfClass:[NSDictionary class]] && responseJSON[@"d"]) {
+        responseArray = responseJSON[@"d"];
+    }
+
+    if ([responseArray isKindOfClass:[NSDictionary class]] && [(NSDictionary *)responseArray objectForKey:@"EntitySets"]) {
+        responseArray = [(NSDictionary *)responseArray objectForKey:@"EntitySets"];
+    }
+
     if ([responseArray isKindOfClass:[NSDictionary class]] && responseJSON[@"value"]) {
         responseArray = responseJSON[@"value"];
     }
@@ -32,15 +41,25 @@
     ODAssertODataClass(responseArray, NSArray);
 
     NSMutableDictionary *entitySets = [NSMutableDictionary new];
-    [responseArray enumerateObjectsUsingBlock: ^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+    [responseArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *name;
+        NSString *uri;
+
         if ([obj isKindOfClass:NSDictionary.class]) {
-            NSString *name = obj[@"name"];
-            NSString *uri = obj[@"url"];
-            if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
-                entitySets[name] = [ODEntitySet entitySetWithService:self.resource
-                                                                name:uri
-                                                          entityType:ODEntity.entityType];
-            }
+            name = obj[@"name"];
+            uri = obj[@"url"];
+        } else if ([obj isKindOfClass:NSString.class]) {
+            name = obj;
+            uri = obj;
+        } else {
+            name = nil;
+            uri = nil;
+        }
+        
+        if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
+            entitySets[name] = [ODEntitySet entitySetWithService:self.resource
+                                                            name:uri
+                                                      entityType:ODEntity.entityType];
         }
     }];
     

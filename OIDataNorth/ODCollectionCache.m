@@ -161,7 +161,10 @@
     
     if ([propertyName rangeOfString:@"Name"].location != NSNotFound) weight += 0.5;
     if ([propertyName rangeOfString:@"name"].location != NSNotFound) weight += 0.2;
-    
+
+    if ([propertyName rangeOfString:@"Description"].location != NSNotFound) weight += 0.5;
+    if ([propertyName rangeOfString:@"description"].location != NSNotFound) weight += 0.2;
+
     if ([propertyName rangeOfString:@"ID"].location != NSNotFound) weight += 0.2;
     if ([propertyName rangeOfString:@"id"].location != NSNotFound) weight += 0.1;
     

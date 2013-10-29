@@ -26,11 +26,15 @@
 
 @end
 
-// Base class to retrieve information about a resource within a context.
-// It is kind of abstract. Since the URL is nil and can't be changed, the only
-// way to get something useful from object of this class is by setting a non-trivial parent.
-// So directly instantiating ODRetrievalInfo with a parent is a way to create a separate copy of the resource.
+/// Base class to retrieve information about a resource within a context.
+/// It is kind of abstract. Since the URL is nil and can't be changed, the only
+/// way to get something useful from object of this class is by setting a non-trivial parent.
+/// So directly instantiating ODRetrievalInfo with a parent is a way to create a separate copy of the resource.
 @interface ODRetrievalInfo : NSObject <ODRetrieving>
+
++ (ODRetrievalInfo *)sharedRoot;
++ (void)setSharedRoot:(ODRetrievalInfo *)info;
+
 @property id<ODRetrieving> parent;
 
 - (void)addManager:(id<ODManaging>)manager;

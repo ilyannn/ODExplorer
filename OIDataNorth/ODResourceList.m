@@ -34,10 +34,18 @@
     
     self.childResources = [NSMutableArray arrayWithObjects:exampleService,
                            [NorthwindService unique],
-//                           [ODCollection resourceWithDict:@{
-//                                                            @"uri":  @"https://alpha-api.app.net/stream/0/posts/stream/global",
-//                                                            @"name": @"App.net Global Stream"
-//                                                            }],
+                           [ODService resourceWithDict: @{
+                                                            @"uri":  @"http://packages.nuget.org/v1/FeedService.svc/",
+                                                            @"name": @"NuGet Packages"
+                                                            }],
+                           [ODService resourceWithDict: @{  @"uri":  @"http://tv.telerik.com/services/odata.svc/",
+                                                            @"name": @"Telerik"
+                                                          }],
+                           [ODService resourceWithDict: @{  @"uri":  @"http://odata4j-sample.appspot.com/datastore.svc/",
+                                                            @"name": @"OData4j Sample"
+                                                            }],
+                           
+                           
                            nil];
 }
 
