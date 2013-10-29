@@ -27,7 +27,7 @@
 @synthesize childrenArray = _cachedChildren;
 
 - (id)dateTimeFormatterV2 {
-    static JSONDateReader *shared ;
+    static id shared ;
     if (!shared) {
         shared = [JSONDateReader new];
     }
@@ -96,8 +96,6 @@
     return [self resourceWithURL:[NSURL URLWithString:URLString] description:nil];
 }
 
-// -(id)init is still the designated initializer
-
 - (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info {
     self = [self init];
     if (self) {
@@ -136,5 +134,6 @@
 - (void)handleOperation:(ODOperation *)operation {
     [self.retrievalInfo handleOperation:operation];
 }
+
 
 @end

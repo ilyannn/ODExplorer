@@ -19,17 +19,6 @@
     cell.resource = self.resource.entitySets[childID];
 }
 
-/*
-- (void)subscribeToResource {
-    [self.resource addObserver:self forKeyPath:@"entitySets"
-                       options:NSKeyValueObservingOptionInitial context:nil];
-}
-
-- (void)unsubscribeFromResource {
-    [self.resource removeObserver:self forKeyPath:@"entitySets"];
-}
- */
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 }
 

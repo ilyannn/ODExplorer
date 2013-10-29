@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+/// Use instead of NSDateFormatter to parse @"/Date(.../" into date.
+/// Answer from http://stackoverflow.com/a/6065278/115200
 @interface JSONDateReader : NSObject
 - (NSDate *)dateFromString:(NSString *)string;
 @end

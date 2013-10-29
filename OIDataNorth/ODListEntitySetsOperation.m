@@ -12,6 +12,7 @@
 #import "ODEntity.h"
 
 #import "ODOperationError+Parsing.h"
+#import "ODRetrievalInfo.h"
 
 @implementation ODListEntitySetsOperation
 
@@ -57,9 +58,16 @@
         }
         
         if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
-            entitySets[name] = [ODEntitySet entitySetWithService:self.resource
-                                                            name:uri
-                                                      entityType:ODEntity.entityType];
+            ODRetrievalOfEntitySet * info = [ODRetrievalOfEntitySet new];
+            info.parent = self.resource.retrievalInfo;
+            info.shortDescription = name;
+            info.entitySetPath = name;
+            
+            ODEntitySet *entitySet = [ODEntitySet new];
+            entitySet.retrievalInfo = info;
+            entitySet.entityType = [ODEntity entityType];
+
+            entitySets[name] = entitySet;
         }
     }];
     

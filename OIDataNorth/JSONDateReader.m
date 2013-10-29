@@ -10,7 +10,6 @@
 
 @implementation JSONDateReader
 
-/// Answer from http://stackoverflow.com/a/6065278/115200
 - (NSDate *)dateFromString:(NSString *)string {
     static NSRegularExpression *dateRegEx = nil;
     static dispatch_once_t onceToken;

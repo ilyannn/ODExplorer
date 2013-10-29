@@ -9,7 +9,7 @@
 #import "OperationWithSteps.h"
 
 @interface OperationWithSteps ()
-@property (nonatomic) NSMutableArray *allSteps;
+@property (atomic) NSMutableArray *allSteps;
 @end
 
 @implementation OperationWithSteps
@@ -30,7 +30,7 @@
 
 - (void)addOperationStep:(NSError *(^)(id))step {
     __weak id weakSelf = self;
-    [_allSteps addObject: ^() {
+    [self.allSteps addObject: ^() {
         return step(weakSelf);
     }];
 }
@@ -46,7 +46,7 @@
 }
 
 - (void)main {
-    _error = [self performSteps:_allSteps];
+    _error = [self performSteps:self.allSteps];
 }
 
 - (NSArray *)steps {

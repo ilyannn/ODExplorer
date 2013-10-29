@@ -15,7 +15,7 @@
 }
 
 - (UITableViewCellStyle)cellStyle {
-    return UITableViewCellStyleDefault;
+    return UITableViewCellStyleSubtitle;
 }
 
 - (void)setResource:(ODResource *)resource {
@@ -27,6 +27,7 @@
 
 - (void)configure {
     self.textLabel.text = [self.resource shortDescription];
+    self.detailTextLabel.text = self.resource.retrievalInfo.parent ? nil : [self.resource.URL absoluteString];
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 

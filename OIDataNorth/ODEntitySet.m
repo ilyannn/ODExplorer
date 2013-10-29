@@ -11,7 +11,7 @@
 
 @implementation ODEntitySet
 
-+ (instancetype)entitySetWithService:(ODService *)service name:(NSString *)name entityType:(ODEntityType *)entityType {
+/*+ (instancetype)entitySetWithService:(ODService *)service name:(NSString *)name entityType:(ODEntityType *)entityType {
     ODRetrievalOfEntitySet * info = [ODRetrievalOfEntitySet new];
     info.parent = service.retrievalInfo;
     info.shortDescription = name;
@@ -22,5 +22,5 @@
     entitySet.entityType = entityType;
     return entitySet;
 }
-
+*/
 @end

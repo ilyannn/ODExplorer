@@ -11,10 +11,6 @@
 
 @implementation ODEntityViewController
 
-- (NSDictionary *)cellClasses {
-    return @{ ODGenericCellReuseID : [ODPropertyTableViewCell class] };
-}
-
 - (void)refreshChildren {
     self.loadingRowIndex = NSNotFound;
     self.childIdentifiers = [[[self.resource localProperties] allKeys] sortedArrayUsingComparator:

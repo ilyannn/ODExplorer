@@ -6,14 +6,15 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-/// Operation which main part can be represented as a series of steps.
-/// Each step can cancel further processing by returning error, saved to self.error.
+/// Operation whose main part can be represented as a series of steps.
+/// Each step can cancel further processing by returning an error.
 /// Steps can be added in subclasses or manually by -addOperationStep:
 @interface OperationWithSteps : NSOperation
 
 /// Override this in subclasses instead of -main.
 - (NSArray *)steps;
 
+/// If a step returns error, it gets saved to this property.
 @property (readonly) NSError *error;
 
 /// Adds an operation step. This takes a parameter self, so you don't need to capture any variables.

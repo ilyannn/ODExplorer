@@ -17,7 +17,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.textLabel.text = @"Loading...";
+        self.textLabel.text = @"loading...";
         
         self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         self.accessoryView = self.activityIndicator;

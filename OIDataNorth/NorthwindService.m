@@ -23,11 +23,11 @@
 
 - (id)init {
     self = [super init];
-    if (self) {
+    if (self) { /*
         _Products  = [ODEntitySet entitySetWithService:self name:@"Products" entityType:[Product entityType]];
         _Customers = [ODEntitySet entitySetWithService:self name:@"Customers" entityType:[Customer entityType]];
         _Employees = [ODEntitySet entitySetWithService:self name:@"Employees" entityType:[Employee entityType]];
-    }
+    */ }
     return self;
 }
 

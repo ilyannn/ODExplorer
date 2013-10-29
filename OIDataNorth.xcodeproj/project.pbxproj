@@ -22,7 +22,6 @@
 		B34544E11819C3050039BD67 /* ODResourceViewController+ViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E01819C3050039BD67 /* ODResourceViewController+ViewControllers.m */; };
 		B34544E41819DFC70039BD67 /* ODServiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E31819DFC70039BD67 /* ODServiceListViewController.m */; };
 		B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544E9181A6AA20039BD67 /* ODResourceList.m */; };
-		B34544ED181B03280039BD67 /* ODServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */; };
 		B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */; };
 		B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EBB181198CB007BCE33 /* NorthwindService.m */; };
 		B34544F4181B36A30039BD67 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC81815318B007BCE33 /* Product.m */; };
@@ -108,8 +107,6 @@
 		B34544E31819DFC70039BD67 /* ODServiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceListViewController.m; sourceTree = "<group>"; };
 		B34544E8181A6AA20039BD67 /* ODResourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResourceList.h; sourceTree = "<group>"; };
 		B34544E9181A6AA20039BD67 /* ODResourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODResourceList.m; sourceTree = "<group>"; };
-		B34544EB181B03280039BD67 /* ODServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceTableViewCell.h; sourceTree = "<group>"; };
-		B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceTableViewCell.m; sourceTree = "<group>"; };
 		B34544EE181B278D0039BD67 /* ODRetrievalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRetrievalInfo.h; sourceTree = "<group>"; };
 		B34544EF181B278D0039BD67 /* ODRetrievalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRetrievalInfo.m; sourceTree = "<group>"; };
 		B34544F8181BCDCF0039BD67 /* ODOperationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODOperationResponse.h; sourceTree = "<group>"; };
@@ -275,8 +272,6 @@
 				B34544D7181968370039BD67 /* ODPropertyTableViewCell.m */,
 				B34544D218195E6B0039BD67 /* ODEntityTableViewCell.h */,
 				B34544D318195E6B0039BD67 /* ODEntityTableViewCell.m */,
-				B34544EB181B03280039BD67 /* ODServiceTableViewCell.h */,
-				B34544EC181B03280039BD67 /* ODServiceTableViewCell.m */,
 				B3454511181D61770039BD67 /* ODLoadingTableViewCell.h */,
 				B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */,
 			);
@@ -746,7 +741,6 @@
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
 				B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */,
-				B34544ED181B03280039BD67 /* ODServiceTableViewCell.m in Sources */,
 				B34544C1181846340039BD67 /* ODActionOperation.m in Sources */,
 				B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */,
 				B3900EB818119619007BCE33 /* ODEntity.m in Sources */,

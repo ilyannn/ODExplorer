@@ -7,16 +7,11 @@
 //
 
 #import "ODServiceListViewController.h"
-#import "ODServiceTableViewCell.h"
 
 @implementation ODServiceListViewController
 
 - (void)refreshChildren {
     self.childIdentifiers = self.resource.childrenArray;
-}
-
-- (NSDictionary *)cellClasses {
-    return @{ ODGenericCellReuseID : [ODServiceTableViewCell class] };
 }
 
 - (void)subscribeToResource {

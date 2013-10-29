@@ -29,38 +29,60 @@
 - (void)setResource:(ODResource *)resource {
     if (resource != _resource) {
         _resource = resource;
-        [self buildMenuForResource:resource];
+        [self buildMenu];
     }
 }
 
-- (void)buildMenuForResource:(ODResource *)resource {
+- (void)buildButton:(NSString *)title withAction:(dispatch_block_t)block {
+    [self.actionSheet addButtonWithTitle: [[NSBundle mainBundle] localizedStringForKey:title value:@"" table:nil]];
+    [self.actions addObject:block];
+}
+
+- (void)buildMenu {
     __weak ODResourceViewControllerMenu *weakSelf = self;
 
     BOOL remove = [weakSelf.favorites.childrenArray containsObject:weakSelf.resource];
     
     self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                    delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                     destructiveButtonTitle:remove ? @"Remove from favorites" : nil
-                                          otherButtonTitles:remove ? nil : @"Add to favorites" , nil];
+                                          cancelButtonTitle:nil
+                                     destructiveButtonTitle:remove ? @"Remove from Favorites" : nil
+                                          otherButtonTitles:remove ? nil : @"Add to Favorites" , nil];
 
-    self.actions = [[NSMutableArray alloc] initWithObjects:(weakSelf.favorites != weakSelf.resource) ? ^{
+    self.actions = [[NSMutableArray alloc] initWithObjects:(self.favorites != self.resource) ? ^{
         if (!remove) {
             [weakSelf.favorites addResourceToList: weakSelf.resource];
         } else {
             [weakSelf.favorites removeResourceFromList: weakSelf.resource];
         }
-        self.resource = nil; // so that menu will be re-created next time.
-    } : ^{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"URL to add"
-        message:nil delegate:weakSelf
-        cancelButtonTitle:@"Cancel"
-        otherButtonTitles:@"Add", nil];
-        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-        alertView.delegate = weakSelf;
-        [alertView textFieldAtIndex:0].text = @"http://";
-        [alertView show];
-    } , nil];
+        weakSelf.resource = nil; // so that menu will be re-created next time.
+    } : ^{ [weakSelf newURLInFavorites]; } , nil];
+    
+    NSString *URLString = [weakSelf.resource.URL absoluteString];
+    if (URLString) {
+        [self buildButton:@"Copy Resource URL" withAction:^{
+            [UIPasteboard generalPasteboard].string = URLString;
+        }];
+    }
+    
+    switch (self.resource.kind) {
+        case ODResourceKindCollection:
+        {[self buildButton:@"Create New Entity" withAction:^{
+            
+        }];}
+            break;
+        
+        case ODResourceKindEntity:
+        {[self buildButton:@"Edit This Entity" withAction:^{
+            
+        }];}
+            
+            break;
+            
+        default:;
+    }
+    [self.actionSheet addButtonWithTitle:@"Cancel"];
+    self.actionSheet.cancelButtonIndex = self.actionSheet.numberOfButtons - 1;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -70,12 +92,24 @@
     }
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
         ODResource *resource = [ODResource resourceWithURLString:[alertView textFieldAtIndex:0].text];
         [self.favorites addResourceToList:resource];
         self.resource = nil;
     }
+}
+
+- (void)newURLInFavorites {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"URL to add"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Add",
+                              nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView textFieldAtIndex:0].text = @"http://";
+    [alertView show];
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "ODRetrievalInfo.h"
 #import "ODNotifyingManager.h"
 #import "ODLoadingTableViewCell.h"
+#import "ODPropertyTableViewCell.h"
 
 #import "ODResourceViewControllerMenu.h"
 
@@ -18,6 +19,11 @@
 
 NSString *const ODGenericCellReuseID = @"GenericCell";
 NSString *const ODLoadingCellReuseID = @"LoadingCell";
+NSString *const ODPropertyCellReuseID = @"PropertyCell";
+NSString *const ODEntitySetCellReuseID = @"GenericCell";
+NSString *const ODServiceCellReuseID = @"GenericCell";
+NSString *const ODEntityCellReuseID = @"EntityCell";
+NSString *const ODCollectionCellReuseID = @"CollectionCell";
 
 @implementation ODResourceViewController
 
@@ -57,7 +63,9 @@ NSString *const ODLoadingCellReuseID = @"LoadingCell";
 
 - (NSDictionary *)cellClasses {
     return @{ ODGenericCellReuseID : [ODResourceTableViewCell class],
-              ODLoadingCellReuseID : [ODLoadingTableViewCell class] };
+              ODLoadingCellReuseID : [ODLoadingTableViewCell class],
+              ODPropertyCellReuseID : [ODPropertyTableViewCell class],
+              };
 }
 
 - (void)viewWillAppear:(BOOL)animated {

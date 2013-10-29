@@ -28,7 +28,7 @@
     ODRetrievalByURL *info = [ODRetrievalByURL new];
     info.URL = [NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"];
     info.shortDescription = @"OData Example";
-    info.parent = self.retrievalInfo;
+//    info.parent = self.retrievalInfo;
 
     ODService *exampleService = [ODService resourceWithInfo:info];
 

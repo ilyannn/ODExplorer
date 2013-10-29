@@ -13,6 +13,11 @@
 
 extern NSString *const ODGenericCellReuseID;
 extern NSString *const ODLoadingCellReuseID;
+extern NSString *const ODPropertyCellReuseID;
+extern NSString *const ODEntitySetCellReuseID;
+extern NSString *const ODServiceCellReuseID;
+extern NSString *const ODEntityCellReuseID;
+extern NSString *const ODCollectionCellReuseID;
 
 @interface ODResourceViewController : UITableViewController
 + (ODResourceViewController *)controllerForResource:(ODResource *)resourc;
