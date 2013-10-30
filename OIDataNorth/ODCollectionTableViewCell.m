@@ -12,7 +12,7 @@
 
 - (void)configure {
     self.textLabel.text = [self.resource shortDescription];
-    self.detailTextLabel.text = self.resource.retrievalInfo.parent ? nil : [self.resource.URL absoluteString];
+    self.detailTextLabel.text = [self.resource.retrievalInfo isRootURL] ? [self.resource.retrievalInfo URL].absoluteString : nil;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 

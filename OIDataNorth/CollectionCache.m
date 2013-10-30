@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "CollectionProxy.h"
+#import "CollectionCache.h"
 #import "ODCollection.h"
 #import "ODEntityType.h"
 #import "ODEntityRetrieval.h"
 #import "ODCountOperation.h"
 #import "ODEntity.h"
 
-@interface CollectionProxy ()
+@interface CollectionCache ()
 @property NSPointerArray *objects;
 @end
 
-@implementation CollectionProxy {
+@implementation CollectionCache {
     BOOL retrieving;
 }
 
@@ -30,7 +30,7 @@
 }
 
 - (void)clean {
-    _objects = [NSPointerArray weakObjectsPointerArray];
+    _objects = [NSPointerArray strongObjectsPointerArray];
 }
 
 - (NSUInteger)count {

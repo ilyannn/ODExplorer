@@ -26,6 +26,10 @@ static ODRetrievalInfo *_sharedRootInfo;
     _sharedRootInfo = info;
 }
 
+- (BOOL)isRootURL {
+    return NO;
+}
+
 - (NSArray *)managers {
     return [_managers copy];
 }
@@ -70,7 +74,9 @@ static ODRetrievalInfo *_sharedRootInfo;
 @end
 
 @implementation ODRetrievalByURL
-// auto synthesized
+- (BOOL)isRootURL {
+    return !!self.URL;
+}
 @end
 
 @implementation ODRetrievalByPath

@@ -7,12 +7,7 @@
 //
 
 #import "ODBaseRequestManager.h"
-
-#import "ODRetrieveOperation.h"
-#import "ODActionOperation.h"
-#import "ODListEntitySetsOperation.h"
-#import "ODCountOperation.h"
-#import "ODCollection.h"
+#import "ODOperation.h"
 
 @implementation ODBaseRequestManager
 

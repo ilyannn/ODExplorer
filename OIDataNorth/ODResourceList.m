@@ -40,7 +40,7 @@
     self.childrenArray = [NSMutableArray arrayWithObjects:exampleService,
                           
                            [NorthwindService unique],
-
+/*
                            [ODCollection resourceWithDict: @{
                                                             @"uri":  @"http://packages.nuget.org/v1/FeedService.svc/Packages",
                                                             @"name": @"NuGet Packages"
@@ -66,7 +66,7 @@
 - (void)addResourceToList:(ODResource *)resource {
     ODOperation *operation = [ODOperation new];
     [operation addOperationStep:^NSError *(id op) {
-        [self.childrenArray addObject:resource];
+        [self.childrenArray addObject:[ODResource resourceByURLCopy:resource in:self.retrievalInfo]];
         return nil;
     }];
     [self handleOperation:operation];

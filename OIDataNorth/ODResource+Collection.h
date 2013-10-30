@@ -7,11 +7,12 @@
 //
 
 #import "ODCollection.h"
+#import "CollectionCache.h"
 
-@class CollectionProxy;
+@class CollectionCache;
 
 /// Internal information about properties and methods of ODResource availible only for collections.
-@interface ODResource (Collection) <ODCollectionAccessing>
-- (CollectionProxy *)childrenArrayForCollection;
+@interface ODResource (Collection) <ODCollectionAccessing, ODCollectionCacheDelegate>
+- (CollectionCache *)childrenArrayForCollection;
 - (NSError *)parseFromJSONArray:(NSArray *)array;
 @end

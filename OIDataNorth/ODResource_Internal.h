@@ -7,7 +7,7 @@
 //
 
 #import "ODResource.h"
-#import "CollectionProxy.h"
+#import "CollectionCache.h"
 
 @interface ODResource () 
 @property id resourceValue;

@@ -39,6 +39,7 @@
         ODAssertODataClass(response, NSDictionary);
         self.responseList = @[response];
     }
+
     return nil;
 }
 

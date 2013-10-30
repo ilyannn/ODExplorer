@@ -10,7 +10,7 @@
 #import "ODResource+Entity.h"
 #import "ODResource_Internal.h"
 
-#import "CollectionProxy.h"
+#import "CollectionCache.h"
 #import "ODRetrievalInfo.h"
 
 #import "ODCountOperation.h"
@@ -25,9 +25,9 @@
 
 @implementation ODResource (Collection)
 
-- (CollectionProxy *)childrenArrayForCollection { ODCollectionAssert
+- (CollectionCache *)childrenArrayForCollection { ODCollectionAssert
     
-    CollectionProxy *cache = [CollectionProxy new];
+    CollectionCache *cache = [CollectionCache new];
     cache.delegate = self;
     return cache;
 }
@@ -47,19 +47,32 @@
 }
 
 - (void)countCollection {
-    [self handleOperation:[self countCollectionOperation]];
+    [self handleOperation:[self countOperation]];
 }
 
 - (ODCountOperation *)countOperation { ODCollectionAssert
     ODCountOperation *operation = [ODCountOperation operationWithResource:self];
     [operation addOperationStep:^NSError *(ODCountOperation *op) {
         self.resourceValue = @(op.responseCount);
+        if ([self.childrenArray count] != op.responseCount) {
+            if ([self.childrenArray respondsToSelector:@selector(setCount:)]) {
+                [self.childrenArray setCount:op.responseCount];
+            } else {
+                CollectionCache *cache = [CollectionCache new];
+                cache.count = op.responseCount;
+                [self.childrenArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    cache[idx] = obj;
+                }];
+                cache.delegate = self;
+                self.childrenArray = cache;
+            }
+        }
         return nil;
     }];
     return operation;
 }
 
-- (void)cache:(CollectionProxy *)cache missingObjectAtIndex:(NSUInteger)index { ODCollectionAssert
+- (void)cache:(CollectionCache *)cache missingObjectAtIndex:(NSUInteger)index { ODCollectionAssert
     ODQueryOperation *operation = [ODQueryOperation operationWithResource:self];
     operation.top = [self batchSize];
     operation.skip = index;
@@ -70,7 +83,7 @@
         return nil;
     }];
 
-    [operation start];
+    [self handleOperation:operation];
 }
 
 - (NSError *)parseFromJSONArray:(NSArray *)array { ODCollectionAssert

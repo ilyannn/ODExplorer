@@ -8,7 +8,7 @@
 
 #import "ODEntity.h"
 
-@class CollectionProxy;
+@class CollectionCache;
 
 /// Internal information about properties and methods of ODResource availible only for entities.
 @interface ODResource (Entity) <ODEntityAccessing>

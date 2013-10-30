@@ -11,6 +11,7 @@
 @interface ODPlainOperation : ODHTTPOperation
 
 /// This method is called once response has been successfully converted to string.
-- (NSError *)processPlainResponse:(NSString *)responseString;
+@property (readonly) NSString *responsePlain;
+- (NSError *)processPlainResponse;
 
 @end

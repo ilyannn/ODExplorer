@@ -8,12 +8,12 @@
 
 #import "ODCollection.h"
 
-@class CollectionProxy;
+@class CollectionCache;
 @protocol ODCollectionCacheDelegate
-- (void)cache:(CollectionProxy *)cache missingObjectAtIndex:(NSUInteger)index;
+- (void)cache:(CollectionCache *)cache missingObjectAtIndex:(NSUInteger)index;
 @end
 
-@interface CollectionProxy : NSObject
+@interface CollectionCache : NSObject
 @property __weak id<ODCollectionCacheDelegate> delegate;
 
 @property NSUInteger count;

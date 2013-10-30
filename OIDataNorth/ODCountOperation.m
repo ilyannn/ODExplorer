@@ -18,8 +18,8 @@ NSString *const ODQueryCountString  = @"$count";
     return [[super URL] URLByAppendingPathComponent:ODQueryCountString];
 }
 
-- (NSError *)processPlainResponse:(NSString *)responseString {
-    NSInteger responseCount = [responseString integerValue];
+- (NSError *)processPlainResponse {
+    NSInteger responseCount = [self.responsePlain integerValue];
     if (responseCount < 0 ) return [ODOperationError errorWithCode:kODOperationErrorNonsenseData
                                                           userInfo:@{@"data":@(responseCount)}];
     _responseCount = responseCount;

@@ -75,6 +75,14 @@
     return [self resourceWithURL:[NSURL URLWithString:URLString] description:nil];
 }
 
++ (instancetype)resourceByURLCopy:(id<ODResourceAccessing>)resource in:(id<ODRetrieving>)parentInfo {
+    ODRetrievalByURL *info = [ODRetrievalByURL new];
+    info.URL = [resource URL];
+    info.shortDescription = [resource shortDescription];
+    info.parent = parentInfo;
+    return [ODResource resourceWithInfo:info];
+}
+
 - (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info {
     self = [self init];
     if (self) {
@@ -177,6 +185,16 @@
             default: return nil;
         }
     }];
+    
+    // If the server returns first items in the collection, we need to ask it about
+    // count as well.
+    [operation addOperationStep:^NSError *(ODRetrieveOperation *op) {
+        if (op.indeterminateCount && self.kind == ODResourceKindCollection) {
+            [self countCollection];
+        }
+        return nil;
+    }];
+    
     return operation;
 }
 

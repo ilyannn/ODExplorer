@@ -11,17 +11,24 @@
 
 @implementation ODPlainOperation
 
-- (NSError *)processResponse:(ODOperationResponse *)response {
-    NSString *stringResponse = [[NSString alloc] initWithData:response.data encoding:NSUTF8StringEncoding];
+- (NSError *)processResponse {
+    NSString *stringResponse = [[NSString alloc] initWithData:self.response.data encoding:NSUTF8StringEncoding];
     
     if (!stringResponse)
         return [ODOperationError errorWithCode:kODOperationErrorBadEncoding
-                                      userInfo:@{@"data":response.data}];
-    
-    return [self processPlainResponse: stringResponse];
+                                      userInfo:@{@"data":self.response.data}];
+
+    _responsePlain = stringResponse;
+    return nil;
 }
 
-- (NSError *)processPlainResponse:(NSString *)responseString ODErrorAbstractOp;
+- (NSError *)processPlainResponse {
+    return  nil;
+}
 
+- (NSArray *)steps {
+    __weak id self_ = self;
+    return [[super steps] arrayByAddingObject: ^(){ return [self_ processPlainResponse]; }];
+}
 
 @end

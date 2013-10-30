@@ -14,6 +14,7 @@
 - (id)getFromHierarchy:(SEL)selector;
 
 - (NSURL *)URL;
+- (BOOL)isRootURL;
 - (NSString *)shortDescription;
 
 - (void)handleOperation: (ODOperation *)operation;

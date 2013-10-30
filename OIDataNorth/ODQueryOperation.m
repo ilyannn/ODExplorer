@@ -25,7 +25,7 @@ NSString *const ODQueryOrderByString = @"$orderby";
 @implementation ODQueryOperation
 
 + (NSError *)errorForKind:(ODResourceKind)kind {
-    ODAssertOperation(kind != ODResourceKindCollection, @"You can't query an entity.");
+    ODAssertOperation(kind != ODResourceKindEntity, @"You can't query an entity.");
     return nil;
 }
 
@@ -79,13 +79,13 @@ NSString *const ODQueryOrderByString = @"$orderby";
     [self setValue:value forKey:ODQuerySkipString];
 }
 
-- (NSError *)processJSONResponse:(id)response {
-    NSArray *values = response[@"value"];
+- (NSError *)processJSONResponseV3 {
+    NSArray *values = self.JSONResponse[@"value"];
     
-    if (!values && [response isKindOfClass:[NSDictionary class]] ) {
-        values = [(NSDictionary *)response objectForKey: @"d"];
+    if (!values && [self.JSONResponse isKindOfClass:[NSDictionary class]] ) {
+        values = [(NSDictionary *)self.JSONResponse objectForKey: @"d"];
         if ([values isKindOfClass:[NSDictionary class]])
-            values = [(NSDictionary *)response objectForKey:@"results"];
+            values = [(NSDictionary *)values objectForKey:@"results"];
     }
     
     ODAssertOData(values, nil);

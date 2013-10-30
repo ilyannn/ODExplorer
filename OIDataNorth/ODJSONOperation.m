@@ -28,7 +28,7 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
 // This method has access to protocol version, HTTP headers and other OData encoding metadata.
 - (NSError *)processResponse {
     NSError *error;
-    self.JSONResponse = [[self JSONResponseSerializer] responseObjectForResponse:self.response.HTTPResponse
+    _JSONResponse = [[self JSONResponseSerializer] responseObjectForResponse:self.response.HTTPResponse
                                                                       data:self.response.data
                                                                      error:&error];
     return error;

@@ -50,6 +50,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 + (instancetype)resourceWithDict:(id)dict;
 + (instancetype)resourceWithURLString:(NSString *)URLString;
 + (instancetype)resourceWithInfo:(id<ODRetrieving>)info;
++ (instancetype)resourceByURLCopy:(id<ODResourceAccessing>)resource in:(id<ODRetrieving>)parentInfo;
 
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;

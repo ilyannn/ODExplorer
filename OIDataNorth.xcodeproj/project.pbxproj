@@ -18,7 +18,6 @@
 		B329A67618211B3B00B2D8B9 /* ODCreateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */; };
 		B329A6791821227800B2D8B9 /* ODHTTPOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A6781821227800B2D8B9 /* ODHTTPOperation.m */; };
 		B34544C1181846340039BD67 /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C0181846340039BD67 /* ODActionOperation.m */; };
-		B34544C4181868E50039BD67 /* ODListEntitySetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */; };
 		B34544CA181932E60039BD67 /* ODResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C9181932E60039BD67 /* ODResourceViewController.m */; };
 		B34544D118195DFB0039BD67 /* ODResourceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544D018195DFB0039BD67 /* ODResourceTableViewCell.m */; };
 		B34544D418195E6B0039BD67 /* ODEntityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544D318195E6B0039BD67 /* ODEntityTableViewCell.m */; };
@@ -52,13 +51,12 @@
 		B3900E9118118102007BCE33 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6C18118102007BCE33 /* CoreData.framework */; };
 		B3900E9918118102007BCE33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3900E9718118102007BCE33 /* InfoPlist.strings */; };
 		B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E9A18118102007BCE33 /* OIDataNorthTests.m */; };
-		B3900EA61811811A007BCE33 /* ODService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EA51811811A007BCE33 /* ODService.m */; };
 		B3900EA918118129007BCE33 /* ODOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EA818118129007BCE33 /* ODOperation.m */; };
 		B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EAE18119337007BCE33 /* ODQueryOperation.m */; };
 		B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB4181195A0007BCE33 /* ODCollection.m */; };
 		B3900EB818119619007BCE33 /* ODEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB718119619007BCE33 /* ODEntity.m */; };
 		B3900EC61815310C007BCE33 /* ODEntityType.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC51815310C007BCE33 /* ODEntityType.m */; };
-		B3900F3A1815BA75007BCE33 /* CollectionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F391815BA75007BCE33 /* CollectionProxy.m */; };
+		B3900F3A1815BA75007BCE33 /* CollectionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F391815BA75007BCE33 /* CollectionCache.m */; };
 		B3900F3D1815C0AC007BCE33 /* ODCountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */; };
 		B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */; };
 		B3900F4D18167765007BCE33 /* ODResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F4C18167765007BCE33 /* ODResource.m */; };
@@ -102,8 +100,6 @@
 		B329A6781821227800B2D8B9 /* ODHTTPOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODHTTPOperation.m; sourceTree = "<group>"; };
 		B34544BF181846340039BD67 /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B34544C0181846340039BD67 /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
-		B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODListEntitySetsOperation.h; sourceTree = "<group>"; };
-		B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODListEntitySetsOperation.m; sourceTree = "<group>"; };
 		B34544C8181932E60039BD67 /* ODResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResourceViewController.h; sourceTree = "<group>"; };
 		B34544C9181932E60039BD67 /* ODResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODResourceViewController.m; sourceTree = "<group>"; };
 		B34544CF18195DFB0039BD67 /* ODResourceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResourceTableViewCell.h; sourceTree = "<group>"; };
@@ -148,8 +144,6 @@
 		B3900E9618118102007BCE33 /* OIDataNorthTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OIDataNorthTests-Info.plist"; sourceTree = "<group>"; };
 		B3900E9818118102007BCE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3900E9A18118102007BCE33 /* OIDataNorthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDataNorthTests.m; sourceTree = "<group>"; };
-		B3900EA41811811A007BCE33 /* ODService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODService.h; sourceTree = "<group>"; };
-		B3900EA51811811A007BCE33 /* ODService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODService.m; sourceTree = "<group>"; };
 		B3900EA718118129007BCE33 /* ODOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODOperation.h; sourceTree = "<group>"; };
 		B3900EA818118129007BCE33 /* ODOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODOperation.m; sourceTree = "<group>"; };
 		B3900EAD18119337007BCE33 /* ODQueryOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODQueryOperation.h; sourceTree = "<group>"; };
@@ -186,8 +180,8 @@
 		B3900F2D18155FBC007BCE33 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		B3900F2F18155FCC007BCE33 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
 		B3900F3018155FCC007BCE33 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
-		B3900F381815BA75007BCE33 /* CollectionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionProxy.h; sourceTree = "<group>"; };
-		B3900F391815BA75007BCE33 /* CollectionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CollectionProxy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B3900F381815BA75007BCE33 /* CollectionCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCache.h; sourceTree = "<group>"; };
+		B3900F391815BA75007BCE33 /* CollectionCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CollectionCache.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B3900F3B1815C0AC007BCE33 /* ODCountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCountOperation.h; sourceTree = "<group>"; };
 		B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCountOperation.m; sourceTree = "<group>"; };
 		B3900F3E1815CB8D007BCE33 /* ODJSONOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODJSONOperation.h; sourceTree = "<group>"; };
@@ -338,8 +332,6 @@
 				B3900F581816962C007BCE33 /* ODRetrieveOperation.m */,
 				B34544BF181846340039BD67 /* ODActionOperation.h */,
 				B34544C0181846340039BD67 /* ODActionOperation.m */,
-				B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */,
-				B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */,
 				B329A67418211B3B00B2D8B9 /* ODCreateOperation.h */,
 				B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */,
 			);
@@ -351,8 +343,6 @@
 			children = (
 				B34544E8181A6AA20039BD67 /* ODResourceList.h */,
 				B34544E9181A6AA20039BD67 /* ODResourceList.m */,
-				B3900EA41811811A007BCE33 /* ODService.h */,
-				B3900EA51811811A007BCE33 /* ODService.m */,
 			);
 			name = Specific;
 			sourceTree = "<group>";
@@ -377,8 +367,8 @@
 				B3454508181C7CEA0039BD67 /* OperationWithSteps.m */,
 				B329A659181FB5C700B2D8B9 /* JSONDateReader.h */,
 				B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */,
-				B3900F381815BA75007BCE33 /* CollectionProxy.h */,
-				B3900F391815BA75007BCE33 /* CollectionProxy.m */,
+				B3900F381815BA75007BCE33 /* CollectionCache.h */,
+				B3900F391815BA75007BCE33 /* CollectionCache.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -739,7 +729,6 @@
 				B3454503181BF2010039BD67 /* ODOperationError.m in Sources */,
 				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
 				B329A661181FEF6700B2D8B9 /* ODResource+Collection.m in Sources */,
-				B34544C4181868E50039BD67 /* ODListEntitySetsOperation.m in Sources */,
 				B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */,
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
@@ -748,7 +737,7 @@
 				B34544C1181846340039BD67 /* ODActionOperation.m in Sources */,
 				B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */,
 				B3900EB818119619007BCE33 /* ODEntity.m in Sources */,
-				B3900F3A1815BA75007BCE33 /* CollectionProxy.m in Sources */,
+				B3900F3A1815BA75007BCE33 /* CollectionCache.m in Sources */,
 				B3900EA918118129007BCE33 /* ODOperation.m in Sources */,
 				B3454509181C7CEA0039BD67 /* OperationWithSteps.m in Sources */,
 				B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */,
@@ -757,7 +746,6 @@
 				B34544FD181BEA270039BD67 /* ODPlainOperation.m in Sources */,
 				B34544D418195E6B0039BD67 /* ODEntityTableViewCell.m in Sources */,
 				B3900E7518118102007BCE33 /* main.m in Sources */,
-				B3900EA61811811A007BCE33 /* ODService.m in Sources */,
 				B3900F3D1815C0AC007BCE33 /* ODCountOperation.m in Sources */,
 				B34544D118195DFB0039BD67 /* ODResourceTableViewCell.m in Sources */,
 				B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */,
