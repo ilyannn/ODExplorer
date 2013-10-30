@@ -23,7 +23,6 @@
 //    NSMutableDictionary *_navigationProperties;
 }
 
-@synthesize localProperties = _localProperties;
 @synthesize remoteProperties = _remoteProperties;
 @synthesize navigationProperties = _navigationProperties;
 
@@ -158,6 +157,10 @@
 
 - (void)retrieve {
     [self handleOperation:[self retrieveOperation]];
+}
+
+- (BOOL)isEntitySet {
+    return [self.retrievalInfo isKindOfClass:[ODRetrievalOfEntitySet class]];
 }
 
 - (ODRetrieveOperation *)retrieveOperation {

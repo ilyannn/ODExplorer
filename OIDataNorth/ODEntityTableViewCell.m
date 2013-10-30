@@ -35,7 +35,8 @@
             }
         }];
         
-        self.textLabel.text = headline ? headline : self.resource.URL.relativePath;
+        self.textLabel.text = headline ? headline : @"(no readable description)";
+        self.textLabel.alpha = (!!headline + 1.0) / 2.0;
         self.detailTextLabel.text = [self.resource.retrievalInfo shortDescription];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }

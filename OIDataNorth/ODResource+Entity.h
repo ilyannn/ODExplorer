@@ -18,4 +18,6 @@
 @property (readonly) id dateTimeFormatterV2;
 @property (readonly) id dateTimeFormatterV3;
 
+@property (nonatomic) NSMutableDictionary *localProperties;
+
 @end

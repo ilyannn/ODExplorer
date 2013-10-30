@@ -31,7 +31,7 @@ extern NSString *const ODCollectionCellReuseID;
 
 - (NSDictionary *)cellClasses;
 - (void)refreshChildren;
-- (NSString *)cellReuseIDForChild:(id)childID;
+- (NSString *)cellIDForResource:(id)childID;
 - (void)configureCell:(ODResourceTableViewCell *)cell forChild:(id)childID;
 
 
@@ -39,6 +39,9 @@ extern NSString *const ODCollectionCellReuseID;
 // and continue retrieving them further.
 - (void)subscribeToResource;
 - (void)unsubscribeFromResource;
+
+// Those are used only for collection view controllers.
+@property (nonatomic) NSMutableArray *headlineProperties;
 
 @end
 

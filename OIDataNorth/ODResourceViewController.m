@@ -10,12 +10,15 @@
 #import "ODResourceTableViewCell.h"
 #import "ODRetrievalInfo.h"
 #import "ODNotifyingManager.h"
+
 #import "ODLoadingTableViewCell.h"
 #import "ODPropertyTableViewCell.h"
+#import "ODEntityTableViewCell.h"
 
 #import "ODResourceViewControllerMenu.h"
-
 #import "ODOperation.h"
+
+#import "ODResource+CollectionFields.h"
 
 NSString *const ODGenericCellReuseID = @"GenericCell";
 NSString *const ODLoadingCellReuseID = @"LoadingCell";
@@ -27,6 +30,8 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 
 @implementation ODResourceViewController
 
+#pragma mark - View and Actions
+
 + (ODResourceViewController *)controllerForResource:(ODResource *)resource {
     Class vcClass = [self viewControllerClassFor:resource];
     if (!vcClass) return nil;
@@ -37,6 +42,7 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     vc.resource = resource;
     return vc;
 }
+
 
 - (void)displayActionMenu {
     ODResourceViewControllerMenu *actionMenu = [ODResourceViewControllerMenu sharedMenu];
@@ -59,16 +65,15 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     self.actionButton = button;
 }
 
-- (NSDictionary *)cellClasses {
-    return @{ ODGenericCellReuseID : [ODResourceTableViewCell class],
-              ODLoadingCellReuseID : [ODLoadingTableViewCell class],
-              ODPropertyCellReuseID : [ODPropertyTableViewCell class],
-              };
+- (void)refreshControlActivated {
+    [self refreshChildren];
+    [self.refreshControl endRefreshing];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
     self.title = [self.resource shortDescription];
     self.subscribed = YES;
     
@@ -81,15 +86,103 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     }
 }
 
-- (void)refreshControlActivated {
-    [self refreshChildren];
-    [self.refreshControl endRefreshing];
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.subscribed = NO;
     [super viewWillDisappear:animated];
 }
+
+#pragma mark - Constructing table view
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.resource.childrenArray count] + !!self.loadingRowPresent;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ODResourceTableViewCell *cell = (ODResourceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (![cell isKindOfClass:[ODResourceTableViewCell class]]) return;
+    
+    ODResourceViewController *vc = [[self class] controllerForResource:cell.resource];
+    if (!vc) return;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.loadingRowPresent && (indexPath.row == self.loadingRowIndex)) {
+        return [tableView dequeueReusableCellWithIdentifier:ODLoadingCellReuseID forIndexPath:indexPath];
+    }
+    
+    id resourceID = [self childIDForIndexPath:indexPath];
+    NSString *cellID = [self cellIDForResource:resourceID];
+    
+    id cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    [self configureCell:cell forChild:resourceID];
+    
+    return cell;
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return !(self.loadingRowPresent && self.loadingRowIndex == indexPath.row);
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // The table view should not be re-orderable.
+    return NO;
+}
+
+- (void)configureCell:(id)cell forChild:(ODResource*)childID {
+    if ([cell respondsToSelector:@selector(setHeadlineProperties:)] && self.resource.kind == ODResourceKindCollection) {
+        if (!self.headlineProperties) {
+            self.headlineProperties = [NSMutableArray new];
+            NSString *guessed = [self.resource guessMediumDescriptionProperty];
+            if (guessed) [self.headlineProperties addObject:guessed];
+        }
+        
+        [cell setHeadlineProperties: self.headlineProperties];
+    }
+    [cell setResource: childID];
+}
+
+- (id)childIDForIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    row -= self.loadingRowPresent && (row > self.loadingRowIndex);
+    return self.resource.childrenArray[row];
+}
+
+- (void)setLoadingRowPresent:(BOOL)loadingRowPresent {
+    if (_loadingRowPresent != loadingRowPresent) {
+        _loadingRowPresent = loadingRowPresent;
+        
+        if (self.loadingRowIndex >= 0) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.loadingRowIndex inSection:0];
+            if (!loadingRowPresent) {
+                [self.tableView reloadData];
+                //            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            } else {
+                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
+    }
+}
+
+
+#pragma mark - Updating data
 
 - (void)setResource:(ODResource *)resource {
     if (resource != _resource) {
@@ -124,67 +217,6 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 - (void)unsubscribeFromResource {
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.resource.childrenArray count] + !!self.loadingRowPresent;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ODResourceTableViewCell *cell = (ODResourceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    if (![cell isKindOfClass:[ODResourceTableViewCell class]]) return;
-    
-    ODResourceViewController *vc = [[self class] controllerForResource:cell.resource];
-    if (!vc) return;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.loadingRowPresent && (indexPath.row == self.loadingRowIndex)) {
-        return [tableView dequeueReusableCellWithIdentifier:ODLoadingCellReuseID forIndexPath:indexPath];
-    }
-    
-    id resourceID = [self childIDForIndexPath:indexPath];
-    NSString *cellID = [self cellReuseIDForChild:resourceID];
-    
-    id cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    [self configureCell:cell forChild:resourceID];
-    
-    return cell;
-}
-
-- (id)childIDForIndexPath:(NSIndexPath *)indexPath {
-    NSInteger row = indexPath.row;
-    row -= self.loadingRowPresent && (row > self.loadingRowIndex);
-    return self.resource.childrenArray[row];
-}
-
-- (NSString *)cellReuseIDForChild:(id)childID {
-    return ODGenericCellReuseID;
-}
-
-- (void)configureCell:(ODResourceTableViewCell *)cell forChild:(id)childID {
-    cell.resource = childID;
-}
-
-- (void)setLoadingRowPresent:(BOOL)loadingRowPresent {
-    if (_loadingRowPresent != loadingRowPresent) {
-        _loadingRowPresent = loadingRowPresent;
-        
-        if (self.loadingRowIndex >= 0) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.loadingRowIndex inSection:0];
-            if (!loadingRowPresent) {
-                [self.tableView reloadData];
-                //            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            } else {
-                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
-        }
-    }
-}
 
 - (void)manager:(ODNotifyingManager *)manager willStart:(ODOperation *)operation {
     if (operation.retrievalInfo == self.resource.retrievalInfo && !self.loadingRowPresent) {
@@ -199,12 +231,35 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     [self update];
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    return !(self.loadingRowPresent && self.loadingRowIndex == indexPath.row);
-}
-
 - (void)update {
     [self.tableView reloadData];
 }
+
+
+#pragma mark - Class Configuration
+
+/// Override this to customize child view controllers.
++ (Class)viewControllerClassFor:(ODResource *)resource {
+    return [ODResourceViewController class];
+}
+
+- (NSString *)cellIDForResource:(ODResource *)child {
+    switch (child.kind) {
+        case ODResourceKindEntity: return ODEntityCellReuseID;
+        case ODResourceKindUnknown: if ([child.retrievalInfo isKindOfClass:[ODRetrievalOfProperty class]])
+                                            return ODPropertyCellReuseID;
+        case ODResourceKindCollection: return ODGenericCellReuseID;
+    }
+}
+
+- (NSDictionary *)cellClasses {
+    return @{ ODGenericCellReuseID : [ODResourceTableViewCell class],
+              ODLoadingCellReuseID : [ODLoadingTableViewCell class],
+              ODPropertyCellReuseID : [ODPropertyTableViewCell class],
+              ODEntityCellReuseID : [ODEntityTableViewCell class]
+              };
+}
+
+
 
 @end

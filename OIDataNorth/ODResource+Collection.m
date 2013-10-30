@@ -77,17 +77,34 @@
     ODAssertODataClass(array, NSArray);
     
     NSMutableArray *result = [NSMutableArray new];
-    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ODRetrievalByIndex *info = [ODRetrievalByIndex new];
-        info.parent = self.retrievalInfo;
-        info.index = idx;
-        ODEntity *entity = [ODEntity resourceWithInfo:info];
-        NSError *error = [entity parseFromJSONDictionary:obj];
-        if (!error) [result addObject:entity];
-    }];
+    [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[NSDictionary class]] ) {
+            NSString *url = obj[@"url"];
+            NSString *name = obj[@"name"];
+            if ([obj count] == 2
+                && [url isKindOfClass:[NSString class]]
+                && [name isKindOfClass:[NSString class]] ) {
+                
+                ODRetrievalOfEntitySet*info = [ODRetrievalOfEntitySet new];
+                info.entitySetPath = url;
+                info.shortDescription = name;
+                info.parent = self.retrievalInfo;
+                [result addObject:[ODCollection resourceWithInfo:info]];
+
+            } else {
+                
+                ODRetrievalByIndex *info = [ODRetrievalByIndex new];
+                info.parent = self.retrievalInfo;
+                info.index = idx;
+                ODEntity *entity = [ODEntity resourceWithInfo:info];
+                NSError *error = [entity parseFromJSONDictionary:obj];
+                if (!error) [result addObject:entity];
+            }}}];
     self.childrenArray = [result copy];
     self.resourceValue = @([result count]);
     return nil;
 }
+
+
 
 @end

@@ -21,7 +21,6 @@
 
 // - (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *items))block;
 
-
 @end
 
 @class ODEntity, ODEntityType;

@@ -40,18 +40,35 @@
 
 - (NSArray *)childrenArrayForEntity { ODEntityAssert
     
-    return [[self.localProperties allKeys] sortedArrayUsingComparator:
+    NSMutableArray *keys = [[self.localProperties allKeys] mutableCopy];
+    [keys sortUsingComparator:
             ^NSComparisonResult(NSString *obj1, NSString * obj2) {
                 return [obj1 localizedCaseInsensitiveCompare:obj2];
             }];
+    for (NSUInteger index = 0; index < keys.count; index++) {
+        keys[index] = [self propertyForKey:keys[index]];
+    }
     
+    return [keys copy];
 }
 
-- (NSError *)parseFromJSONDictionary:(NSDictionary *)dict{ODEntityAssert
-    ODAssertODataClass(dict, NSDictionary);
+- (ODResource *)propertyForKey:(NSString *)key {
+    ODRetrievalOfProperty *info = [ODRetrievalOfProperty new];
+    info.propertyName = key;
+    info.parent = self.retrievalInfo;
 
+    ODResource *property =  [ODResource resourceWithInfo:info];
+    property.resourceValue = self.localProperties[key];
+    return property;
+}
+
+- (NSError *)parseFromJSONDictionary:(NSDictionary *)dict{ ODEntityAssert
+    ODAssertODataClass(dict, NSDictionary);
+    
     self.remoteProperties = [NSMutableDictionary new];
     self.navigationProperties = [NSMutableDictionary new];
+
+
     [dict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
         
         if ([obj isKindOfClass:NSDictionary.class]) {
@@ -83,11 +100,6 @@
                 }
             }
             self.remoteProperties[key] = obj;
-            if ([key isEqualToString:@"url"]) {
-                ODRetrievalByURL *info = [ODRetrievalByURL new];
-                info.URL = [NSURL URLWithString:obj relativeToURL:self.retrievalInfo.parent.URL];
-                self.retrievalInfo = info;
-            }
         } else {
             self.remoteProperties[key] = obj;
         }
@@ -96,6 +108,14 @@
     
     self.localProperties = [self.remoteProperties mutableCopy];
     return nil;
+}
+
+- (NSMutableDictionary *)localProperties { ODEntityAssert
+    return self.resourceValue;
+}
+
+- (void)setLocalProperties:(NSMutableDictionary *)localProperties { ODEntityAssert
+    self.resourceValue = localProperties;
 }
 
 @end

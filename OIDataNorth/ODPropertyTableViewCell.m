@@ -24,17 +24,12 @@
     return UITableViewCellStyleValue2;
 }
 
-- (void)setPropertyName:(NSString *)propertyName {
-    if (![propertyName isEqualToString:_propertyName]) { // always true for nil
-        _propertyName = propertyName;
-        [self configure];
-    }
-}
-
 - (void)configure {
-    if (self.resource && self.propertyName) {
-        self.textLabel.text = self.propertyName;
-        id value = self.resource.localProperties[self.propertyName];
+    if (self.resource) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.textLabel.text = [self.resource.retrievalInfo shortDescription];
+        id value = self.resource.resourceValue;
+
         NSString *formatted;
         UIColor *color;
         

@@ -14,7 +14,6 @@
 @property id childrenArray;
 @property id<ODRetrieving> retrievalInfo;
 
-@property (nonatomic) NSMutableDictionary *localProperties;
 @property (nonatomic) NSMutableDictionary *remoteProperties;
 @property (nonatomic) NSMutableDictionary *navigationProperties;
 

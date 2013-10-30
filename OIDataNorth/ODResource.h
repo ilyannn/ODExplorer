@@ -74,6 +74,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 /// It's non-nil iff resource has been retrieved.
 /// = Count for collection, plain value for property.
 @property (readonly) id resourceValue;
+- (BOOL)isEntitySet;
 
 // Until at least some info about an entity is retrieved, this is nil.
 @property (readonly, atomic) id childrenArray;
