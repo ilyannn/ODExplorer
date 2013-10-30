@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODOperation.h"
+#import "ODHTTPOperation.h"
 
-@interface ODPlainOperation : ODOperation
+@interface ODPlainOperation : ODHTTPOperation
 
 /// This method is called once response has been successfully converted to string.
 - (NSError *)processPlainResponse:(NSString *)responseString;

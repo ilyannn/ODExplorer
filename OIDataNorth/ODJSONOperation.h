@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODOperation.h"
+#import "ODHTTPOperation.h"
 
-@interface ODJSONOperation : ODOperation
+@interface ODJSONOperation : ODHTTPOperation
 
 @property id JSONResponse;
 /// This method is called once response has been successfully read as JSON.

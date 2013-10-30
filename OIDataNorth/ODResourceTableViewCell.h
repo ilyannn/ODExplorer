@@ -12,10 +12,8 @@
 
 
 @interface ODResourceTableViewCell : UITableViewCell
-
 @property (nonatomic) ODResource *resource;
-- (void)configure;
-
 - (UITableViewCellStyle)cellStyle;
+- (void)configure;
 
 @end

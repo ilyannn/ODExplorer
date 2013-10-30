@@ -12,6 +12,7 @@
 #import "ODRetrievalInfo.h"
 
 #import "NorthwindService.h"
+#import "ODOperation.h"
 
 @implementation ODResourceList
 
@@ -63,11 +64,21 @@
 }
 
 - (void)addResourceToList:(ODResource *)resource {
+    ODOperation *operation = [ODOperation new];
+    [operation addOperationStep:^NSError *(id op) {
         [self.childrenArray addObject:resource];
+        return nil;
+    }];
+    [self handleOperation:operation];
 }
 
 - (void)removeResourceFromList:(ODResource *)resource {
-    [self.childrenArray removeObject:resource];
+    ODOperation *operation = [ODOperation new];
+    [operation addOperationStep:^NSError *(id op) {
+        [self.childrenArray removeObject:resource];
+        return nil;
+    }];
+    [self handleOperation:operation];
 }
 
 - (void)retrieve {

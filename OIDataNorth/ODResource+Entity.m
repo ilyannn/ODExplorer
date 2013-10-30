@@ -59,6 +59,7 @@
 
     ODResource *property =  [ODResource resourceWithInfo:info];
     property.resourceValue = self.localProperties[key];
+    property.childrenArray = @[property];
     return property;
 }
 

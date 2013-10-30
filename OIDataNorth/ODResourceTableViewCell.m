@@ -14,9 +14,6 @@
     return [super initWithStyle:[self cellStyle]  reuseIdentifier:reuseIdentifier];
 }
 
-- (UITableViewCellStyle)cellStyle {
-    return UITableViewCellStyleSubtitle;
-}
 
 - (void)setResource:(ODResource *)resource {
     if (_resource != resource) {
@@ -25,10 +22,12 @@
     }
 }
 
+- (UITableViewCellStyle)cellStyle {
+    return UITableViewCellStyleSubtitle;
+}
+
 - (void)configure {
-    self.textLabel.text = [self.resource shortDescription];
-    self.detailTextLabel.text = self.resource.retrievalInfo.parent ? nil : [self.resource.URL absoluteString];
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 }
 
 @end

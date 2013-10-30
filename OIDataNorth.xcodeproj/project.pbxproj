@@ -14,6 +14,9 @@
 		B329A65E181FEF2300B2D8B9 /* ODResource+Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A65D181FEF2300B2D8B9 /* ODResource+Entity.m */; };
 		B329A661181FEF6700B2D8B9 /* ODResource+Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A660181FEF6700B2D8B9 /* ODResource+Collection.m */; };
 		B329A66B182063AF00B2D8B9 /* ODResource+CollectionFields.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A66A182063AF00B2D8B9 /* ODResource+CollectionFields.m */; };
+		B329A6731821116800B2D8B9 /* ODCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A6721821116800B2D8B9 /* ODCollectionTableViewCell.m */; };
+		B329A67618211B3B00B2D8B9 /* ODCreateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */; };
+		B329A6791821227800B2D8B9 /* ODHTTPOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A6781821227800B2D8B9 /* ODHTTPOperation.m */; };
 		B34544C1181846340039BD67 /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C0181846340039BD67 /* ODActionOperation.m */; };
 		B34544C4181868E50039BD67 /* ODListEntitySetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */; };
 		B34544CA181932E60039BD67 /* ODResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C9181932E60039BD67 /* ODResourceViewController.m */; };
@@ -91,6 +94,12 @@
 		B329A664181FF1FB00B2D8B9 /* ODResource_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODResource_Internal.h; sourceTree = "<group>"; };
 		B329A669182063AF00B2D8B9 /* ODResource+CollectionFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ODResource+CollectionFields.h"; sourceTree = "<group>"; };
 		B329A66A182063AF00B2D8B9 /* ODResource+CollectionFields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ODResource+CollectionFields.m"; sourceTree = "<group>"; };
+		B329A6711821116800B2D8B9 /* ODCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCollectionTableViewCell.h; sourceTree = "<group>"; };
+		B329A6721821116800B2D8B9 /* ODCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCollectionTableViewCell.m; sourceTree = "<group>"; };
+		B329A67418211B3B00B2D8B9 /* ODCreateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCreateOperation.h; sourceTree = "<group>"; };
+		B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCreateOperation.m; sourceTree = "<group>"; };
+		B329A6771821227800B2D8B9 /* ODHTTPOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODHTTPOperation.h; sourceTree = "<group>"; };
+		B329A6781821227800B2D8B9 /* ODHTTPOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODHTTPOperation.m; sourceTree = "<group>"; };
 		B34544BF181846340039BD67 /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B34544C0181846340039BD67 /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
 		B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODListEntitySetsOperation.h; sourceTree = "<group>"; };
@@ -274,6 +283,8 @@
 			children = (
 				B34544CF18195DFB0039BD67 /* ODResourceTableViewCell.h */,
 				B34544D018195DFB0039BD67 /* ODResourceTableViewCell.m */,
+				B329A6711821116800B2D8B9 /* ODCollectionTableViewCell.h */,
+				B329A6721821116800B2D8B9 /* ODCollectionTableViewCell.m */,
 				B34544D6181968370039BD67 /* ODPropertyTableViewCell.h */,
 				B34544D7181968370039BD67 /* ODPropertyTableViewCell.m */,
 				B34544D218195E6B0039BD67 /* ODEntityTableViewCell.h */,
@@ -317,6 +328,8 @@
 		B34544FF181BEA580039BD67 /* JSON return type */ = {
 			isa = PBXGroup;
 			children = (
+				B329A6771821227800B2D8B9 /* ODHTTPOperation.h */,
+				B329A6781821227800B2D8B9 /* ODHTTPOperation.m */,
 				B3900F3E1815CB8D007BCE33 /* ODJSONOperation.h */,
 				B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */,
 				B3900EAD18119337007BCE33 /* ODQueryOperation.h */,
@@ -327,6 +340,8 @@
 				B34544C0181846340039BD67 /* ODActionOperation.m */,
 				B34544C2181868E50039BD67 /* ODListEntitySetsOperation.h */,
 				B34544C3181868E50039BD67 /* ODListEntitySetsOperation.m */,
+				B329A67418211B3B00B2D8B9 /* ODCreateOperation.h */,
+				B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */,
 			);
 			name = "JSON return type";
 			sourceTree = "<group>";
@@ -747,12 +762,15 @@
 				B34544D118195DFB0039BD67 /* ODResourceTableViewCell.m in Sources */,
 				B34544F3181B36A30039BD67 /* NorthwindService.m in Sources */,
 				B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */,
+				B329A6791821227800B2D8B9 /* ODHTTPOperation.m in Sources */,
 				B329A65B181FB5C700B2D8B9 /* JSONDateReader.m in Sources */,
+				B329A67618211B3B00B2D8B9 /* ODCreateOperation.m in Sources */,
 				B329A657181F991A00B2D8B9 /* ODResourceViewControllerMenu.m in Sources */,
 				B34544F6181B36A30039BD67 /* Employee.m in Sources */,
 				B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */,
 				B329A65E181FEF2300B2D8B9 /* ODResource+Entity.m in Sources */,
 				B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */,
+				B329A6731821116800B2D8B9 /* ODCollectionTableViewCell.m in Sources */,
 				B34544F7181B36A30039BD67 /* Customer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

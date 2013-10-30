@@ -8,6 +8,7 @@
 
 #import "ODResourceViewControllerMenu.h"
 #import "ODResourceList.h"
+#import "ODCreateOperation.h"
 
 @interface ODResourceViewControllerMenu () <UIActionSheetDelegate, UIAlertViewDelegate>
 
@@ -65,7 +66,7 @@
         }];
     }
     
-    switch (self.resource.kind) {
+/*    switch (self.resource.kind) {
         case ODResourceKindCollection:
         {[self buildButton:@"Create New Entity" withAction:^{
             
@@ -81,6 +82,8 @@
             
         default:;
     }
+*/
+    
     [self.actionSheet addButtonWithTitle:@"Cancel"];
     self.actionSheet.cancelButtonIndex = self.actionSheet.numberOfButtons - 1;
 }

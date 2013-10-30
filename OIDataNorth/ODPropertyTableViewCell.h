@@ -10,7 +10,7 @@
 #import "ODEntity.h"
 
 @interface ODPropertyTableViewCell : ODResourceTableViewCell
-@property (nonatomic) ODResource *resource;
+@property (nonatomic) ODResource* resource;
 
 @property (readonly) NSDateFormatter *dateFormatter;
 @end

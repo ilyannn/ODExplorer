@@ -12,7 +12,7 @@
 
 @interface ODEntityTableViewCell : ODResourceTableViewCell
 
-@property (nonatomic) ODEntity *resource;
+@property (nonatomic) ODResource<ODEntityAccessing> *resource;
 
 // It is expected that this will in fact be a mutable array which may
 // change its contents. It is understood that the cell will have

@@ -13,6 +13,7 @@
 
 #import "ODLoadingTableViewCell.h"
 #import "ODPropertyTableViewCell.h"
+#import "ODCollectionTableViewCell.h"
 #import "ODEntityTableViewCell.h"
 
 #import "ODResourceViewControllerMenu.h"
@@ -43,7 +44,6 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     return vc;
 }
 
-
 - (void)displayActionMenu {
     ODResourceViewControllerMenu *actionMenu = [ODResourceViewControllerMenu sharedMenu];
     actionMenu.resource = self.resource;
@@ -70,7 +70,6 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     [self.refreshControl endRefreshing];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -85,7 +84,6 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
          forControlEvents:UIControlEventValueChanged];
     }
 }
-
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.subscribed = NO;
@@ -125,11 +123,9 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     return cell;
 }
 
-
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     return !(self.loadingRowPresent && self.loadingRowIndex == indexPath.row);
 }
-
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
@@ -146,7 +142,7 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     return NO;
 }
 
-- (void)configureCell:(id)cell forChild:(ODResource*)childID {
+- (void)configureCell:(id)cell forChild:(ODResource *)childID {
     if ([cell respondsToSelector:@selector(setHeadlineProperties:)] && self.resource.kind == ODResourceKindCollection) {
         if (!self.headlineProperties) {
             self.headlineProperties = [NSMutableArray new];
@@ -154,9 +150,9 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
             if (guessed) [self.headlineProperties addObject:guessed];
         }
         
-        [cell setHeadlineProperties: self.headlineProperties];
+        [cell setHeadlineProperties:self.headlineProperties];
     }
-    [cell setResource: childID];
+    [cell setResource:childID];
 }
 
 - (id)childIDForIndexPath:(NSIndexPath *)indexPath {
@@ -181,7 +177,6 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     }
 }
 
-
 #pragma mark - Updating data
 
 - (void)setResource:(ODResource *)resource {
@@ -200,23 +195,14 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 - (void)setSubscribed:(BOOL)subscribed {
     if (subscribed != _subscribed) {
         _subscribed = subscribed;
-        if (subscribed) {
-            [self subscribeToResource];
-        } else {
-            [self unsubscribeFromResource];
-        }
+        /*        if (subscribed) {
+         [self subscribeToResource];
+         } else {
+         [self unsubscribeFromResource];
+         }
+         */
     }
 }
-
-- (void)refreshChildren {
-}
-
-- (void)subscribeToResource {
-}
-
-- (void)unsubscribeFromResource {
-}
-
 
 - (void)manager:(ODNotifyingManager *)manager willStart:(ODOperation *)operation {
     if (operation.retrievalInfo == self.resource.retrievalInfo && !self.loadingRowPresent) {
@@ -235,7 +221,6 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     [self.tableView reloadData];
 }
 
-
 #pragma mark - Class Configuration
 
 /// Override this to customize child view controllers.
@@ -246,20 +231,23 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 - (NSString *)cellIDForResource:(ODResource *)child {
     switch (child.kind) {
         case ODResourceKindEntity: return ODEntityCellReuseID;
+            
         case ODResourceKindUnknown: if ([child.retrievalInfo isKindOfClass:[ODRetrievalOfProperty class]])
-                                            return ODPropertyCellReuseID;
-        case ODResourceKindCollection: return ODGenericCellReuseID;
+            return ODPropertyCellReuseID;
+            
+        case ODResourceKindCollection: return ODCollectionCellReuseID;
     }
 }
 
 - (NSDictionary *)cellClasses {
-    return @{ ODGenericCellReuseID : [ODResourceTableViewCell class],
-              ODLoadingCellReuseID : [ODLoadingTableViewCell class],
-              ODPropertyCellReuseID : [ODPropertyTableViewCell class],
-              ODEntityCellReuseID : [ODEntityTableViewCell class]
-              };
+    static NSDictionary *classes;
+    if (!classes) {
+        classes = @{ ODCollectionCellReuseID : [ODCollectionTableViewCell class],
+                     ODLoadingCellReuseID : [ODLoadingTableViewCell class],
+                     ODPropertyCellReuseID : [ODPropertyTableViewCell class],
+                     ODEntityCellReuseID : [ODEntityTableViewCell class] };
+    }
+    return classes;
 }
-
-
 
 @end
