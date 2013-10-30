@@ -11,20 +11,7 @@
 @class ODOperation;
 
 #import "ODManaging.h"
-
-/// Protocol to retrieve information about a resource within a context.
-/// Retrieval infomation is organized into hierarchy.
-@protocol ODRetrieving <NSObject>
-
-- (id<ODRetrieving>)parent;
-- (id)getFromHierarchy:(SEL)selector;
-
-- (NSURL *)URL;
-- (NSString *)shortDescription;
-
-- (void)handleOperation: (ODOperation *)operation;
-
-@end
+#import "ODRetrieving.h"
 
 /// Base class to retrieve information about a resource within a context.
 /// It is kind of abstract. Since the URL is nil and can't be changed, the only
@@ -72,7 +59,7 @@
 @end
 
 // Sometimes we can retrieve by adding brackets to the existing URL.
-// This is possible onlt is the parent conforms to a stricter protocol.
+// This is possible only if the parent conforms to a stricter protocol.
 @interface ODRetrievalByBrackets : ODRetrievalInfo
 @property id<ODRetrievingByPath> parent;
 - (NSString *)bracketPart;

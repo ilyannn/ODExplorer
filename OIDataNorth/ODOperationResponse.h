@@ -10,8 +10,6 @@
 /// used for HTTP requests.
 @interface ODOperationResponse : NSObject
 
-@property NSURLRequest *request;
-
 /// Should be left blank for non-HTTP requests.
 @property NSHTTPURLResponse *HTTPResponse;
 

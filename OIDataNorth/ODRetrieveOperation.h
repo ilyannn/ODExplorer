@@ -11,8 +11,7 @@
 @class ODEntity;
 
 @interface ODRetrieveOperation : ODJSONOperation
-
-+ (instancetype)operationWithResource:(ODEntity *)entity;
-@property ODEntity *resource;
-
+@property ODResourceKind responseKind;
+@property NSArray *responseList;
+@property BOOL indeterminateCount;
 @end

@@ -20,9 +20,6 @@
 
     if (self) {
         [self cleanOperationSteps];
-        [self addCompletionBlock:^(id operation) {
-            [operation cleanOperationSteps];
-        }];
     }
 
     return self;
@@ -47,6 +44,12 @@
 
 - (void)main {
     _error = [self performSteps:self.allSteps];
+    [self cleanOperationSteps];
+}
+
+- (void)cancel {
+    [self cleanOperationSteps];
+    [super cancel];
 }
 
 - (NSArray *)steps {
@@ -60,10 +63,10 @@
 - (NSError *)performSteps:(NSArray *)steps {
     __block NSError *error;
     [steps enumerateObjectsUsingBlock: ^(NSError * (^step)(), NSUInteger idx, BOOL *stop) {
-        *stop = [self isCancelled] || (error = step());
+        *stop = [self isCancelled] || !!(error = step());
     }];
 
-    return error;
+    return error ;
 }
 
 

@@ -19,9 +19,11 @@ typedef NS_ENUM(NSInteger, ODOperationErrorType) {
     kODOperationErrorBadEncoding,
     kODOperationErrorJSONNotOData,
     kODOperationErrorNonsenseData,
+    kODOperationErrorModelMismatch,
 };
 
 @interface ODOperationError : NSError
 + (instancetype)errorWithCode:(ODOperationErrorType)code userInfo:(NSDictionary *)userInfo;
 + (instancetype)errorInvalidWithReason:(NSString *)reason;
++ (instancetype)errorModelWithReason:(NSString *)reason;
 @end

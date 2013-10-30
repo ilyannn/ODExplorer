@@ -11,7 +11,6 @@
 #import "ODResourceViewController.h"
 #import "ODBaseRequestManager.h"
 #import "ODResourceList.h"
-#import "ODService.h"
 #import "ODCollection.h"
 
 #import "ODResourceViewControllerMenu.h"
@@ -32,13 +31,12 @@
 
     NSURL *URL = launchOptions[UIApplicationLaunchOptionsURLKey];
     if (URL) {
-        ODService *service = [ODService resourceWithURL:URL description:@"from parameters"];
+        ODCollection *service = [ODCollection resourceWithURL:URL description:@"from parameters"];
         [root.childrenArray addObject:service];
         [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
     }
     
-    
-    NSURL *localURL = [NSURL fileURLWithPath:@"~/Library/favorites.json"];
+//    NSURL *localURL = [NSURL fileURLWithPath:@"~/Library/favorites.json"];
     return YES;
 }
 

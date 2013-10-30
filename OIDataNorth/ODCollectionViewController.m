@@ -8,13 +8,15 @@
 
 #import "ODCollectionViewController.h"
 
-#import "ODCollectionCache.h"
+#import "CollectionProxy.h"
 #import "ODEntityTableViewCell.h"
 #import "ODEntityViewController.h"
 
-@implementation ODCollectionViewController {
-    ODCollectionCache *collectionCache;
-}
+#import "ODCountOperation.h"
+
+#import "ODResource+CollectionFields.h"
+
+@implementation ODCollectionViewController
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -26,9 +28,6 @@
     //     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(refreshChildren)];;
     
-    collectionCache = [ODCollectionCache new];
-    collectionCache.collection = self.resource;
-    
     [super viewDidLoad];
 }
 
@@ -39,7 +38,11 @@
 }
 
 - (void)refreshChildren {
-    [self.resource retrieveCount];
+    ODOperation *operation = [self.resource countCollectionOperation];
+    [operation addOperationStep:^NSError *(id operation) {
+        [self.tableView reloadData];
+        return nil;
+    }];
 }
 
 - (void)subscribeToResource {
@@ -52,7 +55,7 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (self.resource.count != [self.tableView numberOfRowsInSection:0]) {
+    if ([self.resource.childrenArray count] != [self.tableView numberOfRowsInSection:0]) {
 //        [self.tableView performSelectorOnMainThread:@selector(reloadData)
 //                                         withObject:nil waitUntilDone:NO
 //         ];
@@ -67,7 +70,7 @@
 #pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.resource.count + !!self.loadingRowPresent;
+    return [self.resource.childrenArray count] + !!self.loadingRowPresent;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,11 +80,11 @@
     }
 
     ODEntityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ODGenericCellReuseID forIndexPath:indexPath];
-    ODEntity *entity = collectionCache[indexPath.row - !!(self.loadingRowPresent && (indexPath.row > self.loadingRowIndex)) ];
+    ODEntity *entity = self.resource.childrenArray[indexPath.row - !!(self.loadingRowPresent && (indexPath.row > self.loadingRowIndex)) ];
     
     if (!self.headlineProperties) {
         self.headlineProperties = [NSMutableArray new];
-        NSString *guessed = [collectionCache guessMediumDescriptionProperty];
+        NSString *guessed = [self.resource guessMediumDescriptionProperty];
         if (guessed) [self.headlineProperties addObject:guessed];
     }
     

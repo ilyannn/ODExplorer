@@ -8,32 +8,22 @@
 
 #import "ODListEntitySetsOperation.h"
 #import "ODService.h"
-#import "ODEntitySet.h"
 #import "ODEntity.h"
 
 #import "ODOperationError+Parsing.h"
 #import "ODRetrievalInfo.h"
 
+#import "ODResource_Internal.h"
+
 @implementation ODListEntitySetsOperation
 
-+ (instancetype)operationWithResource:(ODService *)service {
-    return [super operationWithResource:service];
-}
-
-- (NSError *)processJSONResponse:(id)responseJSON {
+- (NSError *)processJSONResponseV3:(id)responseJSON {
     NSArray *responseArray = responseJSON;
 
     if ([responseArray isKindOfClass:[NSDictionary class]] && responseJSON[@"d"]) {
         responseArray = responseJSON[@"d"];
     }
 
-    if ([responseArray isKindOfClass:[NSDictionary class]] && [(NSDictionary *)responseArray objectForKey:@"EntitySets"]) {
-        responseArray = [(NSDictionary *)responseArray objectForKey:@"EntitySets"];
-    }
-
-    if ([responseArray isKindOfClass:[NSDictionary class]] && responseJSON[@"value"]) {
-        responseArray = responseJSON[@"value"];
-    }
 
     if ([responseArray isKindOfClass:[NSDictionary class]] && responseJSON[@"data"]) {
         responseArray = responseJSON[@"data"];
@@ -59,11 +49,11 @@
         
         if ([name isKindOfClass:NSString.class] && [uri isKindOfClass:NSString.class]) {
             ODRetrievalOfEntitySet * info = [ODRetrievalOfEntitySet new];
-            info.parent = self.resource.retrievalInfo;
+            info.parent = self.retrievalInfo;
             info.shortDescription = name;
             info.entitySetPath = name;
             
-            ODEntitySet *entitySet = [ODEntitySet new];
+            ODCollection *entitySet = [ODCollection new];
             entitySet.retrievalInfo = info;
             entitySet.entityType = [ODEntity entityType];
 
@@ -71,7 +61,6 @@
         }
     }];
     
-    self.resource.entitySets = entitySets;
     
     return nil;
 }

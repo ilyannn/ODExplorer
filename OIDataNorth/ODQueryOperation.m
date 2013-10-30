@@ -24,8 +24,9 @@ NSString *const ODQueryOrderByString = @"$orderby";
 
 @implementation ODQueryOperation
 
-+ (instancetype)operationWithResource:(ODCollection *)collection {
-    return [super operationWithResource:collection];
++ (NSError *)errorForKind:(ODResourceKind)kind {
+    ODAssertOperation(kind != ODResourceKindCollection, @"You can't query an entity.");
+    return nil;
 }
 
 - (NSString *)filter {
@@ -94,10 +95,10 @@ NSString *const ODQueryOrderByString = @"$orderby";
     [values enumerateObjectsUsingBlock: ^(NSDictionary *dict, NSUInteger index, BOOL *stop) {
         if ([dict isKindOfClass:NSDictionary.class]) {
             ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
-            retrieval.parent = self.resource.retrievalInfo;
+            retrieval.parent = self.retrievalInfo;
             retrieval.index = self.skip + index + 1;
 
-            ODEntity *entity = [[self.resource entityType] deserializeEntityFrom:dict withInfo:retrieval];
+            ODEntity *entity = [[ODEntity entityType] deserializeEntityFrom:dict withInfo:retrieval];
             [list addObject:entity];
         }
     }];

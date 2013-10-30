@@ -6,15 +6,18 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODEntity;
+@class ODEntity, ODCollection;
 @protocol ODRetrieving;
 
 @interface ODEntityType : NSObject
+
+@property NSString *className;
 
 - (ODEntity *)entityWithInfo:(id<ODRetrieving>)info;
 - (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict
                            withInfo:(id<ODRetrieving>)info;
 
-@property NSString *className;
+- (ODCollection *)deserializeCollectionFromArray:(NSArray *)collectionArray
+                                        withInfo:(id<ODRetrieving>)info;
 
 @end

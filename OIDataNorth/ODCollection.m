@@ -12,10 +12,9 @@
 #import "ODCountOperation.h"
 
 #import "ODEntityRetrieval.h"
+#import "ODResource_Internal.h"
 
-@implementation ODCollection {
-    NSString *_name;
-}
+@implementation ODCollection 
 
 // This is a designated initializer.
 - (id)init {
@@ -40,40 +39,6 @@
     return self;
 }
 
-- (ODEntity *)objectForKey:(id)keys {
-    //    ODEntity *entry = [[ODEntity alloc] initWithParent:self];
-    //    return entry;
-    return nil;
-}
-
-
-- (void)countAndPerform:(void (^)(NSUInteger))block {
-    ODCountOperation *operation = [ODCountOperation new];
-    operation.resource = self;
-    if (block) {
-        [operation addOperationStep:^NSError *(ODCountOperation *operation) {
-            block(operation.responseCount);
-            return nil;
-        }];
-    }
-    [operation start];
-}
-
-- (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *))block {
-    ODQueryOperation *operation = [ODQueryOperation new];
-    operation.resource = self;
-    operation.top = top;
-    operation.skip = skip;
-    operation.expand = expanding;
-    if (block) {
-        [operation addOperationStep:^NSError *(ODQueryOperation *operation) {
-            block(operation.responseResults);
-            return nil;
-        }];
-    }
-    [operation start];
-}
-
 - (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
     ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
     retrieval.parent = self.retrievalInfo;
@@ -82,11 +47,10 @@
     return [self.entityType entityWithInfo:retrieval];
 }
 
-- (void)retrieveCount {
-    ODCountOperation *operation = [ODCountOperation new];
-    operation.resource = self;
+- (void)retrieveCount { 
+    ODCountOperation *operation = [ODCountOperation operationWithResource: self];
     [operation addOperationStep:^NSError *(ODCountOperation *operation) {
-        self.count = operation.responseCount;
+        self.resourceValue = @(operation.responseCount);
         return nil;
     }];
 

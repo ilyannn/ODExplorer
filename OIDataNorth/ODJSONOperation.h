@@ -10,7 +10,8 @@
 
 @interface ODJSONOperation : ODOperation
 
+@property id JSONResponse;
 /// This method is called once response has been successfully read as JSON.
-- (NSError *)processJSONResponse:(id)responseJSON;
+- (NSError *)processJSONResponse;
 
 @end

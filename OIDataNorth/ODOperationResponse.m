@@ -11,7 +11,6 @@
 
 @implementation ODOperationResponse
 
-
 - (NSInteger) majorProtocolVersion {
     NSString *protocolVersion = self.HTTPResponse.allHeaderFields[@"DataServiceVersion"];
     return [protocolVersion integerValue];

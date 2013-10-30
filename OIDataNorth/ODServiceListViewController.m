@@ -11,7 +11,7 @@
 @implementation ODServiceListViewController
 
 - (void)refreshChildren {
-    self.childIdentifiers = self.resource.childrenArray;
+    [self.resource retrieve];
 }
 
 - (void)subscribeToResource {

@@ -8,29 +8,31 @@
 
 #import "ODResource.h"
 
+@class ODCountOperation;
+
+/// Public information about properties and methods of ODResource availible only for collections.
 @protocol ODCollectionAccessing <ODResourceAccessing>
+- (NSError *)updateFromJSONArray:(NSArray *)array;
+
+- (void)countCollection;
+- (ODCountOperation *)countCollectionOperation;
+
+- (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index;
+
+// - (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *items))block;
+
 
 @end
 
 @class ODEntity, ODEntityType;
 
+/// A class that works essentially as a hint to compiler.
 @interface ODCollection : ODResource <ODCollectionAccessing>
 
-@property (nonatomic) id<ODRetrievingByPath> retrievalInfo;
 
-@property NSUInteger count;
-- (void)retrieveCount;
-
-- (ODEntity *)objectForKey:(id)objectKey;
-- (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index;
-
-- (void)countAndPerform:(void (^)(NSUInteger count))block;
-- (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *items))block
-;
-
-
-+ (instancetype)collectionForProperty:(NSString *)propertyName
+/* + (instancetype)collectionForProperty:(NSString *)propertyName
                            entityType:(ODEntityType *)entityType
                              inEntity:(ODEntity *)entity;
+*/
 
 @end

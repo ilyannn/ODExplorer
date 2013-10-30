@@ -23,7 +23,7 @@ extern NSString *const ODCollectionCellReuseID;
 + (ODResourceViewController *)controllerForResource:(ODResource *)resourc;
 
 @property (readwrite, nonatomic) ODResource *resource;
-@property (readwrite, nonatomic) NSArray *childIdentifiers;
+//@property (readwrite, nonatomic) NSArray *childIdentifiers;
 
 @property (weak) UIBarButtonItem *actionButton;
 
@@ -39,9 +39,6 @@ extern NSString *const ODCollectionCellReuseID;
 // and continue retrieving them further.
 - (void)subscribeToResource;
 - (void)unsubscribeFromResource;
-
-// TEMPorary
-- (void)update;
 
 @end
 

@@ -8,23 +8,16 @@
 
 #import "ODEntity.h"
 #import "ODCollection.h"
+#import "ODResource_Internal.h"
+
 #import "ODEntityRetrieval.h"
 #import "ODRetrieveOperation.h"
 #import "ODActionOperation.h"
 
 #import "NSData+Base64.h"
 
-@interface ODEntity ()
-@property (nonatomic) NSMutableDictionary *localProperties;
-@property (nonatomic) NSMutableDictionary *remoteProperties;
-// @property (nonatomic) NSMutableDictionary *navigationProperties;
-@end
 
-@implementation ODEntity {
-    NSURL *_knownURL;
-    NSMutableDictionary *_localProperties;
-    NSMutableDictionary *_remoteProperties;
-}
+@implementation ODEntity
 
 // This is a designated initializer.
 - (id)init {
@@ -35,25 +28,11 @@
     return self;
 }
 
-@synthesize localProperties = _localProperties;
-@synthesize remoteProperties = _remoteProperties;
-
 - (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id <ODRetrieving> )parentInfo {
     ODRetrievalInfo *info;
     return [self initWithRetrievalInfo:info];
 }
 
-- (NSURL *)URL {
-    if (_knownURL) {
-        return _knownURL;
-    }
-    
-    if (self.retrievalInfo) {
-        return [self.retrievalInfo URL];
-    }
-    
-    return nil;
-}
 
 + (ODEntityType *)entityType {
     //    static
@@ -69,65 +48,13 @@
     return [self.class entityType];
 }
 
-- (id)initFromDict:(NSDictionary *)dict {
-    if (self = [self init]) {
-        [self updateFromDict:dict];
-    }
-    return self;
-}
-
-- (void)updateFromDict:(NSDictionary *)dict {
-    _remoteProperties = [NSMutableDictionary new];
-    _navigationProperties = [NSMutableDictionary new];
-    [dict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-        if ([obj isKindOfClass:NSDictionary.class]) {
-            ODEntity *entity = [[ODEntity alloc] initFromDict:obj];
-            ODRetrievalOfProperty *retrieval = [ODRetrievalOfProperty new];
-            retrieval.parent = self.retrievalInfo;
-            retrieval.propertyName = key;
-            entity.retrievalInfo = retrieval;
-            _navigationProperties[key] = entity;
-        } else if ([obj isKindOfClass:[NSNull class]]) {
-            // "convert" to nil
-        } else if ([obj isKindOfClass:[NSString class]]) {
-            // Is this a date?
-            if ([obj length] < 1000) {
-                id value = nil;
-                if (!!(value = [self.dateTimeFormatterV2 dateFromString:obj])
-                    || !!(value = [self.dateTimeFormatterV3 dateFromString:obj])
-                    ||(!!(value = [NSURL URLWithString:obj]) && !!([(NSURL *)value scheme].length))
-                ) {
-                        obj = value;
-                }
-            } else {
-                NSData *data  = [NSData dataFromBase64String:obj];
-                if (data) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    obj = image ? image : data;
-                }
-            }
-            _remoteProperties[key] = obj;
-        } else {
-            _remoteProperties[key] = obj;
-        }
-    }];
-    
-    _localProperties = [_remoteProperties mutableCopy];
-}
-
 - (id)valueForKey:(NSString *)key {
     id value = self.localProperties[key];
     if (value) return value;
-    if (self.retrievedOn) return nil;
+//    if (self.retrievedOn) return nil;
     
     //    [[self.retrievalInfo readManager] retrieveProperty:key ofEntity:self];
     return self.localProperties[key];
-}
-
-- (void)retrieve {
-    ODRetrieveOperation *operation = [ODRetrieveOperation new];
-    operation.resource = self;
-    [self handleOperation:operation];
 }
 
 - (id)navigationProperty:(NSString *)name propertyType:(ODEntityType *)entityType {
@@ -143,22 +70,18 @@
     return [entityType entityWithInfo:retrievalInfo];
 }
 
-- (id)navigationCollection:(NSString *)name entityType:(ODEntityType *)entityType {
+/*- (id)navigationCollection:(NSString *)name entityType:(ODEntityType *)entityType {
     return [ODCollection collectionForProperty:name entityType:entityType inEntity:self];
 }
+*/
 
-- (NSString *)longDescription {
-    return [@[[self description], [self.localProperties description]]
-            componentsJoinedByString: @"\n"];
-}
 
 - (void)performAction:(NSString *)actionName {
     [self performAction:actionName withParameters:nil];
 }
 
 - (void)performAction:(NSString *)actionName withParameters:(NSDictionary *)params {
-    ODActionOperation *operation = [ODActionOperation new];
-    operation.resource = self;
+    ODActionOperation *operation = [ODActionOperation operationWithResource:self];
     operation.parameters = [params mutableCopy];
     operation.actionName = actionName;
     

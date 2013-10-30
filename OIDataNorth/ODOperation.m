@@ -13,6 +13,14 @@ NSString *const ODHTTPVerbGet = @"GET";
 
 @implementation ODOperation
 
++ (NSString *)minODataVersionString {
+    return [NSString stringWithFormat:@"%d.0", MIN_ODATA_MAJOR_VERSION];
+}
+
++ (NSString *)maxODataVersionString {
+    return [NSString stringWithFormat:@"%d.0", MAX_ODATA_MAJOR_VERSION];
+}
+
 // Redefine this in subclasses.
 - (NSString *)method {
     return ODHTTPVerbGet;
@@ -26,11 +34,16 @@ NSString *const ODHTTPVerbGet = @"GET";
     return self;
 }
 
++ (NSError *)errorForKind:(ODResourceKind)kind ODErrorAbstractOp
+
 + (instancetype)operationWithResource:(ODResource *)resource {
+    if ([self errorForKind:resource.kind]) return nil;
+
     ODOperation *operation = [self new];
-    operation.resource = resource;
+    operation.retrievalInfo = resource.retrievalInfo;
     return operation;
 }
+
 
 - (AFHTTPRequestSerializer *)requestSerializer {
     static AFJSONRequestSerializer *_sharedRequestSerializer;
@@ -45,14 +58,15 @@ NSString *const ODHTTPVerbGet = @"GET";
 }
 
 - (NSURL *)URL {
-    return self.resource.URL;
+    return [self.retrievalInfo URL];
 }
 
-- (NSDictionary *)addedHTTPHeaders {
-    return nil;
+- (void)changeHTTPHeaders:(NSMutableDictionary *)headers {
+    headers[@"MinDataServiceVersion"] = [self.class minODataVersionString];
+    headers[@"MaxDataServiceVersion"] = [self.class maxODataVersionString];
 }
 
-- (NSError *)formRequest:(NSURLRequest **)request {
+- (NSError *)prepareRequest {
     NSMutableURLRequest *mutableRequest = [self.requestSerializer
                                            requestWithMethod:[self method]
                                            URLString:self.URL.absoluteString
@@ -63,11 +77,12 @@ NSString *const ODHTTPVerbGet = @"GET";
         return [ODOperationError errorWithCode:kODOperationErrorBadRequest userInfo:nil];
     }
     
-    [[self addedHTTPHeaders] enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-        [mutableRequest addValue:obj forHTTPHeaderField:key];
-    }];
+    NSMutableDictionary *allHeaders = [[mutableRequest allHTTPHeaderFields] mutableCopy];
     
-    *request = [mutableRequest copy];
+    [self changeHTTPHeaders:allHeaders];
+    mutableRequest.allHTTPHeaderFields = allHeaders;
+    
+    self.request = [mutableRequest copy];
     return nil;
 }
 
@@ -80,31 +95,31 @@ NSString *const ODHTTPVerbGet = @"GET";
 }
 
 // Marshalling the result of sending an asynchronous request into
-- (NSError *)performRequest:(NSURLRequest *)request intoResponse:(ODOperationResponse **)response {
+- (NSError *)responseFromRequest {
     NSError *URLError;
     NSURLResponse *URLResponse;
     
     //    NSLog(@"%@: %@", NSStringFromClass(self.class), request);
     
-    NSData *data = [NSURLConnection sendSynchronousRequest:request
+    NSData *data = [NSURLConnection sendSynchronousRequest:self.request
                                          returningResponse:&URLResponse
                                                      error:&URLError];
     if (URLError) {
-        return /*[ODOperationError errorWithCode:kODOperationErrorCommunication
-                userInfo:@{ NSUnderlyingErrorKey : URLError }];*/URLError;
+        return URLError;
+        /*[ODOperationError errorWithCode:kODOperationErrorCommunication
+                userInfo:@{ NSUnderlyingErrorKey : URLError }]; // wrap communication errors? */
     }
     
-    *response = [ODOperationResponse new];
-    (*response).request = request;
-    (*response).data = data;
+    self.response = [ODOperationResponse new];
+    self.response.data = data;
     
     if ([URLResponse isKindOfClass:[NSHTTPURLResponse class]])
-        (*response).HTTPResponse = (NSHTTPURLResponse *)URLResponse;
+        self.response.HTTPResponse = (NSHTTPURLResponse *)URLResponse;
     
     return nil;
 }
 
-- (NSError *)processResponse:(ODOperationResponse *)response {
+- (NSError *)processResponse {
     return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation userInfo:nil];
 }
 
@@ -113,16 +128,13 @@ NSString *const ODHTTPVerbGet = @"GET";
 }
 
 - (NSArray *)steps {
-    __block NSURLRequest *request;
-    __block ODOperationResponse *response;
-    
-    return  @[   ^{ return [self validate]; },
-                 ^{ return [self formRequest:&request]; },
-                 ^{ return [self performRequest:request intoResponse:&response]; },
-                 ^{ return [response statusCodeError]; },
-                 ^{ return [self processResponse:response]; },
-                 ];
-    
+    __weak ODOperation *self_ = self;
+    return @[ ^{ return [self_ validate]; },
+               ^{ return [self_ prepareRequest]; },
+               ^{ return [self_ responseFromRequest]; },
+               ^{ return [self_.response statusCodeError]; },
+               ^{ return [self_ processResponse]; },
+               ];
 }
 
 @end

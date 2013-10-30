@@ -57,8 +57,6 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
                                                                             action:@selector(displayActionMenu)];
     self.navigationItem.rightBarButtonItem = button;
     self.actionButton = button;
-    
-    [self refreshChildren];
 }
 
 - (NSDictionary *)cellClasses {
@@ -98,13 +96,7 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
         BOOL wasSubscribed = self.subscribed;
         self.subscribed = NO;
         
-        /*        ODRetrievalInfo *info = [ODRetrievalInfo new ];
-         info.parent = resource.retrievalInfo;
-         [info
-         
-         _resource = [ODResource resourceWithInfo:info];
-         */
-        _resource = resource;
+        _resource = [resource autoretrieve];
         [(ODRetrievalInfo *)(_resource.retrievalInfo)addManager :[[ODNotifyingManager alloc] initWithDelegate:self]];
         
         // this should automatically start refresh as well
@@ -137,7 +129,7 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.childIdentifiers.count + !!self.loadingRowPresent;
+    return [self.resource.childrenArray count] + !!self.loadingRowPresent;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -167,7 +159,7 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 - (id)childIDForIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
     row -= self.loadingRowPresent && (row > self.loadingRowIndex);
-    return self.childIdentifiers[row];
+    return self.resource.childrenArray[row];
 }
 
 - (NSString *)cellReuseIDForChild:(id)childID {
@@ -195,13 +187,13 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 }
 
 - (void)manager:(ODNotifyingManager *)manager willStart:(ODOperation *)operation {
-    if (operation.resource == self.resource && !self.loadingRowPresent) {
+    if (operation.retrievalInfo == self.resource.retrievalInfo && !self.loadingRowPresent) {
         self.loadingRowPresent = YES;
     }
 }
 
 - (void)manager:(ODNotifyingManager *)manager didFinish:(ODOperation *)operation {
-    if (operation.resource == self.resource && self.loadingRowPresent) {
+    if (operation.retrievalInfo == self.resource.retrievalInfo && self.loadingRowPresent) {
         self.loadingRowPresent = NO;
     }
     [self update];
@@ -212,6 +204,7 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 }
 
 - (void)update {
+    [self.tableView reloadData];
 }
 
 @end

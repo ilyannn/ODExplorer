@@ -7,13 +7,3 @@
 //
 
 #import "ODResource.h"
-
-@class ODCollection;
-
-// Service is a parent OData resource.
-
-@interface ODService : ODResource
-
-@property NSDictionary *entitySets;
-
-@end

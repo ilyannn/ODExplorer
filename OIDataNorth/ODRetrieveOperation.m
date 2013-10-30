@@ -8,20 +8,37 @@
 
 #import "ODRetrieveOperation.h"
 #import "ODEntity.h"
+#import "ODCollection.h"
 
 #import "ODOperationError+Parsing.h"
 
 @implementation ODRetrieveOperation
 
-+ (instancetype)operationWithResource:(ODEntity *)entity {
-    return [super operationWithResource:entity];
++ (NSError *)errorForKind:(ODResourceKind)kind {
+    return nil;
 }
 
-- (NSError *)processJSONResponse:(id)response {
-    ODAssertOData(response, nil);
+- (NSError *)processJSONResponseV3 {
+    id response = self.JSONResponse;
+    ODAssertOData(response, @{});
     ODAssertODataClass(response, NSDictionary);
+
+    //    if ([responseArray isKindOfClass:[NSDictionary class]] && [(NSDictionary *)responseArray objectForKey:@"EntitySets"]) {
+    //        responseArray = [(NSDictionary *)responseArray objectForKey:@"EntitySets"];
+    //    }
     
-    [self.resource updateFromDict:response];
+    self.indeterminateCount = !!response[@"odata.nextLink"];
+
+    if (response[@"value"] && [response[@"value"] isKindOfClass:[NSArray class]]) {
+        self.responseKind = ODResourceKindCollection;
+        response = response[@"value"];
+        ODAssertODataClass(response, NSArray);
+        self.responseList = response;
+    } else {
+        self.responseKind = ODResourceKindEntity;
+        ODAssertODataClass(response, NSDictionary);
+        self.responseList = @[response];
+    }
     return nil;
 }
 

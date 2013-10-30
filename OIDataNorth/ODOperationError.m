@@ -22,7 +22,13 @@ NSString * const ODOperationErrorTable = @"ODOperationError";
 + (instancetype)errorInvalidWithReason:(NSString *)reason {
     NSString *value = NSLocalizedStringFromTable(reason, ODOperationErrorTable, nil);
     return [self errorWithCode:kODOperationErrorInvalid
-                      userInfo:@{NSLocalizedFailureReasonErrorKey: value} ];
+                      userInfo:!value ? nil : @{NSLocalizedFailureReasonErrorKey: value} ];
+}
+
++ (instancetype)errorModelWithReason:(NSString *)reason {
+    NSString *value = NSLocalizedStringFromTable(reason, ODOperationErrorTable, nil);
+    return [self errorWithCode:kODOperationErrorModelMismatch
+                      userInfo:!value ? nil : @{NSLocalizedFailureReasonErrorKey: value} ];
 }
 
 - (NSString *)localizedDescription {

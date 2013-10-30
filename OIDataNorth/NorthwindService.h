@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODService.h"
-#import "ODEntitySet.h"
+#import "ODCollection.h"
 
-@interface NorthwindService : ODService
-@property (readonly) ODEntitySet *Products, *Customers, *Employees;
+@interface NorthwindService : ODCollection
+// @property (readonly) ODEntitySet *Products, *Customers, *Employees;
 
 @end

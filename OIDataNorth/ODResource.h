@@ -7,9 +7,7 @@
 //
 
 #import "ODManaging.h"
-
-#import "ODRetrievalInfo.h"
-#import "ODEntityType.h"
+#import "ODRetrieving.h"
 
 typedef NS_ENUM (NSInteger, ODResourceKind) {
     ODResourceKindUnknown = 0,
@@ -32,35 +30,26 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 // example, an object of |ODEntity| class will under no circumstances behave as a collection. Retrieving an object will
 // set it the first time, but always validate against kind.
 
-// An ODResource is using memory for the following infoation --
-//   (1) how to get an object (|retrievalInfo|)
-//   (2) type - whether it's an entity or a collection and what type is the object
-//   (3) values - retrieved date, properties of an entity, collection count
-//   (4) cached children, if they are strongly held by someone else
-// A resource can't exist without information about its retrieval, so it's not possible to get
-// rid of (1). It's trivial to get rid of (4) by not keeping the returned pointer.
-// One can drop information (3) about the resource by calling -clean. It's not possible to
-// get rid of (2) except by creating a new object.
 
 
 @class ODResource, ODCollection, ODEntity, ODEntitySet;
+@class ODEntityType;
+@class ODRetrieveOperation;
 
-
+/// Public information about properties and methods of ODResource that are common
+/// between entities and collections.
 @protocol ODResourceAccessing <NSObject>
-
-@property (readonly) id dateTimeFormatterV2;
-@property (readonly) id dateTimeFormatterV3;
 
 #pragma mark - (1) how to get a resource
 
 // We can create a resource object by different means.
-@property (nonatomic) id<ODRetrieving> retrievalInfo;
+- (id<ODRetrieving>) retrievalInfo;
 - (instancetype)initWithRetrievalInfo:(id<ODRetrieving>)info;
 
 + (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
 + (instancetype)resourceWithDict:(id)dict;
 + (instancetype)resourceWithURLString:(NSString *)URLString;
-+ (instancetype)resourceWithInfo:(ODRetrievalInfo *)info;
++ (instancetype)resourceWithInfo:(id<ODRetrieving>)info;
 
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;
@@ -76,26 +65,34 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 #pragma mark - (3) and (4) values of resource and its children
 
-// This property will be re-computed every time if not stored strongly.
+// @property (readonly) NSDate *retrievedOn;
+
 // The result should respond to |-count| and |-objectAtIndexedSubscript:|.
-// For example, for an entity, this will be a real NSArray, but for a collection a proxy class
+// For example, for an entity, this will be a real NSArray of properties, but for a collection a proxy class
 // that returns entities by those methods.
-@property (readonly) NSDate *retrievedOn;
-@property __weak id childrenArray;
+
+/// It's non-nil iff resource has been retrieved.
+/// = Count for collection, plain value for property.
+@property (readonly) id resourceValue;
+
+// Until at least some info about an entity is retrieved, this is nil.
+@property (readonly, atomic) id childrenArray;
 
 #pragma mark - (5) things that can be done with a resource
 
-/// Generic handler.
+/// Generic handler for operations.
 - (void)handleOperation:(ODOperation *)operation;
 
 /// Retrieving is the most important action for a resource.
 - (void)retrieve;
+- (ODRetrieveOperation *)retrieveOperation;
 
-/// This is used to retrieve a resource once, but not more.
+/// This is used to retrieve a resource once, but not more then once.
+@property BOOL automaticallyRetrieve;
 - (instancetype)autoretrieve;
 
 /// This erases known data, but keeps type information.
-- (void)clean; // forget, clean, drop, unretrieve, nullify, break, free, unload
+- (void)clean; // forget, clean, drop, unretrieve, nullify, break, free, unload?
 
 /// Short description incldes only human-readable name, ideally 10-30 characters in length.
 - (NSString *)shortDescription;
@@ -109,7 +106,19 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 @end
 
 
+
 /// This class implements all of functionality for resources, but declares only the base part.
+
+/// An ODResource is using memory for the following infoation --
+///   (1) how to get an object (-retrievalInfo)
+///   (2) type - whether it's an entity or a collection and what type is the object
+///   (3) values - retrieved date, properties of an entity, collection count
+///   (4) cached children, if they are strongly held by someone else
+/// A resource can't exist without information about its retrieval, so it's not possible to get
+/// rid of (1). It's trivial to get rid of (4) by not keeping the returned pointer.
+/// One can drop information (3) about the resource by calling -clean. It's not possible to
+/// get rid of (2) except by creating a new object.
+
 @interface ODResource : NSObject <ODResourceAccessing>
 
 // Use +new or +unique initializer in subclasses if you defined +resourceDict.
@@ -121,6 +130,10 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 // Values of resources are weakly held in a global table. The key is [self resourceDict].
 + (instancetype)uniqueWithDict:(NSDictionary *)dict;
 
-@property (readonly) NSDate *retrievedOn;
+@property BOOL automaticallyRetrieve;
+@property (nonatomic) ODResourceKind kind;
+@property (nonatomic) ODEntityType *entityType;
 
 @end
+
+

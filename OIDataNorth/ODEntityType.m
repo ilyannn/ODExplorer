@@ -8,6 +8,9 @@
 
 #import "ODEntityType.h"
 #import "ODEntity.h"
+#import "ODCollection.h"
+#import "ODResource+Entity.h"
+#import "ODResource+Collection.h"
 
 @implementation ODEntityType
 
@@ -18,8 +21,15 @@
 - (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict
                          withInfo:(id<ODRetrieving>)info {
     ODEntity *entity = [self entityWithInfo:info];
-    [entity updateFromDict:entityDict];
-    return entity;
+    entity.entityType = self;
+    return [entity parseFromJSONDictionary:entityDict] ? nil : entity;
+}
+
+- (ODCollection *)deserializeCollectionFromArray:(NSArray *)collectionArray
+                           withInfo:(id<ODRetrieving>)info {
+    ODCollection *collection = [ODCollection resourceWithInfo:info];
+    collection.entityType = self;
+    return [collection parseFromJSONArray:collectionArray] ? nil : collection;
 }
 
 @end

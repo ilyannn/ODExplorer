@@ -12,9 +12,6 @@
 
 @interface ODQueryOperation : ODJSONOperation
 
-+ (instancetype)operationWithResource:(ODCollection *)collection;
-@property ODCollection *resource;
-
 - (NSString *)filter;
 - (void)setFilter:(id)filterObject;
 

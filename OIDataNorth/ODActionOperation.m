@@ -15,8 +15,9 @@ NSString *const ODHTTPVerbPost = @"POST";
 
 @implementation ODActionOperation
 
-+ (instancetype)operationWithResource:(ODEntity *)entity {
-    return [super operationWithResource:entity];
++ (NSError *)errorForKind:(ODResourceKind)kind {
+    ODAssertOperation(kind != ODResourceKindCollection, @"You can't perform action on a collection.");
+    return nil;
 }
 
 - (NSString *)method {
@@ -27,12 +28,7 @@ NSString *const ODHTTPVerbPost = @"POST";
     return [[super URL] URLByAppendingPathComponent:self.actionName];
 }
 
-- (NSError *)processJSONResponse:(id)responseJSON {
-    return nil;
-}
-
-- (NSError *)validate {
-    ODAssertOperation(self.resource.kind != ODResourceKindCollection, @"You can't perform action on a collection.");
+- (NSError *)processJSONResponseV3:(id)responseJSON {
     return nil;
 }
 

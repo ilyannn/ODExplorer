@@ -7,6 +7,10 @@
 //
 
 #import "ODResourceList.h"
+#import "ODResource_Internal.h"
+
+#import "ODRetrievalInfo.h"
+
 #import "NorthwindService.h"
 
 @implementation ODResourceList
@@ -30,18 +34,18 @@
     info.shortDescription = @"OData Example";
 //    info.parent = self.retrievalInfo;
 
-    ODService *exampleService = [ODService resourceWithInfo:info];
+    ODCollection *exampleService = [ODCollection resourceWithInfo:info];
 
     self.childrenArray = [NSMutableArray arrayWithObjects:exampleService,
                           
                            [NorthwindService unique],
-                          
-                           [ODEntitySet resourceWithDict: @{
+
+                           [ODCollection resourceWithDict: @{
                                                             @"uri":  @"http://packages.nuget.org/v1/FeedService.svc/Packages",
                                                             @"name": @"NuGet Packages"
                                                           }],
-                          
-                           [ODService resourceWithDict:   @{
+ 
+                           [ODCollection resourceWithDict:   @{
                                                             @"uri":  @"http://tv.telerik.com/services/odata.svc/",
                                                             @"name": @"Telerik"
                                                           }],
@@ -66,5 +70,8 @@
     [self.childrenArray removeObject:resource];
 }
 
+- (void)retrieve {
+    
+}
 
 @end

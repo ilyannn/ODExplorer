@@ -15,11 +15,18 @@ return [ODOperationError errorWithCode:kODOperationErrorJSONNotOData userInfo:(u
 // @param x condition to be tested
 // @param desc will be localized
 #define ODAssertOperation(x, reason) { if (!(x)) \
-return [ODOperationError errorInvalidWithReason:reason]; };
+    return [ODOperationError errorInvalidWithReason:reason]; };
 
 #define ODAssertODataClass(x, cls) ODAssertOData([(x) isKindOfClass:cls.class], \
-(@{@"object": (x), @"expectedClass": NSStringFromClass(cls.class)}))
+    (@{@"object": (x), NSLocalizedFailureReasonErrorKey: @"The parsed JSON's class was unexpected", \
+@"expectedClass": NSStringFromClass(cls.class)}))
 
 #define ODErrorAbstractOp    { return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation \
-userInfo:@{@"selector":NSStringFromSelector(_cmd), @"class":NSStringFromClass(self.class)}]; }
+    userInfo:@{@"selector":NSStringFromSelector(_cmd), @"class":NSStringFromClass(self.class)}]; }
 
+
+#define ODErrorModel(x, reason)  { if (!(x)) \
+    return [ODOperationError errorModelWithReason:reason]; };
+
+#define ODAssertEntity(x) { ODErrorModel(x.kind != ODResourceKindCollection, @"Model requires an entity here");  }
+#define ODAssertCollection(x) { ODErrorModel(x.kind != ODResourceKindEntity, @"Model requires a collection here"); }

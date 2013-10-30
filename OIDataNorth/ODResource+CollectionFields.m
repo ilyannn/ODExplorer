@@ -1,86 +1,23 @@
 //
-//  ODCachedCollection.m
+//  ODResource+CollectionFields.m
 //  OIDataNorth
 //
-//  Created by ilya on 10/21/13.
+//  Created by ilya on 10/30/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODCollectionCache.h"
-#import "ODCollection.h"
-#import "ODEntityType.h"
-#import "ODEntityRetrieval.h"
-#import "ODCountOperation.h"
+#import "ODResource+CollectionFields.h"
+
 #import "ODEntity.h"
 
-@interface ODCollectionCache ()
-@property NSUInteger count;
-@end
-
-@implementation ODCollectionCache {
-    NSMutableDictionary *_objects;
-    NSUInteger _count;
-    BOOL retrieving;
-}
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        _objects = [NSMutableDictionary new];
-    }
-    return self;
-}
-
-- (NSUInteger)batchSize {
-    return 20;
-}
-
-- (void)performCount {
-    return [self.collection countAndPerform: ^(NSUInteger count) {
-        self.count = count;
-    }];
-}
-
-- (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
-    ODEntity *entity = _objects[@(index)];
-    if ([[NSNull null] isEqual:entity]) return nil;
-    if (entity) return entity;
-    
-    ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
-    retrieval.parent = self.collection.retrievalInfo;
-    retrieval.index = index;
-
-    entity = [self.collection.entityType entityWithInfo:retrieval];
-    
-    __block NSArray *results;
-    
-    [self.collection list:self.batchSize from:index expanding:self.expand perform: ^(NSArray *items) {
-        results = items;
-    }];
-    
-    [results enumerateObjectsUsingBlock: ^(ODEntity *obj, NSUInteger resultIndex, BOOL *stop) {
-        _objects[@(index + resultIndex)] = obj;
-    }];
-    
-    NSInteger start = !results ? 0 : results.count;
-    //    NSInteger empty = self.batchSize - start;
-    NSInteger end = index + self.batchSize;
-    
-    for (NSUInteger emptyIndex = index + start; emptyIndex < end; emptyIndex++) {
-        _objects[@(emptyIndex)] = [NSNull null];
-    }
-    
-    return results.firstObject;
-    
-    //return entity;
-}
+@implementation ODResource (CollectionFields)
 
 - (NSString *)guessMediumDescriptionProperty {
     // Guess by assigning a weight to every property.
     NSMutableDictionary *propertyWeight = [NSMutableDictionary new];
     NSMutableDictionary *propertyValues = [NSMutableDictionary new];
-    [_objects enumerateKeysAndObjectsUsingBlock: ^(NSString *key, ODEntity *entity, BOOL *stop) {
-        if ([entity isKindOfClass:[ODEntity class]]) {
+    [[self.childrenArray allObjects] enumerateObjectsUsingBlock:^(ODEntity *entity, NSUInteger idx, BOOL *stop) {
+        if ([entity isKindOfClass:[ODResource class]] && entity.kind == ODResourceKindEntity) {
             [entity.localProperties enumerateKeysAndObjectsUsingBlock: ^(NSString *key, id obj, BOOL *stop) {
                 float newWeight = [self weightAsMediumDescriptionOfValue:obj] + [self weightAsMediumDescriptionOfKey:key];
                 float oldWeight = [propertyWeight[key] floatValue];
@@ -161,10 +98,10 @@
     
     if ([propertyName rangeOfString:@"Name"].location != NSNotFound) weight += 0.5;
     if ([propertyName rangeOfString:@"name"].location != NSNotFound) weight += 0.2;
-
+    
     if ([propertyName rangeOfString:@"Description"].location != NSNotFound) weight += 0.5;
     if ([propertyName rangeOfString:@"description"].location != NSNotFound) weight += 0.2;
-
+    
     if ([propertyName rangeOfString:@"ID"].location != NSNotFound) weight += 0.2;
     if ([propertyName rangeOfString:@"id"].location != NSNotFound) weight += 0.1;
     

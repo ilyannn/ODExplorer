@@ -8,22 +8,33 @@
 
 #import "ODResource.h"
 #import "ODEntityType.h"
-#import "ODEntitySet.h"
 
-@interface ODEntity : ODResource
-- (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo;
-- (void)updateFromDict:(NSDictionary *)dict;
+/// Public information about properties and methods of ODResource availible only for entities.
+@protocol ODEntityAccessing <ODResourceAccessing>
+
+- (id)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo;
 
 + (ODEntityType *)entityType;
-- (ODEntityType *)entityType;
 
-@property (readonly, nonatomic) NSDictionary *localProperties;
-@property (readonly, nonatomic) NSDictionary *remoteProperties;
-@property (readonly, nonatomic) NSMutableDictionary *navigationProperties;
+// - (void)replace;
+// - (ODOperation *)replaceOperation;
+
+// - (void)merge;
+// - (ODOperation *)mergeOperation;
 
 - (id)navigationProperty:(NSString *)name propertyType:(ODEntityType *)entityType;
 - (id)navigationCollection:(NSString *)name entityType:(ODEntityType *)entityType;
 
 - (void)performAction:(NSString *)actionName;
+
+@property (readonly, nonatomic) NSDictionary *localProperties;
+@property (readonly, nonatomic) NSDictionary *remoteProperties;
+@property (readonly, nonatomic) NSDictionary *navigationProperties;
+
+@end
+
+/// A class that works essentially as a hint to compiler.
+@interface ODEntity : ODResource <ODEntityAccessing>
+- (id)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo;
 
 @end

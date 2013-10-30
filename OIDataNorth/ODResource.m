@@ -6,46 +6,26 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODResource.h"
-#import "ODCollection.h"
-#import "JSONDateReader.h"
+#import "ODRetrieveOperation.h"
+#import "ODRetrievalInfo.h"
 
-@interface ODResource () <ODCollectionAccessing>
-@end
+#import "ODResource+Entity.h"
+#import "ODResource+Collection.h"
+
+#import "ODResource_Internal.h"
+
+#import "ODRetrieveOperation.h"
 
 @implementation ODResource {
-    id<ODRetrieving> _retrievalInfo;
-    ODResourceKind _kind;
-    ODEntityType *_entityType;
-    __weak id _cachedChildren;
+    id _childrenArray;
+//    NSMutableDictionary *_localProperties;
+//    NSMutableDictionary *_remoteProperties;
+//    NSMutableDictionary *_navigationProperties;
 }
 
-
-@synthesize kind = _kind;
-@synthesize retrievalInfo = _retrievalInfo;
-@synthesize entityType = _entityType;
-@synthesize childrenArray = _cachedChildren;
-
-- (id)dateTimeFormatterV2 {
-    static id shared ;
-    if (!shared) {
-        shared = [JSONDateReader new];
-    }
-    return shared;
-}
-
-- (id)dateTimeFormatterV3 {
-    static NSDateFormatter *shared ;
-    if (!shared) {
-        shared = [NSDateFormatter new];
-        shared.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
-    }
-    return shared;
-}
-
-- (id)forwardingTargetForSelector:(SEL)aSelector {
-    return self.retrievalInfo;
-}
+@synthesize localProperties = _localProperties;
+@synthesize remoteProperties = _remoteProperties;
+@synthesize navigationProperties = _navigationProperties;
 
 + (instancetype)new {
     return [self resourceWithDict:[self resourceDict]];
@@ -77,7 +57,7 @@
     return nil;
 }
 
-+ (instancetype)resourceWithInfo:(ODRetrievalInfo *)info {
++ (instancetype)resourceWithInfo:(id<ODRetrieving>)info {
     return [[self alloc] initWithRetrievalInfo:info];
 }
 
@@ -106,8 +86,10 @@
 
 - (void)setKind:(ODResourceKind)kind {
     NSAssert(kind != ODResourceKindUnknown, @"You're required to be specific when setting resource kind.");
-    NSAssert(self.kind == ODResourceKindUnknown, @"Resource kind cannot be set more then one time.");
-    _kind = kind;
+    if (_kind != kind) {
+        NSAssert(_kind == ODResourceKindUnknown, @"Resource kind cannot be changed once set.");
+        _kind = kind;
+    }
 }
 
 - (NSString *)description {
@@ -115,7 +97,17 @@
 }
 
 - (NSString *)longDescription {
-    return [NSString stringWithFormat:@"%@; kind = %i; %@", [self description], self.kind, [self.childrenArray description]];
+    switch (self.kind) {
+        case ODResourceKindCollection:
+            return [NSString stringWithFormat:@"%@; collection = \n%@", [self description], [self.childrenArray description]];
+        
+        case ODResourceKindEntity:
+            return [@[[self description], [self.localProperties description]]
+                    componentsJoinedByString: @"entity = \n "];
+            
+        case ODResourceKindUnknown:
+            return [self description];
+    }
 }
 
 - (NSURL *)URL {
@@ -126,14 +118,66 @@
     return [self.retrievalInfo getFromHierarchy:_cmd];
 }
 
-- (instancetype)autoretrieve {
-    [self retrieve];
-    return self;
-}
-
 - (void)handleOperation:(ODOperation *)operation {
     [self.retrievalInfo handleOperation:operation];
 }
 
+- (id)childrenArray {
+    @synchronized(self) {
+        if (!_childrenArray && _resourceValue) {
+            switch (self.kind) {
+                case ODResourceKindEntity:
+                    _childrenArray = [self childrenArrayForEntity];
+                    break;
+                    
+                case ODResourceKindCollection:
+                    _childrenArray = [self childrenArrayForCollection];
+                    break;
+                    
+                default: ;
+            }
+        }
+        if (!_childrenArray && self.automaticallyRetrieve) {
+            self.automaticallyRetrieve = NO;
+            [self retrieve];
+        }
+        return _childrenArray;
+    }
+}
+
+- (void)setChildrenArray:(id)childrenArray {
+    @synchronized(self) {
+        _childrenArray = childrenArray;
+    }
+}
+
+- (instancetype)autoretrieve {
+    self.automaticallyRetrieve = YES;
+    return self;
+}
+
+- (void)retrieve {
+    [self handleOperation:[self retrieveOperation]];
+}
+
+- (ODRetrieveOperation *)retrieveOperation {
+    ODRetrieveOperation *operation = [ODRetrieveOperation operationWithResource:self];
+    [operation addOperationStep:^NSError *(ODRetrieveOperation *op) {
+        self.kind = op.responseKind;
+        switch (op.responseKind) {
+            case ODResourceKindEntity:
+                return [self parseFromJSONDictionary:op.responseList[0]];
+                
+            case ODResourceKindCollection:
+                return [self parseFromJSONArray:op.responseList];
+
+            default: return nil;
+        }
+    }];
+    return operation;
+}
+
 
 @end
+
+

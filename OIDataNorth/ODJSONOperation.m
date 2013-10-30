@@ -13,26 +13,43 @@
 @implementation ODJSONOperation
 
 static AFJSONResponseSerializer *_sharedResponseSerializer;
-- (AFHTTPResponseSerializer <AFURLResponseSerialization> *)responseSerializer {
+- (AFHTTPResponseSerializer <AFURLResponseSerialization> *)JSONResponseSerializer {
     if (!_sharedResponseSerializer) {
         _sharedResponseSerializer = [AFJSONResponseSerializer serializer];
     }
     return _sharedResponseSerializer;
 }
 
-- (NSDictionary *)addedHTTPHeaders {
-    return @{ @"Accept" : @"application/json" };
+-(void)changeHTTPHeaders:(NSMutableDictionary *)headers {
+    [super changeHTTPHeaders:headers];
+    headers[@"Accept"] = @"application/json";
 }
 
-- (NSError *)processResponse:(ODOperationResponse *)response {
+// This method has access to protocol version, HTTP headers and other OData encoding metadata.
+- (NSError *)processResponse {
     NSError *error;
-    id responseObject = [self.responseSerializer responseObjectForResponse:response.HTTPResponse
-                                                                      data:response.data
+    self.JSONResponse = [[self JSONResponseSerializer] responseObjectForResponse:self.response.HTTPResponse
+                                                                      data:self.response.data
                                                                      error:&error];
-    if (error) return error;
-    return [self processJSONResponse:responseObject];
+    return error;
 }
 
-- (NSError *)processJSONResponse:(id)responseJSON ODErrorAbstractOp
+- (NSError *)processJSONResponse {
+    switch (self.response.majorProtocolVersion) {
+        case 3: return [self processJSONResponseV3];
+            
+        default:
+            return [ODOperationError errorWithCode:kODOperationErrorJSONNotOData
+                                          userInfo:@{NSLocalizedFailureReasonErrorKey
+                                                     : @"Server responded with unsupported OData version." }];
+    }
+}
+
+- (NSError *)processJSONResponseV3 ODErrorAbstractOp
+
+- (NSArray *)steps {
+    __weak id self_ = self;
+    return [[super steps] arrayByAddingObject:(NSError *) ^{ return [self_ processJSONResponse];} ];
+}
 
 @end

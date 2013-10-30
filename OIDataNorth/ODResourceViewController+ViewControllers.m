@@ -18,9 +18,6 @@
             return [ODEntityViewController class];
             
         case ODResourceKindCollection:
-            if ([resource isKindOfClass:[ODService class]]) {
-                return [ODServiceViewController class];
-            }
             if ([resource isKindOfClass:[ODCollection class]]) {
                 return [ODCollectionViewController class];
             }
