@@ -18,15 +18,49 @@
     return nil;
 }
 
-- (NSError *)processJSONResponseV3 {
-    id response = self.JSONResponse;
-    ODAssertOData(response, @{});
-    ODAssertODataClass(response, NSDictionary);
+- (NSError *)processJSONResponseVerbose {
+    ODAssertODataClass(self.responseJSON, NSDictionary);
+    id response = self.responseJSON[@"d"];
+    ODAssertOData(response, @{NSLocalizedFailureReasonErrorKey : @"The response should be wrapped in 'd'."});
+
+    if ([response isKindOfClass:[NSArray class]]) { // version 1
+        self.responseKind = ODResourceKindCollection;
+        self.responseList = response;
+        return nil;
+    }
+
+    ODAssertODataClass(response, NSDictionary); // version 2 or 3
+    id values = response[@"results"];
+
+    if (values) { // version 2
+        ODAssertODataClass(values, NSArray);
+        self.responseKind = ODResourceKindCollection;
+        self.responseList = values;
+        self.indeterminateCount = !!response[@"__next"];
+    } else if ((values = response[@"EntitySets"])) { // version 2
+        ODAssertODataClass(values, NSArray);
+        self.responseKind = ODResourceKindCollection;
+        self.responseList = values;
+        self.serviceDocument = YES;
+    } else {
+        ODAssertODataClass(response, NSDictionary);
+        self.responseKind = ODResourceKindEntity;
+        self.responseList = @[response];
+    }
+    
+    return nil;
+}
+
+
+- (NSError *)processJSONResponseLight {
+    ODAssertODataClass(self.responseJSON, NSDictionary);
+
 
     //    if ([responseArray isKindOfClass:[NSDictionary class]] && [(NSDictionary *)responseArray objectForKey:@"EntitySets"]) {
     //        responseArray = [(NSDictionary *)responseArray objectForKey:@"EntitySets"];
     //    }
     
+    id response = self.responseJSON;
     self.indeterminateCount = !!response[@"odata.nextLink"];
 
     if (response[@"value"] && [response[@"value"] isKindOfClass:[NSArray class]]) {

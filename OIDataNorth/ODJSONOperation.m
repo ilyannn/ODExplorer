@@ -22,21 +22,33 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
 
 -(void)changeHTTPHeaders:(NSMutableDictionary *)headers {
     [super changeHTTPHeaders:headers];
-    headers[@"Accept"] = @"application/json";
+    headers[@"Accept"] = @"application/json;odata=verbose";
 }
 
 // This method has access to protocol version, HTTP headers and other OData encoding metadata.
 - (NSError *)processResponse {
     NSError *error;
-    _JSONResponse = [[self JSONResponseSerializer] responseObjectForResponse:self.response.HTTPResponse
+    _responseJSON = [[self JSONResponseSerializer] responseObjectForResponse:self.response.HTTPResponse
                                                                       data:self.response.data
                                                                      error:&error];
     return error;
 }
 
+- (BOOL)canBeEmpty {
+    return YES;
+}
+
 - (NSError *)processJSONResponse {
+    ODAssertOData(self.canBeEmpty || self.responseJSON,
+                    @{NSLocalizedFailureReasonErrorKey : @"The response JSON should be non-empty."});
     switch (self.response.majorProtocolVersion) {
-        case 3: return [self processJSONResponseV3];
+        case 3:
+            if (![self.response isVerbose]) {
+                return [self processJSONResponseLight];
+            }
+            
+        case 1:
+        case 2: return [self processJSONResponseVerbose];
             
         default:
             return [ODOperationError errorWithCode:kODOperationErrorJSONNotOData
@@ -45,7 +57,8 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
     }
 }
 
-- (NSError *)processJSONResponseV3 ODErrorAbstractOp
+- (NSError *)processJSONResponseVerbose ODErrorAbstractOp
+- (NSError *)processJSONResponseLight ODErrorAbstractOp
 
 - (NSArray *)steps {
     __weak id self_ = self;

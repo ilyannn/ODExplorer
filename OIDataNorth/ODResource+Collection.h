@@ -15,4 +15,6 @@
 @interface ODResource (Collection) <ODCollectionAccessing, ODCollectionCacheDelegate>
 - (CollectionCache *)childrenArrayForCollection;
 - (NSError *)parseFromJSONArray:(NSArray *)array;
+- (NSError *)parseServiceDocumentFromArray:(NSArray *)array;
+
 @end

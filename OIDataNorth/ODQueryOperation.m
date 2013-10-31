@@ -79,11 +79,11 @@ NSString *const ODQueryOrderByString = @"$orderby";
     [self setValue:value forKey:ODQuerySkipString];
 }
 
-- (NSError *)processJSONResponseV3 {
-    NSArray *values = self.JSONResponse[@"value"];
+- (NSError *)processJSONResponseVerbose {
+    NSArray *values = self.responseJSON[@"value"];
     
-    if (!values && [self.JSONResponse isKindOfClass:[NSDictionary class]] ) {
-        values = [(NSDictionary *)self.JSONResponse objectForKey: @"d"];
+    if (!values && [self.responseJSON isKindOfClass:[NSDictionary class]] ) {
+        values = [(NSDictionary *)self.responseJSON objectForKey: @"d"];
         if ([values isKindOfClass:[NSDictionary class]])
             values = [(NSDictionary *)values objectForKey:@"results"];
     }

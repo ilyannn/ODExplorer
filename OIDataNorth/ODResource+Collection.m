@@ -19,6 +19,7 @@
 #import "ODEntity.h"
 
 #import "ODOperationError+Parsing.h"
+#import "NSArray+Functional.h"
 
 #define ODCollectionAssert NSAssert(self.kind == ODResourceKindCollection, \
 @"This should be called only for collections!");
@@ -98,7 +99,7 @@
                 && [url isKindOfClass:[NSString class]]
                 && [name isKindOfClass:[NSString class]] ) {
                 
-                ODRetrievalOfEntitySet*info = [ODRetrievalOfEntitySet new];
+                ODRetrievalOfEntitySet *info = [ODRetrievalOfEntitySet new];
                 info.entitySetPath = url;
                 info.shortDescription = name;
                 info.parent = self.retrievalInfo;
@@ -113,6 +114,23 @@
                 NSError *error = [entity parseFromJSONDictionary:obj];
                 if (!error) [result addObject:entity];
             }}}];
+    self.childrenArray = [result copy];
+    self.resourceValue = @([result count]);
+    return nil;
+}
+
+- (NSError *)parseServiceDocumentFromArray:(NSArray *)array {
+    ODAssertODataClass(array, NSArray);
+    NSMutableArray *result = [NSMutableArray new];
+    [array enumerateObjectsUsingBlock:^(NSString *name, NSUInteger index, BOOL *stop){
+        if ([name isKindOfClass:[NSString class]]) {
+            ODRetrievalOfEntitySet *info = [ODRetrievalOfEntitySet new];
+            info.entitySetPath = name;
+            info.shortDescription = name;
+            info.parent = self.retrievalInfo;
+            [result addObject:[ODCollection resourceWithInfo:info]];
+        }
+    }];
     self.childrenArray = [result copy];
     self.resourceValue = @([result count]);
     return nil;

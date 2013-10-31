@@ -10,7 +10,7 @@
 #import "ODOperationResponse.h"
 #import "AFNetworking/AFNetworking.h"
 
-#define MIN_ODATA_MAJOR_VERSION 3
+#define MIN_ODATA_MAJOR_VERSION 1
 #define MAX_ODATA_MAJOR_VERSION 3
 
 /// Encapsulates an idea of sending a URL request and processing the parameters.

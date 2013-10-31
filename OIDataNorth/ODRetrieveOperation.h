@@ -13,5 +13,7 @@
 @interface ODRetrieveOperation : ODJSONOperation
 @property ODResourceKind responseKind;
 @property NSArray *responseList;
+@property (getter = isServiceDocument) BOOL serviceDocument;
+
 @property BOOL indeterminateCount;
 @end

@@ -63,6 +63,7 @@
 		B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F4F18168161007BCE33 /* ODBaseRequestManager.m */; };
 		B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F5218168170007BCE33 /* ODBatchRequestManager.m */; };
 		B3900F591816962C007BCE33 /* ODRetrieveOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F581816962C007BCE33 /* ODRetrieveOperation.m */; };
+		B3A4C1F41822DDC900ED9376 /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A4C1F31822DDC900ED9376 /* NSArray+Functional.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +198,8 @@
 		B3900F5518168C99007BCE33 /* Supplier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Supplier.m; sourceTree = "<group>"; };
 		B3900F571816962C007BCE33 /* ODRetrieveOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRetrieveOperation.h; sourceTree = "<group>"; };
 		B3900F581816962C007BCE33 /* ODRetrieveOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRetrieveOperation.m; sourceTree = "<group>"; };
+		B3A4C1F21822DDC900ED9376 /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Functional.h"; sourceTree = "<group>"; };
+		B3A4C1F31822DDC900ED9376 /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +364,8 @@
 		B345450A181D1F380039BD67 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B3A4C1F21822DDC900ED9376 /* NSArray+Functional.h */,
+				B3A4C1F31822DDC900ED9376 /* NSArray+Functional.m */,
 				B329A651181E611400B2D8B9 /* NSData+Base64.h */,
 				B329A652181E611400B2D8B9 /* NSData+Base64.m */,
 				B3454507181C7CEA0039BD67 /* OperationWithSteps.h */,
@@ -730,6 +735,7 @@
 				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
 				B329A661181FEF6700B2D8B9 /* ODResource+Collection.m in Sources */,
 				B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */,
+				B3A4C1F41822DDC900ED9376 /* NSArray+Functional.m in Sources */,
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,

@@ -13,6 +13,7 @@ NSString * const ODOperationErrorTable = @"ODOperationError";
 
 @implementation ODOperationError
 + (instancetype)errorWithCode:(ODOperationErrorType)code userInfo:(NSDictionary *)userInfo {
+    // SET BREAKPOINT HERE
     return [self errorWithDomain:ODOperationErrorDomain
                             code:code
                         userInfo:userInfo
@@ -28,7 +29,8 @@ NSString * const ODOperationErrorTable = @"ODOperationError";
 + (instancetype)errorModelWithReason:(NSString *)reason {
     NSString *value = NSLocalizedStringFromTable(reason, ODOperationErrorTable, nil);
     return [self errorWithCode:kODOperationErrorModelMismatch
-                      userInfo:!value ? nil : @{NSLocalizedFailureReasonErrorKey: value} ];
+                      userInfo:!value ? nil : @{NSLocalizedFailureReasonErrorKey: value,
+                                                @"stack" : [NSString stringWithFormat:@"%@", [NSThread callStackSymbols]]} ];
 }
 
 - (NSString *)localizedDescription {

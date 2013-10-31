@@ -25,8 +25,8 @@ return [ODOperationError errorWithCode:kODOperationErrorJSONNotOData userInfo:(u
     userInfo:@{@"selector":NSStringFromSelector(_cmd), @"class":NSStringFromClass(self.class)}]; }
 
 
-#define ODErrorModel(x, reason)  { if (!(x)) \
+#define ODAssertInModel(x, reason)  { if (!(x)) \
     return [ODOperationError errorModelWithReason:reason]; };
 
-#define ODAssertEntity(x) { ODErrorModel(x.kind != ODResourceKindCollection, @"Model requires an entity here");  }
-#define ODAssertCollection(x) { ODErrorModel(x.kind != ODResourceKindEntity, @"Model requires a collection here"); }
+#define ODAssertEntity(x) { ODAssertInModel(x.kind != ODResourceKindCollection, @"Model requires an entity here");  }
+#define ODAssertCollection(x) { ODAssertInModel(x.kind != ODResourceKindEntity, @"Model requires a collection here"); }

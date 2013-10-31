@@ -17,6 +17,9 @@
 /// If a step returns error, it gets saved to this property.
 @property (readonly) NSError *error;
 
+/// And this gets called
+- (NSError *)handleError:(NSError *)error onStep:(NSUInteger)step;
+
 /// Adds an operation step. This takes a parameter self, so you don't need to capture any variables.
 - (void)addOperationStep:(NSError * (^)(id op))step;
 

@@ -15,6 +15,7 @@
 #import "ODResource_Internal.h"
 
 #import "ODRetrieveOperation.h"
+#import "ODOperationError+Parsing.h"
 
 @implementation ODResource {
     id _childrenArray;
@@ -174,13 +175,17 @@
 - (ODRetrieveOperation *)retrieveOperation {
     ODRetrieveOperation *operation = [ODRetrieveOperation operationWithResource:self];
     [operation addOperationStep:^NSError *(ODRetrieveOperation *op) {
+        ODAssertInModel(op.responseKind == self.kind || self.kind == ODResourceKindUnknown,
+                     @"Expected a dictionary where array was given or vice versa.");
         self.kind = op.responseKind;
+
         switch (op.responseKind) {
             case ODResourceKindEntity:
                 return [self parseFromJSONDictionary:op.responseList[0]];
                 
             case ODResourceKindCollection:
-                return [self parseFromJSONArray:op.responseList];
+                return ![op isServiceDocument] ? [self parseFromJSONArray:op.responseList] :
+                                                 [self parseServiceDocumentFromArray: op.responseList];
 
             default: return nil;
         }

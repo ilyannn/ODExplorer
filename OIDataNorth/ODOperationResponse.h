@@ -16,10 +16,15 @@
 @property NSData* data;
 
 @property (readonly) NSInteger majorProtocolVersion;
+@property (readonly) NSInteger maxMajorProtocolVersion;
 @property (readonly) NSInteger majorStatus;
+@property (readonly) NSString *contentType;
+- (BOOL)isJSON;
+- (BOOL)isVerbose;
 
 /// The errors are communicated by HTTP codes.
 /// If we're not retrieveing by HTTP, we're always successful.
 - (NSError *)statusCodeError;
+
 
 @end

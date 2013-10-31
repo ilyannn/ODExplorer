@@ -40,7 +40,7 @@
     self.childrenArray = [NSMutableArray arrayWithObjects:exampleService,
                           
                            [NorthwindService unique],
-/*
+
                            [ODCollection resourceWithDict: @{
                                                             @"uri":  @"http://packages.nuget.org/v1/FeedService.svc/Packages",
                                                             @"name": @"NuGet Packages"
@@ -51,10 +51,9 @@
                                                             @"name": @"Telerik"
                                                           }],
                           
-/*                           [ODService resourceWithDict: @{  @"uri":  @"http://odata4j-sample.appspot.com/datastore.svc/",
+                           [ODCollection resourceWithDict: @{  @"uri":  @"http://odata4j-sample.appspot.com/datastore.svc/",
                                                             @"name": @"OData4j Sample"
                                                             }],
- */
 
                            nil];
 }

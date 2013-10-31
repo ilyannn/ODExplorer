@@ -47,6 +47,15 @@
     [self cleanOperationSteps];
 }
 
+- (NSError *)handleError:(NSError *)error onStep:(NSUInteger)step {
+    NSLog(@"Operation %@ has reported on step %d/%d: %@", self, step, [_allSteps count], error);
+    return error;
+}
+
+- (NSString *)description {
+    return NSStringFromClass([self class]);
+}
+
 - (void)cancel {
     [self cleanOperationSteps];
     [super cancel];
@@ -63,9 +72,8 @@
 - (NSError *)performSteps:(NSArray *)steps {
     __block NSError *error;
     [steps enumerateObjectsUsingBlock: ^(NSError * (^step)(), NSUInteger idx, BOOL *stop) {
-        *stop = [self isCancelled] || !!(error = step());
+        *stop = [self isCancelled] ||( !!(error = step()) && (!!(error = [self handleError:error onStep:idx])) );
     }];
-
     return error ;
 }
 
