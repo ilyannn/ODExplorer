@@ -27,10 +27,7 @@
 @implementation ODResource (Collection)
 
 - (CollectionCache *)childrenArrayForCollection { ODCollectionAssert
-    
-    CollectionCache *cache = [CollectionCache new];
-    cache.delegate = self;
-    return cache;
+    return [[CollectionCache alloc] initWithDelegate:self];
 }
 
 - (NSError *)updateFromJSONArray:(NSArray *)array { ODCollectionAssert
@@ -40,7 +37,7 @@
 }
 
 - (void)cleanCollectionOperation { ODCollectionAssert
-    [self.childrenArray clean];
+    self.childrenArray = nil;
 }
 
 - (NSUInteger)batchSize {
@@ -56,30 +53,34 @@
     [operation addOperationStep:^NSError *(ODCountOperation *op) {
         self.resourceValue = @(op.responseCount);
         if ([self.childrenArray count] != op.responseCount) {
-            if ([self.childrenArray respondsToSelector:@selector(setCount:)]) {
-                [self.childrenArray setCount:op.responseCount];
-            } else {
-                CollectionCache *cache = [CollectionCache new];
-                cache.count = op.responseCount;
-                [self.childrenArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    cache[idx] = obj;
-                }];
-                cache.delegate = self;
-                self.childrenArray = cache;
+            id array = self.childrenArray;
+            if (![array respondsToSelector:@selector(setCount:)]) {
+                self.childrenArray = array = [[CollectionCache alloc] initWithDelegate:self contents:self.childrenArray];
             }
+            [array setCount:op.responseCount];
         }
         return nil;
     }];
     return operation;
 }
 
-- (void)cache:(CollectionCache *)cache missingObjectAtIndex:(NSUInteger)index { ODCollectionAssert
+- (void)cache:cache missingObjectAtIndex:(NSUInteger)index { ODCollectionAssert
     ODQueryOperation *operation = [ODQueryOperation operationWithResource:self];
-    operation.top = [self batchSize];
+    NSUInteger batchSize = [self batchSize];
+    NSUInteger totalCount = [cache count];
+    operation.top = batchSize;
     operation.skip = index;
+    
+    for (NSUInteger batchIndex = 0; (batchIndex < batchSize) && (index + batchIndex < totalCount) ; batchIndex ++) {
+        ODRetrievalByIndex *info = [ODRetrievalByIndex new];
+        info.index = index + batchIndex;
+        info.parent = self.retrievalInfo;
+        cache[index + batchIndex] = [[ODEntity alloc] initWithRetrievalInfo:info];
+    }
+    
     [operation addOperationStep:^NSError *(ODQueryOperation *op) {
         [op.responseResults enumerateObjectsUsingBlock: ^(ODEntity *obj, NSUInteger resultIndex, BOOL *stop) {
-            cache[op.skip + resultIndex] = obj;
+            cache[index + resultIndex] = obj;
         }];
         return nil;
     }];

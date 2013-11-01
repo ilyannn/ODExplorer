@@ -11,7 +11,7 @@
 
 @interface ODResource () 
 @property id resourceValue;
-@property id childrenArray;
+@property NSArray *childrenArray; 
 @property id<ODRetrieving> retrievalInfo;
 
 @property (nonatomic) NSMutableDictionary *remoteProperties;

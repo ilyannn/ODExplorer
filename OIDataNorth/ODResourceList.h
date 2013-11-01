@@ -17,4 +17,5 @@
 - (void)addResourceToList:(ODResource *)resource;
 - (void)removeResourceFromList:(ODResource *)resource;
 
+@property NSMutableArray * childrenArray;
 @end

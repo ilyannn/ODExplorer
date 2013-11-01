@@ -78,7 +78,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 - (BOOL)isEntitySet;
 
 // Until at least some info about an entity is retrieved, this is nil.
-@property (readonly, atomic) id childrenArray;
+@property (readonly, atomic) NSArray * childrenArray;
 
 #pragma mark - (5) things that can be done with a resource
 

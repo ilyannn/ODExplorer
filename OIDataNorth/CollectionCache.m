@@ -13,18 +13,30 @@
 #import "ODCountOperation.h"
 #import "ODEntity.h"
 
-@interface CollectionCache ()
-@property NSPointerArray *objects;
-@end
-
 @implementation CollectionCache {
-    BOOL retrieving;
+    NSPointerArray *_objects;
 }
 
 - (id)init {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         [self clean];
+    }
+    return self;
+}
+
+- (id)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate {
+    if (self = [self init]) {
+        _delegate = delegate;
+    }
+    return self;
+}
+
+- (id)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate contents:(NSArray *)array {
+    if (self = [self initWithDelegate:delegate]) {
+        self.count = [array count];
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            self[idx] = obj;
+        }];
     }
     return self;
 }
@@ -34,23 +46,23 @@
 }
 
 - (NSUInteger)count {
-    return self.objects.count;
+    return _objects.count;
 }
 
 -(void)setCount:(NSUInteger)count {
     @synchronized(self) {
-        self.objects.count = count;
+        _objects.count = count;
     }
 }
 
 - (NSArray *)allObjects {
-    return [[self objects] allObjects];
+    return [_objects allObjects];
 }
 
-- (id)objectAtIndexedSubscript:(NSUInteger)index {
+- (id)objectAtIndex:(NSUInteger)index {
     @synchronized(self) {
         if (index >= self.count ) return nil;
-        ODEntity *entity = [self.objects pointerAtIndex:index];
+        ODEntity *entity = [_objects pointerAtIndex:index];
         if (entity) return entity;
     }
     
@@ -58,14 +70,14 @@
 
     @synchronized(self) {
         if (index >= self.count) return nil;
-        return [self.objects pointerAtIndex:index];
+        return [_objects pointerAtIndex:index];
     }
 }
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
     @synchronized(self) {
         if (index < self.count) {
-            [self.objects replacePointerAtIndex:index withPointer:(__bridge void *)(object)];
+            [_objects replacePointerAtIndex:index withPointer:(__bridge void *)(object)];
         }
     }
 }

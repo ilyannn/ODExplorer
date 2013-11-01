@@ -16,7 +16,7 @@
     // Guess by assigning a weight to every property.
     NSMutableDictionary *propertyWeight = [NSMutableDictionary new];
     NSMutableDictionary *propertyValues = [NSMutableDictionary new];
-    [[self.childrenArray allObjects] enumerateObjectsUsingBlock:^(ODEntity *entity, NSUInteger idx, BOOL *stop) {
+    [self.childrenArray enumerateObjectsUsingBlock:^(ODEntity *entity, NSUInteger idx, BOOL *stop) {
         if ([entity isKindOfClass:[ODResource class]] && entity.kind == ODResourceKindEntity) {
             [entity.localProperties enumerateKeysAndObjectsUsingBlock: ^(NSString *key, id obj, BOOL *stop) {
                 float newWeight = [self weightAsMediumDescriptionOfValue:obj] + [self weightAsMediumDescriptionOfKey:key];

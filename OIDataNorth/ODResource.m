@@ -130,7 +130,7 @@
     [self.retrievalInfo handleOperation:operation];
 }
 
-- (id)childrenArray {
+- (NSArray *)childrenArray {
     @synchronized(self) {
         if (!_childrenArray && _resourceValue) {
             switch (self.kind) {
