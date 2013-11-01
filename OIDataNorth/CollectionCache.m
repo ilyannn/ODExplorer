@@ -14,18 +14,15 @@
 #import "ODEntity.h"
 
 @implementation CollectionCache {
-    NSPointerArray *_objects;
+    NSPointerArray *_objects; // Created lazily, only on -setCount:
 }
 
 - (id)init {
-    if (self = [super init]) {
-        [self clean];
-    }
-    return self;
+    return [self initWithDelegate:nil];
 }
 
 - (id)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate {
-    if (self = [self init]) {
+    if (self = [super init]) {
         _delegate = delegate;
     }
     return self;
@@ -42,7 +39,7 @@
 }
 
 - (void)clean {
-    _objects = [NSPointerArray strongObjectsPointerArray];
+    _objects = nil;
 }
 
 - (NSUInteger)count {
@@ -51,17 +48,14 @@
 
 -(void)setCount:(NSUInteger)count {
     @synchronized(self) {
+        if (!_objects && !!count) _objects = [NSPointerArray strongObjectsPointerArray];;
         _objects.count = count;
     }
 }
 
-- (NSArray *)allObjects {
-    return [_objects allObjects];
-}
-
 - (id)objectAtIndex:(NSUInteger)index {
     @synchronized(self) {
-        if (index >= self.count ) return nil;
+        if (index >= self.count) return nil;
         ODEntity *entity = [_objects pointerAtIndex:index];
         if (entity) return entity;
     }
@@ -74,14 +68,17 @@
     }
 }
 
-- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
+- (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {;
     @synchronized(self) {
         if (index < self.count) {
-            [_objects replacePointerAtIndex:index withPointer:(__bridge void *)(object)];
+            [_objects replacePointerAtIndex:index withPointer:(__bridge void *)(anObject)];
         }
     }
 }
 
+- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
+    [self replaceObjectAtIndex:(NSUInteger)index withObject:(id)object];
+}
 
 
 @end

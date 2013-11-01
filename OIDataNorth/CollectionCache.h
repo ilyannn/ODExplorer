@@ -14,29 +14,34 @@
 
 @class CollectionCache;
 
+/// Delegate is expected to do some magic so that values appear in the array.
 @protocol ODCollectionCacheDelegate
 - (void)cache:(CollectionCache *)mutableCache missingObjectAtIndex:(NSUInteger)index;
 @end
 
-/// The backing store is changed to a pointer array. Also, it autoexpands.
+/// We need to subclass an NSArray because the backing store is a pointer array which can expand dynamically.
 @interface CollectionCache : NSArray
+
+/// Once set, delegate doesn't change.
 @property (readonly, weak) id<ODCollectionCacheDelegate> delegate;
 
-- (instancetype)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate;
+@property NSMutableArray *xx;
+
+- (instancetype)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate; /* designated initializer */
 - (instancetype)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate contents:(NSArray *)array;
 
 // The standard NSArray methods.
 - (NSUInteger)count;
 - (id)objectAtIndex:(NSUInteger)index;
 
-// Actually we can set count at will
+/// With this class we can set count at will.
 @property NSUInteger count;
 
-// As well as replace objects.
-- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
+/// We can replace, but not insert or remove, objects.
+- (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject;
 
-/// Returns all non-nil objects.
-- (NSArray *)allObjects;
+/// We can replace objects using [] syntax.
+- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 
 /// Drops the internal storage.
 - (void)clean;

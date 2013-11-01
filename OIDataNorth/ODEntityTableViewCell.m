@@ -27,6 +27,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         __block NSString *headline = nil;
+
         [self.headlineProperties enumerateObjectsUsingBlock: ^(NSString *key, NSUInteger idx, BOOL *stop) {
             id value = self.resource.localProperties[key];
             if (value) {
@@ -34,9 +35,9 @@
                 *stop = YES;
             }
         }];
-        
-        self.textLabel.text = headline ? headline : @"(no readable description)";
-        self.textLabel.alpha = (!!headline + 1.0) / 2.0;
+
+        self.textLabel.text = headline;
+//        self.textLabel.alpha = (!!headline + 1.0) / 2.0;
         self.detailTextLabel.text = [self.resource.retrievalInfo shortDescription];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }

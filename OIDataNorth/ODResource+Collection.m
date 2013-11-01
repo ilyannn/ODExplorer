@@ -55,7 +55,9 @@
         if ([self.childrenArray count] != op.responseCount) {
             id array = self.childrenArray;
             if (![array respondsToSelector:@selector(setCount:)]) {
-                self.childrenArray = array = [[CollectionCache alloc] initWithDelegate:self contents:self.childrenArray];
+                // This is the only place children become CollectionCache.
+                // In all other situations, NSArray is just fine.
+                self.childrenArray = array = [[CollectionCache alloc] initWithDelegate:self contents:array];
             }
             [array setCount:op.responseCount];
         }
