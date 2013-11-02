@@ -64,6 +64,8 @@
 		B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F5218168170007BCE33 /* ODBatchRequestManager.m */; };
 		B3900F591816962C007BCE33 /* ODRetrieveOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F581816962C007BCE33 /* ODRetrieveOperation.m */; };
 		B3A4C1F41822DDC900ED9376 /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A4C1F31822DDC900ED9376 /* NSArray+Functional.m */; };
+		B3A4C1F71824F8B200ED9376 /* ODMetadataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A4C1F61824F8B200ED9376 /* ODMetadataModel.m */; };
+		B3BDF5801825112E003CF414 /* HelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF57F1825112E003CF414 /* HelpersTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +202,9 @@
 		B3900F581816962C007BCE33 /* ODRetrieveOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRetrieveOperation.m; sourceTree = "<group>"; };
 		B3A4C1F21822DDC900ED9376 /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Functional.h"; sourceTree = "<group>"; };
 		B3A4C1F31822DDC900ED9376 /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
+		B3A4C1F51824F8B200ED9376 /* ODMetadataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetadataModel.h; sourceTree = "<group>"; };
+		B3A4C1F61824F8B200ED9376 /* ODMetadataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODMetadataModel.m; sourceTree = "<group>"; };
+		B3BDF57F1825112E003CF414 /* HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpersTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +312,8 @@
 			children = (
 				B3900EC41815310C007BCE33 /* ODEntityType.h */,
 				B3900EC51815310C007BCE33 /* ODEntityType.m */,
+				B3A4C1F51824F8B200ED9376 /* ODMetadataModel.h */,
+				B3A4C1F61824F8B200ED9376 /* ODMetadataModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -458,6 +465,7 @@
 		B3900E9418118102007BCE33 /* OIDataNorthTests */ = {
 			isa = PBXGroup;
 			children = (
+				B3BDF57F1825112E003CF414 /* HelpersTests.m */,
 				B3900E9A18118102007BCE33 /* OIDataNorthTests.m */,
 				B3900E9518118102007BCE33 /* Supporting Files */,
 			);
@@ -760,6 +768,7 @@
 				B329A65B181FB5C700B2D8B9 /* JSONDateReader.m in Sources */,
 				B329A67618211B3B00B2D8B9 /* ODCreateOperation.m in Sources */,
 				B329A657181F991A00B2D8B9 /* ODResourceViewControllerMenu.m in Sources */,
+				B3A4C1F71824F8B200ED9376 /* ODMetadataModel.m in Sources */,
 				B34544F6181B36A30039BD67 /* Employee.m in Sources */,
 				B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */,
 				B329A65E181FEF2300B2D8B9 /* ODResource+Entity.m in Sources */,
@@ -774,6 +783,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */,
+				B3BDF5801825112E003CF414 /* HelpersTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

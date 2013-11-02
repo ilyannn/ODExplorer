@@ -33,6 +33,7 @@
     static NSDateFormatter *shared ;
     if (!shared) {
         shared = [NSDateFormatter new];
+        shared.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
         shared.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
     }
     return shared;
@@ -70,7 +71,9 @@
     self.navigationProperties = [NSMutableDictionary new];
 
 
-    [dict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
+    [dict enumerateKeysAndObjectsUsingBlock: ^(NSString *key, id obj, BOOL *stop) {
+        if ([key rangeOfString:@"@"].location != NSNotFound)
+            return;
         
         if ([obj isKindOfClass:NSDictionary.class]) {
             ODRetrievalOfProperty *retrieval = [ODRetrievalOfProperty new];
@@ -84,25 +87,40 @@
         } else if ([obj isKindOfClass:[NSNull class]]) {
             // "convert" to nil
         } else if ([obj isKindOfClass:[NSString class]]) {
-            // Is this a date?
-            if ([obj length] < 1000) {
-                id value = nil;
-                if (!!(value = [self.dateTimeFormatterV2 dateFromString:obj])
-                    || !!(value = [self.dateTimeFormatterV3 dateFromString:obj])
-                    ||(!!(value = [NSURL URLWithString:obj]) && !!([(NSURL *)value scheme].length))
-                    ) {
-                    obj = value;
-                }
-            } else {
-                NSData *data  = [NSData dataFromBase64String:obj];
-                if (data) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    obj = image ? image : data;
+            NSString *metadataType = dict[[NSString stringWithFormat:@"%@@odata.type", key]];
+            if (metadataType) {
+                if ([metadataType isEqualToString:@"Edm.Decimal"]) {
+                    obj = [NSDecimalNumber decimalNumberWithString:obj];
+                } else if ([metadataType isEqualToString:@"Edm.DateTime"]) {
+                    NSDate *date;
+                    if (   !!(date = [self.dateTimeFormatterV2 dateFromString:obj])
+                        || !!(date = [self.dateTimeFormatterV3 dateFromString:obj]) )
+                        obj = date;
+                } else if ([metadataType rangeOfString:@"Edm.Int"].location == 0) {
+                    NSNumber *number = @([obj longLongValue]);
+                    if (number) obj = number;
+                } else if ([metadataType isEqualToString:@"Edm.Binary"]) {
+                    NSData *data  = [NSData dataFromBase64String:obj];
+                    if (data) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        obj = image ? image : data;
+                    }
                 }
             }
+//            if ([obj length] < 1000) {
+//                id value = nil;
+//                    ||(!!(value = [NSURL URLWithString:obj]) && !!([(NSURL *)value scheme].length))
+//                    ) {
+//                    obj = value;
+//                }
+//            } else {
+//            }
+            self.remoteProperties[key] = obj;
+        } else if ([obj isKindOfClass:NSNumber.class]) {
             self.remoteProperties[key] = obj;
         } else {
-            self.remoteProperties[key] = obj;
+            NSLog(@"Unknown JSON type: %@", NSStringFromClass([obj class]));
+//            self.remoteProperties[key] = obj;
         }
         
     }];

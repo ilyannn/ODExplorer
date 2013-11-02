@@ -10,7 +10,7 @@
 
 @implementation ODPropertyTableViewCell
 
-- (NSDateFormatter *)dateFormatter {
+- (NSDateFormatter *)dateTimeFormatter {
     static NSDateFormatter *shared;
     if (!shared) {
         shared = [NSDateFormatter new];
@@ -20,8 +20,27 @@
     return shared;
 }
 
+- (NSDateFormatter *)dateOnlyFormatter {
+    static NSDateFormatter *shared;
+    if (!shared) {
+        shared = [NSDateFormatter new];
+        shared.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+        shared.dateStyle = NSDateFormatterMediumStyle;
+        shared.timeStyle = NSDateFormatterNoStyle;
+    }
+    return shared;
+}
+
 - (UITableViewCellStyle)cellStyle {
     return UITableViewCellStyleValue2;
+}
+
+- (NSString *)stringFromDate:(NSDate *)date {
+    NSString *value = [self.dateOnlyFormatter stringFromDate:date];
+    if (![[self.dateOnlyFormatter dateFromString:value] isEqualToDate:date]) {
+        value = [self.dateTimeFormatter stringFromDate:date];
+    }
+    return value;
 }
 
 - (void)configure {
@@ -34,7 +53,7 @@
         UIColor *color;
         
         if ([value isKindOfClass:[NSDate class]]) {
-            formatted = [self.dateFormatter stringFromDate:value];
+            formatted = [self stringFromDate:value];
             color = [UIColor brownColor];
         } else if ([value isKindOfClass:[NSData class]]) {
             formatted = [NSString stringWithFormat:@"data (%lu bytes)", (unsigned long)[value length]];
