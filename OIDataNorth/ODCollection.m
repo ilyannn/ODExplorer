@@ -25,7 +25,7 @@
     return self;
 }
 
-+ (instancetype)collectionForProperty:(NSString *)propertyName entityType:(ODEntityType *)entityType inEntity:(ODEntity *)entity {
++ (instancetype)collectionForProperty:(NSString *)propertyName entityType:(ODPrimitiveType *)entityType inEntity:(ODEntity *)entity {
     ODCollection *collection = [[self alloc] initWithName:propertyName inParent:entity];
     collection.entityType = entityType;
     return collection;

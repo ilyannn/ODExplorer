@@ -13,11 +13,8 @@
 
 extern NSString *const ODGenericCellReuseID;
 extern NSString *const ODLoadingCellReuseID;
-extern NSString *const ODPropertyCellReuseID;
-extern NSString *const ODEntitySetCellReuseID;
-extern NSString *const ODServiceCellReuseID;
-extern NSString *const ODEntityCellReuseID;
-extern NSString *const ODCollectionCellReuseID;
+extern NSString *const ODPrimitiveCellReuseID;
+extern NSString *const ODBracketedCellReuseID;
 
 @interface ODResourceViewController : UITableViewController
 + (ODResourceViewController *)controllerForResource:(ODResource *)resourc;
@@ -34,11 +31,6 @@ extern NSString *const ODCollectionCellReuseID;
 - (NSString *)cellIDForResource:(id)childID;
 - (void)configureCell:(ODResourceTableViewCell *)cell forChild:(id)childID;
 
-
-// This method will be called when the view becomes visible to retrieve active data
-// and continue retrieving them further.
-- (void)subscribeToResource;
-- (void)unsubscribeFromResource;
 
 // Those are used only for collection view controllers.
 @property (nonatomic) NSMutableArray *headlineProperties;

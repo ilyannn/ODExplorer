@@ -74,9 +74,11 @@ static ODRetrievalInfo *_sharedRootInfo;
 @end
 
 @implementation ODRetrievalByURL
+
 - (BOOL)isRootURL {
-    return !!self.URL;
+    return !!self.URL && ![self.parent URL];
 }
+
 @end
 
 @implementation ODRetrievalByPath
@@ -118,6 +120,7 @@ static ODRetrievalInfo *_sharedRootInfo;
 }
 
 - (NSURL *)URL {
+    if (self.knownURL) return self.knownURL;
     NSString *relative = [NSString stringWithFormat:@"%@(%@)", [self.parent relativePath], [self bracketPart]];
     return [[self.parent.parent URL] URLByAppendingPathComponent:relative];
 }

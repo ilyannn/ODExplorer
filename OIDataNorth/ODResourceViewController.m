@@ -13,7 +13,7 @@
 
 #import "ODLoadingTableViewCell.h"
 #import "ODPropertyTableViewCell.h"
-#import "ODCollectionTableViewCell.h"
+#import "ODGenericTableViewCell.h"
 #import "ODEntityTableViewCell.h"
 
 #import "ODResourceViewControllerMenu.h"
@@ -23,11 +23,8 @@
 
 NSString *const ODGenericCellReuseID = @"GenericCell";
 NSString *const ODLoadingCellReuseID = @"LoadingCell";
-NSString *const ODPropertyCellReuseID = @"PropertyCell";
-NSString *const ODEntitySetCellReuseID = @"GenericCell";
-NSString *const ODServiceCellReuseID = @"GenericCell";
-NSString *const ODEntityCellReuseID = @"EntityCell";
-NSString *const ODCollectionCellReuseID = @"CollectionCell";
+NSString *const ODPrimitiveCellReuseID = @"PropertyCell";
+NSString *const ODBracketedCellReuseID = @"BracketedCell";
 
 @implementation ODResourceViewController
 
@@ -95,13 +92,7 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 }
 
 #pragma mark - Constructing table view
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.resource.childrenArray count] + !!self.loadingRowPresent;
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ODResourceTableViewCell *cell = (ODResourceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -111,6 +102,10 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
     if (!vc) return;
     
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.resource.childrenArray count] + !!self.loadingRowPresent;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -185,26 +180,8 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 
 - (void)setResource:(ODResource *)resource {
     if (resource != _resource) {
-        BOOL wasSubscribed = self.subscribed;
-        self.subscribed = NO;
-        
         _resource = [resource autoretrieve];
         [(ODRetrievalInfo *)(_resource.retrievalInfo)addManager :[[ODNotifyingManager alloc] initWithDelegate:self]];
-        
-        // this should automatically start refresh as well
-        self.subscribed = wasSubscribed;
-    }
-}
-
-- (void)setSubscribed:(BOOL)subscribed {
-    if (subscribed != _subscribed) {
-        _subscribed = subscribed;
-        /*        if (subscribed) {
-         [self subscribeToResource];
-         } else {
-         [self unsubscribeFromResource];
-         }
-         */
     }
 }
 
@@ -233,23 +210,24 @@ NSString *const ODCollectionCellReuseID = @"CollectionCell";
 }
 
 - (NSString *)cellIDForResource:(ODResource *)child {
-    switch (child.kind) {
-        case ODResourceKindEntity: return ODEntityCellReuseID;
-            
-        case ODResourceKindUnknown: if ([child.retrievalInfo isKindOfClass:[ODRetrievalOfProperty class]])
-            return ODPropertyCellReuseID;
-            
-        case ODResourceKindCollection: return ODCollectionCellReuseID;
+    if ([child isPrimitiveProperty])
+        return ODPrimitiveCellReuseID;
+
+    if ([child.retrievalInfo isKindOfClass:[ODRetrievalByBrackets class]]
+        || ([child.retrievalInfo isKindOfClass:[ODRetrievalByURL class]] && ![child.retrievalInfo isRootURL])) {
+        return ODBracketedCellReuseID;
     }
+    
+    return ODGenericCellReuseID;
 }
 
 - (NSDictionary *)cellClasses {
     static NSDictionary *classes;
     if (!classes) {
-        classes = @{ ODCollectionCellReuseID : [ODCollectionTableViewCell class],
+        classes = @{ ODGenericCellReuseID : [ODGenericTableViewCell class],
                      ODLoadingCellReuseID : [ODLoadingTableViewCell class],
-                     ODPropertyCellReuseID : [ODPropertyTableViewCell class],
-                     ODEntityCellReuseID : [ODEntityTableViewCell class] };
+                     ODPrimitiveCellReuseID : [ODPropertyTableViewCell class],
+                     ODBracketedCellReuseID : [ODEntityTableViewCell class] };
     }
     return classes;
 }

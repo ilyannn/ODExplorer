@@ -18,10 +18,7 @@
 #import "ODOperationError+Parsing.h"
 
 @implementation ODResource {
-    id _childrenArray;
-//    NSMutableDictionary *_localProperties;
-//    NSMutableDictionary *_remoteProperties;
-//    NSMutableDictionary *_navigationProperties;
+    NSArray *_childrenArray;
 }
 
 @synthesize remoteProperties = _remoteProperties;
@@ -170,6 +167,10 @@
 
 - (BOOL)isEntitySet {
     return [self.retrievalInfo isKindOfClass:[ODRetrievalOfEntitySet class]];
+}
+
+- (BOOL)isPrimitiveProperty {
+    return (self.kind != ODResourceKindCollection) && [self.entityType isPrimitive];
 }
 
 - (ODRetrieveOperation *)retrieveOperation {

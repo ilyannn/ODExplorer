@@ -23,7 +23,7 @@
 
 @end
 
-@class ODEntity, ODEntityType;
+@class ODEntity, ODPrimitiveType;
 
 /// A class that works essentially as a hint to compiler.
 @interface ODCollection : ODResource <ODCollectionAccessing>

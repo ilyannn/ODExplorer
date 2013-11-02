@@ -61,6 +61,9 @@
         } else if ([value isKindOfClass:[NSURL class]]) {
             formatted = [value absoluteString];
             color = [UIColor blueColor];
+        } else if ([value isKindOfClass:[NSUUID class]]){
+            formatted = [value UUIDString];
+            color = [UIColor greenColor];
         } else {
             formatted = [value description];
             color = [UIColor blackColor];

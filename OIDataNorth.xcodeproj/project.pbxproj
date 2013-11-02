@@ -14,7 +14,7 @@
 		B329A65E181FEF2300B2D8B9 /* ODResource+Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A65D181FEF2300B2D8B9 /* ODResource+Entity.m */; };
 		B329A661181FEF6700B2D8B9 /* ODResource+Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A660181FEF6700B2D8B9 /* ODResource+Collection.m */; };
 		B329A66B182063AF00B2D8B9 /* ODResource+CollectionFields.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A66A182063AF00B2D8B9 /* ODResource+CollectionFields.m */; };
-		B329A6731821116800B2D8B9 /* ODCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A6721821116800B2D8B9 /* ODCollectionTableViewCell.m */; };
+		B329A6731821116800B2D8B9 /* ODGenericTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A6721821116800B2D8B9 /* ODGenericTableViewCell.m */; };
 		B329A67618211B3B00B2D8B9 /* ODCreateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */; };
 		B329A6791821227800B2D8B9 /* ODHTTPOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A6781821227800B2D8B9 /* ODHTTPOperation.m */; };
 		B34544C1181846340039BD67 /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34544C0181846340039BD67 /* ODActionOperation.m */; };
@@ -55,7 +55,7 @@
 		B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EAE18119337007BCE33 /* ODQueryOperation.m */; };
 		B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB4181195A0007BCE33 /* ODCollection.m */; };
 		B3900EB818119619007BCE33 /* ODEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB718119619007BCE33 /* ODEntity.m */; };
-		B3900EC61815310C007BCE33 /* ODEntityType.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC51815310C007BCE33 /* ODEntityType.m */; };
+		B3900EC61815310C007BCE33 /* ODPrimitiveType.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC51815310C007BCE33 /* ODPrimitiveType.m */; };
 		B3900F3A1815BA75007BCE33 /* CollectionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F391815BA75007BCE33 /* CollectionCache.m */; };
 		B3900F3D1815C0AC007BCE33 /* ODCountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */; };
 		B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */; };
@@ -66,6 +66,16 @@
 		B3A4C1F41822DDC900ED9376 /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A4C1F31822DDC900ED9376 /* NSArray+Functional.m */; };
 		B3A4C1F71824F8B200ED9376 /* ODMetadataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A4C1F61824F8B200ED9376 /* ODMetadataModel.m */; };
 		B3BDF5801825112E003CF414 /* HelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF57F1825112E003CF414 /* HelpersTests.m */; };
+		B3BDF583182581CC003CF414 /* ODEdmDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF582182581CC003CF414 /* ODEdmDateTime.m */; };
+		B3BDF5861825837C003CF414 /* ODEdmInt.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF5851825837C003CF414 /* ODEdmInt.m */; };
+		B3BDF589182585CF003CF414 /* ODType+Primitive.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF588182585CF003CF414 /* ODType+Primitive.m */; };
+		B3BDF58D182586DB003CF414 /* ODEdmString.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF58C182586DB003CF414 /* ODEdmString.m */; };
+		B3BDF590182588CC003CF414 /* ODEdmDecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF58F182588CC003CF414 /* ODEdmDecimal.m */; };
+		B3BDF59318258A32003CF414 /* ODEdmBinary.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF59218258A32003CF414 /* ODEdmBinary.m */; };
+		B3BDF59618258FFB003CF414 /* ODEdmBoolean.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF59518258FFB003CF414 /* ODEdmBoolean.m */; };
+		B3BDF599182591DA003CF414 /* ODEdmSByte.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF598182591DA003CF414 /* ODEdmSByte.m */; };
+		B3BDF59C18259AA8003CF414 /* ODType.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF59B18259AA8003CF414 /* ODType.m */; };
+		B3BDF5A21825A96E003CF414 /* ODEdmGuid.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BDF5A11825A96E003CF414 /* ODEdmGuid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +105,8 @@
 		B329A664181FF1FB00B2D8B9 /* ODResource_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODResource_Internal.h; sourceTree = "<group>"; };
 		B329A669182063AF00B2D8B9 /* ODResource+CollectionFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ODResource+CollectionFields.h"; sourceTree = "<group>"; };
 		B329A66A182063AF00B2D8B9 /* ODResource+CollectionFields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ODResource+CollectionFields.m"; sourceTree = "<group>"; };
-		B329A6711821116800B2D8B9 /* ODCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCollectionTableViewCell.h; sourceTree = "<group>"; };
-		B329A6721821116800B2D8B9 /* ODCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCollectionTableViewCell.m; sourceTree = "<group>"; };
+		B329A6711821116800B2D8B9 /* ODGenericTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODGenericTableViewCell.h; sourceTree = "<group>"; };
+		B329A6721821116800B2D8B9 /* ODGenericTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODGenericTableViewCell.m; sourceTree = "<group>"; };
 		B329A67418211B3B00B2D8B9 /* ODCreateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCreateOperation.h; sourceTree = "<group>"; };
 		B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCreateOperation.m; sourceTree = "<group>"; };
 		B329A6771821227800B2D8B9 /* ODHTTPOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODHTTPOperation.h; sourceTree = "<group>"; };
@@ -157,8 +167,8 @@
 		B3900EB718119619007BCE33 /* ODEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEntity.m; sourceTree = "<group>"; };
 		B3900EBA181198CB007BCE33 /* NorthwindService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorthwindService.h; sourceTree = "<group>"; };
 		B3900EBB181198CB007BCE33 /* NorthwindService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorthwindService.m; sourceTree = "<group>"; };
-		B3900EC41815310C007BCE33 /* ODEntityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEntityType.h; sourceTree = "<group>"; };
-		B3900EC51815310C007BCE33 /* ODEntityType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEntityType.m; sourceTree = "<group>"; };
+		B3900EC41815310C007BCE33 /* ODPrimitiveType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveType.h; sourceTree = "<group>"; };
+		B3900EC51815310C007BCE33 /* ODPrimitiveType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPrimitiveType.m; sourceTree = "<group>"; };
 		B3900EC71815318B007BCE33 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		B3900EC81815318B007BCE33 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		B3900EDE18153E04007BCE33 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -205,6 +215,26 @@
 		B3A4C1F51824F8B200ED9376 /* ODMetadataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetadataModel.h; sourceTree = "<group>"; };
 		B3A4C1F61824F8B200ED9376 /* ODMetadataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODMetadataModel.m; sourceTree = "<group>"; };
 		B3BDF57F1825112E003CF414 /* HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpersTests.m; sourceTree = "<group>"; };
+		B3BDF581182581CC003CF414 /* ODEdmDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmDateTime.h; sourceTree = "<group>"; };
+		B3BDF582182581CC003CF414 /* ODEdmDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmDateTime.m; sourceTree = "<group>"; };
+		B3BDF5841825837C003CF414 /* ODEdmInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmInt.h; sourceTree = "<group>"; };
+		B3BDF5851825837C003CF414 /* ODEdmInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmInt.m; sourceTree = "<group>"; };
+		B3BDF587182585CF003CF414 /* ODType+Primitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ODType+Primitive.h"; sourceTree = "<group>"; };
+		B3BDF588182585CF003CF414 /* ODType+Primitive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ODType+Primitive.m"; sourceTree = "<group>"; };
+		B3BDF58B182586DB003CF414 /* ODEdmString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmString.h; sourceTree = "<group>"; };
+		B3BDF58C182586DB003CF414 /* ODEdmString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmString.m; sourceTree = "<group>"; };
+		B3BDF58E182588CC003CF414 /* ODEdmDecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmDecimal.h; sourceTree = "<group>"; };
+		B3BDF58F182588CC003CF414 /* ODEdmDecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmDecimal.m; sourceTree = "<group>"; };
+		B3BDF59118258A32003CF414 /* ODEdmBinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmBinary.h; sourceTree = "<group>"; };
+		B3BDF59218258A32003CF414 /* ODEdmBinary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmBinary.m; sourceTree = "<group>"; };
+		B3BDF59418258FFB003CF414 /* ODEdmBoolean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmBoolean.h; sourceTree = "<group>"; };
+		B3BDF59518258FFB003CF414 /* ODEdmBoolean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmBoolean.m; sourceTree = "<group>"; };
+		B3BDF597182591DA003CF414 /* ODEdmSByte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmSByte.h; sourceTree = "<group>"; };
+		B3BDF598182591DA003CF414 /* ODEdmSByte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmSByte.m; sourceTree = "<group>"; };
+		B3BDF59A18259AA8003CF414 /* ODType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODType.h; sourceTree = "<group>"; };
+		B3BDF59B18259AA8003CF414 /* ODType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODType.m; sourceTree = "<group>"; };
+		B3BDF5A01825A96E003CF414 /* ODEdmGuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEdmGuid.h; sourceTree = "<group>"; };
+		B3BDF5A11825A96E003CF414 /* ODEdmGuid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEdmGuid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,8 +315,8 @@
 			children = (
 				B34544CF18195DFB0039BD67 /* ODResourceTableViewCell.h */,
 				B34544D018195DFB0039BD67 /* ODResourceTableViewCell.m */,
-				B329A6711821116800B2D8B9 /* ODCollectionTableViewCell.h */,
-				B329A6721821116800B2D8B9 /* ODCollectionTableViewCell.m */,
+				B329A6711821116800B2D8B9 /* ODGenericTableViewCell.h */,
+				B329A6721821116800B2D8B9 /* ODGenericTableViewCell.m */,
 				B34544D6181968370039BD67 /* ODPropertyTableViewCell.h */,
 				B34544D7181968370039BD67 /* ODPropertyTableViewCell.m */,
 				B34544D218195E6B0039BD67 /* ODEntityTableViewCell.h */,
@@ -310,10 +340,11 @@
 		B34544F2181B2E3E0039BD67 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B3900EC41815310C007BCE33 /* ODEntityType.h */,
-				B3900EC51815310C007BCE33 /* ODEntityType.m */,
+				B3BDF59A18259AA8003CF414 /* ODType.h */,
+				B3BDF59B18259AA8003CF414 /* ODType.m */,
 				B3A4C1F51824F8B200ED9376 /* ODMetadataModel.h */,
 				B3A4C1F61824F8B200ED9376 /* ODMetadataModel.m */,
+				B3BDF58A1825868C003CF414 /* Primitive */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -598,6 +629,33 @@
 			name = Managing;
 			sourceTree = "<group>";
 		};
+		B3BDF58A1825868C003CF414 /* Primitive */ = {
+			isa = PBXGroup;
+			children = (
+				B3BDF587182585CF003CF414 /* ODType+Primitive.h */,
+				B3BDF588182585CF003CF414 /* ODType+Primitive.m */,
+				B3900EC41815310C007BCE33 /* ODPrimitiveType.h */,
+				B3900EC51815310C007BCE33 /* ODPrimitiveType.m */,
+				B3BDF581182581CC003CF414 /* ODEdmDateTime.h */,
+				B3BDF582182581CC003CF414 /* ODEdmDateTime.m */,
+				B3BDF5841825837C003CF414 /* ODEdmInt.h */,
+				B3BDF5851825837C003CF414 /* ODEdmInt.m */,
+				B3BDF58B182586DB003CF414 /* ODEdmString.h */,
+				B3BDF58C182586DB003CF414 /* ODEdmString.m */,
+				B3BDF58E182588CC003CF414 /* ODEdmDecimal.h */,
+				B3BDF58F182588CC003CF414 /* ODEdmDecimal.m */,
+				B3BDF59118258A32003CF414 /* ODEdmBinary.h */,
+				B3BDF59218258A32003CF414 /* ODEdmBinary.m */,
+				B3BDF59418258FFB003CF414 /* ODEdmBoolean.h */,
+				B3BDF59518258FFB003CF414 /* ODEdmBoolean.m */,
+				B3BDF597182591DA003CF414 /* ODEdmSByte.h */,
+				B3BDF598182591DA003CF414 /* ODEdmSByte.m */,
+				B3BDF5A01825A96E003CF414 /* ODEdmGuid.h */,
+				B3BDF5A11825A96E003CF414 /* ODEdmGuid.m */,
+			);
+			name = Primitive;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -733,6 +791,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B329A66B182063AF00B2D8B9 /* ODResource+CollectionFields.m in Sources */,
+				B3BDF590182588CC003CF414 /* ODEdmDecimal.m in Sources */,
+				B3BDF58D182586DB003CF414 /* ODEdmString.m in Sources */,
+				B3BDF5861825837C003CF414 /* ODEdmInt.m in Sources */,
 				B3900F591816962C007BCE33 /* ODRetrieveOperation.m in Sources */,
 				B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */,
 				B3454510181D581E0039BD67 /* ODNotifyingManager.m in Sources */,
@@ -745,6 +806,8 @@
 				B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */,
 				B3A4C1F41822DDC900ED9376 /* NSArray+Functional.m in Sources */,
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
+				B3BDF5A21825A96E003CF414 /* ODEdmGuid.m in Sources */,
+				B3BDF59618258FFB003CF414 /* ODEdmBoolean.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
 				B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */,
@@ -752,10 +815,12 @@
 				B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */,
 				B3900EB818119619007BCE33 /* ODEntity.m in Sources */,
 				B3900F3A1815BA75007BCE33 /* CollectionCache.m in Sources */,
+				B3BDF59318258A32003CF414 /* ODEdmBinary.m in Sources */,
+				B3BDF583182581CC003CF414 /* ODEdmDateTime.m in Sources */,
 				B3900EA918118129007BCE33 /* ODOperation.m in Sources */,
 				B3454509181C7CEA0039BD67 /* OperationWithSteps.m in Sources */,
 				B34544F0181B278D0039BD67 /* ODRetrievalInfo.m in Sources */,
-				B3900EC61815310C007BCE33 /* ODEntityType.m in Sources */,
+				B3900EC61815310C007BCE33 /* ODPrimitiveType.m in Sources */,
 				B34544F5181B36A30039BD67 /* Supplier.m in Sources */,
 				B34544FD181BEA270039BD67 /* ODPlainOperation.m in Sources */,
 				B34544D418195E6B0039BD67 /* ODEntityTableViewCell.m in Sources */,
@@ -773,8 +838,11 @@
 				B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */,
 				B329A65E181FEF2300B2D8B9 /* ODResource+Entity.m in Sources */,
 				B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */,
-				B329A6731821116800B2D8B9 /* ODCollectionTableViewCell.m in Sources */,
+				B329A6731821116800B2D8B9 /* ODGenericTableViewCell.m in Sources */,
+				B3BDF59C18259AA8003CF414 /* ODType.m in Sources */,
+				B3BDF599182591DA003CF414 /* ODEdmSByte.m in Sources */,
 				B34544F7181B36A30039BD67 /* Customer.m in Sources */,
+				B3BDF589182585CF003CF414 /* ODType+Primitive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

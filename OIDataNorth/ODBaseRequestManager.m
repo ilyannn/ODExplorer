@@ -33,7 +33,6 @@
 - (BOOL)handleOperation:(ODOperation *)operation {
     [operation addCompletionBlock: ^ (ODOperation * op) {
         if (op.error) {
-            // Set the BREAKPOINT here to debug operation failures.
             NSLog(@"%@", op.error);
         }
     }];

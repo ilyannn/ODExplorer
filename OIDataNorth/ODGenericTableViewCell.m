@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODCollectionTableViewCell.h"
+#import "ODGenericTableViewCell.h"
 
-@implementation ODCollectionTableViewCell
+@implementation ODGenericTableViewCell
 
 - (void)configure {
     self.textLabel.text = [self.resource shortDescription];

@@ -7,14 +7,14 @@
 //
 
 #import "ODResource.h"
-#import "ODEntityType.h"
+#import "ODType.h"
 
 /// Public information about properties and methods of ODResource availible only for entities.
 @protocol ODEntityAccessing <ODResourceAccessing>
 
 - (id)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo;
 
-+ (ODEntityType *)entityType;
++ (ODType *)entityType;
 
 // - (void)replace;
 // - (ODOperation *)replaceOperation;
@@ -22,8 +22,8 @@
 // - (void)merge;
 // - (ODOperation *)mergeOperation;
 
-- (id)navigationProperty:(NSString *)name propertyType:(ODEntityType *)entityType;
-- (id)navigationCollection:(NSString *)name entityType:(ODEntityType *)entityType;
+- (id)navigationProperty:(NSString *)name propertyType:(ODType *)entityType;
+- (id)navigationCollection:(NSString *)name entityType:(ODType *)entityType;
 
 - (void)performAction:(NSString *)actionName;
 

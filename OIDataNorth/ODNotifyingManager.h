@@ -27,6 +27,6 @@
 @property (readonly) BOOL hasOperations;
 
 /// Or you can use this delegate
-@property id<ODNotifyingManagerDelegate> delegate;
+@property (weak) id<ODNotifyingManagerDelegate> delegate;
 
 @end

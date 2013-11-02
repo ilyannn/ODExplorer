@@ -23,6 +23,7 @@
 + (void)setSharedRoot:(ODRetrievalInfo *)info;
 
 @property id<ODRetrieving> parent;
+@property NSURL *knownURL;
 
 - (void)addManager:(id<ODManaging>)manager;
 @property (readonly) NSArray *managers;

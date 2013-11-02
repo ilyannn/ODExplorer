@@ -14,8 +14,6 @@
 #import "ODRetrieveOperation.h"
 #import "ODActionOperation.h"
 
-#import "NSData+Base64.h"
-
 
 @implementation ODEntity
 
@@ -34,18 +32,14 @@
 }
 
 
-+ (ODEntityType *)entityType {
++ (ODType *)entityType {
     //    static
-    ODEntityType *_entityType;
+    ODType *_entityType;
     //   if (!_entityType) {
-    _entityType = [ODEntityType new];
-    _entityType.className = NSStringFromClass(self);
+    _entityType = [ODType new];
+    //    _entityType.className = NSStringFromClass(self);
     //    }
     return _entityType;
-}
-
-- (ODEntityType *)entityType {
-    return [self.class entityType];
 }
 
 - (id)valueForKey:(NSString *)key {
@@ -57,7 +51,7 @@
     return self.localProperties[key];
 }
 
-- (id)navigationProperty:(NSString *)name propertyType:(ODEntityType *)entityType {
+- (id)navigationProperty:(NSString *)name propertyType:(ODType *)entityType {
     ODResource *result = self.navigationProperties[name];
     if (result) return result;
     

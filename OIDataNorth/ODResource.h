@@ -33,7 +33,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 
 @class ODResource, ODCollection, ODEntity, ODEntitySet;
-@class ODEntityType;
+@class ODType;
 @class ODRetrieveOperation;
 
 /// Public information about properties and methods of ODResource that are common
@@ -61,7 +61,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 @property (nonatomic) ODResourceKind kind;
 
 // This is either this entity's entity type or collection's entity type.
-@property (nonatomic) ODEntityType *entityType;
+@property (nonatomic) ODType *entityType;
 
 
 #pragma mark - (3) and (4) values of resource and its children
@@ -75,7 +75,9 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 /// It's non-nil iff resource has been retrieved.
 /// = Count for collection, plain value for property.
 @property (readonly) id resourceValue;
+
 - (BOOL)isEntitySet;
+- (BOOL)isPrimitiveProperty;
 
 // Until at least some info about an entity is retrieved, this is nil.
 @property (readonly, atomic) NSArray * childrenArray;
@@ -134,7 +136,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 @property BOOL automaticallyRetrieve;
 @property (nonatomic) ODResourceKind kind;
-@property (nonatomic) ODEntityType *entityType;
+@property (nonatomic) ODType *entityType;
 
 @end
 

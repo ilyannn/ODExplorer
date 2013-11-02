@@ -7,11 +7,6 @@
 //
 
 #import "CollectionCache.h"
-#import "ODCollection.h"
-#import "ODEntityType.h"
-#import "ODEntityRetrieval.h"
-#import "ODCountOperation.h"
-#import "ODEntity.h"
 
 @implementation CollectionCache {
     NSPointerArray *_objects; // Created lazily, only on -setCount:

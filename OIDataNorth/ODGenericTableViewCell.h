@@ -9,7 +9,7 @@
 #import "ODResourceTableViewCell.h"
 #import "ODCollection.h"
 
-@interface ODCollectionTableViewCell : ODResourceTableViewCell
+@interface ODGenericTableViewCell : ODResourceTableViewCell
 @property (nonatomic) ODResource<ODCollectionAccessing> *resource;
 
 @end
