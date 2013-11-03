@@ -9,6 +9,7 @@
 #import "ODHTTPOperation.h"
 
 #import "ODOperationError+Parsing.h"
+#import "AFNetworking/AFNetworking.h"
 
 NSString *const ODHTTPVerbGet = @"GET";
 

@@ -15,4 +15,8 @@
 
 - (ODEntity *)entityWithInfo:(id)info;
 
+@property (readonly) NSMutableDictionary *attributeProperties;
+@property (readonly) NSMutableDictionary *navigationProperties;
+@property (readonly) NSMutableArray *keyProperties;
+
 @end

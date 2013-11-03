@@ -16,8 +16,17 @@
 
 @implementation ODPrimitiveType
 
+
+- (instancetype)init {
+    return [super initWithName:[NSString stringWithFormat:@"Edm.%@", [self primitiveName]]];
+}
+
 - (BOOL)isPrimitive {
     return YES;
+}
+
+- (NSString *)primitiveName {
+    return nil;
 }
 
 - (id)valueForJSONString:(NSString *)obj {

@@ -1,17 +1,17 @@
 //
-//  ODEdmDecimal.m
+//  ODPrimitiveTypeDecimal.m
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEdmDecimal.h"
+#import "ODPrimitiveTypeDecimal.h"
 
-@implementation ODEdmDecimal
+@implementation ODPrimitiveTypeDecimal
 
-- (instancetype) init {
-    return [super initWithName:@"Decimal"];
+- (NSString *)primitiveName {
+    return @"Decimal";
 }
 
 - (NSDecimalNumber *)valueForJSONNumber:(NSNumber *)obj {

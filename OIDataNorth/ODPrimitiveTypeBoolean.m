@@ -1,17 +1,17 @@
 //
-//  ODEdmBoolean.m
+//  ODPrimitiveTypeBoolean.m
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEdmBoolean.h"
+#import "ODPrimitiveTypeBoolean.h"
 
-@implementation ODEdmBoolean
+@implementation ODPrimitiveTypeBoolean
 
-- (instancetype) init {
-    return [super initWithName:@"Boolean"];
+- (NSString *)primitiveName {
+    return @"Boolean";
 }
 
 - (id)valueForJSONNumber:(NSNumber *)obj {

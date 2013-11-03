@@ -1,17 +1,17 @@
 //
-//  ODEdmSByte.m
+//  ODPrimitiveTypeSByte.m
 //  OIDataNorth
 //
 //  Created by ilya on 11/3/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEdmSByte.h"
+#import "ODPrimitiveTypeSByte.h"
 
-@implementation ODEdmSByte
+@implementation ODPrimitiveTypeSByte
 
-- (instancetype)init {
-    return [super initWithName:@"SByte"];
+- (NSString *)primitiveName {
+    return @"SByte";
 }
 
 - (NSNumber *)valueForJSONNumber:(NSNumber *)obj {

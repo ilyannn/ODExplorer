@@ -1,17 +1,17 @@
 //
-//  ODEdmGuid.m
+//  ODPrimitiveTypeGuid.m
 //  OIDataNorth
 //
 //  Created by ilya on 11/3/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEdmGuid.h"
+#import "ODPrimitiveTypeGuid.h"
 
-@implementation ODEdmGuid
+@implementation ODPrimitiveTypeGuid
 
-- (instancetype) init {
-    return [super initWithName:@"Guid"];
+- (NSString *)primitiveName {
+    return @"Guid";
 }
 
 - (NSUUID *)valueForJSONString:(NSString *)obj {

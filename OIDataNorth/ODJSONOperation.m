@@ -9,6 +9,7 @@
 #import "ODJSONOperation.h"
 #import "ODOperationResponse.h"
 #import "ODOperationError+Parsing.h"
+#import "AFNetworking/AFNetworking.h"
 
 @implementation ODJSONOperation
 
@@ -20,9 +21,25 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
     return _sharedResponseSerializer;
 }
 
--(void)changeHTTPHeaders:(NSMutableDictionary *)headers {
+- (NSArray *)acceptStrings {
+    NSArray *odataTypes = @[@"fullmetadata", @"verbose", @""];
+    NSMutableArray *strings = [NSMutableArray new];
+    NSString *core = @"application/json";
+    
+    [odataTypes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSArray *components = @[core,
+                                [obj length]? [NSString stringWithFormat:@";odata=%@", obj] : @"",
+                                [NSString stringWithFormat:@";q=0.%d", 9 - idx]];
+        [strings addObject:[components componentsJoinedByString:@""]];
+    }];
+
+    return [strings copy];
+}
+
+- (void)changeHTTPHeaders:(NSMutableDictionary *)headers {
     [super changeHTTPHeaders:headers];
-    headers[@"Accept"] = @"application/json;odata=fullmetadata,application/json;odata=verbose;q=0.7,application/json;q=0.5";
+    headers[@"Accept"] = [[self acceptStrings] componentsJoinedByString:@","];
+ //   headers[@"Accept"] = @"application/json;odata=,application/json;odata=;q=0.7,;q=0.5";
 }
 
 // This method has access to protocol version, HTTP headers and other OData encoding metadata.

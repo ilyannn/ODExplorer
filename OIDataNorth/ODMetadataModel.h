@@ -6,12 +6,16 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
+@class ODTypeLibrary;
+
 @interface ODMetadataModel : NSObject
 
-- (instancetype)initWithData:(NSData *)contents;
+@property (readonly) ODTypeLibrary *typeLibrary;
+
+- (instancetype)initWithData:(NSData *)contents typeLibrary:(ODTypeLibrary *)library;
+- (void)updateWithData:(NSData *)contents;
 
 @property NSMutableDictionary *entitySets;
-@property NSMutableDictionary *entityTypes;
-@property NSMutableDictionary *functions;
+@property NSMutableDictionary *associations;
 
 @end

@@ -8,7 +8,6 @@
 
 #import "ODOperation.h"
 #import "ODOperationResponse.h"
-#import "AFNetworking/AFNetworking.h"
 
 #define MIN_ODATA_MAJOR_VERSION 1
 #define MAX_ODATA_MAJOR_VERSION 3

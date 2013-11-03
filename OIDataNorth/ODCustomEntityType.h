@@ -9,6 +9,8 @@
 #import "ODEntityType.h"
 
 @interface ODCustomEntityType : ODEntityType
+
 @property (readwrite) NSString *entityClassName;
 @property (readwrite) NSString *collectionClassName;
+
 @end

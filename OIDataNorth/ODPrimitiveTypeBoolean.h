@@ -1,5 +1,5 @@
 //
-//  ODEdmBoolean.h
+//  ODPrimitiveTypeBoolean.h
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
@@ -8,7 +8,7 @@
 
 #import "ODPrimitiveType.h"
 
-@interface ODEdmBoolean : ODPrimitiveType
+@interface ODPrimitiveTypeBoolean : ODPrimitiveType
 
 - (NSNumber *)JSONObjectForValue:(NSNumber *)value;
 

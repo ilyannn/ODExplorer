@@ -1,5 +1,5 @@
 //
-//  ODEdmInt.h
+//  ODPrimitiveTypeInt.h
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
@@ -8,7 +8,7 @@
 
 #import "ODPrimitiveType.h"
 
-@interface ODEdmInt : ODPrimitiveType
+@interface ODPrimitiveTypeInt : ODPrimitiveType
 @property (readonly) NSUInteger bits;
 
 + (instancetype)withBits:(NSUInteger)bits;

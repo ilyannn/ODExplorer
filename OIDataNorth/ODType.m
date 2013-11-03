@@ -7,36 +7,11 @@
 //
 
 #import "ODType.h"
-#import "ODType+Primitive.h"
 
 @implementation ODType
 
-NSMutableDictionary *_types;
 
-+ (void)initialize {
-    _types = [NSMutableDictionary new];
-    for (ODPrimitiveType *type in [self listPrimitiveTypes])
-        [self registerPrimitiveType:type];
-}
-
-+ (void)registerPrimitiveType:(ODType *)type {
-    _types[type.name] = type;
-    _types[[@"Edm." stringByAppendingString:type.name]] = type;
-}
-
-+ (ODType *)uniqueTypeFor:(NSString *)typeName {
-    if (!typeName) return nil;
-    
-    ODType *result = _types[typeName];
-    if (!result) {
-        result = [[self alloc] initWithName:typeName];
-        _types[typeName] = result;
-    }
-    
-    return [result isKindOfClass:[self class]] ? result : nil;
-}
-
-// Can't create without a name;
+// Can't create without a name.
 - (id)init {
     return nil;
 }

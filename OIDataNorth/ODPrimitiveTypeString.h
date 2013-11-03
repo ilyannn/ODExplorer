@@ -1,5 +1,5 @@
 //
-//  ODEdmString.h
+//  ODPrimitiveTypeString.h
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
@@ -8,7 +8,7 @@
 
 #import "ODPrimitiveType.h"
 
-@interface ODEdmString : ODPrimitiveType
+@interface ODPrimitiveTypeString : ODPrimitiveType
 
 - (NSString *)valueForJSONString:(NSString *)obj;
 - (NSString *)valueForJSONNumber:(NSNumber *)obj;

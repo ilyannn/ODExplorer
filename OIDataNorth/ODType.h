@@ -14,8 +14,6 @@
 @property (readonly) NSString *name;
 @property (readonly, getter = isPrimitive) BOOL primitive;
 
-/// This will return nil if saved type exists but is not really of class that is being sent message to.
-+ (ODType *)uniqueTypeFor:(NSString *)typeName;
 - (instancetype)initWithName:(NSString *)name;
 
 /*

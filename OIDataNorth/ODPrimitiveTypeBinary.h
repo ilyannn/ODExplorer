@@ -1,5 +1,5 @@
 //
-//  ODEdmBinary.h
+//  ODPrimitiveTypeBinary.h
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
@@ -8,7 +8,7 @@
 
 #import "ODPrimitiveType.h"
 
-@interface ODEdmBinary : ODPrimitiveType
+@interface ODPrimitiveTypeBinary : ODPrimitiveType
 
 - (NSData *)valueForJSONString:(NSString *)obj;
 

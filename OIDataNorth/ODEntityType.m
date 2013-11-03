@@ -12,6 +12,17 @@
 
 @implementation ODEntityType
 
+- (id)initWithName:(NSString *)name
+{
+    self = [super initWithName:name];
+    if (self) {
+        _attributeProperties = [NSMutableDictionary new];
+        _navigationProperties = [NSMutableDictionary new];
+        _keyProperties = [NSMutableArray new];
+    }
+    return self;
+}
+
 - (ODEntity *)entityWithInfo:(id)info {
     ODEntity * entity = [NSClassFromString(self.entityClassName) resourceWithInfo:info];
     entity.type = self;

@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "NSData+Base64.h"
-#import "ODResource+Entity.h"
+#import "ODPrimitiveTypeDateTime.h"
 
 @interface HelpersTests : XCTestCase
 
@@ -45,7 +45,7 @@
 }
 
 - (void)testJSONDates {
-    ODResource *example = [ODResource new];
+    ODPrimitiveTypeDateTime *example = [ODPrimitiveTypeDateTime new];
 
     NSDate *date1 = [example.dateTimeFormatterV2 dateFromString:@"/Date(1310669017000)/"];
     XCTAssertNotNil(date1, @"Formatter didn't decode the JSON date at all");

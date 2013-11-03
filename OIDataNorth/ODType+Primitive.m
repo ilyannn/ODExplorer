@@ -8,29 +8,29 @@
 
 #import "ODType+Primitive.h"
 
-#import "ODEdmDateTime.h"
-#import "ODEdmInt.h"
-#import "ODEdmString.h"
-#import "ODEdmBinary.h"
-#import "ODEdmBoolean.h"
-#import "ODEdmSByte.h"
-#import "ODEdmGuid.h"
-#import "ODEdmDecimal.h"
+#import "ODPrimitiveTypeDateTime.h"
+#import "ODPrimitiveTypeInt.h"
+#import "ODPrimitiveTypeString.h"
+#import "ODPrimitiveTypeBinary.h"
+#import "ODPrimitiveTypeBoolean.h"
+#import "ODPrimitiveTypeSByte.h"
+#import "ODPrimitiveTypeGuid.h"
+#import "ODPrimitiveTypeDecimal.h"
 
 @implementation ODType (Primitive)
 
 + (NSArray *)listPrimitiveTypes {
     return @[
-             [ODEdmDateTime new],
-             [ODEdmInt withBits:16],
-             [ODEdmInt withBits:32],
-             [ODEdmInt withBits:64],
-             [ODEdmString new],
-             [ODEdmBoolean new],
-             [ODEdmBinary new],
-             [ODEdmSByte new],
-             [ODEdmGuid new],
-             [ODEdmDecimal new],
+             [ODPrimitiveTypeDateTime new],
+             [ODPrimitiveTypeInt withBits:16],
+             [ODPrimitiveTypeInt withBits:32],
+             [ODPrimitiveTypeInt withBits:64],
+             [ODPrimitiveTypeString new],
+             [ODPrimitiveTypeBoolean new],
+             [ODPrimitiveTypeBinary new],
+             [ODPrimitiveTypeSByte new],
+             [ODPrimitiveTypeGuid new],
+             [ODPrimitiveTypeDecimal new],
              ];
 }
 

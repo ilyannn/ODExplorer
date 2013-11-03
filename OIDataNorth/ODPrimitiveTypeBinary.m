@@ -1,18 +1,18 @@
 //
-//  ODEdmBinary.m
+//  ODPrimitiveTypeBinary.m
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEdmBinary.h"
+#import "ODPrimitiveTypeBinary.h"
 #import "NSData+Base64.h"
 
-@implementation ODEdmBinary
+@implementation ODPrimitiveTypeBinary
 
-- (instancetype) init {
-    return [super initWithName:@"Binary"];
+- (NSString *)primitiveName {
+    return @"Binary";
 }
 
 - (NSData *)valueForJSONString:(NSString *)obj {

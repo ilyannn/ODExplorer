@@ -1,18 +1,18 @@
 //
-//  ODEdmDateTime.m
+//  ODPrimitiveTypeDateTime.m
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEdmDateTime.h"
+#import "ODPrimitiveTypeDateTime.h"
 #import "JSONDateReader.h"
 
-@implementation ODEdmDateTime
+@implementation ODPrimitiveTypeDateTime
 
-- (instancetype) init {
-    return [super initWithName:@"DateTime"];
+- (NSString *)primitiveName {
+    return @"DateTime";
 }
 
 - (id)dateTimeFormatterV2 {

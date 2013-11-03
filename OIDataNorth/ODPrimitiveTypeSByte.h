@@ -1,5 +1,5 @@
 //
-//  ODEdmGuid.h
+//  ODPrimitiveTypeSByte.h
 //  OIDataNorth
 //
 //  Created by ilya on 11/3/13.
@@ -8,8 +8,6 @@
 
 #import "ODPrimitiveType.h"
 
-@interface ODEdmGuid : ODPrimitiveType
-
-- (NSUUID *)valueForJSONString:(NSString *)obj;
+@interface ODPrimitiveTypeSByte : ODPrimitiveType
 
 @end

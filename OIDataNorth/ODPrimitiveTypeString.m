@@ -1,17 +1,17 @@
 //
-//  ODEdmString.m
+//  ODPrimitiveTypeString.m
 //  OIDataNorth
 //
 //  Created by ilya on 11/2/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEdmString.h"
+#import "ODPrimitiveTypeString.h"
 
-@implementation ODEdmString
+@implementation ODPrimitiveTypeString
 
-- (instancetype) init {
-    return [super initWithName:@"String"];
+- (NSString *)primitiveName {
+    return @"String";
 }
 
 - (id)valueForJSONString:(NSString *)obj {
@@ -20,6 +20,10 @@
 
 - (id)valueForJSONNumber:(NSNumber *)obj {
     return [NSString stringWithFormat:@"%@", obj];
+}
+
+- (NSString *)JSONObjectForValue:(NSString *)value {
+    return value;
 }
 
 @end

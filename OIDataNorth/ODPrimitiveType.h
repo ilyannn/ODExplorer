@@ -9,6 +9,11 @@
 #import "ODType.h"
 
 @interface ODPrimitiveType : ODType
+
+/// Designated initializer. Fills name from -primitiveName.
+- (instancetype)init;
+@property (readonly) NSString *primitiveName;
+
 @property (readonly) NSString *className;
 
 - (id)valueForJSONObject:(id)obj;
