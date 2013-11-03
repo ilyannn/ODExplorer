@@ -20,7 +20,7 @@ NSString *kSupplier_Products = @"Products";
 
 - (ODCollection *)Products {
     if (!_Products) {
-        _Products = [self navigationCollection:kSupplier_Products entityType:[Product entityType]];
+        _Products = [self navigationCollection:kSupplier_Products entityType:[Product customEntityType]];
     }
     return _Products;
 }

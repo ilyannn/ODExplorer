@@ -14,6 +14,8 @@
 #import "ODEntityRetrieval.h"
 #import "ODResource_Internal.h"
 
+#import "ODEntityType.h"
+
 @implementation ODCollection 
 
 // This is a designated initializer.
@@ -27,7 +29,7 @@
 
 + (instancetype)collectionForProperty:(NSString *)propertyName entityType:(ODPrimitiveType *)entityType inEntity:(ODEntity *)entity {
     ODCollection *collection = [[self alloc] initWithName:propertyName inParent:entity];
-    collection.entityType = entityType;
+    collection.type = entityType;
     return collection;
 }
 
@@ -44,7 +46,9 @@
     retrieval.parent = self.retrievalInfo;
     retrieval.index = index;
 
-    return [self.entityType entityWithInfo:retrieval];
+    if ([self.type respondsToSelector:@selector(entityWithInfo:)])
+        return [(ODEntityType *)self.type entityWithInfo:retrieval];
+    return nil;
 }
 
 - (void)retrieveCount { 

@@ -12,9 +12,7 @@
 /// Public information about properties and methods of ODResource availible only for entities.
 @protocol ODEntityAccessing <ODResourceAccessing>
 
-- (id)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo;
-
-+ (ODType *)entityType;
+- (NSError *)parseFromJSONDictionary:(NSDictionary *)dict;
 
 // - (void)replace;
 // - (ODOperation *)replaceOperation;
@@ -33,8 +31,9 @@
 
 @end
 
+@class ODCustomEntityType;
+
 /// A class that works essentially as a hint to compiler.
 @interface ODEntity : ODResource <ODEntityAccessing>
-- (id)initFromDict:(NSDictionary *)dict parentInfo:(id<ODRetrieving>)parentInfo;
-
++ (ODCustomEntityType *)customEntityType;
 @end

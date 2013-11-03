@@ -13,7 +13,6 @@
 /// Internal information about properties and methods of ODResource availible only for entities.
 @interface ODResource (Entity) <ODEntityAccessing>
 - (NSArray *)childrenArrayForEntity;
-- (NSError *)parseFromJSONDictionary:(NSDictionary *)dict;
 @property (nonatomic) NSMutableDictionary *localProperties;
 
 @end

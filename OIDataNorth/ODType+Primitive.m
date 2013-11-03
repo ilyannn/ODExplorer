@@ -15,6 +15,7 @@
 #import "ODEdmBoolean.h"
 #import "ODEdmSByte.h"
 #import "ODEdmGuid.h"
+#import "ODEdmDecimal.h"
 
 @implementation ODType (Primitive)
 
@@ -28,7 +29,8 @@
              [ODEdmBoolean new],
              [ODEdmBinary new],
              [ODEdmSByte new],
-             [ODEdmGuid new]
+             [ODEdmGuid new],
+             [ODEdmDecimal new],
              ];
 }
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8286066B64554EB289873BF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01CB4325C22B4BC6BB25D101 /* libPods.a */; };
+		B30EF6DC1826446B0091C378 /* ODEntityType.m in Sources */ = {isa = PBXBuildFile; fileRef = B30EF6DB1826446B0091C378 /* ODEntityType.m */; };
+		B30EF6DF182646C30091C378 /* ODCustomEntityType.m in Sources */ = {isa = PBXBuildFile; fileRef = B30EF6DE182646C30091C378 /* ODCustomEntityType.m */; };
 		B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A652181E611400B2D8B9 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B329A657181F991A00B2D8B9 /* ODResourceViewControllerMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A656181F991A00B2D8B9 /* ODResourceViewControllerMenu.m */; };
 		B329A65B181FB5C700B2D8B9 /* JSONDateReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */; };
@@ -91,6 +93,10 @@
 /* Begin PBXFileReference section */
 		01CB4325C22B4BC6BB25D101 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B32D1985D36467C94A4C41F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B30EF6DA1826446B0091C378 /* ODEntityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODEntityType.h; sourceTree = "<group>"; };
+		B30EF6DB1826446B0091C378 /* ODEntityType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODEntityType.m; sourceTree = "<group>"; };
+		B30EF6DD182646C30091C378 /* ODCustomEntityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCustomEntityType.h; sourceTree = "<group>"; };
+		B30EF6DE182646C30091C378 /* ODCustomEntityType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCustomEntityType.m; sourceTree = "<group>"; };
 		B329A651181E611400B2D8B9 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "NSData_Base64/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
 		B329A652181E611400B2D8B9 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "NSData_Base64/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
 		B329A655181F991A00B2D8B9 /* ODResourceViewControllerMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResourceViewControllerMenu.h; sourceTree = "<group>"; };
@@ -264,6 +270,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B30EF6E0182646CC0091C378 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				B30EF6DA1826446B0091C378 /* ODEntityType.h */,
+				B30EF6DB1826446B0091C378 /* ODEntityType.m */,
+				B30EF6DD182646C30091C378 /* ODCustomEntityType.h */,
+				B30EF6DE182646C30091C378 /* ODCustomEntityType.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
 		B329A658181F991F00B2D8B9 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +361,7 @@
 				B3BDF59B18259AA8003CF414 /* ODType.m */,
 				B3A4C1F51824F8B200ED9376 /* ODMetadataModel.h */,
 				B3A4C1F61824F8B200ED9376 /* ODMetadataModel.m */,
+				B30EF6E0182646CC0091C378 /* Entity */,
 				B3BDF58A1825868C003CF414 /* Primitive */,
 			);
 			name = Model;
@@ -791,6 +809,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B329A66B182063AF00B2D8B9 /* ODResource+CollectionFields.m in Sources */,
+				B30EF6DC1826446B0091C378 /* ODEntityType.m in Sources */,
 				B3BDF590182588CC003CF414 /* ODEdmDecimal.m in Sources */,
 				B3BDF58D182586DB003CF414 /* ODEdmString.m in Sources */,
 				B3BDF5861825837C003CF414 /* ODEdmInt.m in Sources */,
@@ -807,6 +826,7 @@
 				B3A4C1F41822DDC900ED9376 /* NSArray+Functional.m in Sources */,
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
 				B3BDF5A21825A96E003CF414 /* ODEdmGuid.m in Sources */,
+				B30EF6DF182646C30091C378 /* ODCustomEntityType.m in Sources */,
 				B3BDF59618258FFB003CF414 /* ODEdmBoolean.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,

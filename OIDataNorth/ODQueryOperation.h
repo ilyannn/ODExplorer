@@ -12,6 +12,8 @@
 
 @interface ODQueryOperation : ODJSONOperation
 
+@property ODType *type;
+
 - (NSString *)filter;
 - (void)setFilter:(id)filterObject;
 

@@ -170,7 +170,7 @@
 }
 
 - (BOOL)isPrimitiveProperty {
-    return (self.kind != ODResourceKindCollection) && [self.entityType isPrimitive];
+    return (self.kind != ODResourceKindCollection) && [self.type isPrimitive];
 }
 
 - (ODRetrieveOperation *)retrieveOperation {

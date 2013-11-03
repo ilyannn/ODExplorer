@@ -37,8 +37,10 @@ NSString *const kProduct_Supplier = @"Supplier";
     [self setValue:ProductID forKey:kProduct_ProductID];
 }
 
+/*
 - (Supplier *)Supplier {
     return [self navigationProperty:kProduct_Supplier propertyType:[Supplier entityType]];
 }
+*/
 
 @end

@@ -21,10 +21,12 @@
 }
 
 - (id)valueForJSONString:(NSString *)obj {
+    NSLog(@"I'm a primitive type %@, and I don't know how to handle the string '%@'", self, obj);
     return nil;
 }
 
 - (id)valueForJSONNumber:(NSString *)obj {
+    NSLog(@"I'm a primitive type %@, and I don't know how to handle the number '%@'", self, obj);
     return nil;
 }
 
@@ -37,36 +39,16 @@
     } else if ([obj isKindOfClass:[NSNumber class]]) {
         return [self valueForJSONNumber:obj];
     } else {
-        NSLog(@"Unknown JSON type: %@. Seriously?", NSStringFromClass([obj class]));
+        NSLog(@"Unknown JSON type: %@. Seriously, how does that happen?", NSStringFromClass([obj class]));
         return nil;
     }
-}
-
-- (ODEntity *)entityWithInfo:(id)info {
-    ODEntity * entity = [NSClassFromString(self.className) resourceWithInfo:info];
-    entity.entityType = self;
-    return entity;
-}
-
-- (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict
-                         withInfo:(id<ODRetrieving>)info {
-    ODEntity *entity = [self entityWithInfo:info];
-    entity.entityType = self;
-    return [entity parseFromJSONDictionary:entityDict] ? nil : entity;
-}
-
-- (ODCollection *)deserializeCollectionFromArray:(NSArray *)collectionArray
-                           withInfo:(id<ODRetrieving>)info {
-    ODCollection *collection = [ODCollection resourceWithInfo:info];
-    collection.entityType = self;
-    return [collection parseFromJSONArray:collectionArray] ? nil : collection;
 }
 
 - (NSString *)className {
     char x[1000];
     method_getReturnType(class_getInstanceMethod([self class], @selector(valueForJSONString:)),
                          x, sizeof(x));
-    
+    // TODO
     return @"xxx";
 }
 

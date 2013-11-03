@@ -49,7 +49,12 @@
         default:
             return nil;
     }
-    return [ODOperationError errorWithCode:code userInfo:@{ @"response":self }];
+    
+    NSMutableDictionary *userInfo = [NSMutableDictionary new];
+    [userInfo setValue:self.HTTPResponse.allHeaderFields forKey:@"headers"];
+    [userInfo setValue:[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding] forKey:@"body"];
+
+    return [ODOperationError errorWithCode:code userInfo: userInfo];
 }
 
 @end

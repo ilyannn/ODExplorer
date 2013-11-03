@@ -63,7 +63,7 @@
             color = [UIColor blueColor];
         } else if ([value isKindOfClass:[NSUUID class]]){
             formatted = [value UUIDString];
-            color = [UIColor greenColor];
+            color = [UIColor brownColor];
         } else {
             formatted = [value description];
             color = [UIColor blackColor];

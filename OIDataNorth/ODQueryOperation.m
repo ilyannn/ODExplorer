@@ -81,12 +81,20 @@ NSString *const ODQueryOrderByString = @"$orderby";
 
 - (NSError *)processJSONResponseVerbose {
     NSArray *values = self.responseJSON[@"value"];
+
     
     if (!values && [self.responseJSON isKindOfClass:[NSDictionary class]] ) {
         values = [(NSDictionary *)self.responseJSON objectForKey: @"d"];
         if ([values isKindOfClass:[NSDictionary class]])
             values = [(NSDictionary *)values objectForKey:@"results"];
     }
+    
+    // TODO
+    return nil;
+}
+
+- (NSError *)processJSONResponseLight {
+    NSArray *values = self.responseJSON[@"value"];
     
     ODAssertOData(values, nil);
     ODAssertODataClass(values, NSArray);
@@ -97,14 +105,17 @@ NSString *const ODQueryOrderByString = @"$orderby";
             ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
             retrieval.parent = self.retrievalInfo;
             retrieval.index = self.skip + index + 1;
-
-            ODEntity *entity = [[ODEntity entityType] deserializeEntityFrom:dict withInfo:retrieval];
-            [list addObject:entity];
+            ODEntity *entity = [[ODEntity alloc] initWithRetrievalInfo:retrieval];
+            if (entity) {
+                [entity parseFromJSONDictionary:dict];
+                [list addObject:entity];
+            }
         }
     }];
     
     _responseResults = [list copy];
     return nil;
 }
+
 
 @end

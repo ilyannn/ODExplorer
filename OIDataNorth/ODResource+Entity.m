@@ -15,6 +15,8 @@
 
 #import "ODOperationError+Parsing.h"
 
+#import "ODPrimitiveType.h"
+
 #define ODEntityAssert NSAssert(self.kind == ODResourceKindEntity, \
 @"This should be called only for entities!");
 
@@ -44,7 +46,7 @@
     ODResource *property =  [ODResource resourceWithInfo:info];
     property.resourceValue = self.localProperties[key];
     property.childrenArray = @[property];
-    property.entityType = [ODType uniqueTypeFor:@"String"];
+    property.type = [ODType uniqueTypeFor:@"String"];
     return property;
 }
 
@@ -70,7 +72,7 @@
         // Type annotation
         if ([key isEqualToString:@"odata.type"]) {
             if ([obj isKindOfClass:[NSString class]]) {
-                self.entityType = [ODType uniqueTypeFor:obj];
+                self.type = [ODType uniqueTypeFor:obj];
             }
             return;
         }
@@ -105,8 +107,9 @@
         
         // Primitive properties
         NSString *typeName = dict[[NSString stringWithFormat:@"%@@odata.type", key]];
-        ODType *type = [ODType uniqueTypeFor:typeName];
-        self.remoteProperties[key] = type ? [type valueForJSONObject:obj] : obj;
+        ODPrimitiveType *type = [ODPrimitiveType uniqueTypeFor:typeName];
+        if (type) obj = [type valueForJSONObject:obj];
+        if (obj) self.remoteProperties[key] = obj;
 
 //                    ||(!!(value = [NSURL URLWithString:obj]) && !!([(NSURL *)value scheme].length))
     }];

@@ -22,7 +22,7 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
 
 -(void)changeHTTPHeaders:(NSMutableDictionary *)headers {
     [super changeHTTPHeaders:headers];
-    headers[@"Accept"] = @"application/json;odata=fullmetadata";
+    headers[@"Accept"] = @"application/json;odata=fullmetadata,application/json;odata=verbose;q=0.7,application/json;q=0.5";
 }
 
 // This method has access to protocol version, HTTP headers and other OData encoding metadata.

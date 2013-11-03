@@ -13,18 +13,17 @@
 
 @property (readonly) NSString *name;
 @property (readonly, getter = isPrimitive) BOOL primitive;
-@property (readonly) NSString *className;
 
+/// This will return nil if saved type exists but is not really of class that is being sent message to.
 + (ODType *)uniqueTypeFor:(NSString *)typeName;
 - (instancetype)initWithName:(NSString *)name;
 
-- (id)valueForJSONObject:(id)obj;
-
-- (ODEntity *)entityWithInfo:(id<ODRetrieving>)info;
+/*
 - (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict
                            withInfo:(id<ODRetrieving>)info;
 - (ODCollection *)deserializeCollectionFromArray:(NSArray *)collectionArray
                                         withInfo:(id<ODRetrieving>)info;
 
+*/
 
 @end

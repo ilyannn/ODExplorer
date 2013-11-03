@@ -9,6 +9,9 @@
 #import "ODType.h"
 
 @interface ODPrimitiveType : ODType
+@property (readonly) NSString *className;
+
+- (id)valueForJSONObject:(id)obj;
 
 - (id)valueForJSONString:(NSString *)obj;
 - (id)valueForJSONNumber:(NSNumber *)obj;

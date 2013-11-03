@@ -28,11 +28,12 @@ NSMutableDictionary *_types;
     if (!typeName) return nil;
     
     ODType *result = _types[typeName];
-    if (result) return result;
+    if (!result) {
+        result = [[self alloc] initWithName:typeName];
+        _types[typeName] = result;
+    }
     
-    result = [[ODType alloc] initWithName:typeName];
-    _types[typeName] = result;
-    return result;
+    return [result isKindOfClass:[self class]] ? result : nil;
 }
 
 // Can't create without a name;

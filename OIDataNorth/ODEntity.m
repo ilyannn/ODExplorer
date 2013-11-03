@@ -14,6 +14,7 @@
 #import "ODRetrieveOperation.h"
 #import "ODActionOperation.h"
 
+#import "ODCustomEntityType.h"
 
 @implementation ODEntity
 
@@ -31,15 +32,10 @@
     return [self initWithRetrievalInfo:info];
 }
 
-
-+ (ODType *)entityType {
-    //    static
-    ODType *_entityType;
-    //   if (!_entityType) {
-    _entityType = [ODType new];
-    //    _entityType.className = NSStringFromClass(self);
-    //    }
-    return _entityType;
++ (ODCustomEntityType *)customEntityType {
+    ODCustomEntityType *entityType = [ODCustomEntityType new];
+    entityType.entityClassName = NSStringFromClass(self);
+    return entityType;
 }
 
 - (id)valueForKey:(NSString *)key {
@@ -61,7 +57,8 @@
     retrievalInfo.parent = self.retrievalInfo;
     retrievalInfo.propertyName = name;
     
-    return [entityType entityWithInfo:retrievalInfo];
+//    return [self.entityType entityWithInfo:retrievalInfo];
+    return nil;
 }
 
 /*- (id)navigationCollection:(NSString *)name entityType:(ODEntityType *)entityType {

@@ -8,6 +8,7 @@
 
 #import "ODManaging.h"
 #import "ODRetrieving.h"
+@class ODEntityType;
 
 typedef NS_ENUM (NSInteger, ODResourceKind) {
     ODResourceKindUnknown = 0,
@@ -61,7 +62,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 @property (nonatomic) ODResourceKind kind;
 
 // This is either this entity's entity type or collection's entity type.
-@property (nonatomic) ODType *entityType;
+@property (nonatomic) ODType *type;
 
 
 #pragma mark - (3) and (4) values of resource and its children
@@ -136,7 +137,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 @property BOOL automaticallyRetrieve;
 @property (nonatomic) ODResourceKind kind;
-@property (nonatomic) ODType *entityType;
+@property (nonatomic) ODType *type;
 
 @end
 
