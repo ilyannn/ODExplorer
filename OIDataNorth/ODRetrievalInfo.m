@@ -9,6 +9,8 @@
 #import "ODRetrievalInfo.h"
 #import "ODBaseRequestManager.h"
 
+#import "ODMetadataOperation.h"
+
 @implementation ODRetrievalInfo {
     NSMutableArray *_managers;
 }
@@ -68,6 +70,24 @@ static ODRetrievalInfo *_sharedRootInfo;
 }
 
 - (NSString *)shortDescription {
+    return nil;
+}
+
+- (void)retrieveMetadata {
+    [self handleOperation:[self metadataOperation]];
+}
+
+- (ODMetadataOperation *)metadataOperation {
+    ODMetadataOperation *operation = [ODMetadataOperation new];
+    operation.retrievalInfo = self;
+    [operation addOperationStep:^NSError *(ODMetadataOperation * op) {
+        self.metadataModel = op.responseModel;
+        return nil;
+    }];
+    return operation;
+}
+
+- (ODType *)metadataType {
     return nil;
 }
 

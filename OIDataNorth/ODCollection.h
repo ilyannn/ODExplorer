@@ -8,7 +8,7 @@
 
 #import "ODResource.h"
 
-@class ODCountOperation;
+@class ODCountOperation, ODMetadataOperation;
 
 /// Public information about properties and methods of ODResource availible only for collections.
 @protocol ODCollectionAccessing <ODResourceAccessing>

@@ -6,10 +6,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@protocol ODFaultManaging, ODChangeManaging;
-
-@class ODOperation;
-
 #import "ODManaging.h"
 #import "ODRetrieving.h"
 
@@ -27,6 +23,11 @@
 
 - (void)addManager:(id<ODManaging>)manager;
 @property (readonly) NSArray *managers;
+
+- (ODType *)metadataType;
+@property ODMetadataModel *metadataModel;
+- (ODMetadataOperation *)metadataOperation;
+- (void)retrieveMetadata;
 
 @end
 

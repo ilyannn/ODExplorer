@@ -18,4 +18,7 @@
 - (void)removeResourceFromList:(ODResource *)resource;
 
 @property NSMutableArray * childrenArray;
+
+- (void)retrieveMetadata;
+
 @end

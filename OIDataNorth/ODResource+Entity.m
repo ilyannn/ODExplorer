@@ -59,7 +59,7 @@
 
     [dict enumerateKeysAndObjectsUsingBlock: ^(NSString *key, id obj, BOOL *stop) {
 
-        // Type annotation
+        // ID annotation
         if ([key isEqualToString:@"odata.id"]) {
             if ([obj isKindOfClass:[NSString class]]) {
                 ODRetrievalByURL *info = [ODRetrievalByURL new];

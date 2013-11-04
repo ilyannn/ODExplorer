@@ -23,10 +23,8 @@
     return shared;
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
+- (id)init {
+    if (self = [super init]) {
         _types = [NSMutableDictionary new];
         for (ODPrimitiveType *type in [self listPrimitiveTypes])
             [self registerPrimitiveType:type];

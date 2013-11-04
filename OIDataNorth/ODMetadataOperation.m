@@ -21,7 +21,7 @@ NSString *const ODMetadataRequestString  = @"$metadata";
 - (NSError *)processResponse {
     ODMetadataModel *model = [ODMetadataModel new];
     [model updateWithData:self.response.data];
-    NSLog(@"%@", [ODTypeLibrary shared].types);
+    _responseModel = model;
     return nil;
 }
 

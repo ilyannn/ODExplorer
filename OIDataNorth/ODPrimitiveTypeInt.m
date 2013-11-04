@@ -15,14 +15,12 @@
 }
 
 - (NSString *)primitiveName {
-    return [NSString stringWithFormat:@"Int%lu", (long)_bits];
+    return [NSString stringWithFormat:@"Int%d", _bits];
 }
 
 - (id)initWithBits:(NSUInteger)bits {
-    if (self = [super init]) {
-        _bits = bits;
-    }
-    return self;
+    _bits = bits;
+    return [super init];
 }
 
 - (NSNumber *)valueForJSONNumber:(NSNumber *)obj {

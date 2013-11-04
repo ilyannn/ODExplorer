@@ -7,7 +7,8 @@
 //
 
 #import "ODHTTPOperation.h"
+#import "ODMetadataModel.h"
 
 @interface ODMetadataOperation : ODHTTPOperation
-
+@property (readonly) ODMetadataModel *responseModel;
 @end

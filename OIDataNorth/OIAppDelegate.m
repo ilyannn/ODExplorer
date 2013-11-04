@@ -22,6 +22,7 @@
     
     // Override point for customization after application launch.
     ODResourceList *root = [[ODResourceList alloc] initFromDefaults];
+    [root retrieveMetadata];
     
     ODResourceViewControllerMenu *sharedMenu = [ODResourceViewControllerMenu sharedMenu];
     sharedMenu.favorites = root;

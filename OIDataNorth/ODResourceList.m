@@ -35,7 +35,8 @@
     info.URL = [NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"];
     info.shortDescription = @"OData Example";
 //    info.parent = self.retrievalInfo;
-
+    
+    
     ODCollection *exampleService = [ODCollection resourceWithInfo:info];
 
     self.childrenArray = [NSMutableArray arrayWithObjects:exampleService,
@@ -83,6 +84,12 @@
 
 - (void)retrieve {
     
+}
+
+- (void)retrieveMetadata {
+    for (ODResource *resource in self.childrenArray) {
+        [resource.retrievalInfo retrieveMetadata];
+    }
 }
 
 @end
