@@ -17,6 +17,9 @@
 - (void)countCollection;
 - (ODCountOperation *)countCollectionOperation;
 
+- (void)retrieveMetadata;
+- (ODMetadataOperation *)retrieveMetadataOperation;
+
 - (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index;
 
 // - (void)list:(NSUInteger)top from:(NSUInteger)skip expanding:(NSString *)expanding perform:(void (^)(NSArray *items))block;

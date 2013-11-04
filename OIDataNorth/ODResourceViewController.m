@@ -208,7 +208,7 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
         return ODPrimitiveCellReuseID;
 
     if ([child.retrievalInfo isKindOfClass:[ODRetrievalByBrackets class]]
-        || ([child.retrievalInfo isKindOfClass:[ODRetrievalByURL class]] && ![child.retrievalInfo isRootURL])) {
+        || ([child.retrievalInfo isKindOfClass:[ODRetrieveByURL class]] && ![child.retrievalInfo isRootURL])) {
         return ODBracketedCellReuseID;
     }
     

@@ -13,6 +13,7 @@
 
 #import "ODEntityRetrieval.h"
 #import "ODResource_Internal.h"
+#import "ODRetrieving_Objects.h"
 
 #import "ODEntityType.h"
 

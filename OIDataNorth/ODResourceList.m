@@ -56,9 +56,12 @@
                            [ODCollection resourceWithDict: @{  @"uri":  @"http://odata4j-sample.appspot.com/datastore.svc/",
                                                             @"name": @"OData4j Sample"
                                                             }],
+/*                          [ODCollection resourceWithDict:@{@"uri": @"https://api.datamarket.azure.com/Data.ashx/UnitedNations/MDG/", @"name": @"UN Data Example"}],
+ */
 
                            nil];
-}
+
+                          }
 
 - (NSString *)shortDescription {
     return @"Favorites";
@@ -87,8 +90,8 @@
 }
 
 - (void)retrieveMetadata {
-    for (ODResource *resource in self.childrenArray) {
-        [resource.retrievalInfo retrieveMetadata];
+    for (ODResource<ODCollectionAccessing> *resource in self.childrenArray) {
+        [resource retrieveMetadata];
     }
 }
 

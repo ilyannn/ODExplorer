@@ -93,7 +93,7 @@ static ODRetrieveBase *_sharedRootInfo;
 
 @end
 
-@implementation ODRetrievalByURL
+@implementation ODRetrieveByURL
 
 - (BOOL)isRootURL {
     return !!self.URL && ![self.parent URL];

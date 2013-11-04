@@ -10,7 +10,7 @@
 #import "ODCollection.h"
 #import "ODResource_Internal.h"
 
-#import "ODEntityRetrieval.h"
+#import "ODRetrieving_Objects.h"
 #import "ODRetrieveOperation.h"
 #import "ODActionOperation.h"
 

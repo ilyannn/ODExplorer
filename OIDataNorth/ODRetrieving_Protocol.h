@@ -15,16 +15,9 @@
 @protocol ODRetrieving <NSObject>
 
 - (NSURL *)URL;
-- (NSString *)shortDescription;
-
 - (BOOL)isRootURL;
-
-- (void)handleOperation: (ODOperation *)operation;
-
+- (NSString *)shortDescription;
 - (ODType *)metadataType;
-
-
-- (ODMetadataOperation *)metadataOperation;
-- (void)retrieveMetadata;
+- (void)handleOperation: (ODOperation *)operation;
 
 @end

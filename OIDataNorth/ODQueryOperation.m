@@ -10,7 +10,7 @@
 #import "ODCollection.h"
 #import "ODEntity.h"
 #import "ODType.h"
-#import "ODEntityRetrieval.h"
+#import "ODRetrieving_Objects.h"
 
 #import "ODOperationError+Parsing.h"
 
