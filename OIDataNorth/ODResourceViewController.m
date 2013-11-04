@@ -8,7 +8,7 @@
 
 #import "ODResourceViewController.h"
 #import "ODResourceTableViewCell.h"
-#import "ODRetrievalInfo.h"
+#import "ODRetrieving_Objects.h"
 #import "ODNotifyingManager.h"
 
 #import "ODLoadingTableViewCell.h"
@@ -75,8 +75,7 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
     [super viewWillAppear:animated];
     
     self.title = [self.resource shortDescription];
-    self.subscribed = YES;
-    
+
     if (!self.refreshControl) {
         self.refreshControl = [UIRefreshControl new];
         [self.refreshControl
@@ -84,11 +83,6 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
          action:@selector(refreshControlActivated)
          forControlEvents:UIControlEventValueChanged];
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    self.subscribed = NO;
-    [super viewWillDisappear:animated];
 }
 
 #pragma mark - Constructing table view
@@ -181,7 +175,7 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
 - (void)setResource:(ODResource *)resource {
     if (resource != _resource) {
         _resource = [resource autoretrieve];
-        [(ODRetrievalInfo *)(_resource.retrievalInfo)addManager :[[ODNotifyingManager alloc] initWithDelegate:self]];
+        [(ODRetrieveBase *)(_resource.retrievalInfo)addManager :[[ODNotifyingManager alloc] initWithDelegate:self]];
     }
 }
 

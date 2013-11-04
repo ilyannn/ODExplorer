@@ -12,6 +12,15 @@
 
 @implementation ODMetadataParsingContext
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _parsedEntityTypes = [NSMutableArray new];
+    }
+    return self;
+}
+
 - (NSString *)qualifiedName {
     NSString *name = self.attributes[@"Name"];
     

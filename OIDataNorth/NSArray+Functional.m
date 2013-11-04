@@ -25,4 +25,12 @@
     }];
 }
 
+- (id)objectByReducing:(id (^)(id, id))func {
+    __block id result;
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        result = !idx ? obj : func(result, obj);
+    }];
+    return result;
+}
+
 @end

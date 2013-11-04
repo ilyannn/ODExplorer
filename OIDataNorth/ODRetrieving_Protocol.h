@@ -1,5 +1,5 @@
 //
-//  ODRetrieving.h
+//  ODRetrieving_Protocol.h
 //  OIDataNorth
 //
 //  Created by ilya on 10/29/13.
@@ -10,20 +10,20 @@
 @class ODType;
 
 /// Protocol to retrieve information about a resource within a context.
-/// Retrieval infomation is organized into hierarchy.
+/// Retrieval protocol doesn't provide a way to modify the information, although
+/// individual classes may provide a way to modify their properties.
 @protocol ODRetrieving <NSObject>
 
-- (id<ODRetrieving>)parent;
-- (id)getFromHierarchy:(SEL)selector;
-
 - (NSURL *)URL;
-- (BOOL)isRootURL;
 - (NSString *)shortDescription;
+
+- (BOOL)isRootURL;
 
 - (void)handleOperation: (ODOperation *)operation;
 
 - (ODType *)metadataType;
-- (ODMetadataModel *)metadataModel;
+
+
 - (ODMetadataOperation *)metadataOperation;
 - (void)retrieveMetadata;
 

@@ -8,13 +8,14 @@
 
 #import "ODTypeLibrary.h"
 #import "ODType+Primitive.h"
+#import "ODAssociationEnd.h"
+
+@interface ODTypeLibrary ()
+@end
 
 @implementation ODTypeLibrary {
     NSMutableDictionary *_types;
-}
-
-- (NSDictionary *)types {
-    return _types;
+    NSMutableDictionary *_associationEnds;
 }
 
 + (ODTypeLibrary *)shared {
@@ -26,8 +27,9 @@
 - (id)init {
     if (self = [super init]) {
         _types = [NSMutableDictionary new];
+        _associationEnds = [NSMutableDictionary new];
         for (ODPrimitiveType *type in [self listPrimitiveTypes])
-            [self registerPrimitiveType:type];
+            [self addPrimitiveType:type];
     }
     return self;
 }
@@ -36,13 +38,17 @@
     return [ODType listPrimitiveTypes];
 }
 
-- (void)registerPrimitiveType:(ODPrimitiveType *)type {
+- (void)addPrimitiveType:(ODPrimitiveType *)type {
     _types[type.name] = type;
     _types[type.primitiveName] = type;
 }
 
-- (void)registerType:(ODType *)type {
+- (void)addTypesObject:(ODType *)type {
     _types[type.name] = type;
+}
+
+- (void)addAssociationEndsObject:(ODAssociationEnd *)end {
+    _associationEnds[end.key] = end;
 }
 
 - (ODType *)uniqueTypeFor:(NSString *)typeName {

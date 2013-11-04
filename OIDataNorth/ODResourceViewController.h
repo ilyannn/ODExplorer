@@ -24,10 +24,7 @@ extern NSString *const ODBracketedCellReuseID;
 
 @property (weak) UIBarButtonItem *actionButton;
 
-@property (getter = isSubscribed, nonatomic) BOOL subscribed;
-
 - (NSDictionary *)cellClasses;
-- (void)refreshChildren;
 - (NSString *)cellIDForResource:(id)childID;
 - (void)configureCell:(ODResourceTableViewCell *)cell forChild:(id)childID;
 

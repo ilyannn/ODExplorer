@@ -9,7 +9,7 @@
 #import "ODResource+Entity.h"
 #import "ODResource_Internal.h"
 
-#import "ODRetrievalInfo.h"
+#import "ODRetrieving_Objects.h"
 
 #import "NSData+Base64.h"
 
@@ -62,7 +62,7 @@
         // ID annotation
         if ([key isEqualToString:@"odata.id"]) {
             if ([obj isKindOfClass:[NSString class]]) {
-                ODRetrievalByURL *info = [ODRetrievalByURL new];
+                ODRetrieveByURL *info = [ODRetrieveByURL new];
                 info.parent = self.retrievalInfo;
                 info.URL = [NSURL URLWithString:obj relativeToURL:[self URL]];
                 if (info.URL) self.retrievalInfo = info;

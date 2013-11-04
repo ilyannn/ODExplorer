@@ -11,7 +11,7 @@
 #import "ODResource_Internal.h"
 
 #import "CollectionCache.h"
-#import "ODRetrievalInfo.h"
+#import "ODRetrieving_Objects.h"
 
 #import "ODCountOperation.h"
 #import "ODQueryOperation.h"

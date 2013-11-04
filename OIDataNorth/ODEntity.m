@@ -28,7 +28,7 @@
 }
 
 - (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id <ODRetrieving> )parentInfo {
-    ODRetrievalInfo *info;
+    ODRetrieveBase *info;
     return [self initWithRetrievalInfo:info];
 }
 

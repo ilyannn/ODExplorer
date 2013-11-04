@@ -11,7 +11,7 @@
 @implementation ODAssociationEnd
 
 + (id)keyForAssociation:(NSString *)associationName role:(NSString *)roleName {
-    return @[associationName, roleName];
+    return associationName && roleName ? @[associationName, roleName] : nil;
 }
 
 - (id)key {

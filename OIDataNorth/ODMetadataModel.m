@@ -23,7 +23,6 @@
         if (contents) [self updateWithData:contents];
         _typeLibrary = library;
         _entitySets = [NSMutableDictionary new];
-        _associations = [NSMutableDictionary new];
     }
     return self;
 }
@@ -39,6 +38,20 @@
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:contents];
     parser.delegate = context;
     [parser parse];
+    
+    // Fill in types for navigation attributes.
+    for (ODEntityType *entityType in context.parsedEntityTypes) {
+        NSMutableDictionary *oldNavigationProperties = [[entityType navigationProperties] copy];
+        [oldNavigationProperties enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+            ODAssociationEnd *target = self.typeLibrary.associationEnds[obj];
+            if (target) {
+                entityType.navigationProperties[key] = [self.typeLibrary uniqueTypeFor:target.typeName];
+            } else {
+                [entityType.navigationProperties removeObjectForKey:key];
+            }
+        }];
+        [self.typeLibrary addTypesObject:entityType];
+    }
 }
 
 #pragma mark - Parsing
@@ -85,16 +98,25 @@
 
 - (void)finishParsingEntityType:(ODMetadataParsingContext *)context {
     if (context.entityType) {
-        [self.typeLibrary registerType:context.entityType];
+        [context.parsedEntityTypes addObject:context.entityType];
     }
     context.entityType = nil;
+}
+
+- (void)startParsingNavigationProperty:(ODMetadataParsingContext *)context {
+    NSArray *key = [ODAssociationEnd keyForAssociation:context.attributes[@"Relationship"]
+                                                  role:context.attributes[@"ToRole"]];
+    NSString *name = context.attributes[@"Name"];
+    if (name && key) {
+        context.entityType.navigationProperties[name] = key;
+    }
 }
 
 
 #pragma mark Associations
 
 - (void)startParsingAssociation:(ODMetadataParsingContext *)context  {
-    context.associationName = context.attributes[@"Name"];
+    context.associationName = context.qualifiedName;
 }
 
 - (void)startParsingEnd:(ODMetadataParsingContext *)context  {
@@ -104,7 +126,7 @@
         end.roleName = context.attributes[@"Role"];
         end.multiplicity = context.attributes[@"Multiplicity"];
         end.typeName = context.attributes[@"Type"];
-        self.associations[end.key] = end;
+        [self.typeLibrary addAssociationEndsObject:end];
     }
 }
 

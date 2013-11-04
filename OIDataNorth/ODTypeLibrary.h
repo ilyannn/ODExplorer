@@ -6,16 +6,19 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODType;
+@class ODType, ODAssociationEnd;
 
 @interface ODTypeLibrary : NSObject
 
 + (ODTypeLibrary *)shared;
 
 @property (readonly) NSDictionary *types;
+@property (readonly) NSDictionary *associationEnds;
+
+- (void)addTypesObject:(ODType *)type;
+- (void)addAssociationEndsObject:(ODAssociationEnd *)end;
 
 /// This returns an existing class or creates new one.
-- (void)registerType:(ODType *)type;
 - (ODType *)uniqueTypeFor:(NSString *)typeName;
 
 @end

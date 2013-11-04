@@ -16,6 +16,5 @@
 - (void)updateWithData:(NSData *)contents;
 
 @property NSMutableDictionary *entitySets;
-@property NSMutableDictionary *associations;
 
 @end

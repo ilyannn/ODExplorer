@@ -17,7 +17,7 @@
 @property     NSString *associationName;
 @property     ODEntityType *entityType;
 @property     (getter = isCurrentlyKeys) BOOL currentlyKeys;
+@property     NSMutableArray *parsedEntityTypes;
 
 @property (readonly) NSString *qualifiedName;
-
 @end

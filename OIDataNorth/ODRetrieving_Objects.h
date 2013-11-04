@@ -7,16 +7,16 @@
 //
 
 #import "ODManaging.h"
-#import "ODRetrieving.h"
+#import "ODRetrieving_Protocol.h"
 
 /// Base class to retrieve information about a resource within a context.
 /// It is kind of abstract. Since the URL is nil and can't be changed, the only
 /// way to get something useful from object of this class is by setting a non-trivial parent.
 /// So directly instantiating ODRetrievalInfo with a parent is a way to create a separate copy of the resource.
-@interface ODRetrievalInfo : NSObject <ODRetrieving>
+@interface ODRetrieveBase : NSObject <ODRetrieving>
 
-+ (ODRetrievalInfo *)sharedRoot;
-+ (void)setSharedRoot:(ODRetrievalInfo *)info;
++ (ODRetrieveBase *)sharedRoot;
++ (void)setSharedRoot:(ODRetrieveBase *)info;
 
 @property id<ODRetrieving> parent;
 @property NSURL *knownURL;
@@ -33,7 +33,7 @@
 
 // You have to retrieve at least something by URL. This class encapsulates an idea of retrieval
 // where the information - URL and description - are set manually.
-@interface ODRetrievalByURL : ODRetrievalInfo
+@interface ODRetrieveByURL : ODRetrieveBase
 
 @property NSURL *URL;
 @property NSString *shortDescription;
@@ -46,7 +46,7 @@
 @end
 
 // This is also a class with some abstract methods.
-@interface ODRetrievalByPath : ODRetrievalInfo <ODRetrievingByPath>
+@interface ODRetrievalByPath : ODRetrieveBase <ODRetrievingByPath>
 @end
 
 // For example, a path can be a property name.
@@ -62,7 +62,7 @@
 
 // Sometimes we can retrieve by adding brackets to the existing URL.
 // This is possible only if the parent conforms to a stricter protocol.
-@interface ODRetrievalByBrackets : ODRetrievalInfo
+@interface ODRetrievalByBrackets : ODRetrieveBase
 @property id<ODRetrievingByPath> parent;
 - (NSString *)bracketPart;
 @end

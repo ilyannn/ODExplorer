@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODRetrievalInfo.h"
+#import "ODRetrieving_Objects.h"
 #import "ODBaseRequestManager.h"
 
 #import "ODMetadataOperation.h"
 
-@implementation ODRetrievalInfo {
+@implementation ODRetrieveBase {
     NSMutableArray *_managers;
 }
 
-static ODRetrievalInfo *_sharedRootInfo;
-+ (ODRetrievalInfo *)sharedRoot {
+static ODRetrieveBase *_sharedRootInfo;
++ (ODRetrieveBase *)sharedRoot {
     if (!_sharedRootInfo) {
         _sharedRootInfo = [self new];
         [_sharedRootInfo addManager: [ODBaseRequestManager new]];
@@ -24,7 +24,7 @@ static ODRetrievalInfo *_sharedRootInfo;
     return _sharedRootInfo;
 }
 
-+ (void)setSharedRoot:(ODRetrievalInfo *)info {
++ (void)setSharedRoot:(ODRetrieveBase *)info {
     _sharedRootInfo = info;
 }
 
@@ -48,29 +48,29 @@ static ODRetrievalInfo *_sharedRootInfo;
     return self;
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-- (id)getFromHierarchy:(SEL)selector {
-    id value = [self performSelector:selector];
-    if (value) return value;
-    return [self.parent getFromHierarchy:selector];
-}
-#pragma clang diagnostic pop
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//- (id)getFromHierarchy:(SEL)selector {
+//    id value = [self performSelector:selector];
+//    if (value) return value;
+//    return [self.parent getFromHierarchy:selector];
+//}
+//#pragma clang diagnostic pop
 
 - (void)handleOperation:(id)operation {
     for (id<ODManaging> manager in [self managers]) {
         if ([manager handleOperation:operation]) return;
     }
-    ODRetrievalInfo *target = self.parent ? self.parent : [self.class sharedRoot];
+    ODRetrieveBase *target = self.parent ? self.parent : [self.class sharedRoot];
     [target handleOperation:operation];
 }
 
 - (NSURL *)URL {
-    return nil; // we're abstract
+    return [self.parent URL];
 }
 
 - (NSString *)shortDescription {
-    return nil;
+    return [self.parent shortDescription];
 }
 
 - (void)retrieveMetadata {
@@ -142,7 +142,7 @@ static ODRetrievalInfo *_sharedRootInfo;
 - (NSURL *)URL {
     if (self.knownURL) return self.knownURL;
     NSString *relative = [NSString stringWithFormat:@"%@(%@)", [self.parent relativePath], [self bracketPart]];
-    return [[self.parent.parent URL] URLByAppendingPathComponent:relative];
+    return [[[self.parent URL] URLByDeletingLastPathComponent] URLByAppendingPathComponent:relative];
 }
 
 

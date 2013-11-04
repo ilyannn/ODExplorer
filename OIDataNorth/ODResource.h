@@ -7,7 +7,7 @@
 //
 
 #import "ODManaging.h"
-#import "ODRetrieving.h"
+#import "ODRetrieving_Protocol.h"
 @class ODEntityType;
 
 typedef NS_ENUM (NSInteger, ODResourceKind) {

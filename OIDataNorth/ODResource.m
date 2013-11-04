@@ -7,7 +7,7 @@
 //
 
 #import "ODRetrieveOperation.h"
-#import "ODRetrievalInfo.h"
+#import "ODRetrieving_Objects.h"
 
 #import "ODResource+Entity.h"
 #import "ODResource+Collection.h"
@@ -59,7 +59,7 @@
 }
 
 + (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description {
-    ODRetrievalByURL *info = [ODRetrievalByURL new];
+    ODRetrieveByURL *info = [ODRetrieveByURL new];
     info.URL = URL;
     info.shortDescription = description;
     return [self resourceWithInfo:info];
@@ -74,14 +74,14 @@
 }
 
 + (instancetype)resourceByURLCopy:(id<ODResourceAccessing>)resource in:(id<ODRetrieving>)parentInfo {
-    ODRetrievalByURL *info = [ODRetrievalByURL new];
+    ODRetrieveByURL *info = [ODRetrieveByURL new];
     info.URL = [resource URL];
     info.shortDescription = [resource shortDescription];
     info.parent = parentInfo;
     return [ODResource resourceWithInfo:info];
 }
 
-- (instancetype)initWithRetrievalInfo:(ODRetrievalInfo *)info {
+- (instancetype)initWithRetrievalInfo:(ODRetrieveBase *)info {
     self = [self init];
     if (self) {
         self.retrievalInfo = info;
@@ -116,11 +116,11 @@
 }
 
 - (NSURL *)URL {
-    return [self.retrievalInfo getFromHierarchy:_cmd];
+    return [self.retrievalInfo URL];
 }
 
 - (NSString *)shortDescription {
-    return [self.retrievalInfo getFromHierarchy:_cmd];
+    return [self.retrievalInfo shortDescription];
 }
 
 - (void)handleOperation:(ODOperation *)operation {

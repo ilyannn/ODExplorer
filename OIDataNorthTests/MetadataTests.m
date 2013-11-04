@@ -11,6 +11,7 @@
 #import "NorthwindService.h"
 #import "ODTypeLibrary.h"
 #import "ODType.h"
+#import "NSArray+Functional.h"
 
 @interface MetadataTests : XCTestCase
 
@@ -43,15 +44,10 @@
 }
 
 - (void)testTypesAdded {
-    NSArray *names = [[ODTypeLibrary shared].types allValues];
-    __block BOOL found = NO;
-    [names enumerateObjectsUsingBlock:^(ODType *type, NSUInteger idx, BOOL *stop) {
-        if ([type.name hasPrefix:@"Northwind"]) {
-            found = YES;
-            *stop = YES;
-        };
+    NSArray *north = [[[ODTypeLibrary shared].types allValues] arrayByFiltering:^BOOL(ODType *type) {
+        return [type.name hasPrefix:@"Northwind"];
     }];
-    XCTAssert(found, @"Didn't read entity types for some reason.");
+    XCTAssert(north.count, @"Didn't read entity types for some reason.");
 }
 
 @end

@@ -12,5 +12,6 @@
 
 - (NSArray *)arrayByMapping: (id(^)(id))func;
 - (NSArray *)arrayByFiltering: (BOOL(^)(id))func;
+- (id)objectByReducing: (id(^)(id, id))func;
 
 @end

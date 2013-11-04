@@ -9,7 +9,7 @@
 #import "ODResourceList.h"
 #import "ODResource_Internal.h"
 
-#import "ODRetrievalInfo.h"
+#import "ODRetrieving_Objects.h"
 
 #import "NorthwindService.h"
 #import "ODOperation.h"
@@ -19,7 +19,7 @@
 - (instancetype)initFromDefaults {
     self = [self init];
     if (self) {
-        self.retrievalInfo = [ODRetrievalInfo new];
+        self.retrievalInfo = [ODRetrieveBase new];
         self.kind = ODResourceKindCollection;
         [self loadFromDefaults];
     }
@@ -31,7 +31,7 @@
 }
 
 - (void)loadFromDefaults {
-    ODRetrievalByURL *info = [ODRetrievalByURL new];
+    ODRetrieveByURL *info = [ODRetrieveByURL new];
     info.URL = [NSURL URLWithString:@"http://services.odata.org/V3/OData/OData.svc/"];
     info.shortDescription = @"OData Example";
 //    info.parent = self.retrievalInfo;
