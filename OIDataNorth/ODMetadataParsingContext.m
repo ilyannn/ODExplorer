@@ -24,6 +24,7 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
 
+//    NSLog(@"<%@>", elementName);
     self.attributes = attributeDict;
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"startParsing%@:", elementName]);
 
@@ -35,6 +36,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
+//    NSLog(@"</%@>", elementName);
     self.attributes = nil;
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"finishParsing%@:", elementName]);
 

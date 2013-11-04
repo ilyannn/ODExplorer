@@ -41,6 +41,7 @@
     [parser parse];
 }
 
+#pragma mark - Parsing
 
 - (void)startParsingSchema:(ODMetadataParsingContext *)context {
     context.schemeNamespace = context.attributes[@"Namespace"];
@@ -55,7 +56,7 @@
 }
 
 
-#pragma mark - Entities
+#pragma mark Entities
 
 - (void)startParsingEntityType:(ODMetadataParsingContext *)context {
     context.entityType = [[ODEntityType alloc] initWithName:context.qualifiedName];
@@ -75,44 +76,40 @@
     context.currentlyKeys = NO;
 }
 
-- (void)parsePropertyWithAttributes:(ODMetadataParsingContext *)context {
-    NSString *name = attributes[@"Name"];
-    
-    if ([name rangeOfString:@"."].location == NSNotFound) {
-        name = [NSString stringWithFormat:@"%@.%@", parsingNamespace, name];
-    }
-    
-    ODType *type = [self.typeLibrary uniqueTypeFor:attributes[@"Type"]];
-    if (name && type) {
-        parsingEntityType.attributeProperties[name] = type;
+- (void)startParsingProperty:(ODMetadataParsingContext *)context {
+    ODType *type = [self.typeLibrary uniqueTypeFor:context.attributes[@"Type"]];
+    if (context.qualifiedName && type && context.entityType) {
+        context.entityType.attributeProperties[context.qualifiedName] = type;
     }
 }
 
-- (void)endParseEntityType {
-    if (parsingEntityType) {
-        [self.typeLibrary registerType:parsingEntityType];
+- (void)finishParsingEntityType:(ODMetadataParsingContext *)context {
+    if (context.entityType) {
+        [self.typeLibrary registerType:context.entityType];
     }
-    parsingEntityType = nil;
+    context.entityType = nil;
 }
 
 
-#pragma mark - Associations
+#pragma mark Associations
 
-- (void)parseAssociationWithAttributes:(NSDictionary *)attributes {
-    parsingAssociationName = attributes[@"Name"];
+- (void)startParsingAssociation:(ODMetadataParsingContext *)context  {
+    context.associationName = context.attributes[@"Name"];
 }
 
-- (void)parseEndWithAttributes:(NSDictionary *)attributes {
-    ODAssociationEnd *end = [ODAssociationEnd new];
-    end.associationName = parsingAssociationName;
-    end.roleName = attributes[@"Role"];
-    end.multiplicity = attributes[@"Multiplicity"];
-    end.typeName = attributes[@"Type"];
-    self.associations[end.key] = end;
+- (void)startParsingEnd:(ODMetadataParsingContext *)context  {
+    if (context.associationName) {
+        ODAssociationEnd *end = [ODAssociationEnd new];
+        end.associationName = context.associationName;
+        end.roleName = context.attributes[@"Role"];
+        end.multiplicity = context.attributes[@"Multiplicity"];
+        end.typeName = context.attributes[@"Type"];
+        self.associations[end.key] = end;
+    }
 }
 
-- (void)endParseAssociation {
-    parsingAssociationName = nil;
+- (void)finishParsingAssociation:(ODMetadataParsingContext *)context  {
+    context.associationName = nil;
 }
 
 @end
