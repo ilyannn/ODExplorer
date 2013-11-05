@@ -9,6 +9,7 @@
 #import "Supplier.h"
 #import "ODCollection.h"
 #import "Product.h"
+#import "ODCustomEntityType.h"
 
 NSString *kSupplier_Products = @"Products";
 

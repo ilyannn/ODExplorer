@@ -9,13 +9,12 @@
 #import "ODRetrieving_Objects.h"
 #import "ODBaseRequestManager.h"
 
-#import "ODMetadataOperation.h"
-
 @implementation ODRetrieveBase {
     NSMutableArray *_managers;
 }
 
 static ODRetrieveBase *_sharedRootInfo;
+
 + (ODRetrieveBase *)sharedRoot {
     if (!_sharedRootInfo) {
         _sharedRootInfo = [self new];
@@ -73,22 +72,8 @@ static ODRetrieveBase *_sharedRootInfo;
     return [self.parent shortDescription];
 }
 
-- (void)retrieveMetadata {
-    [self handleOperation:[self metadataOperation]];
-}
-
-- (ODMetadataOperation *)metadataOperation {
-    ODMetadataOperation *operation = [ODMetadataOperation new];
-    operation.retrievalInfo = self;
-    [operation addOperationStep:^NSError *(ODMetadataOperation * op) {
-        self.metadataModel = op.responseModel;
-        return nil;
-    }];
-    return operation;
-}
-
 - (ODType *)metadataType {
-    return nil;
+    return [self.parent metadataType];
 }
 
 @end
@@ -117,10 +102,21 @@ static ODRetrieveBase *_sharedRootInfo;
 
 @end
 
+#import "ODServiceType.h"
+
 @implementation ODRetrievalOfEntitySet
 
 - (NSString *)relativePath {
     return self.entitySetPath;
+}
+
+- (ODType *)metadataType {
+    ODType *type = [self.parent metadataType];
+    if (![type respondsToSelector:@selector(model)]) {
+        return nil;
+    }
+    ODMetadataModel *model = [type performSelector:@selector(model)];
+    return model.entitySets[self.entitySetPath];
 }
 
 @end
@@ -130,6 +126,21 @@ static ODRetrieveBase *_sharedRootInfo;
 - (NSString *)relativePath {
     return self.propertyName;
 }
+
+- (ODType *)metadataType {
+    ODType *type = [self.parent metadataType];
+    if (![type respondsToSelector:@selector(properties)]) {
+        return nil;
+    }
+    NSDictionary *properties = [type performSelector:@selector(properties)];
+    return properties[self.propertyName];
+}
+
+//- (NSString *)shortDescription {
+//    NSString *typeDesc = [self.metadataType description];
+//    return self.metadataType ? [NSString stringWithFormat:@"%@:%@", [super shortDescription], typeDesc]
+//                    : [super shortDescription];
+//}
 
 @end
 
@@ -180,6 +191,15 @@ static ODRetrieveBase *_sharedRootInfo;
 
 - (NSString *)shortDescription {
     return [self bracketPart];
+}
+
+@end
+
+
+@implementation ODRouteMetadata
+
+- (ODType *)metadataType {
+    return [[ODServiceType alloc] initWithModel:self.metadataModel];
 }
 
 @end

@@ -11,10 +11,12 @@
 
 @interface ODType : NSObject
 
+- (instancetype)initWithName:(NSString *)name;
 @property (readonly) NSString *name;
+
+@property (readonly, getter = isCollection) BOOL collection;
 @property (readonly, getter = isPrimitive) BOOL primitive;
 
-- (instancetype)initWithName:(NSString *)name;
 
 /*
 - (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict

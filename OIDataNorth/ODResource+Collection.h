@@ -13,6 +13,7 @@
 
 /// Internal information about properties and methods of ODResource availible only for collections.
 @interface ODResource (Collection) <ODCollectionAccessing, ODCollectionCacheDelegate>
+
 - (CollectionCache *)childrenArrayForCollection;
 - (NSError *)parseFromJSONArray:(NSArray *)array;
 - (NSError *)parseServiceDocumentFromArray:(NSArray *)array;

@@ -11,9 +11,14 @@
 @interface ODAssociationEnd : NSObject
 + (id)keyForAssociation:(NSString *)associationName role:(NSString *)roleName;
 
-@property (readonly) id key;
 @property NSString *associationName;
 @property NSString *roleName;
-@property NSString *typeName;
+@property (readonly) id key;
+
 @property NSString *multiplicity;
+@property (readonly, getter = isRequired) BOOL required;
+@property (readonly, getter = isCollection) BOOL collection;
+
+@property NSString *typeName;
+
 @end

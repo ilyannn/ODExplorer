@@ -56,8 +56,6 @@
                            [ODCollection resourceWithDict: @{  @"uri":  @"http://odata4j-sample.appspot.com/datastore.svc/",
                                                             @"name": @"OData4j Sample"
                                                             }],
-/*                          [ODCollection resourceWithDict:@{@"uri": @"https://api.datamarket.azure.com/Data.ashx/UnitedNations/MDG/", @"name": @"UN Data Example"}],
- */
 
                            nil];
 

@@ -15,6 +15,7 @@
 
 #import "ODCountOperation.h"
 #import "ODQueryOperation.h"
+#import "ODMetadataOperation.h"
 
 #import "ODEntity.h"
 
@@ -36,19 +37,15 @@
     return nil;
 }
 
-- (void)cleanCollectionOperation { ODCollectionAssert
-    self.childrenArray = nil;
-}
-
 - (NSUInteger)batchSize {
     return 20;
 }
 
 - (void)countCollection {
-    [self handleOperation:[self countOperation]];
+    [self handleOperation:[self countCollectionOperation]];
 }
 
-- (ODCountOperation *)countOperation { ODCollectionAssert
+- (ODCountOperation *)countCollectionOperation { ODCollectionAssert
     ODCountOperation *operation = [ODCountOperation operationWithResource:self];
     [operation addOperationStep:^NSError *(ODCountOperation *op) {
         self.resourceValue = @(op.responseCount);
@@ -139,6 +136,25 @@
     return nil;
 }
 
+- (void)retrieveMetadata { ODCollectionAssert
+    [self handleOperation:[self retrieveMetadataOperation]];
+}
+
+- (ODMetadataOperation *)retrieveMetadataOperation {
+    
+    ODMetadataOperation *operation = [ODMetadataOperation operationWithResource:self];
+    [operation addOperationStep:^NSError *(ODMetadataOperation * op) {
+        if (![self.retrievalInfo respondsToSelector:@selector(setMetadataModel:)]) {
+            ODRouteMetadata *route = [ODRouteMetadata new];
+            route.parent = self.retrievalInfo;
+            self.retrievalInfo = route;
+        }
+        [(ODRouteMetadata *)self.retrievalInfo setMetadataModel:op.responseModel];
+        return nil;
+    }];
+    
+    return operation;
+}
 
 
 @end

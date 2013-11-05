@@ -25,7 +25,7 @@
     NSString *name = self.attributes[@"Name"];
     
     if ([name rangeOfString:@"."].location == NSNotFound) {
-        name = [NSString stringWithFormat:@"%@.%@", self.schemeNamespace, name];
+        name = [NSString stringWithFormat:@"%@.%@", self.schemaNamespace, name];
     }
     
     return name;

@@ -9,6 +9,7 @@
 #import "ODTypeLibrary.h"
 #import "ODType+Primitive.h"
 #import "ODAssociationEnd.h"
+#import "ODCollectionType.h"
 
 @interface ODTypeLibrary ()
 @end
@@ -61,6 +62,12 @@
     }
     
     return result;
+}
+
+- (ODType *)uniqueTypeFor:(NSString *)typeName collection:(BOOL)collection {
+    ODType *type = [self uniqueTypeFor:typeName];
+    if (!collection) return type;
+    return [ODCollectionType collectionWithElements:type];
 }
 
 @end

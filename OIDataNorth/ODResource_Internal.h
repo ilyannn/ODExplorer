@@ -9,7 +9,8 @@
 #import "ODResource.h"
 #import "CollectionCache.h"
 
-@interface ODResource () 
+@interface ODResource ()
+
 @property id resourceValue;
 @property NSArray *childrenArray; 
 @property id<ODRetrieving> retrievalInfo;

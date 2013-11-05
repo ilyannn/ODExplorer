@@ -13,7 +13,7 @@
 @property     (weak) id delegate;
 
 @property     NSDictionary *attributes;
-@property     NSString *schemeNamespace;
+@property     NSString *schemaNamespace;
 @property     NSString *associationName;
 @property     ODEntityType *entityType;
 @property     (getter = isCurrentlyKeys) BOOL currentlyKeys;

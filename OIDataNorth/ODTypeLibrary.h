@@ -18,7 +18,9 @@
 - (void)addTypesObject:(ODType *)type;
 - (void)addAssociationEndsObject:(ODAssociationEnd *)end;
 
-/// This returns an existing class or creates new one.
+/// This returns an existing class or creates new one. Guaranteed to not return nil.
 - (ODType *)uniqueTypeFor:(NSString *)typeName;
+- (ODType *)uniqueTypeFor:(NSString *)typeName collection:(BOOL)collection;
+
 
 @end

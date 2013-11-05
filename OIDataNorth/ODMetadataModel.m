@@ -13,7 +13,10 @@
 #import "ODAssociationEnd.h"
 #import "ODMetadataParsingContext.h"
 
+#import "NSArray+Functional.h"
+
 @interface ODMetadataModel ()
+
 @end
 
 @implementation ODMetadataModel 
@@ -41,28 +44,37 @@
     
     // Fill in types for navigation attributes.
     for (ODEntityType *entityType in context.parsedEntityTypes) {
-        NSMutableDictionary *oldNavigationProperties = [[entityType navigationProperties] copy];
-        [oldNavigationProperties enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-            ODAssociationEnd *target = self.typeLibrary.associationEnds[obj];
-            if (target) {
-                entityType.navigationProperties[key] = [self.typeLibrary uniqueTypeFor:target.typeName];
-            } else {
-                [entityType.navigationProperties removeObjectForKey:key];
-            }
-        }];
+        
         [self.typeLibrary addTypesObject:entityType];
+
+        NSArray *navigationProperties = [[[entityType properties] allKeys] arrayByFiltering:^BOOL(NSString *key) {
+            return ![entityType.properties[key] isKindOfClass:[ODType class]];
+        }];
+
+        [navigationProperties enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+            ODAssociationEnd *target = self.typeLibrary.associationEnds[entityType.properties[key]];
+            ODType *type = !target ? nil : [self.typeLibrary uniqueTypeFor:target.typeName collection:target.collection];
+            [entityType.properties setValue:type forKey:key];
+        }];
+        
     }
+
+    [[self.entitySets allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        self.entitySets[key] = [self.typeLibrary uniqueTypeFor:self.entitySets[key]];
+    }];
+
+    self.schemaNamespace = context.schemaNamespace;
 }
 
 #pragma mark - Parsing
 
 - (void)startParsingSchema:(ODMetadataParsingContext *)context {
-    context.schemeNamespace = context.attributes[@"Namespace"];
+    context.schemaNamespace = context.attributes[@"Namespace"];
 }
 
 - (void)startParsingEntitySet:(ODMetadataParsingContext *)context {
     NSString *name = context.attributes[@"Name"];
-    NSString *type = context.attributes[@"Type"];
+    NSString *type = context.attributes[@"EntityType"];
     if (name && type) {
         self.entitySets[name] = type;
     }
@@ -92,7 +104,7 @@
 - (void)startParsingProperty:(ODMetadataParsingContext *)context {
     ODType *type = [self.typeLibrary uniqueTypeFor:context.attributes[@"Type"]];
     if (context.qualifiedName && type && context.entityType) {
-        context.entityType.attributeProperties[context.qualifiedName] = type;
+        context.entityType.properties[context.qualifiedName] = type;
     }
 }
 
@@ -108,10 +120,9 @@
                                                   role:context.attributes[@"ToRole"]];
     NSString *name = context.attributes[@"Name"];
     if (name && key) {
-        context.entityType.navigationProperties[name] = key;
+        context.entityType.properties[name] = key;
     }
 }
-
 
 #pragma mark Associations
 

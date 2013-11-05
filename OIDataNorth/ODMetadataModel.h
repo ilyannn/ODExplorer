@@ -15,6 +15,7 @@
 - (instancetype)initWithData:(NSData *)contents typeLibrary:(ODTypeLibrary *)library;
 - (void)updateWithData:(NSData *)contents;
 
+@property NSString *schemaNamespace;
 @property NSMutableDictionary *entitySets;
 
 @end

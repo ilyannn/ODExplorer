@@ -16,10 +16,7 @@
 - (ODEntity *)entityWithInfo:(id)info;
 
 /// This attribute holds types.
-@property (readonly) NSMutableDictionary *attributeProperties;
-
-/// This attribute holds keys to associationEnds dictionary at first.
-@property (readonly) NSMutableDictionary *navigationProperties;
+@property (readonly) NSMutableDictionary *properties;
 
 /// This attribute holds names of key properties.
 @property (readonly) NSMutableArray *keyProperties;

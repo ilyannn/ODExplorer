@@ -18,7 +18,7 @@ return [ODOperationError errorWithCode:kODOperationErrorJSONNotOData userInfo:(u
     return [ODOperationError errorInvalidWithReason:reason]; };
 
 #define ODAssertODataClass(x, cls) ODAssertOData([(x) isKindOfClass:cls.class], \
-    (@{@"object": (x), NSLocalizedFailureReasonErrorKey: @"The parsed JSON's class was unexpected", \
+    (@{@"object": (x) ? (x) : [NSNull null], NSLocalizedFailureReasonErrorKey: @"The parsed JSON's class was unexpected", \
 @"expectedClass": NSStringFromClass(cls.class)}))
 
 #define ODErrorAbstractOp    { return [ODOperationError errorWithCode:kODOperationErrorAbstractOperation \

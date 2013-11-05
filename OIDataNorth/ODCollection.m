@@ -12,10 +12,12 @@
 #import "ODCountOperation.h"
 
 #import "ODEntityRetrieval.h"
+#import "ODResource+Collection.h"
 #import "ODResource_Internal.h"
 #import "ODRetrieving_Objects.h"
 
 #import "ODEntityType.h"
+#import "ODPrimitiveType.h"
 
 @implementation ODCollection 
 

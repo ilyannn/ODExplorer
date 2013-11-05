@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 extern NSString * const ODOperationErrorDomain;
 
 typedef NS_ENUM(NSInteger, ODOperationErrorType) {

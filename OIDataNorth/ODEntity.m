@@ -79,4 +79,8 @@
     [self handleOperation:operation];
 }
 
+- (NSDictionary *)localProperties {
+    return [self resourceValue];
+}
+
 @end

@@ -18,4 +18,13 @@
     return [ODAssociationEnd keyForAssociation:self.associationName role:self.roleName];
 }
 
+//
+- (BOOL)isRequired {
+    return ![self.multiplicity isEqualToString:@"1"];
+}
+
+- (BOOL)isCollection {
+    return [self.multiplicity isEqualToString:@"*"];
+}
+
 @end

@@ -9,7 +9,7 @@
 #import "ODHTTPOperation.h"
 
 #import "ODOperationError+Parsing.h"
-#import "AFNetworking/AFNetworking.h"
+#import "AFNetworking/AFURLRequestSerialization.h"
 
 NSString *const ODHTTPVerbGet = @"GET";
 
@@ -36,17 +36,12 @@ NSString *const ODHTTPVerbGet = @"GET";
     return self;
 }
 
-
 - (AFHTTPRequestSerializer *)requestSerializer {
     static AFJSONRequestSerializer *_sharedRequestSerializer;
     if (!_sharedRequestSerializer) {
         _sharedRequestSerializer = [AFJSONRequestSerializer serializer];
     }
     return _sharedRequestSerializer;
-}
-
-- (AFHTTPResponseSerializer <AFURLResponseSerialization> *)responseSerializer {
-    return nil;
 }
 
 - (NSURL *)URL {

@@ -9,19 +9,11 @@
 #import "ODJSONOperation.h"
 #import "ODOperationResponse.h"
 #import "ODOperationError+Parsing.h"
-#import "AFNetworking/AFNetworking.h"
 
 @implementation ODJSONOperation
 
-static AFJSONResponseSerializer *_sharedResponseSerializer;
-- (AFHTTPResponseSerializer <AFURLResponseSerialization> *)JSONResponseSerializer {
-    if (!_sharedResponseSerializer) {
-        _sharedResponseSerializer = [AFJSONResponseSerializer serializer];
-    }
-    return _sharedResponseSerializer;
-}
-
 - (NSArray *)acceptStrings {
+    
     NSArray *odataTypes = @[@"fullmetadata", @"verbose", @""];
     NSMutableArray *strings = [NSMutableArray new];
     NSString *core = @"application/json";
@@ -42,12 +34,9 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
  //   headers[@"Accept"] = @"application/json;odata=,application/json;odata=;q=0.7,;q=0.5";
 }
 
-// This method has access to protocol version, HTTP headers and other OData encoding metadata.
 - (NSError *)processResponse {
     NSError *error;
-    _responseJSON = [[self JSONResponseSerializer] responseObjectForResponse:self.response.HTTPResponse
-                                                                      data:self.response.data
-                                                                     error:&error];
+    _responseJSON = [NSJSONSerialization JSONObjectWithData:self.response.data options:0 error:&error];
     return error;
 }
 
@@ -58,6 +47,7 @@ static AFJSONResponseSerializer *_sharedResponseSerializer;
 - (NSError *)processJSONResponse {
     ODAssertOData(self.canBeEmpty || self.responseJSON,
                     @{NSLocalizedFailureReasonErrorKey : @"The response JSON should be non-empty."});
+    
     switch (self.response.majorProtocolVersion) {
         case 3:
             if (![self.response isVerbose]) {

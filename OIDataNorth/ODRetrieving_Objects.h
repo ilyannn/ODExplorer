@@ -25,19 +25,14 @@
 @property (readonly) NSArray *managers;
 
 - (ODType *)metadataType;
-@property ODMetadataModel *metadataModel;
-- (ODMetadataOperation *)metadataOperation;
-- (void)retrieveMetadata;
 
 @end
 
 // You have to retrieve at least something by URL. This class encapsulates an idea of retrieval
 // where the information - URL and description - are set manually.
 @interface ODRetrieveByURL : ODRetrieveBase
-
 @property NSURL *URL;
 @property NSString *shortDescription;
-
 @end
 
 // Going from the root down, you can retrieve by relative path.
@@ -82,5 +77,7 @@
 @property NSMutableDictionary *keys;
 @end
 
-
+@interface ODRouteMetadata : ODRetrieveBase
+@property ODMetadataModel *metadataModel;
+@end
 

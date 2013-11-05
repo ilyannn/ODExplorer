@@ -108,8 +108,10 @@
         
         // Primitive properties
         NSString *typeName = dict[[NSString stringWithFormat:@"%@@odata.type", key]];
-        ODPrimitiveType *type = [[ODTypeLibrary shared] uniqueTypeFor:typeName];
-        if (type) obj = [type valueForJSONObject:obj];
+        ODType *type = [[ODTypeLibrary shared] uniqueTypeFor:typeName];
+        if (type && [type respondsToSelector:@selector(valueForJSONObject:)]) {
+            obj = [type performSelector:@selector(valueForJSONObject:) withObject:obj];
+        }
         if (obj) self.remoteProperties[key] = obj;
 
 //                    ||(!!(value = [NSURL URLWithString:obj]) && !!([(NSURL *)value scheme].length))

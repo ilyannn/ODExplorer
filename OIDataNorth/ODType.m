@@ -35,4 +35,8 @@
     return obj;
 }
 
+- (BOOL)isCollection {
+    return NO;
+}
+
 @end

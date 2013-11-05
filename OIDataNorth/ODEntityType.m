@@ -16,8 +16,7 @@
 {
     self = [super initWithName:name];
     if (self) {
-        _attributeProperties = [NSMutableDictionary new];
-        _navigationProperties = [NSMutableDictionary new];
+        _properties = [NSMutableDictionary new];
         _keyProperties = [NSMutableArray new];
     }
     return self;

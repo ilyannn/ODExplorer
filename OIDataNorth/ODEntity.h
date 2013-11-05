@@ -26,8 +26,8 @@
 - (void)performAction:(NSString *)actionName;
 
 @property (readonly, nonatomic) NSDictionary *localProperties;
-@property (readonly, nonatomic) NSDictionary *remoteProperties;
-@property (readonly, nonatomic) NSDictionary *navigationProperties;
+// @property (readonly, nonatomic) NSDictionary *remoteProperties;
+// @property (readonly, nonatomic) NSDictionary *navigationProperties;
 
 @end
 

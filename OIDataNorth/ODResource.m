@@ -127,6 +127,11 @@
     [self.retrievalInfo handleOperation:operation];
 }
 
+- (void)clean {
+    self.resourceValue = nil;
+    self.childrenArray = nil;
+}
+
 - (NSArray *)childrenArray {
     @synchronized(self) {
         if (!_childrenArray && _resourceValue) {
