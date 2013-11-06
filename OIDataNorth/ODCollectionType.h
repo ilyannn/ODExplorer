@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODNamedType.h"
+#import "ODNominalType.h"
 
 @interface ODCollectionType : ODType
 
 + (instancetype)collectionWithElements:(ODType *)elementType;
 - (instancetype)initWithElementType:(ODType *)elementType;
-@property (readonly) ODNamedType *elementType;
+@property (readonly) ODNominalType *elementType;
 
 @end

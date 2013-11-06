@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODNamedType.h"
+#import "ODNominalType.h"
 
 /// Types that are declared in OData specification.
-@interface ODPrimitiveType : ODNamedType
+@interface ODPrimitiveType : ODNominalType
 
 @property (readonly) NSString *primitiveName;
 @property (readonly) NSString *className;

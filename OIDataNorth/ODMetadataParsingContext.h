@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEntityType.h"
+#import "ODStructuredType.h"
 
 @interface ODMetadataParsingContext : NSObject <NSXMLParserDelegate>
 
@@ -15,7 +15,7 @@
 @property     NSDictionary *attributes;
 @property     NSString *schemaNamespace;
 @property     NSString *associationName;
-@property     ODEntityType *entityType;
+@property     ODStructuredType *entityType;
 @property     (getter = isCurrentlyKeys) BOOL currentlyKeys;
 @property     NSMutableArray *parsedEntityTypes;
 

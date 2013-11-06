@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEntityType.h"
+#import "ODStructuredType.h"
 
-@interface ODCustomEntityType : ODEntityType
+@interface ODCustomEntityType : ODStructuredType
 
 @property (readwrite) NSString *entityClassName;
 @property (readwrite) NSString *collectionClassName;

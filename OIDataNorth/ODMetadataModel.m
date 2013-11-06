@@ -8,7 +8,7 @@
 
 #import "ODMetadataModel.h"
 #import "ODTypeLibrary.h"
-#import "ODEntityType.h"
+#import "ODStructuredType.h"
 
 #import "ODAssociationEnd.h"
 #import "ODMetadataParsingContext.h"
@@ -43,7 +43,7 @@
     [parser parse];
     
     // Fill in types for navigation attributes.
-    for (ODEntityType *entityType in context.parsedEntityTypes) {
+    for (ODStructuredType *entityType in context.parsedEntityTypes) {
         
         [self.typeLibrary addTypesByNameObject:entityType];
 
@@ -84,7 +84,7 @@
 #pragma mark Entities
 
 - (void)startParsingEntityType:(ODMetadataParsingContext *)context {
-    context.entityType = [[ODEntityType alloc] initWithName:context.qualifiedName];
+    context.entityType = [[ODStructuredType alloc] initWithName:context.qualifiedName];
 }
 
 - (void)startParsingKey:(ODMetadataParsingContext *)context {

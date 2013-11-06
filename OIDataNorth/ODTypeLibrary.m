@@ -10,7 +10,7 @@
 #import "ODType+Primitive.h"
 #import "ODAssociationEnd.h"
 #import "ODCollectionType.h"
-#import "ODUnknownNamedType.h"
+#import "ODNominalTypeProxy.h"
 
 @interface ODTypeLibrary ()
 @end
@@ -46,15 +46,15 @@
 }
 
 - (void)addTypesByName:(NSSet *)objects {
-    for (ODNamedType *object in objects) {
+    for (ODNominalType *object in objects) {
         [self addTypesByNameObject:object];
     }
 }
 
-- (void)addTypesByNameObject:(ODNamedType *)type {
+- (void)addTypesByNameObject:(ODNominalType *)type {
     id old = _typesByName[type.name];
     if (old && [old respondsToSelector:@selector(setImplementation:)]) {
-        [(ODUnknownNamedType *)old setImplementation:type];
+        [(ODNominalTypeProxy *)old setImplementation:type];
     }
     _typesByName[type.name] = type;
 }
@@ -63,12 +63,12 @@
     _associationEnds[end.key] = end;
 }
 
-- (ODNamedType *)uniqueTypeFor:(NSString *)typeName {
+- (ODNominalType *)uniqueTypeFor:(NSString *)typeName {
     if (!typeName) return nil;
     
-    ODNamedType *result = _typesByName[typeName];
+    ODNominalType *result = _typesByName[typeName];
     if (!result) {
-        result = [[ODUnknownNamedType alloc] initWithName:typeName];
+        result = [[ODNominalTypeProxy alloc] initWithName:typeName];
         _typesByName[typeName] = result;
     }
     

@@ -8,7 +8,7 @@
 
 #import "ODType.h"
 
-@interface ODNamedType : ODType
+@interface ODNominalType : ODType
 
 @property (readonly) NSString *name;
 - (id)valueForJSONObject:(id)obj;

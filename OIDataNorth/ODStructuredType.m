@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODEntityType.h"
+#import "ODStructuredType.h"
 #import "ODEntity.h"
 #import "ODCollection.h"
 
-@implementation ODEntityType {
+@implementation ODStructuredType {
     NSString *_name;
 }
 
@@ -22,6 +22,18 @@
         _keyProperties = [NSMutableArray new];
     }
     return self;
+}
+
+- (BOOL)isComplex {
+    return !self.hasKeys;
+}
+
+- (BOOL)isEntity {
+    return self.hasKeys;
+}
+
+- (BOOL)hasKeys {
+    return !![self.keyProperties count];
 }
 
 - (NSString *)name {

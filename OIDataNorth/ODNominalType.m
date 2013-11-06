@@ -6,24 +6,24 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODNamedType.h"
+#import "ODNominalType.h"
 
-@implementation ODNamedType
+@implementation ODNominalType
 
 - (NSString *)name {
     return nil;
-}
-
-- (BOOL)isPrimitive {
-    return NO;
 }
 
 - (id)valueForJSONObject:(id)obj {
     return obj;
 }
 
-- (BOOL)isCollection {
-    return NO;
+- (NSString *)description {
+    return [self name];
+}
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"%@{name = %@}", [super description], [self name]];
 }
 
 @end

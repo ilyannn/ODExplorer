@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODUnknownNamedType.h"
+#import "ODNominalTypeProxy.h"
 
-@implementation ODUnknownNamedType {
+@implementation ODNominalTypeProxy {
     NSString *_name;
 }
 
@@ -33,6 +33,10 @@
         return [self.implementation description];
     else
         return [NSString stringWithFormat: @"%@(no implementation)", [super description]];
+}
+
+- (BOOL)isNotImplemented {
+    return !self.implementation;
 }
 
 @end

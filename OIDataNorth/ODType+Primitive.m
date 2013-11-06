@@ -16,6 +16,7 @@
 #import "ODPrimitiveTypeSByte.h"
 #import "ODPrimitiveTypeGuid.h"
 #import "ODPrimitiveTypeDecimal.h"
+#import "ODPrimitiveTypeByte.h"
 
 @implementation ODType (Primitive)
 
@@ -31,6 +32,7 @@
              [ODPrimitiveTypeSByte new],
              [ODPrimitiveTypeGuid new],
              [ODPrimitiveTypeDecimal new],
+             [ODPrimitiveTypeByte new]
              ];
 }
 

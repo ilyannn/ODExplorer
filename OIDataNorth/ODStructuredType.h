@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODNamedType.h"
+#import "ODNominalType.h"
 
-@interface ODEntityType : ODNamedType
+@interface ODStructuredType : ODNominalType
 
 - (id)initWithName:(NSString *)name;
 

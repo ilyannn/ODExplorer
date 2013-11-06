@@ -13,7 +13,12 @@
 /// or not. Type has a name iff it's not a collection type, so a type should be a  ODType is an abstract type
 @interface ODType : NSObject
 
-@property (readonly, getter = isCollection) BOOL collection;
-@property (readonly, getter = isPrimitive) BOOL primitive;
+// Exactly one of those five should be true.
+- (BOOL) isCollection;
+- (BOOL) isPrimitive;
+- (BOOL) isComplex;
+- (BOOL) isEntity;
+- (BOOL) isNotImplemented;
 
+- (BOOL) hasKeys;
 @end

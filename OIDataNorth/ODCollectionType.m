@@ -10,11 +10,11 @@
 
 @implementation ODCollectionType
 
-+ (instancetype)collectionWithElements:(ODNamedType *)elementType {
++ (instancetype)collectionWithElements:(ODNominalType *)elementType {
     return [[self alloc] initWithElementType:elementType];
 }
 
-- (instancetype)initWithElementType:(ODNamedType *)elementType {
+- (instancetype)initWithElementType:(ODNominalType *)elementType {
     if (self = [super init]) {
         _elementType = elementType;
     }

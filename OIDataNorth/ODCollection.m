@@ -16,7 +16,7 @@
 #import "ODResource_Internal.h"
 #import "ODRetrieving_Objects.h"
 
-#import "ODEntityType.h"
+#import "ODStructuredType.h"
 #import "ODPrimitiveType.h"
 
 @implementation ODCollection 
@@ -50,7 +50,7 @@
     retrieval.index = index;
 
     if ([self.type respondsToSelector:@selector(entityWithInfo:)])
-        return [(ODEntityType *)self.type entityWithInfo:retrieval];
+        return [(ODStructuredType *)self.type entityWithInfo:retrieval];
     return nil;
 }
 
