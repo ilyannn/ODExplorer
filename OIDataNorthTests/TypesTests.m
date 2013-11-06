@@ -15,11 +15,12 @@
 #import "ODStructuredType.h"
 #import "ODPrimitiveType.h"
 
-@interface MetadataTests : XCTestCase
+@interface TypesTests : XCTestCase
 @property ODTypeLibrary *library;
 @end
 
-@implementation MetadataTests
+@implementation TypesTests
+
 - (void)setUp
 {
     [super setUp];
@@ -41,16 +42,19 @@
 {
     [self.library.typesByName enumerateKeysAndObjectsUsingBlock:^(id key, ODNominalType *obj, BOOL *stop) {
         
+        if ([obj isNotImplemented]) {
+            NSLog(@"Warning: tests contain a type %@ that is not implemented.", obj);
+        }
+
         XCTAssert(![obj isCollection], @"Collection type %@ shoudln't be here", obj);
-        
         XCTAssertEqual([obj isNotImplemented] + [obj isPrimitive] + [obj isComplex] + [obj isEntity],
                        1, @"Nominal type %@ must be one of 3 kinds", obj);
         
         if ([obj isKindOfClass:[ODPrimitiveType class]]) {
-            XCTAssert([obj isPrimitive], @"Primitive type %@ is wrong", obj);
+            XCTAssert([obj isPrimitive], @"Primitive type %@ is inconsistent", obj);
         } else if ([obj isKindOfClass:[ODStructuredType class]]) {
             
-            XCTAssert(![obj isPrimitive], @"Structured type %@ is wrong", obj);
+            XCTAssert(![obj isPrimitive], @"Structured type %@ is inconsistent", obj);
             
             for (ODType *linked in [(ODStructuredType *)obj properties]) {
                 XCTAssertEqual([obj isNotImplemented] + [obj isCollection] + [obj isPrimitive]

@@ -40,7 +40,7 @@
 		B3454510181D581E0039BD67 /* ODNotifyingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B345450F181D581E0039BD67 /* ODNotifyingManager.m */; };
 		B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */; };
 		B384FC721826E104006C06D3 /* ODMetadataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC711826E104006C06D3 /* ODMetadataOperation.m */; };
-		B384FC741826E323006C06D3 /* MetadataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC731826E323006C06D3 /* MetadataTests.m */; };
+		B384FC741826E323006C06D3 /* TypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC731826E323006C06D3 /* TypesTests.m */; };
 		B384FC771826F49F006C06D3 /* ODAssociationEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC761826F49F006C06D3 /* ODAssociationEnd.m */; };
 		B384FC7A1826F82E006C06D3 /* ODMetadataParsingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC791826F82E006C06D3 /* ODMetadataParsingContext.m */; };
 		B384FC7D1827C499006C06D3 /* ODLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC7C1827C499006C06D3 /* ODLinksOperation.m */; };
@@ -49,6 +49,8 @@
 		B384FC87182A43B0006C06D3 /* ODNominalType.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC86182A43B0006C06D3 /* ODNominalType.m */; };
 		B384FC8E182A4907006C06D3 /* ODNominalTypeProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC8D182A4907006C06D3 /* ODNominalTypeProxy.m */; };
 		B384FC91182A6FC9006C06D3 /* ODPrimitiveTypeByte.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC90182A6FC9006C06D3 /* ODPrimitiveTypeByte.m */; };
+		B384FC94182A84D9006C06D3 /* ODPrimitiveTypeSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC93182A84D9006C06D3 /* ODPrimitiveTypeSingle.m */; };
+		B384FC97182A85B2006C06D3 /* ODPrimitiveTypeDouble.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC96182A85B2006C06D3 /* ODPrimitiveTypeDouble.m */; };
 		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
 		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
@@ -160,7 +162,7 @@
 		B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLoadingTableViewCell.m; sourceTree = "<group>"; };
 		B384FC701826E104006C06D3 /* ODMetadataOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetadataOperation.h; sourceTree = "<group>"; };
 		B384FC711826E104006C06D3 /* ODMetadataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODMetadataOperation.m; sourceTree = "<group>"; };
-		B384FC731826E323006C06D3 /* MetadataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetadataTests.m; sourceTree = "<group>"; };
+		B384FC731826E323006C06D3 /* TypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypesTests.m; sourceTree = "<group>"; };
 		B384FC751826F49F006C06D3 /* ODAssociationEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODAssociationEnd.h; sourceTree = "<group>"; };
 		B384FC761826F49F006C06D3 /* ODAssociationEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODAssociationEnd.m; sourceTree = "<group>"; };
 		B384FC781826F82E006C06D3 /* ODMetadataParsingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetadataParsingContext.h; sourceTree = "<group>"; };
@@ -177,6 +179,10 @@
 		B384FC8D182A4907006C06D3 /* ODNominalTypeProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODNominalTypeProxy.m; sourceTree = "<group>"; };
 		B384FC8F182A6FC9006C06D3 /* ODPrimitiveTypeByte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveTypeByte.h; sourceTree = "<group>"; };
 		B384FC90182A6FC9006C06D3 /* ODPrimitiveTypeByte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPrimitiveTypeByte.m; sourceTree = "<group>"; };
+		B384FC92182A84D9006C06D3 /* ODPrimitiveTypeSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveTypeSingle.h; sourceTree = "<group>"; };
+		B384FC93182A84D9006C06D3 /* ODPrimitiveTypeSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPrimitiveTypeSingle.m; sourceTree = "<group>"; };
+		B384FC95182A85B2006C06D3 /* ODPrimitiveTypeDouble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveTypeDouble.h; sourceTree = "<group>"; };
+		B384FC96182A85B2006C06D3 /* ODPrimitiveTypeDouble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPrimitiveTypeDouble.m; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -595,7 +601,7 @@
 		B3900E9418118102007BCE33 /* OIDataNorthTests */ = {
 			isa = PBXGroup;
 			children = (
-				B384FC731826E323006C06D3 /* MetadataTests.m */,
+				B384FC731826E323006C06D3 /* TypesTests.m */,
 				B3BDF57F1825112E003CF414 /* HelpersTests.m */,
 				B3900E9A18118102007BCE33 /* OIDataNorthTests.m */,
 				B3900E9518118102007BCE33 /* Supporting Files */,
@@ -755,6 +761,10 @@
 				B3BDF5A11825A96E003CF414 /* ODPrimitiveTypeGuid.m */,
 				B384FC8F182A6FC9006C06D3 /* ODPrimitiveTypeByte.h */,
 				B384FC90182A6FC9006C06D3 /* ODPrimitiveTypeByte.m */,
+				B384FC92182A84D9006C06D3 /* ODPrimitiveTypeSingle.h */,
+				B384FC93182A84D9006C06D3 /* ODPrimitiveTypeSingle.m */,
+				B384FC95182A85B2006C06D3 /* ODPrimitiveTypeDouble.h */,
+				B384FC96182A85B2006C06D3 /* ODPrimitiveTypeDouble.m */,
 			);
 			name = "Primitive types";
 			sourceTree = "<group>";
@@ -911,12 +921,14 @@
 				B3454503181BF2010039BD67 /* ODOperationError.m in Sources */,
 				B3900E7918118102007BCE33 /* OIAppDelegate.m in Sources */,
 				B329A661181FEF6700B2D8B9 /* ODResource+Collection.m in Sources */,
+				B384FC97182A85B2006C06D3 /* ODPrimitiveTypeDouble.m in Sources */,
 				B34544FA181BCDCF0039BD67 /* ODOperationResponse.m in Sources */,
 				B3A4C1F41822DDC900ED9376 /* NSArray+Functional.m in Sources */,
 				B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */,
 				B3BDF5A21825A96E003CF414 /* ODPrimitiveTypeGuid.m in Sources */,
 				B30EF6DF182646C30091C378 /* ODCustomEntityType.m in Sources */,
 				B3BDF59618258FFB003CF414 /* ODPrimitiveTypeBoolean.m in Sources */,
+				B384FC94182A84D9006C06D3 /* ODPrimitiveTypeSingle.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
 				B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */,
@@ -967,7 +979,7 @@
 			files = (
 				B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */,
 				B3BDF5801825112E003CF414 /* HelpersTests.m in Sources */,
-				B384FC741826E323006C06D3 /* MetadataTests.m in Sources */,
+				B384FC741826E323006C06D3 /* TypesTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
