@@ -18,4 +18,8 @@
     return [[NSUUID alloc] initWithUUIDString:obj];
 }
 
+- (id)JSONObjectForValue:(NSUUID *)obj {
+    return [NSString stringWithFormat:@"guid’%@'", [obj.UUIDString lowercaseString]];
+}
+
 @end

@@ -10,16 +10,22 @@
 #import "ODEntity.h"
 #import "ODCollection.h"
 
-@implementation ODEntityType
+@implementation ODEntityType {
+    NSString *_name;
+}
 
 - (id)initWithName:(NSString *)name
 {
-    self = [super initWithName:name];
-    if (self) {
+    if (self = [super init]) {
+        _name = name;
         _properties = [NSMutableDictionary new];
         _keyProperties = [NSMutableArray new];
     }
     return self;
+}
+
+- (NSString *)name {
+    return _name;
 }
 
 - (ODEntity *)entityWithInfo:(id)info {

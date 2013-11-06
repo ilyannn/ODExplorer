@@ -16,9 +16,8 @@
 
 @implementation ODPrimitiveType
 
-
-- (instancetype)init {
-    return [super initWithName:[NSString stringWithFormat:@"Edm.%@", [self primitiveName]]];
+- (NSString *)name {
+    return [NSString stringWithFormat:@"Edm.%@", [self primitiveName]];
 }
 
 - (BOOL)isPrimitive {
@@ -57,8 +56,12 @@
     char x[1000];
     method_getReturnType(class_getInstanceMethod([self class], @selector(valueForJSONString:)),
                          x, sizeof(x));
-    // TODO
-    return @"xxx";
+    return [NSString stringWithCString:x encoding:NSASCIIStringEncoding];
+}
+
+- (id)JSONObjectForValue:(id)value {
+    // In the worst case, we'll at least see some string in JSON.
+    return [value description];
 }
 
 @end

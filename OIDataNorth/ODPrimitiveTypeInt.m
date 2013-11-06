@@ -31,4 +31,12 @@
     return @([obj longLongValue]);
 }
 
+- (id)JSONObjectForValue:(NSNumber *)obj {
+    if (_bits > 32) {
+        return [NSString stringWithFormat:@"%@L", obj];
+    } else {
+        return obj;
+    }
+}
+
 @end

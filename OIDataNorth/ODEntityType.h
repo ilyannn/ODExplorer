@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODType.h"
+#import "ODNamedType.h"
 
-@interface ODEntityType : ODType
+@interface ODEntityType : ODNamedType
+
+- (id)initWithName:(NSString *)name;
 
 @property (readonly) NSString *entityClassName;
 @property (readonly) NSString *collectionClassName;

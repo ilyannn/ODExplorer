@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+/// Functional enhancements for an array class.
 @interface NSArray (Functional)
 
 - (NSArray *)arrayByMapping: (id(^)(id))func;

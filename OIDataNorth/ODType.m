@@ -10,33 +10,4 @@
 
 @implementation ODType
 
-
-// Can't create without a name.
-- (id)init {
-    return nil;
-}
-
-- (instancetype)initWithName:(NSString *)name {
-    if (self = [super init]) {
-        _name = name;
-    }
-    return self;
-}
-
-- (NSString *)description {
-    return self.name;
-}
-
-- (BOOL)isPrimitive {
-    return NO;
-}
-
-- (id)valueForJSONObject:(id)obj {
-    return obj;
-}
-
-- (BOOL)isCollection {
-    return NO;
-}
-
 @end

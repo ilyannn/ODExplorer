@@ -35,7 +35,7 @@
 
 - (void)testTypeNamesMatch
 {
-    [[ODTypeLibrary shared].types enumerateKeysAndObjectsUsingBlock:^(id key, ODType *obj, BOOL *stop) {
+    [[ODTypeLibrary shared].typesByName enumerateKeysAndObjectsUsingBlock:^(id key, ODType *obj, BOOL *stop) {
         NSLog(@"%@ -> %@", key, obj);
         if ([key rangeOfString:@"."].location != NSNotFound) {
             XCTAssertEqualObjects(key, [obj name], @"Types are kind of wrong");
@@ -44,7 +44,7 @@
 }
 
 - (void)testTypesAdded {
-    NSArray *north = [[[ODTypeLibrary shared].types allValues] arrayByFiltering:^BOOL(ODType *type) {
+    NSArray *north = [[[ODTypeLibrary shared].typesByName allValues] arrayByFiltering:^BOOL(ODType *type) {
         return [type.name hasPrefix:@"Northwind"];
     }];
     XCTAssert(north.count, @"Didn't read entity types for some reason.");

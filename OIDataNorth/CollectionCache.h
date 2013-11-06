@@ -6,12 +6,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODCollection.h"
-
-// Some other things we can do. Note we still can't insert or delete objects. Also, those methods are only accessible
-// from a delegate.
-
-
 @class CollectionCache;
 
 /// Delegate is expected to do some magic so that values appear in the array.
@@ -30,12 +24,12 @@
 - (instancetype)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate; /* designated initializer */
 - (instancetype)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate contents:(NSArray *)array;
 
-// The standard NSArray methods.
-- (NSUInteger)count;
+/// The standard NSArray methods.
 - (id)objectAtIndex:(NSUInteger)index;
+- (NSUInteger)count;
 
 /// With this class we can set count at will.
-@property NSUInteger count;
+- (void)setCount:(NSUInteger)count;
 
 /// We can replace, but not insert or remove, objects.
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject;

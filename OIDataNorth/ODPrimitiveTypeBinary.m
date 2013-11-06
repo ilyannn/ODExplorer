@@ -25,4 +25,8 @@
 */  
 }
 
+- (NSString *)JSONObjectForValue:(NSData *)obj {
+    return [obj base64EncodedString];
+}
+
 @end

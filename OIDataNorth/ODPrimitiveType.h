@@ -6,19 +6,25 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODType.h"
+#import "ODNamedType.h"
 
-@interface ODPrimitiveType : ODType
+/// Types that are declared in OData specification.
+@interface ODPrimitiveType : ODNamedType
 
-/// Designated initializer. Fills name from -primitiveName.
-- (instancetype)init;
 @property (readonly) NSString *primitiveName;
-
 @property (readonly) NSString *className;
 
+/// Parse a JSON object into primitive value.
 - (id)valueForJSONObject:(id)obj;
 
+/// Method to override: parsing from JSON string.
 - (id)valueForJSONString:(NSString *)obj;
+
+/// Method to override: parsing from JSON number.
 - (id)valueForJSONNumber:(NSNumber *)obj;
+
+/// Serialize value into a JSON object.
+- (id)JSONObjectForValue:(id)obj;
+
 
 @end

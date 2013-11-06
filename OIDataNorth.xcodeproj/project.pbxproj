@@ -46,6 +46,8 @@
 		B384FC7D1827C499006C06D3 /* ODLinksOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC7C1827C499006C06D3 /* ODLinksOperation.m */; };
 		B384FC8118290066006C06D3 /* ODCollectionType.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC8018290066006C06D3 /* ODCollectionType.m */; };
 		B384FC84182909CC006C06D3 /* ODServiceType.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC83182909CC006C06D3 /* ODServiceType.m */; };
+		B384FC87182A43B0006C06D3 /* ODNamedType.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC86182A43B0006C06D3 /* ODNamedType.m */; };
+		B384FC8E182A4907006C06D3 /* ODUnknownNamedType.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC8D182A4907006C06D3 /* ODUnknownNamedType.m */; };
 		B3900E6718118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E6918118102007BCE33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6818118102007BCE33 /* CoreGraphics.framework */; };
 		B3900E6B18118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
@@ -168,6 +170,10 @@
 		B384FC8018290066006C06D3 /* ODCollectionType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCollectionType.m; sourceTree = "<group>"; };
 		B384FC82182909CC006C06D3 /* ODServiceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODServiceType.h; sourceTree = "<group>"; };
 		B384FC83182909CC006C06D3 /* ODServiceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODServiceType.m; sourceTree = "<group>"; };
+		B384FC85182A43B0006C06D3 /* ODNamedType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODNamedType.h; sourceTree = "<group>"; };
+		B384FC86182A43B0006C06D3 /* ODNamedType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODNamedType.m; sourceTree = "<group>"; };
+		B384FC8C182A4907006C06D3 /* ODUnknownNamedType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODUnknownNamedType.h; sourceTree = "<group>"; };
+		B384FC8D182A4907006C06D3 /* ODUnknownNamedType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODUnknownNamedType.m; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* OIDataNorth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OIDataNorth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6818118102007BCE33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -392,17 +398,16 @@
 			name = Retrieval;
 			sourceTree = "<group>";
 		};
-		B34544F2181B2E3E0039BD67 /* Model */ = {
+		B34544F2181B2E3E0039BD67 /* Types */ = {
 			isa = PBXGroup;
 			children = (
 				B3BDF59A18259AA8003CF414 /* ODType.h */,
 				B3BDF59B18259AA8003CF414 /* ODType.m */,
 				B30EF6E41826CDB80091C378 /* Type groups */,
-				B384FC7E18290047006C06D3 /* Collection types */,
-				B30EF6E0182646CC0091C378 /* Entity types */,
-				B3BDF58A1825868C003CF414 /* Primitive types */,
+				B384FC89182A43E7006C06D3 /* Collection Types */,
+				B384FC8B182A487A006C06D3 /* Named types  */,
 			);
-			name = Model;
+			name = Types;
 			sourceTree = "<group>";
 		};
 		B34544FE181BEA430039BD67 /* Plain return type */ = {
@@ -496,7 +501,7 @@
 			name = "XML return type";
 			sourceTree = "<group>";
 		};
-		B384FC7E18290047006C06D3 /* Collection types */ = {
+		B384FC89182A43E7006C06D3 /* Collection Types */ = {
 			isa = PBXGroup;
 			children = (
 				B384FC7F18290066006C06D3 /* ODCollectionType.h */,
@@ -504,7 +509,20 @@
 				B384FC82182909CC006C06D3 /* ODServiceType.h */,
 				B384FC83182909CC006C06D3 /* ODServiceType.m */,
 			);
-			name = "Collection types";
+			name = "Collection Types";
+			sourceTree = "<group>";
+		};
+		B384FC8B182A487A006C06D3 /* Named types  */ = {
+			isa = PBXGroup;
+			children = (
+				B384FC85182A43B0006C06D3 /* ODNamedType.h */,
+				B384FC86182A43B0006C06D3 /* ODNamedType.m */,
+				B384FC8C182A4907006C06D3 /* ODUnknownNamedType.h */,
+				B384FC8D182A4907006C06D3 /* ODUnknownNamedType.m */,
+				B3BDF58A1825868C003CF414 /* Primitive types */,
+				B30EF6E0182646CC0091C378 /* Entity types */,
+			);
+			name = "Named types ";
 			sourceTree = "<group>";
 		};
 		B3900E5A18118102007BCE33 = {
@@ -596,8 +614,9 @@
 			children = (
 				B3454505181C0CE20039BD67 /* UI */,
 				B3900F48181675F7007BCE33 /* Managing */,
-				B3900F421815D84A007BCE33 /* Resources */,
 				B3900F411815D82B007BCE33 /* Operations */,
+				B3900F421815D84A007BCE33 /* Resources */,
+				B34544F2181B2E3E0039BD67 /* Types */,
 				B345450A181D1F380039BD67 /* Helpers */,
 			);
 			name = "OData Stack";
@@ -693,7 +712,6 @@
 				B3900EB3181195A0007BCE33 /* ODCollection.h */,
 				B329A665181FF73D00B2D8B9 /* Implementation */,
 				B34544F1181B27DF0039BD67 /* Retrieval */,
-				B34544F2181B2E3E0039BD67 /* Model */,
 				B3454504181C0C910039BD67 /* Specific */,
 			);
 			name = Resources;
@@ -907,6 +925,7 @@
 				B3454509181C7CEA0039BD67 /* OperationWithSteps.m in Sources */,
 				B34544F0181B278D0039BD67 /* ODRetrieving_Objects.m in Sources */,
 				B384FC7D1827C499006C06D3 /* ODLinksOperation.m in Sources */,
+				B384FC87182A43B0006C06D3 /* ODNamedType.m in Sources */,
 				B3900EC61815310C007BCE33 /* ODPrimitiveType.m in Sources */,
 				B34544F5181B36A30039BD67 /* Supplier.m in Sources */,
 				B384FC721826E104006C06D3 /* ODMetadataOperation.m in Sources */,
@@ -926,6 +945,7 @@
 				B34544F6181B36A30039BD67 /* Employee.m in Sources */,
 				B34544EA181A6AA20039BD67 /* ODResourceList.m in Sources */,
 				B329A65E181FEF2300B2D8B9 /* ODResource+Entity.m in Sources */,
+				B384FC8E182A4907006C06D3 /* ODUnknownNamedType.m in Sources */,
 				B3900F5018168161007BCE33 /* ODBaseRequestManager.m in Sources */,
 				B329A6731821116800B2D8B9 /* ODGenericTableViewCell.m in Sources */,
 				B3BDF59C18259AA8003CF414 /* ODType.m in Sources */,

@@ -6,20 +6,23 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODType, ODAssociationEnd;
+@class ODType, ODNamedType, ODAssociationEnd;
 
 @interface ODTypeLibrary : NSObject
 
 + (ODTypeLibrary *)shared;
 
-@property (readonly) NSDictionary *types;
+@property (readonly) NSDictionary *typesByName;
 @property (readonly) NSDictionary *associationEnds;
 
-- (void)addTypesObject:(ODType *)type;
+- (void)addTypesByName:(NSSet *)objects;
+- (void)addTypesByNameObject:(ODNamedType *)type;
 - (void)addAssociationEndsObject:(ODAssociationEnd *)end;
 
-/// This returns an existing class or creates new one. Guaranteed to not return nil.
-- (ODType *)uniqueTypeFor:(NSString *)typeName;
+/// This returns an existing class or creates an instance of ODUnknownNamedType.
+- (ODNamedType *)uniqueTypeFor:(NSString *)typeName;
+
+/// This returns an existing named class or collection.
 - (ODType *)uniqueTypeFor:(NSString *)typeName collection:(BOOL)collection;
 
 

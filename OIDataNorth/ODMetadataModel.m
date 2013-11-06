@@ -45,7 +45,7 @@
     // Fill in types for navigation attributes.
     for (ODEntityType *entityType in context.parsedEntityTypes) {
         
-        [self.typeLibrary addTypesObject:entityType];
+        [self.typeLibrary addTypesByNameObject:entityType];
 
         NSArray *navigationProperties = [[[entityType properties] allKeys] arrayByFiltering:^BOOL(NSString *key) {
             return ![entityType.properties[key] isKindOfClass:[ODType class]];

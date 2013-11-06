@@ -10,12 +10,13 @@
 #import "ODType+Primitive.h"
 #import "ODAssociationEnd.h"
 #import "ODCollectionType.h"
+#import "ODUnknownNamedType.h"
 
 @interface ODTypeLibrary ()
 @end
 
 @implementation ODTypeLibrary {
-    NSMutableDictionary *_types;
+    NSMutableDictionary *_typesByName;
     NSMutableDictionary *_associationEnds;
 }
 
@@ -27,7 +28,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        _types = [NSMutableDictionary new];
+        _typesByName = [NSMutableDictionary new];
         _associationEnds = [NSMutableDictionary new];
         for (ODPrimitiveType *type in [self listPrimitiveTypes])
             [self addPrimitiveType:type];
@@ -40,25 +41,35 @@
 }
 
 - (void)addPrimitiveType:(ODPrimitiveType *)type {
-    _types[type.name] = type;
-    _types[type.primitiveName] = type;
+    _typesByName[type.name] = type;
+    _typesByName[type.primitiveName] = type;
 }
 
-- (void)addTypesObject:(ODType *)type {
-    _types[type.name] = type;
+- (void)addTypesByName:(NSSet *)objects {
+    for (ODNamedType *object in objects) {
+        [self addTypesByNameObject:object];
+    }
+}
+
+- (void)addTypesByNameObject:(ODNamedType *)type {
+    id old = _typesByName[type.name];
+    if (old && [old respondsToSelector:@selector(setImplementation:)]) {
+        [(ODUnknownNamedType *)old setImplementation:type];
+    }
+    _typesByName[type.name] = type;
 }
 
 - (void)addAssociationEndsObject:(ODAssociationEnd *)end {
     _associationEnds[end.key] = end;
 }
 
-- (ODType *)uniqueTypeFor:(NSString *)typeName {
+- (ODNamedType *)uniqueTypeFor:(NSString *)typeName {
     if (!typeName) return nil;
     
-    ODType *result = _types[typeName];
+    ODNamedType *result = _typesByName[typeName];
     if (!result) {
-        result = [[ODType alloc] initWithName:typeName];
-        _types[typeName] = result;
+        result = [[ODUnknownNamedType alloc] initWithName:typeName];
+        _typesByName[typeName] = result;
     }
     
     return result;
