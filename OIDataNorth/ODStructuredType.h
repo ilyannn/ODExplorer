@@ -8,6 +8,8 @@
 
 #import "ODNominalType.h"
 
+@class ODEntity;
+
 @interface ODStructuredType : ODNominalType
 
 - (id)initWithName:(NSString *)name;

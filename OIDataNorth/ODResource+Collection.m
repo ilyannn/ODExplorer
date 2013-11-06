@@ -38,7 +38,7 @@
 }
 
 - (NSUInteger)batchSize {
-    return 20;
+    return 25;
 }
 
 - (void)countCollection {
@@ -63,10 +63,10 @@
     return operation;
 }
 
-- (void)cache:cache missingObjectAtIndex:(NSUInteger)index { ODCollectionAssert
+- (void)array:(LazyMutableArray *)lazy missingObjectAtIndex:(NSUInteger)index { ODCollectionAssert
     ODQueryOperation *operation = [ODQueryOperation operationWithResource:self];
     NSUInteger batchSize = [self batchSize];
-    NSUInteger totalCount = [cache count];
+    NSUInteger totalCount = [lazy count];
     operation.top = batchSize;
     operation.skip = index;
     
@@ -74,12 +74,12 @@
         ODRetrievalByIndex *info = [ODRetrievalByIndex new];
         info.index = index + batchIndex;
         info.parent = self.retrievalInfo;
-        cache[index + batchIndex] = [[ODEntity alloc] initWithRetrievalInfo:info];
+        lazy[index + batchIndex] = [[ODEntity alloc] initWithRetrievalInfo:info];
     }
     
     [operation addOperationStep:^NSError *(ODQueryOperation *op) {
         [op.responseResults enumerateObjectsUsingBlock: ^(ODEntity *obj, NSUInteger resultIndex, BOOL *stop) {
-            cache[index + resultIndex] = obj;
+            lazy[index + resultIndex] = obj;
         }];
         return nil;
     }];

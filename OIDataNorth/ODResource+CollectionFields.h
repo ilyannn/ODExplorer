@@ -9,5 +9,6 @@
 #import "ODResource.h"
 
 @interface ODResource (CollectionFields) 
+/// Must return non-nil
 - (NSString *)guessMediumDescriptionProperty;
 @end

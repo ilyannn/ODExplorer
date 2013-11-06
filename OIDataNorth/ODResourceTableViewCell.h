@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ODResource.h"
-
+@class ODResource;
 
 @interface ODResourceTableViewCell : UITableViewCell
 @property (nonatomic) ODResource *resource;

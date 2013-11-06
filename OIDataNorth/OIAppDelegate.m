@@ -8,80 +8,25 @@
 
 #import "OIAppDelegate.h"
 
-#import "ODResourceViewController.h"
-#import "ODBaseRequestManager.h"
-#import "ODResourceList.h"
-#import "ODCollection.h"
-
-#import "ODResourceViewControllerMenu.h"
+#import "ODFavoritesViewController.h"
+#import "ODEntity.h"
 
 @implementation OIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    ODFavoritesViewController *fav = [ODFavoritesViewController new];
+    self.window.rootViewController = fav;
     
-    // Override point for customization after application launch.
-    ODResourceList *root = [[ODResourceList alloc] initFromDefaults];
-    [root.childrenArray[1] retrieveMetadata];
-    
-    ODResourceViewControllerMenu *sharedMenu = [ODResourceViewControllerMenu sharedMenu];
-    sharedMenu.favorites = root;
-
-    UINavigationController *nc = (UINavigationController *)self.window.rootViewController;
-    [nc pushViewController:[ODResourceViewController controllerForResource:root] animated:YES];
-
-    NSURL *URL = launchOptions[UIApplicationLaunchOptionsURLKey];
-    if (URL) {
-        ODCollection *service = [ODCollection resourceWithURL:URL description:@"from parameters"];
-        [root.childrenArray addObject:service];
-        [nc pushViewController:[ODResourceViewController controllerForResource:service] animated:NO];
+    NSURL *launchURL = [NSURL URLWithString:@"odata://services.odata.org/V3/OData/OData.svc/"];
+    if (launchURL || (launchURL = launchOptions[UIApplicationLaunchOptionsURLKey])) {
+        if (![launchURL.scheme hasPrefix:@"http"]) {
+            launchURL = [[NSURL alloc] initWithScheme:@"http" host:[launchURL host] path:[launchURL path]];
+        }
+        [fav pushResource:[ODResource resourceWithURL:launchURL description:@"launch parameter"]];
     }
-    
-//    NSURL *localURL = [NSURL fileURLWithPath:@"~/Library/favorites.json"];
+
     return YES;
-}
-
-- (void)loadArticles
-{/*
-    RKObjectMapping* articleMapping = [RKObjectMapping mappingForClass:[Article class]];
-    [articleMapping addAttributeMappingsFromDictionary:@{
-                                                         @"title": @"title",
-                                                         @"body": @"body",
-                                                         @"author": @"author",
-                                                         @"publication_date": @"publicationDate"
-                                                         }];
-    
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articleMapping pathPattern:nil keyPath:@"articles" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    NSURL *URL = [NSURL URLWithString:@"http://restkit.org/articles"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseDescriptor ]];
-    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        RKLogInfo(@"Load collection of Articles: %@", mappingResult.array);
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        RKLogError(@"Operation failed with error: %@", error);
-    }];
-    
-    [objectRequestOperation start];
-*/
-    
-}
-
-- (void)loadArticles_OD {
-    // Instantiating ODCollection ensures that that operation will fail if server tries to return something else.
-    ODCollection *articles = [ODCollection resourceWithURL:[NSURL URLWithString:@"http://restkit.org/articles"]
-                              // Description is useful for debugging or displaying the resource to user.
-                                               description:@"My article list"];
-//    articles.entityType = [Article entityType];
-    //    [articles.readManager addCompletionHandler:]
-    [articles retrieve];
-    
-    // start using articles.childrenArray; it will be updated in the background as necessary
-}
-
-- (id)loadArticles_minimal {
-//    [ODResource sharedReadManager].autoretrieve = YES;
-    return [[ODCollection resourceWithURLString:@"http://restkit.org/articles"] autoretrieve].childrenArray;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

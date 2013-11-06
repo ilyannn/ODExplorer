@@ -6,23 +6,26 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODResourceViewControllerMenu.h"
+#import <UIKit/UIKit.h>
+
+#import "ODExplorerViewActionsMenu.h"
+
 #import "ODResourceList.h"
 #import "ODCreateOperation.h"
 
-@interface ODResourceViewControllerMenu () <UIActionSheetDelegate, UIAlertViewDelegate>
+@interface ODExplorerViewActionsMenu () <UIActionSheetDelegate, UIAlertViewDelegate>
 
 /// This consists of blocks to be executed.
 @property NSMutableArray *actions;
 
 @end
 
-@implementation ODResourceViewControllerMenu
+@implementation ODExplorerViewActionsMenu
 
-+ (ODResourceViewControllerMenu *)sharedMenu {
-    static ODResourceViewControllerMenu*_sharedMenu;
++ (ODExplorerViewActionsMenu *)sharedMenu {
+    static ODExplorerViewActionsMenu*_sharedMenu;
     if (!_sharedMenu) {
-        _sharedMenu = [ODResourceViewControllerMenu new];
+        _sharedMenu = [ODExplorerViewActionsMenu new];
     }
     return _sharedMenu;
 }
@@ -40,11 +43,11 @@
 }
 
 - (void)buildMenu {
-    __weak ODResourceViewControllerMenu *weakSelf = self;
+    __weak ODExplorerViewActionsMenu *weakSelf = self;
 
     BOOL remove = [weakSelf.favorites.childrenArray containsObject:weakSelf.resource];
     
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                    delegate:self
                                           cancelButtonTitle:nil
                                      destructiveButtonTitle:remove ? @"Remove from Favorites" : nil

@@ -9,6 +9,8 @@
 #import "ODManaging.h"
 #import "ODRetrieving_Protocol.h"
 
+@class ODMetadataModel;
+
 /// Base class to retrieve information about a resource within a context.
 /// It is kind of abstract. Since the URL is nil and can't be changed, the only
 /// way to get something useful from object of this class is by setting a non-trivial parent.

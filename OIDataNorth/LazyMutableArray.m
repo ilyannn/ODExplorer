@@ -4,7 +4,6 @@
 //
 
 #import "LazyMutableArray.h"
-#import "ODEntity.h"
 
 @implementation LazyMutableArray {
     NSPointerArray *_objects; // Created lazily, only on -setCount:
@@ -49,8 +48,8 @@
 - (id)objectAtIndex:(NSUInteger)index {
     @synchronized(self) {
         if (index >= self.count) return nil;
-        ODEntity *entity = [_objects pointerAtIndex:index];
-        if (entity) return entity;
+        id object = [_objects pointerAtIndex:index];
+        if (object) return object;
     }
     
     [self.delegate array:self missingObjectAtIndex:index];

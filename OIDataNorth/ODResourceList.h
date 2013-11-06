@@ -9,10 +9,6 @@
 #import "ODResource.h"
 
 @interface ODResourceList : ODResource
-- (instancetype)initFromDefaults;
-
-- (void)saveToDefaults;
-- (void)loadFromDefaults;
 
 - (void)addResourceToList:(ODResource *)resource;
 - (void)removeResourceFromList:(ODResource *)resource;

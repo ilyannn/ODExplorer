@@ -3,6 +3,8 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @class LazyMutableArray;
 
 /// Delegate is expected to do some magic so that values appear in the array.
@@ -34,12 +36,10 @@
 /// With this class we can set count at will.
 - (void)setCount:(NSUInteger)count;
 
-
 /// We can replace objects using [] syntax.
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 
 /// Drops the internal storage.
 - (void)clean;
-
 
 @end

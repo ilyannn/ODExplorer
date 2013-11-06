@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODEntity, ODCollection;
 @protocol ODRetrieving;
 
 /// Instance of this object encapsulates an idea of an OData type. At the most basic level, a type can describe a collection

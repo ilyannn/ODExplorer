@@ -31,7 +31,7 @@
         }
     }];
     
-    if (!propertyWeight.count) return nil;
+    if (!propertyWeight.count) return @"";
     for (NSString *key in propertyValues) {
         float newWeight = [propertyValues[key] count];
         float oldWeight = [propertyWeight[key] floatValue];

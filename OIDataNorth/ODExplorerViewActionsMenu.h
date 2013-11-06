@@ -6,20 +6,18 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-@class ODResource, ODResourceList;
+@class UIActionSheet;
+@class ODResourceList;
+@protocol ODResourceAccessing;
 
 /// Menu of possible actions for a resource.
-@interface ODResourceViewControllerMenu : NSObject
-
-/// A singleton, to set favorites.
-+ (ODResourceViewControllerMenu *)sharedMenu;
+@interface ODExplorerViewActionsMenu : NSObject
 
 /// Menu can be different depending on resource
-@property (nonatomic) ODResource *resource;
+@property (nonatomic) id<ODResourceAccessing> resource;
 
 /// Use this property as a menu.
-@property UIActionSheet *actionSheet;
+@property (readonly)UIActionSheet *actionSheet;
 
 /// Collection to use when "Add favorites" is selected.
 @property ODResourceList *favorites;
