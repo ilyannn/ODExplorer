@@ -1,15 +1,12 @@
 //
-//  ODCachedCollection.m
-//  OIDataNorth
-//
 //  Created by ilya on 10/21/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "CollectionCache.h"
+#import "LazyMutableArray.h"
 #import "ODEntity.h"
 
-@implementation CollectionCache {
+@implementation LazyMutableArray {
     NSPointerArray *_objects; // Created lazily, only on -setCount:
 }
 
@@ -56,7 +53,7 @@
         if (entity) return entity;
     }
     
-    [self.delegate cache:self missingObjectAtIndex:index];
+    [self.delegate array:self missingObjectAtIndex:index];
 
     @synchronized(self) {
         if (index >= self.count) return nil;
@@ -76,5 +73,22 @@
     [self replaceObjectAtIndex:(NSUInteger)index withObject:(id)object];
 }
 
+- (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
+    [_objects insertPointer:(__bridge void*)anObject atIndex:index];
+}
+
+- (void)addObject:(id)anObject {
+    [_objects addPointer:(__bridge void*)anObject];
+}
+
+- (void)removeLastObject {
+    if (_objects.count) {
+        [_objects removePointerAtIndex:_objects.count - 1];
+    }
+}
+
+- (void)removeObjectAtIndex:(NSUInteger)index {
+    [_objects removePointerAtIndex:index];
+}
 
 @end

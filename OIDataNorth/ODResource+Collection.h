@@ -7,14 +7,14 @@
 //
 
 #import "ODCollection.h"
-#import "CollectionCache.h"
+#import "LazyMutableArray.h"
 
-@class CollectionCache;
+@class LazyMutableArray;
 
 /// Internal information about properties and methods of ODResource availible only for collections.
 @interface ODResource (Collection) <ODCollectionAccessing, ODCollectionCacheDelegate>
 
-- (CollectionCache *)childrenArrayForCollection;
+- (LazyMutableArray *)childrenArrayForCollection;
 - (NSError *)parseFromJSONArray:(NSArray *)array;
 - (NSError *)parseServiceDocumentFromArray:(NSArray *)array;
 

@@ -10,7 +10,7 @@
 #import "ODResource+Entity.h"
 #import "ODResource_Internal.h"
 
-#import "CollectionCache.h"
+#import "LazyMutableArray.h"
 #import "ODRetrieving_Objects.h"
 
 #import "ODCountOperation.h"
@@ -27,8 +27,8 @@
 
 @implementation ODResource (Collection)
 
-- (CollectionCache *)childrenArrayForCollection { ODCollectionAssert
-    return [[CollectionCache alloc] initWithDelegate:self];
+- (LazyMutableArray *)childrenArrayForCollection { ODCollectionAssert
+    return [[LazyMutableArray alloc] initWithDelegate:self];
 }
 
 - (NSError *)updateFromJSONArray:(NSArray *)array { ODCollectionAssert
@@ -54,7 +54,7 @@
             if (![array respondsToSelector:@selector(setCount:)]) {
                 // This is the only place children become CollectionCache.
                 // In all other situations, NSArray is just fine.
-                self.childrenArray = array = [[CollectionCache alloc] initWithDelegate:self contents:array];
+                self.childrenArray = array = [[LazyMutableArray alloc] initWithDelegate:self contents:array];
             }
             [array setCount:op.responseCount];
         }

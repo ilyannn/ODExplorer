@@ -8,7 +8,7 @@
 
 #import "ODEntity.h"
 
-@class CollectionCache;
+@class LazyMutableArray;
 
 /// Internal information about properties and methods of ODResource availible only for entities.
 @interface ODResource (Entity) <ODEntityAccessing>

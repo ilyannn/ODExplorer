@@ -38,8 +38,12 @@
     [pairs enumerateKeysAndObjectsUsingBlock:^(NSString *encoded, NSString *decoded, BOOL *stop) {
         NSData *data1 = [NSData dataFromBase64String:encoded];
         NSData *data2 = [decoded dataUsingEncoding:NSUTF8StringEncoding];
-        XCTAssertEqualObjects(data1, data2, @"Ooops, our base64 decoding doesn't seem to work for pair %@ -> %@",
+        XCTAssertEqualObjects(data1, data2, @"Ooops, our base64 decoding doesn't seem to work for decoding %@ -> %@",
                               encoded, decoded);
+
+        NSString *encoded1 = [data2 base64EncodedString];
+        XCTAssertEqualObjects(encoded1, encoded, @"Ooops, our base64 decoding doesn't seem to work for encoding %@ -> %@",
+                              decoded, encoded);
     }];
                               
 }

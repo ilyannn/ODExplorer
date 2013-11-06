@@ -7,7 +7,7 @@
 //
 
 #import "ODResource.h"
-#import "CollectionCache.h"
+#import "LazyMutableArray.h"
 
 @interface ODResource ()
 

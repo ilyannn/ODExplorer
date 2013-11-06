@@ -71,7 +71,7 @@
 		B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB4181195A0007BCE33 /* ODCollection.m */; };
 		B3900EB818119619007BCE33 /* ODEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB718119619007BCE33 /* ODEntity.m */; };
 		B3900EC61815310C007BCE33 /* ODPrimitiveType.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EC51815310C007BCE33 /* ODPrimitiveType.m */; };
-		B3900F3A1815BA75007BCE33 /* CollectionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F391815BA75007BCE33 /* CollectionCache.m */; };
+		B3900F3A1815BA75007BCE33 /* LazyMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F391815BA75007BCE33 /* LazyMutableArray.m */; };
 		B3900F3D1815C0AC007BCE33 /* ODCountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */; };
 		B3900F401815CB8D007BCE33 /* ODJSONOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F3F1815CB8D007BCE33 /* ODJSONOperation.m */; };
 		B3900F4D18167765007BCE33 /* ODResource.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900F4C18167765007BCE33 /* ODResource.m */; };
@@ -237,8 +237,8 @@
 		B3900F2D18155FBC007BCE33 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		B3900F2F18155FCC007BCE33 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
 		B3900F3018155FCC007BCE33 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
-		B3900F381815BA75007BCE33 /* CollectionCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCache.h; sourceTree = "<group>"; };
-		B3900F391815BA75007BCE33 /* CollectionCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CollectionCache.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B3900F381815BA75007BCE33 /* LazyMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LazyMutableArray.h; sourceTree = "<group>"; };
+		B3900F391815BA75007BCE33 /* LazyMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LazyMutableArray.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B3900F3B1815C0AC007BCE33 /* ODCountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODCountOperation.h; sourceTree = "<group>"; };
 		B3900F3C1815C0AC007BCE33 /* ODCountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCountOperation.m; sourceTree = "<group>"; };
 		B3900F3E1815CB8D007BCE33 /* ODJSONOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODJSONOperation.h; sourceTree = "<group>"; };
@@ -480,8 +480,8 @@
 				B3454508181C7CEA0039BD67 /* OperationWithSteps.m */,
 				B329A659181FB5C700B2D8B9 /* JSONDateReader.h */,
 				B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */,
-				B3900F381815BA75007BCE33 /* CollectionCache.h */,
-				B3900F391815BA75007BCE33 /* CollectionCache.m */,
+				B3900F381815BA75007BCE33 /* LazyMutableArray.h */,
+				B3900F391815BA75007BCE33 /* LazyMutableArray.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -936,7 +936,7 @@
 				B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */,
 				B3900EB818119619007BCE33 /* ODEntity.m in Sources */,
 				B384FC8118290066006C06D3 /* ODCollectionType.m in Sources */,
-				B3900F3A1815BA75007BCE33 /* CollectionCache.m in Sources */,
+				B3900F3A1815BA75007BCE33 /* LazyMutableArray.m in Sources */,
 				B3BDF59318258A32003CF414 /* ODPrimitiveTypeBinary.m in Sources */,
 				B3BDF583182581CC003CF414 /* ODPrimitiveTypeDateTime.m in Sources */,
 				B3900EA918118129007BCE33 /* ODOperation.m in Sources */,
