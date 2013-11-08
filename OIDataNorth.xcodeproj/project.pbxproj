@@ -11,7 +11,7 @@
 		B30EF6DC1826446B0091C378 /* ODStructuredType.m in Sources */ = {isa = PBXBuildFile; fileRef = B30EF6DB1826446B0091C378 /* ODStructuredType.m */; };
 		B30EF6DF182646C30091C378 /* ODCustomEntityType.m in Sources */ = {isa = PBXBuildFile; fileRef = B30EF6DE182646C30091C378 /* ODCustomEntityType.m */; };
 		B30EF6E31826CA9F0091C378 /* ODTypeLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = B30EF6E21826CA9F0091C378 /* ODTypeLibrary.m */; };
-		B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A652181E611400B2D8B9 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A652181E611400B2D8B9 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-all"; }; };
 		B329A657181F991A00B2D8B9 /* ODExplorerViewActionsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A656181F991A00B2D8B9 /* ODExplorerViewActionsMenu.m */; };
 		B329A65B181FB5C700B2D8B9 /* JSONDateReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */; };
 		B329A65E181FEF2300B2D8B9 /* ODResource+Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = B329A65D181FEF2300B2D8B9 /* ODResource+Entity.m */; };
@@ -1130,6 +1130,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OIDataNorth/OIDataNorth-Prefix.pch";
 				INFOPLIST_FILE = "OIDataNorth/OIDataNorth-Info.plist";
+				OTHER_CFLAGS = "-Wall";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1145,6 +1146,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OIDataNorth/OIDataNorth-Prefix.pch";
 				INFOPLIST_FILE = "OIDataNorth/OIDataNorth-Info.plist";
+				OTHER_CFLAGS = (
+					"-Wall",
+					"-Werror",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
