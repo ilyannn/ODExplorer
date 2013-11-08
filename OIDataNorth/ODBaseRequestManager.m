@@ -8,6 +8,7 @@
 
 #import "ODBaseRequestManager.h"
 #import "ODOperation.h"
+#import "ODEntity.h"
 
 @implementation ODBaseRequestManager
 
@@ -21,7 +22,7 @@
     return self;
 }
 
-- (void)retrieveProperty:(NSString *)propertyName ofEntity:(ODEntity *)entity {
+- (void)retrieveProperty:(NSString *)propertyName ofEntity:(id<ODEntity> *)entity {
     switch (self.propertyFaultStrategy) {
         case ODPropertyFaultReturn:
             // do nothing;

@@ -8,6 +8,7 @@
 
 #import "ODEntity.h"
 #import "ODCollection.h"
+#import "ODResource+Entity.h"
 #import "ODResource_Internal.h"
 
 #import "ODRetrieving_Objects.h"

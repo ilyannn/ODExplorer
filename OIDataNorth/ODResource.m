@@ -17,6 +17,8 @@
 #import "ODRetrieveOperation.h"
 #import "ODOperationError+Parsing.h"
 
+#import "ODType.h"
+
 @implementation ODResource {
     NSArray *_childrenArray;
 }
@@ -73,7 +75,7 @@
     return [self resourceWithURL:[NSURL URLWithString:URLString] description:nil];
 }
 
-+ (instancetype)resourceByURLCopy:(id<ODResourceAccessing>)resource in:(id<ODRetrieving>)parentInfo {
++ (instancetype)resourceByURLCopy:(id<ODResource>)resource in:(id<ODRetrieving>)parentInfo {
     ODRetrieveByURL *info = [ODRetrieveByURL new];
     info.URL = [resource URL];
     info.shortDescription = [resource shortDescription];
@@ -109,6 +111,9 @@
         case ODResourceKindEntity:
             return [@[[self description], [self.localProperties description]]
                     componentsJoinedByString: @"entity = \n "];
+        
+        case ODResourceKindPrimitive:
+            return [self description];
             
         case ODResourceKindUnknown:
             return [self description];

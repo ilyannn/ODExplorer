@@ -9,6 +9,8 @@
 #import "ODHTTPOperation.h"
 
 #import "ODOperationError+Parsing.h"
+#import "ODRetrieving_Protocol.h"
+
 #import "AFNetworking/AFURLRequestSerialization.h"
 
 NSString *const ODHTTPVerbGet = @"GET";

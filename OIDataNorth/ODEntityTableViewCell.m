@@ -7,7 +7,7 @@
 //
 
 #import "ODEntityTableViewCell.h"
-#import "Product.h"
+#import "ODRetrieving_Protocol.h"
 
 @implementation ODEntityTableViewCell
 

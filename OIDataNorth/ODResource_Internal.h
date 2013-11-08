@@ -8,7 +8,7 @@
 
 #import "ODResource.h"
 
-@interface ODResource ()
+@interface ODResource () 
 
 @property id resourceValue;
 @property NSArray *childrenArray; 

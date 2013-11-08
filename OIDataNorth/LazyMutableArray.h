@@ -8,7 +8,7 @@
 @class LazyMutableArray;
 
 /// Delegate is expected to do some magic so that values appear in the array.
-@protocol ODCollectionCacheDelegate
+@protocol LazyMutableArrayDelegate
 - (void)array:(LazyMutableArray *)lazy missingObjectAtIndex:(NSUInteger)index;
 @end
 
@@ -16,10 +16,10 @@
 @interface LazyMutableArray : NSMutableArray
 
 /// Delegate is to be set at initializationd.
-@property (readonly, weak) id<ODCollectionCacheDelegate> delegate;
+@property (readonly, weak) id<LazyMutableArrayDelegate> delegate;
 
-- (instancetype)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate; /* designated initializer */
-- (instancetype)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate contents:(NSArray *)array;
+- (instancetype)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate; /* designated initializer */
+- (instancetype)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate contents:(NSArray *)array;
 
 // The standard NSArray methods.
 - (id)objectAtIndex:(NSUInteger)index;

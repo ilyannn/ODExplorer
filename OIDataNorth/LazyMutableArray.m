@@ -13,14 +13,14 @@
     return [self initWithDelegate:nil];
 }
 
-- (id)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate {
+- (id)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate {
     if (self = [super init]) {
         _delegate = delegate;
     }
     return self;
 }
 
-- (id)initWithDelegate:(id<ODCollectionCacheDelegate>)delegate contents:(NSArray *)array {
+- (id)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate contents:(NSArray *)array {
     if (self = [self initWithDelegate:delegate]) {
         self.count = [array count];
         [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

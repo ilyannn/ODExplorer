@@ -7,31 +7,11 @@
 //
 
 #import "ODResource.h"
-#import "ODType.h"
-
-/// Public information about properties and methods of ODResource availible only for entities.
-@protocol ODEntityAccessing <ODResourceAccessing>
-
-- (NSError *)parseFromJSONDictionary:(NSDictionary *)dict;
-
-// - (void)replace;
-// - (ODOperation *)replaceOperation;
-
-// - (void)merge;
-// - (ODOperation *)mergeOperation;
-
-- (id)navigationProperty:(NSString *)name propertyType:(ODType *)entityType;
-- (id)navigationCollection:(NSString *)name entityType:(ODType *)entityType;
-
-- (void)performAction:(NSString *)actionName;
-
-@property (readonly, nonatomic) NSDictionary *localProperties;
-
-@end
+#import "ODEntity_Protocol.h"
 
 @class ODCustomEntityType;
 
 /// A class that works essentially as a hint to compiler.
-@interface ODEntity : ODResource <ODEntityAccessing>
+@interface ODEntity : ODResource <ODEntity>
 + (ODCustomEntityType *)customEntityType;
 @end

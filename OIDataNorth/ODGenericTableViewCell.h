@@ -10,6 +10,6 @@
 #import "ODCollection.h"
 
 @interface ODGenericTableViewCell : ODResourceTableViewCell
-@property (nonatomic) ODResource<ODCollectionAccessing> *resource;
+@property (nonatomic) ODResource<ODCollection> *resource;
 
 @end

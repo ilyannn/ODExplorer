@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODType;
+@class ODType, ODOperation;
 
 /// Protocol to retrieve information about a resource within a context.
 /// Retrieval protocol doesn't provide a way to modify the information, although

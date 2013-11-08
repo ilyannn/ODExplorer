@@ -41,7 +41,7 @@
 }
 
 - (void)retrieveMetadata {
-    for (ODResource<ODCollectionAccessing> *resource in self.childrenArray) {
+    for (ODResource<ODCollection> *resource in self.childrenArray) {
         [resource retrieveMetadata];
     }
 }

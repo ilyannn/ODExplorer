@@ -39,7 +39,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pushResource:(id<ODResourceAccessing>)resource {
+- (void)pushResource:(id<ODResource>)resource {
     [self pushViewController:[ODExplorerViewController controllerForResource:resource] animated:YES];
 }
 

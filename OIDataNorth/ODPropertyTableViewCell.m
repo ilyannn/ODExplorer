@@ -7,6 +7,7 @@
 //
 
 #import "ODPropertyTableViewCell.h"
+#import "ODRetrieving_Objects.h"
 
 @implementation ODPropertyTableViewCell
 

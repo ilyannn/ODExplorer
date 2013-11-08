@@ -7,6 +7,7 @@
 //
 
 #import "ODGenericTableViewCell.h"
+#import "ODRetrieving_Protocol.h"
 
 @implementation ODGenericTableViewCell
 

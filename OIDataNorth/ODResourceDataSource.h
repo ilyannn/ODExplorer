@@ -17,8 +17,8 @@ extern NSString *const ODBracketedCellReuseID;
 
 @interface ODResourceDataSource : NSObject <UITableViewDataSource>
 
-- (instancetype)initWithResource:(id<ODResourceAccessing>)resource;
-@property (readonly) id<ODResourceAccessing> resource;
+- (instancetype)initWithResource:(id<ODResource>)resource;
+@property (readonly) id<ODResource> resource;
 
 - (NSDictionary *)cellClasses;
 - (NSString *)cellIDForResource:(ODResource *)child;

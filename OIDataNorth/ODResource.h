@@ -6,36 +6,7 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODManaging.h"
-#import "ODRetrieving_Protocol.h"
-@class ODStructuredType;
-
-typedef NS_ENUM (NSInteger, ODResourceKind) {
-    ODResourceKindUnknown = 0,
-    ODResourceKindEntity,
-    ODResourceKindCollection
-};
-
-
-// Fundamentally resource is either best represented with a dictionary (entity-kind), or
-// with array (collection-kind). Here property is an entity with a standard type and service
-// is a collection (albeit non-standard in the sense that it contains collections).
-
-// Kind can be changed in the following situations:
-//   * retrieving: we know from JSON about kind;
-//   * creating from a subclass: the kind will be automatically set;
-//   * following links if we know the servive model;
-//   * manually, by setting a property.
-//
-// This should be set before any non-trivial operations. Also, it's not possible to set this value more than once. For
-// example, an object of |ODEntity| class will under no circumstances behave as a collection. Retrieving an object will
-// set it the first time, but always validate against kind.
-
-
-
-@class ODResource, ODCollection, ODEntity, ODEntitySet;
-
-#import "ODResourceAccessing.h"
+#import "ODResource_Protocol.h"
 
 /// This class implements all of functionality for resources, but declares only the base part.
 
@@ -49,11 +20,18 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 /// One can drop information (3) about the resource by calling -clean. It's not possible to
 /// get rid of (2) except by creating a new object.
 
-@interface ODResource : NSObject <ODResourceAccessing>
+@interface ODResource : NSObject <ODResource>
 
 // Use +new or +unique initializer in subclasses if you defined +resourceDict.
 + (instancetype)new;
 + (instancetype)unique;
+
++ (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
++ (instancetype)resourceWithDict:(id)dict;
++ (instancetype)resourceWithURLString:(NSString *)URLString;
++ (instancetype)resourceWithInfo:(id<ODRetrieving>)info;
++ (instancetype)resourceByURLCopy:(id<ODResource>)resource in:(id<ODRetrieving>)parentInfo;
+- (instancetype)initWithRetrievalInfo:(id<ODRetrieving>)info;
 
 + (NSDictionary *)resourceDict;
 

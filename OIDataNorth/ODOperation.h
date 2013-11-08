@@ -14,7 +14,7 @@
 @interface ODOperation : OperationWithSteps
 
 /// A factory to create operations.
-+ (instancetype)operationWithResource:(ODResource *)resource;
++ (instancetype)operationWithResource:(id<ODResource>)resource;
 
 /// The way to get resource with which the operation is being performed.
 @property (nonatomic) id<ODRetrieving> retrievalInfo;

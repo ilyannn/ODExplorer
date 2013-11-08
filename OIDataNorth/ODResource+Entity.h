@@ -11,7 +11,7 @@
 @class LazyMutableArray;
 
 /// Internal information about properties and methods of ODResource availible only for entities.
-@interface ODResource (Entity) <ODEntityAccessing>
+@interface ODResource (Entity) <ODEntity>
 - (NSArray *)childrenArrayForEntity;
 @property (nonatomic) NSMutableDictionary *localProperties;
 

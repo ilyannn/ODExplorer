@@ -22,7 +22,7 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
 
 @implementation ODResourceDataSource
 
-- (instancetype)initWithResource:(id<ODResourceAccessing>)resource {
+- (instancetype)initWithResource:(id<ODResource>)resource {
     if (self = [self init]) {
         _resource = resource;
     }

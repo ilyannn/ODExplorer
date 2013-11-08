@@ -7,6 +7,7 @@
 //
 
 #import "ODEntity.h"
+#import "ODCollection.h"
 
 @class ProductCollection;
 

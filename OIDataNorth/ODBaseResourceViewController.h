@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class ODResourceTableViewCell;
-@protocol ODResourceAccessing;
+@protocol ODResource;
 
 @interface ODBaseResourceViewController : UITableViewController
 
 #pragma mark - Instantiation
 
-+ (UIViewController *)controllerForResource:(id<ODResourceAccessing>)resource;
-@property (readwrite, nonatomic) id<ODResourceAccessing> resource;
++ (UIViewController *)controllerForResource:(id<ODResource>)resource;
+@property (readwrite, nonatomic) id<ODResource> resource;
 
 #pragma mark - Configuration
 

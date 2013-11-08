@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class ODFavorites;
-@protocol ODResourceAccessing;
+@protocol ODResource;
 
 @interface ODFavoritesViewController : UINavigationController
 
-- (void)pushResource:(id<ODResourceAccessing>)resource;
+- (void)pushResource:(id<ODResource>)resource;
 
 @end

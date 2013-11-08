@@ -8,13 +8,13 @@
 
 @class UIActionSheet;
 @class ODResourceList;
-@protocol ODResourceAccessing;
+@protocol ODResource;
 
 /// Menu of possible actions for a resource.
 @interface ODExplorerViewActionsMenu : NSObject
 
 /// Menu can be different depending on resource
-@property (nonatomic) id<ODResourceAccessing> resource;
+@property (nonatomic) id<ODResource> resource;
 
 /// Use this property as a menu.
 @property (readonly)UIActionSheet *actionSheet;

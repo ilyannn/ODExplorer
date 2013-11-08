@@ -25,11 +25,11 @@
 
 #pragma mark - View Construction
 
-+ (UIViewController *)controllerForResource:(id <ODResourceAccessing> )resource {
++ (UIViewController *)controllerForResource:(id <ODResource> )resource {
     return [[self alloc] initWithResource:resource];
 }
 
-- (instancetype)initWithResource:(id <ODResourceAccessing> )resource {
+- (instancetype)initWithResource:(id <ODResource> )resource {
     if (self = [super init]) {
         _resource = resource;
         [self configure];

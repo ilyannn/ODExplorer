@@ -7,24 +7,39 @@
 //
 
 @class ODType;
-@class ODRetrieveOperation;
+@class ODOperation, ODRetrieveOperation;
+
+@protocol ODRetrieving;
+
+typedef NS_ENUM (NSInteger, ODResourceKind) {
+    ODResourceKindUnknown = 0,
+    ODResourceKindPrimitive,
+    ODResourceKindEntity,
+    ODResourceKindCollection
+};
+
+// Fundamentally resource either doesn't have subresources or is best represented with a dictionary
+// (entity-kind), or with array (collection-kind).
+
+// Kind can be changed in the following situations:
+//   * retrieving: we know from JSON about kind;
+//   * creating from a subclass: the kind will be automatically set;
+//   * following links if we know the servive model;
+//   * manually, by setting a property.
+//
+// This should be set before any non-trivial operations. Also, it's not possible to set this value more than once. For
+// example, an object of |ODEntity| class will under no circumstances behave as a collection. Retrieving an object will
+// set it the first time, but always validate against kind.
 
 
 /// Public information about properties and methods of ODResource that are common
 /// between entities and collections.
-@protocol ODResourceAccessing <NSObject>
+@protocol ODResource <NSObject>
 
 #pragma mark - (1) how to get a resource
 
 // We can create a resource object by different means.
 - (id<ODRetrieving>) retrievalInfo;
-- (instancetype)initWithRetrievalInfo:(id<ODRetrieving>)info;
-
-+ (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
-+ (instancetype)resourceWithDict:(id)dict;
-+ (instancetype)resourceWithURLString:(NSString *)URLString;
-+ (instancetype)resourceWithInfo:(id<ODRetrieving>)info;
-+ (instancetype)resourceByURLCopy:(id<ODResourceAccessing>)resource in:(id<ODRetrieving>)parentInfo;
 
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;
@@ -64,6 +79,9 @@
 /// Retrieving is the most important action for a resource.
 - (void)retrieve;
 - (ODRetrieveOperation *)retrieveOperation;
+
+/// Validate resource's type against the model.
+//- (void)validateAgainst:(ODMetadataModel *model) recursively:(BOOL)recursively;
 
 /// This is used to retrieve a resource once, but not more then once.
 @property BOOL automaticallyRetrieve;

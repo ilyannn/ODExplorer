@@ -133,7 +133,7 @@
 		B329A67518211B3B00B2D8B9 /* ODCreateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODCreateOperation.m; sourceTree = "<group>"; };
 		B329A6771821227800B2D8B9 /* ODHTTPOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODHTTPOperation.h; sourceTree = "<group>"; };
 		B329A6781821227800B2D8B9 /* ODHTTPOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODHTTPOperation.m; sourceTree = "<group>"; };
-		B32DE6B9182AF3BA00D208B0 /* ODResourceAccessing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODResourceAccessing.h; sourceTree = "<group>"; };
+		B32DE6B9182AF3BA00D208B0 /* ODResource_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODResource_Protocol.h; sourceTree = "<group>"; };
 		B34544BF181846340039BD67 /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B34544C0181846340039BD67 /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
 		B34544C8181932E60039BD67 /* ODBaseResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODBaseResourceViewController.h; sourceTree = "<group>"; };
@@ -170,6 +170,8 @@
 		B35A6435182AC838002CF425 /* ODFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFavorites.m; sourceTree = "<group>"; };
 		B35A6437182AC9CC002CF425 /* ODFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFavoritesViewController.h; sourceTree = "<group>"; };
 		B35A6438182AC9CC002CF425 /* ODFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFavoritesViewController.m; sourceTree = "<group>"; };
+		B36C7D18182D608E00038420 /* ODEntity_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODEntity_Protocol.h; sourceTree = "<group>"; };
+		B36C7D19182D612200038420 /* ODCollection_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODCollection_Protocol.h; sourceTree = "<group>"; };
 		B384FC701826E104006C06D3 /* ODMetadataOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetadataOperation.h; sourceTree = "<group>"; };
 		B384FC711826E104006C06D3 /* ODMetadataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODMetadataOperation.m; sourceTree = "<group>"; };
 		B384FC731826E323006C06D3 /* TypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypesTests.m; sourceTree = "<group>"; };
@@ -335,21 +337,14 @@
 			name = Actions;
 			sourceTree = "<group>";
 		};
-		B329A665181FF73D00B2D8B9 /* Implementation */ = {
+		B329A665181FF73D00B2D8B9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				B3900F4B18167765007BCE33 /* ODResource.h */,
 				B329A664181FF1FB00B2D8B9 /* ODResource_Internal.h */,
-				B329A65C181FEF2300B2D8B9 /* ODResource+Entity.h */,
-				B329A65F181FEF6700B2D8B9 /* ODResource+Collection.h */,
-				B329A669182063AF00B2D8B9 /* ODResource+CollectionFields.h */,
 				B3900F4C18167765007BCE33 /* ODResource.m */,
-				B329A65D181FEF2300B2D8B9 /* ODResource+Entity.m */,
-				B329A660181FEF6700B2D8B9 /* ODResource+Collection.m */,
-				B329A66A182063AF00B2D8B9 /* ODResource+CollectionFields.m */,
-				B3900EB718119619007BCE33 /* ODEntity.m */,
-				B3900EB4181195A0007BCE33 /* ODCollection.m */,
 			);
-			name = Implementation;
+			name = Base;
 			sourceTree = "<group>";
 		};
 		B329A66C1820FC1E00B2D8B9 /* Requests */ = {
@@ -376,8 +371,10 @@
 			isa = PBXGroup;
 			children = (
 				B3BDF59A18259AA8003CF414 /* ODType.h */,
+				B32DE6B9182AF3BA00D208B0 /* ODResource_Protocol.h */,
 				B329A663181FF08400B2D8B9 /* ODRetrieving_Protocol.h */,
-				B32DE6B9182AF3BA00D208B0 /* ODResourceAccessing.h */,
+				B36C7D18182D608E00038420 /* ODEntity_Protocol.h */,
+				B36C7D19182D612200038420 /* ODCollection_Protocol.h */,
 			);
 			name = "Box \"Abstract\"";
 			sourceTree = "<group>";
@@ -461,15 +458,6 @@
 			name = "JSON return type";
 			sourceTree = "<group>";
 		};
-		B3454504181C0C910039BD67 /* Specific */ = {
-			isa = PBXGroup;
-			children = (
-				B34544E8181A6AA20039BD67 /* ODResourceList.h */,
-				B34544E9181A6AA20039BD67 /* ODResourceList.m */,
-			);
-			name = Specific;
-			sourceTree = "<group>";
-		};
 		B3454505181C0CE20039BD67 /* Box "UI" */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,6 +539,40 @@
 				B35A6438182AC9CC002CF425 /* ODFavoritesViewController.m */,
 			);
 			name = Favorites;
+			sourceTree = "<group>";
+		};
+		B36C7D1A182D621C00038420 /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				B34544E8181A6AA20039BD67 /* ODResourceList.h */,
+				B34544E9181A6AA20039BD67 /* ODResourceList.m */,
+			);
+			name = Subclasses;
+			sourceTree = "<group>";
+		};
+		B36C7D1B182D65A400038420 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				B329A65C181FEF2300B2D8B9 /* ODResource+Entity.h */,
+				B329A65D181FEF2300B2D8B9 /* ODResource+Entity.m */,
+				B3900EB618119619007BCE33 /* ODEntity.h */,
+				B3900EB718119619007BCE33 /* ODEntity.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		B36C7D1C182D65C500038420 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				B329A65F181FEF6700B2D8B9 /* ODResource+Collection.h */,
+				B329A669182063AF00B2D8B9 /* ODResource+CollectionFields.h */,
+				B329A660181FEF6700B2D8B9 /* ODResource+Collection.m */,
+				B329A66A182063AF00B2D8B9 /* ODResource+CollectionFields.m */,
+				B3900EB3181195A0007BCE33 /* ODCollection.h */,
+				B3900EB4181195A0007BCE33 /* ODCollection.m */,
+				B36C7D1A182D621C00038420 /* Subclasses */,
+			);
+			name = Collection;
 			sourceTree = "<group>";
 		};
 		B384FC6F1826E0DE006C06D3 /* XML return type */ = {
@@ -720,11 +742,9 @@
 		B3900F421815D84A007BCE33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B3900F4B18167765007BCE33 /* ODResource.h */,
-				B3900EB618119619007BCE33 /* ODEntity.h */,
-				B3900EB3181195A0007BCE33 /* ODCollection.h */,
-				B329A665181FF73D00B2D8B9 /* Implementation */,
-				B3454504181C0C910039BD67 /* Specific */,
+				B329A665181FF73D00B2D8B9 /* Base */,
+				B36C7D1B182D65A400038420 /* Entity */,
+				B36C7D1C182D65C500038420 /* Collection */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
