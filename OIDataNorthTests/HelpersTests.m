@@ -9,9 +9,10 @@
 #import <XCTest/XCTest.h>
 
 #import "NSData+Base64.h"
-#import "ODPrimitiveTypeDateTime.h"
+#import "NSArray+Functional.h"
+#import "LazyMutableArray.h"
 
-@interface HelpersTests : XCTestCase
+@interface HelpersTests : XCTestCase <LazyMutableArrayDelegate>
 
 @end
 
@@ -27,6 +28,18 @@
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+- (void)testFunctional {
+    NSNumber *result = [[[@[@1, @3, @6, @11] arrayByMapping:^id(NSNumber *x) {
+        return @(x.integerValue * 2);
+    }] arrayByFiltering:^BOOL(NSNumber *x) {
+        return x.integerValue < 20;
+    }] objectByReducing:^id(NSNumber *x, NSNumber *y) {
+        return @(x.integerValue + y.integerValue);
+    }];
+    
+    XCTAssertEqualObjects(result, @20, @"Arithmetic operations chained with functional methods.");
 }
 
 - (void)testBase64 {
@@ -45,17 +58,84 @@
         XCTAssertEqualObjects(encoded1, encoded, @"Ooops, our base64 decoding doesn't seem to work for encoding %@ -> %@",
                               decoded, encoded);
     }];
-                              
 }
 
-- (void)testJSONDates {
-    ODPrimitiveTypeDateTime *example = [ODPrimitiveTypeDateTime new];
+- (void)testLazyMutableCorrectness {
+    LazyMutableArray *lazy = [[LazyMutableArray alloc] initWithDelegate:self contents:@[@0, @10, @20]];
+    
+    XCTAssertEqual(lazy.count, (unsigned)3, @"Just like regular array count");
 
-    NSDate *date1 = [example.dateTimeFormatterV2 dateFromString:@"/Date(1310669017000)/"];
-    XCTAssertNotNil(date1, @"Formatter didn't decode the JSON date at all");
+    lazy.count = 2; // can set count
+    lazy[1] = @1; // correct assignment
+    lazy[2] = @5; // beyond boundary, nop
+    
+    XCTAssertEqualObjects([lazy lastObject], @1, @"Setting objects, retrieving objects, -lastObject");
+    
+    lazy.count = 20;
+    XCTAssertEqualObjects(lazy[10], @10, @"Calling the delegate");
+    
+    [lazy enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        XCTAssertEqualObjects(obj, @(idx), @"Enumeration using block + delegate");
+    }];
+    
+    [lazy clean]; // drops all elements
 
-    NSDate *date2 = [example.dateTimeFormatterV3 dateFromString:@"2011-07-14T18:43:37"];
-    XCTAssertEqualObjects(date1, date2, @"Oops, date formatters don't seem to decode correctly");
+    id singleton = [NSMutableArray new];
+    [lazy addObject:singleton];
+    
+    __weak id weakSingleton = singleton;
+    singleton = [NSMutableDictionary new];
+    [lazy addObject:singleton];
+    
+    XCTAssertNotNil(weakSingleton, @"Held by lazy array");
+    XCTAssertTrue(lazy.count == 2, @"Cleaning and adding objects");
+    
+    [lazy cleanWeakElements]; // drop element with index 0
+    
+    XCTAssertNotNil(singleton, @"Not dropped by lazy array");
+    XCTAssertNil(weakSingleton, @"Dropped by lazy array");
+    
+    XCTAssertTrue(lazy.count == 2, @"Cleaning weak elements doesn't change count");
+    XCTAssertEqualObjects(lazy[0], @0, @"Now the delegate fills the array");
+    XCTAssertTrue(lazy[1] == singleton, @"Strongly referenced elements must not be dropped");
 }
+
+- (void)testLazyMutableMemorySemantics {
+    
+    // Insert two objects into lazy array, one held weakly, one held strongly.
+    
+    NSMutableArray * lazy = [LazyMutableArray new];
+    id singleton = [NSMutableArray new];
+    [lazy addObject:singleton];
+
+    __weak id weakSingleton = singleton;
+    singleton = [NSMutableDictionary new];
+    [lazy addObject:singleton];
+    
+    XCTAssertNotNil(weakSingleton, @"Held by lazy array");
+    XCTAssertTrue(lazy.count == 2, @"Cleaning and adding objects");
+    
+    // Needs autorelease, see my question at http://stackoverflow.com/questions/19883056/
+    @autoreleasepool {
+        XCTAssertEqual(weakSingleton, lazy[0], @"Correct element storage");
+        XCTAssertEqual(singleton, lazy[1], @"Correct element storage");
+    }
+    
+    lazy = nil;
+    
+    XCTAssertNotNil(singleton, @"Not dropped by lazy array");
+    XCTAssertNil(weakSingleton, @"Dropped by lazy array");
+    
+    //    [lazy cleanWeakElements]; // drop element with index 0
+    //    XCTAssertTrue(lazy.count == 2, @"Cleaning weak elements doesn't change count");
+    //    XCTAssertEqualObjects(lazy[0], @0, @"Now the delegate fills the array");
+    //    XCTAssertTrue(lazy[1] == singleton, @"Strongly referenced elements must not be dropped");
+    
+}
+
+- (void)array:(LazyMutableArray *)lazy missingObjectAtIndex:(NSUInteger)index {
+    lazy[index] = @(index);
+}
+
 
 @end

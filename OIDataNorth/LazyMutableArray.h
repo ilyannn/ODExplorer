@@ -22,8 +22,11 @@
 - (instancetype)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate contents:(NSArray *)array;
 
 // The standard NSArray methods.
-- (id)objectAtIndex:(NSUInteger)index;
 - (NSUInteger)count;
+
+// This method has a different memory semantics than its superclass.
+// See http://stackoverflow.com/questions/19883056/how-to-replicate-nsarray
+- (id)objectAtIndex:(NSUInteger)index __attribute__((ns_returns_autoreleased));
 
 
 // NSMutableArray methods

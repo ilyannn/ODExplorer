@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+
 #import "ODMetadataOperation.h"
 #import "NorthwindService.h"
 #import "ODTypeLibrary.h"
@@ -14,6 +15,7 @@
 #import "NSArray+Functional.h"
 #import "ODStructuredType.h"
 #import "ODPrimitiveType.h"
+#import "ODPrimitiveTypeDateTime.h"
 
 @interface TypesTests : XCTestCase
 @property ODTypeLibrary *library;
@@ -86,5 +88,16 @@
     }];
     XCTAssert(north.count, @"Didn't read entity types for some reason.");
 }
+
+- (void)testJSONDates {
+    ODPrimitiveTypeDateTime *example = [ODPrimitiveTypeDateTime new];
+    
+    NSDate *date1 = [example.dateTimeFormatterV2 dateFromString:@"/Date(1310669017000)/"];
+    XCTAssertNotNil(date1, @"Formatter didn't decode the JSON date at all");
+    
+    NSDate *date2 = [example.dateTimeFormatterV3 dateFromString:@"2011-07-14T18:43:37"];
+    XCTAssertEqualObjects(date1, date2, @"Oops, date formatters don't seem to decode correctly");
+}
+
 
 @end

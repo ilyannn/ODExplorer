@@ -67,7 +67,6 @@
 		B3900E8F18118102007BCE33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6618118102007BCE33 /* Foundation.framework */; };
 		B3900E9018118102007BCE33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3900E6A18118102007BCE33 /* UIKit.framework */; };
 		B3900E9918118102007BCE33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3900E9718118102007BCE33 /* InfoPlist.strings */; };
-		B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900E9A18118102007BCE33 /* OIDataNorthTests.m */; };
 		B3900EA918118129007BCE33 /* ODOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EA818118129007BCE33 /* ODOperation.m */; };
 		B3900EAF18119337007BCE33 /* ODQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EAE18119337007BCE33 /* ODQueryOperation.m */; };
 		B3900EB5181195A0007BCE33 /* ODCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3900EB4181195A0007BCE33 /* ODCollection.m */; };
@@ -179,7 +178,7 @@
 		B36C7D27182E96F600038420 /* ODLoadingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLoadingDataSource.m; sourceTree = "<group>"; };
 		B384FC701826E104006C06D3 /* ODMetadataOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetadataOperation.h; sourceTree = "<group>"; };
 		B384FC711826E104006C06D3 /* ODMetadataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODMetadataOperation.m; sourceTree = "<group>"; };
-		B384FC731826E323006C06D3 /* TypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypesTests.m; sourceTree = "<group>"; };
+		B384FC731826E323006C06D3 /* TypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypesTests.m; path = OIDataNorthTests/TypesTests.m; sourceTree = SOURCE_ROOT; };
 		B384FC751826F49F006C06D3 /* ODAssociationEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODAssociationEnd.h; sourceTree = "<group>"; };
 		B384FC761826F49F006C06D3 /* ODAssociationEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODAssociationEnd.m; sourceTree = "<group>"; };
 		B384FC781826F82E006C06D3 /* ODataParsingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataParsingContext.h; sourceTree = "<group>"; };
@@ -215,7 +214,6 @@
 		B3900E8D18118102007BCE33 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B3900E9618118102007BCE33 /* OIDataNorthTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OIDataNorthTests-Info.plist"; sourceTree = "<group>"; };
 		B3900E9818118102007BCE33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B3900E9A18118102007BCE33 /* OIDataNorthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OIDataNorthTests.m; sourceTree = "<group>"; };
 		B3900EA718118129007BCE33 /* ODOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODOperation.h; sourceTree = "<group>"; };
 		B3900EA818118129007BCE33 /* ODOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODOperation.m; sourceTree = "<group>"; };
 		B3900EAD18119337007BCE33 /* ODQueryOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODQueryOperation.h; sourceTree = "<group>"; };
@@ -260,7 +258,7 @@
 		B3A4C1F31822DDC900ED9376 /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
 		B3A4C1F51824F8B200ED9376 /* ODataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataModel.h; sourceTree = "<group>"; };
 		B3A4C1F61824F8B200ED9376 /* ODataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODataModel.m; sourceTree = "<group>"; };
-		B3BDF57F1825112E003CF414 /* HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpersTests.m; sourceTree = "<group>"; };
+		B3BDF57F1825112E003CF414 /* HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpersTests.m; path = OIDataNorthTests/HelpersTests.m; sourceTree = SOURCE_ROOT; };
 		B3BDF581182581CC003CF414 /* ODPrimitiveTypeDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveTypeDateTime.h; sourceTree = "<group>"; };
 		B3BDF582182581CC003CF414 /* ODPrimitiveTypeDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPrimitiveTypeDateTime.m; sourceTree = "<group>"; };
 		B3BDF5841825837C003CF414 /* ODPrimitiveTypeInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveTypeInt.h; sourceTree = "<group>"; };
@@ -429,6 +427,7 @@
 				B30EF6E41826CDB80091C378 /* Type groups */,
 				B384FC89182A43E7006C06D3 /* Collection Types */,
 				B384FC8B182A487A006C06D3 /* Nominal types  */,
+				B36C7D29182EBA3200038420 /* Tests */,
 			);
 			name = "Box \"Types\"";
 			sourceTree = "<group>";
@@ -489,6 +488,7 @@
 				B329A65A181FB5C700B2D8B9 /* JSONDateReader.m */,
 				B3900F381815BA75007BCE33 /* LazyMutableArray.h */,
 				B3900F391815BA75007BCE33 /* LazyMutableArray.m */,
+				B3BDF57F1825112E003CF414 /* HelpersTests.m */,
 			);
 			name = "Box \"Helpers\"";
 			sourceTree = "<group>";
@@ -583,6 +583,14 @@
 			name = Collection;
 			sourceTree = "<group>";
 		};
+		B36C7D29182EBA3200038420 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B384FC731826E323006C06D3 /* TypesTests.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		B384FC6F1826E0DE006C06D3 /* XML return type */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,35 +678,24 @@
 				B3900E7118118102007BCE33 /* InfoPlist.strings */,
 				B3900E7418118102007BCE33 /* main.m */,
 				B3900E7618118102007BCE33 /* OIDataNorth-Prefix.pch */,
+				B3900E9518118102007BCE33 /* Tests - supporting files */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B3900E9418118102007BCE33 /* Box "Tests" */ = {
-			isa = PBXGroup;
-			children = (
-				B384FC731826E323006C06D3 /* TypesTests.m */,
-				B3BDF57F1825112E003CF414 /* HelpersTests.m */,
-				B3900E9A18118102007BCE33 /* OIDataNorthTests.m */,
-				B3900E9518118102007BCE33 /* Supporting Files */,
-			);
-			name = "Box \"Tests\"";
-			path = OIDataNorthTests;
-			sourceTree = SOURCE_ROOT;
-		};
-		B3900E9518118102007BCE33 /* Supporting Files */ = {
+		B3900E9518118102007BCE33 /* Tests - supporting files */ = {
 			isa = PBXGroup;
 			children = (
 				B3900E9618118102007BCE33 /* OIDataNorthTests-Info.plist */,
 				B3900E9718118102007BCE33 /* InfoPlist.strings */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
+			name = "Tests - supporting files";
+			path = OIDataNorthTests;
+			sourceTree = SOURCE_ROOT;
 		};
 		B3900EB9181198AC007BCE33 /* Full OData Stack */ = {
 			isa = PBXGroup;
 			children = (
-				B3900E9418118102007BCE33 /* Box "Tests" */,
 				B3454505181C0CE20039BD67 /* Box "UI" */,
 				B32DE6BA182AF47700D208B0 /* Box "Core" */,
 				B32DE6B8182AF36A00D208B0 /* Box "Abstract" */,
@@ -1014,7 +1011,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3900E9B18118102007BCE33 /* OIDataNorthTests.m in Sources */,
 				B3BDF5801825112E003CF414 /* HelpersTests.m in Sources */,
 				B384FC741826E323006C06D3 /* TypesTests.m in Sources */,
 			);

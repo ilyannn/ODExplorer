@@ -6,7 +6,7 @@
 #import "LazyMutableArray.h"
 
 @implementation LazyMutableArray {
-    NSPointerArray *_objects; // Created lazily, only on -setCount:
+    NSPointerArray *_objects; // Created lazily, only on -setCount:, insert/add object.
 }
 
 - (id)init {
@@ -30,6 +30,12 @@
     return self;
 }
 
+- (void)createObjects {
+    if (!_objects) {
+        _objects = [NSPointerArray strongObjectsPointerArray];
+    }
+}
+
 - (void)clean {
     _objects = nil;
 }
@@ -40,22 +46,28 @@
 
 -(void)setCount:(NSUInteger)count {
     @synchronized(self) {
-        if (!_objects && !!count) _objects = [NSPointerArray strongObjectsPointerArray];
+        if (!!count) [self createObjects];
         _objects.count = count;
     }
 }
 
 - (id)objectAtIndex:(NSUInteger)index {
     @synchronized(self) {
-        if (index >= self.count) return nil;
-        id object = [_objects pointerAtIndex:index];
-        if (object) return object;
+        if (index >= self.count) {
+            return nil;
+        }
+        __weak id object = [_objects pointerAtIndex:index];
+        if (object) {
+            return object;
+        }
     }
     
     [self.delegate array:self missingObjectAtIndex:index];
 
     @synchronized(self) {
-        if (index >= self.count) return nil;
+        if (index >= self.count) {
+            return nil;
+        }
         return [_objects pointerAtIndex:index];
     }
 }
@@ -73,10 +85,12 @@
 }
 
 - (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
+    [self createObjects];
     [_objects insertPointer:(__bridge void*)anObject atIndex:index];
 }
 
 - (void)addObject:(id)anObject {
+    [self createObjects];
     [_objects addPointer:(__bridge void*)anObject];
 }
 
@@ -93,7 +107,7 @@
 - (void)cleanWeakElements {
     for (NSUInteger index = 0; index < _objects.count; index ++) {
         __weak id pointer = [_objects pointerAtIndex:index];
-        if (pointer) [_objects removePointerAtIndex:index];
+        if (pointer) [_objects replacePointerAtIndex:index withPointer:nil];
         if (pointer) [_objects replacePointerAtIndex:index withPointer:(__bridge void*)pointer];
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface ODAssociationEnd : NSObject
 + (id)keyForAssociation:(NSString *)associationName role:(NSString *)roleName;
