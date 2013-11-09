@@ -7,7 +7,7 @@
 //
 
 #import "ODMetadataOperation.h"
-#import "ODMetadataModel.h"
+#import "ODataModel.h"
 #import "ODTypeLibrary.h"
 
 NSString *const ODMetadataRequestString  = @"$metadata";
@@ -19,7 +19,7 @@ NSString *const ODMetadataRequestString  = @"$metadata";
 }
 
 - (NSError *)processResponse {
-    ODMetadataModel *model = [ODMetadataModel new];
+    ODataModel *model = [ODataModel new];
     [model updateWithData:self.response.data];
     _responseModel = model;
     return nil;

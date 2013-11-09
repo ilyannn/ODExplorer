@@ -13,5 +13,4 @@
 
 /// A class that works essentially as a hint to compiler.
 @interface ODEntity : ODResource <ODEntity>
-+ (ODCustomEntityType *)customEntityType;
 @end

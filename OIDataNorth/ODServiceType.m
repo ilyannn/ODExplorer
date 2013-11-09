@@ -10,7 +10,7 @@
 
 @implementation ODServiceType
 
-- (instancetype)initWithModel:(ODMetadataModel *)model {
+- (instancetype)initWithModel:(ODataModel *)model {
     if (self = [super initWithElementType:nil]) {
         _model = model;
     }

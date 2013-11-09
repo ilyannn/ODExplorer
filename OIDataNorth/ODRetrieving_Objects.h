@@ -9,7 +9,7 @@
 #import "ODManaging.h"
 #import "ODRetrieving_Protocol.h"
 
-@class ODMetadataModel;
+@class ODataModel;
 
 /// Base class to retrieve information about a resource within a context.
 /// It is kind of abstract. Since the URL is nil and can't be changed, the only
@@ -80,6 +80,6 @@
 @end
 
 @interface ODRouteMetadata : ODRetrieveBase
-@property ODMetadataModel *metadataModel;
+@property ODataModel *metadataModel;
 @end
 

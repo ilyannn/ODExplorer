@@ -7,19 +7,21 @@
 //
 
 #import "ODStructuredType.h"
-#import "ODEntity.h"
-#import "ODCollection.h"
+#import "ODStructuredType_Mutable.h"
+#import "ODMutableStructuredType.h"
 
 @implementation ODStructuredType {
+    BOOL _mutable;
+    NSDictionary *_properties;
+    NSArray *_keyProperties;
     NSString *_name;
 }
 
-- (id)initWithName:(NSString *)name
-{
+- (instancetype)initWithName:(NSString *)name properties:(NSDictionary *)properties keys:(NSArray *)keys {
     if (self = [super init]) {
-        _name = name;
-        _properties = [NSMutableDictionary new];
-        _keyProperties = [NSMutableArray new];
+        _name = [name copy];
+        _properties = [properties copy];
+        _keyProperties = [keys copy];
     }
     return self;
 }
@@ -40,34 +42,51 @@
     return _name;
 }
 
-- (ODEntity *)entityWithInfo:(id)info {
-    ODEntity * entity = [NSClassFromString(self.entityClassName) resourceWithInfo:info];
-    entity.type = self;
-    return entity;
+- (instancetype)initMutableWithName:(NSString *)name {
+    if (self = [super init]) {
+        _mutable = YES;
+        _name = name;
+        _properties = [NSMutableDictionary new];
+        _keyProperties = [NSMutableArray new];
+    }
+    return self;
 }
 
-- (NSString *)entityClassName {
-    return @"ODEntity";
+- (ODStructuredType *)copyWithZone:(NSZone *)zone {
+    return [[ODStructuredType alloc] initWithName:self.name properties:self.properties keys:self.keyProperties];
 }
 
-- (NSString *)collectionClassName {
-    return @"ODCollection";
+- (ODMutableStructuredType *)mutableCopyWithZone:(NSZone *)zone {
+    ODMutableStructuredType *copy = [[ODMutableStructuredType alloc] initWithName:self.name];
+    [copy.properties addEntriesFromDictionary:self.properties];
+    [copy.keyProperties addObjectsFromArray:self.keyProperties];
+    return copy;
 }
 
-- (ODEntity *)deserializeEntityFrom:(NSDictionary *)entityDict
-                           withInfo:(id<ODRetrieving>)info {
-    ODEntity *entity = [self entityWithInfo:info];
-    entity.type = self;
-    return [entity parseFromJSONDictionary:entityDict] ? nil : entity;
+- (void)setMutable:(BOOL)mutable {
+    if (mutable != _mutable) {
+        if (_mutable) {
+            // Cannot be made mutable from immutable. 
+//            _properties = [_properties mutableCopy];
+//            _keyProperties = [_keyProperties mutableCopy];
+        } else {
+            _mutable = mutable;
+            _properties = [_properties copy];
+            _keyProperties = [_keyProperties copy];
+        }
+    }
 }
 
-- (ODCollection *)deserializeCollectionFromArray:(NSArray *)collectionArray
-                                        withInfo:(id<ODRetrieving>)info {
-    ODCollection *collection = [ODCollection resourceWithInfo:info];
-    collection.type = self;
-//    return [collection parseFromJSONArray:collectionArray] ? nil : collection;
-    return nil;
+- (void)addKeyPropertiesObject:(NSString *)object {
+    if (self.mutable) {
+        [(NSMutableArray *)_keyProperties addObject:object];
+    }
 }
 
+- (void)setPropertiesObject:(ODType *)object withKey:(NSString *)key {
+    if (self.mutable) {
+        [(NSMutableDictionary *)_properties setObject:object forKey:key];
+    }
+}
 
 @end

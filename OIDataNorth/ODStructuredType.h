@@ -8,21 +8,19 @@
 
 #import "ODNominalType.h"
 
-@class ODEntity;
+@class ODMutableStructuredType;
 
-@interface ODStructuredType : ODNominalType
+@interface ODStructuredType : ODNominalType <NSCopying, NSMutableCopying>
 
-- (id)initWithName:(NSString *)name;
-
-@property (readonly) NSString *entityClassName;
-@property (readonly) NSString *collectionClassName;
-
-- (ODEntity *)entityWithInfo:(id)info;
+- (instancetype)initWithName:(NSString *)name properties:(NSDictionary *)properties keys:(NSArray *)keys;
 
 /// This attribute holds types.
-@property (readonly) NSMutableDictionary *properties;
+@property (readonly) NSDictionary *properties;
 
 /// This attribute holds names of key properties.
-@property (readonly) NSMutableArray *keyProperties;
+@property (readonly) NSArray *keyProperties;
 
+
+// - (ODStructuredType *)copy;
+// - (ODMutableStructuredType *)mutableCopy;
 @end

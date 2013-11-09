@@ -6,20 +6,22 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODMetadataModel.h"
+#import "ODataModel.h"
 #import "ODTypeLibrary.h"
 #import "ODStructuredType.h"
 
 #import "ODAssociationEnd.h"
-#import "ODMetadataParsingContext.h"
+#import "ODataParsingContext.h"
 
 #import "NSArray+Functional.h"
 
-@interface ODMetadataModel ()
+#import "ODStructuredType_Mutable.h"
+
+@interface ODataModel ()
 
 @end
 
-@implementation ODMetadataModel 
+@implementation ODataModel 
 
 - (instancetype)initWithData:(NSData *)contents typeLibrary:(ODTypeLibrary *)library {
     if (self = [super init]) {
@@ -35,18 +37,20 @@
 }
 
 - (void)updateWithData:(NSData *)contents {
-    ODMetadataParsingContext *context = [ODMetadataParsingContext new];
+    ODataParsingContext *context = [ODataParsingContext new];
     context.delegate = self;
 
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:contents];
     parser.delegate = context;
     [parser parse];
     
+    for (ODStructuredType *entityType in context.parsedEntityTypes) {
+        [self.typeLibrary addTypesByNameObject:entityType];
+    }
+    
     // Fill in types for navigation attributes.
     for (ODStructuredType *entityType in context.parsedEntityTypes) {
-        
-        [self.typeLibrary addTypesByNameObject:entityType];
-
+    
         NSArray *navigationProperties = [[[entityType properties] allKeys] arrayByFiltering:^BOOL(NSString *key) {
             return ![entityType.properties[key] isKindOfClass:[ODType class]];
         }];
@@ -57,6 +61,8 @@
             [entityType.properties setValue:type forKey:key];
         }];
         
+        // Finalize it.
+        entityType.mutable = NO;
     }
 
     [[self.entitySets allKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
@@ -68,11 +74,11 @@
 
 #pragma mark - Parsing
 
-- (void)startParsingSchema:(ODMetadataParsingContext *)context {
+- (void)startParsingSchema:(ODataParsingContext *)context {
     context.schemaNamespace = context.attributes[@"Namespace"];
 }
 
-- (void)startParsingEntitySet:(ODMetadataParsingContext *)context {
+- (void)startParsingEntitySet:(ODataParsingContext *)context {
     NSString *name = context.attributes[@"Name"];
     NSString *type = context.attributes[@"EntityType"];
     if (name && type) {
@@ -83,54 +89,54 @@
 
 #pragma mark Entities
 
-- (void)startParsingEntityType:(ODMetadataParsingContext *)context {
-    context.entityType = [[ODStructuredType alloc] initWithName:context.qualifiedName];
+- (void)startParsingEntityType:(ODataParsingContext *)context {
+    context.entityType = [[ODStructuredType alloc] initMutableWithName:context.qualifiedName];
 }
 
-- (void)startParsingKey:(ODMetadataParsingContext *)context {
+- (void)startParsingKey:(ODataParsingContext *)context {
     context.currentlyKeys = YES;
 }
 
-- (void)startParsingPropertyRef:(ODMetadataParsingContext *)context {
+- (void)startParsingPropertyRef:(ODataParsingContext *)context {
     if (context.currentlyKeys && context.qualifiedName) {
-        [context.entityType.keyProperties addObject:context.qualifiedName];
+        [context.entityType addKeyPropertiesObject:context.qualifiedName];
     }
 }
 
-- (void)finishParsingKey:(ODMetadataParsingContext *)context {
+- (void)finishParsingKey:(ODataParsingContext *)context {
     context.currentlyKeys = NO;
 }
 
-- (void)startParsingProperty:(ODMetadataParsingContext *)context {
+- (void)startParsingProperty:(ODataParsingContext *)context {
     ODType *type = [self.typeLibrary uniqueTypeFor:context.attributes[@"Type"]];
     if (context.qualifiedName && type && context.entityType) {
-        context.entityType.properties[context.qualifiedName] = type;
+        [context.entityType setPropertiesObject:type withKey: context.qualifiedName];
     }
 }
 
-- (void)finishParsingEntityType:(ODMetadataParsingContext *)context {
+- (void)finishParsingEntityType:(ODataParsingContext *)context {
     if (context.entityType) {
         [context.parsedEntityTypes addObject:context.entityType];
     }
     context.entityType = nil;
 }
 
-- (void)startParsingNavigationProperty:(ODMetadataParsingContext *)context {
-    NSArray *key = [ODAssociationEnd keyForAssociation:context.attributes[@"Relationship"]
+- (void)startParsingNavigationProperty:(ODataParsingContext *)context {
+    NSArray *propertyKey = [ODAssociationEnd keyForAssociation:context.attributes[@"Relationship"]
                                                   role:context.attributes[@"ToRole"]];
     NSString *name = context.attributes[@"Name"];
-    if (name && key) {
-        context.entityType.properties[name] = key;
+    if (name && propertyKey) {
+        [context.entityType setPropertiesObject:propertyKey withKey:name];
     }
 }
 
 #pragma mark Associations
 
-- (void)startParsingAssociation:(ODMetadataParsingContext *)context  {
+- (void)startParsingAssociation:(ODataParsingContext *)context  {
     context.associationName = context.qualifiedName;
 }
 
-- (void)startParsingEnd:(ODMetadataParsingContext *)context  {
+- (void)startParsingEnd:(ODataParsingContext *)context  {
     if (context.associationName) {
         ODAssociationEnd *end = [ODAssociationEnd new];
         end.associationName = context.associationName;
@@ -141,7 +147,7 @@
     }
 }
 
-- (void)finishParsingAssociation:(ODMetadataParsingContext *)context  {
+- (void)finishParsingAssociation:(ODataParsingContext *)context  {
     context.associationName = nil;
 }
 

@@ -9,7 +9,6 @@
 #import "Supplier.h"
 #import "ODCollection.h"
 #import "Product.h"
-#import "ODCustomEntityType.h"
 
 NSString *kSupplier_Products = @"Products";
 
@@ -21,7 +20,7 @@ NSString *kSupplier_Products = @"Products";
 
 - (ODCollection *)Products {
     if (!_Products) {
-        _Products = [self navigationCollection:kSupplier_Products entityType:[Product customEntityType]];
+//        _Products = [self navigationCollection:kSupplier_Products entityType:[Product customEntityType]];
     }
     return _Products;
 }

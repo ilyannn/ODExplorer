@@ -8,7 +8,7 @@
 
 #import "ODStructuredType.h"
 
-@interface ODMetadataParsingContext : NSObject <NSXMLParserDelegate>
+@interface ODataParsingContext : NSObject <NSXMLParserDelegate>
 
 @property     (weak) id delegate;
 

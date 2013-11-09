@@ -8,7 +8,7 @@
 
 @class ODTypeLibrary;
 
-@interface ODMetadataModel : NSObject
+@interface ODataModel : NSObject
 
 @property (readonly) ODTypeLibrary *typeLibrary;
 

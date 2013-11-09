@@ -7,10 +7,12 @@
 //
 
 
-#import "ODMetadataParsingContext.h"
+#import "ODataParsingContext.h"
+#import "ODStructuredType_Mutable.h"
+
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
-@implementation ODMetadataParsingContext
+@implementation ODataParsingContext
 
 - (id)init
 {

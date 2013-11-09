@@ -115,7 +115,7 @@ static ODRetrieveBase *_sharedRootInfo;
     if (![type respondsToSelector:@selector(model)]) {
         return nil;
     }
-    ODMetadataModel *model = [type performSelector:@selector(model)];
+    ODataModel *model = [type performSelector:@selector(model)];
     return model.entitySets[self.entitySetPath];
 }
 

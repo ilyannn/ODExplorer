@@ -15,8 +15,6 @@
 #import "ODRetrieveOperation.h"
 #import "ODActionOperation.h"
 
-#import "ODCustomEntityType.h"
-
 @implementation ODEntity
 
 // This is a designated initializer.
@@ -31,12 +29,6 @@
 - (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id <ODRetrieving> )parentInfo {
     ODRetrieveBase *info;
     return [self initWithRetrievalInfo:info];
-}
-
-+ (ODCustomEntityType *)customEntityType {
-    ODCustomEntityType *entityType = [ODCustomEntityType new];
-    entityType.entityClassName = NSStringFromClass(self);
-    return entityType;
 }
 
 - (id)valueForKey:(NSString *)key {

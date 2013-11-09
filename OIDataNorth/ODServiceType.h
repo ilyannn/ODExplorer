@@ -7,9 +7,9 @@
 //
 
 #import "ODCollectionType.h"
-#import "ODMetadataModel.h"
+#import "ODataModel.h"
 
 @interface ODServiceType : ODCollectionType
-- (instancetype)initWithModel:(ODMetadataModel *)model;
-@property (readonly) ODMetadataModel *model;
+- (instancetype)initWithModel:(ODataModel *)model;
+@property (readonly) ODataModel *model;
 @end

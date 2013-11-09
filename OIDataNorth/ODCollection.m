@@ -44,7 +44,7 @@
     return self;
 }
 
-- (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
+/*- (ODEntity *)objectAtIndexedSubscript:(NSUInteger)index {
     ODRetrievalByIndex *retrieval = [ODRetrievalByIndex new];
     retrieval.parent = self.retrievalInfo;
     retrieval.index = index;
@@ -53,6 +53,7 @@
         return [(ODStructuredType *)self.type entityWithInfo:retrieval];
     return nil;
 }
+*/
 
 - (void)retrieveCount { 
     ODCountOperation *operation = [ODCountOperation operationWithResource: self];
