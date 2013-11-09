@@ -214,6 +214,20 @@
     return operation;
 }
 
+- (void)dropChildrenRecursively:(BOOL)recursively {
+    switch (self.kind) {
+            
+        case ODResourceKindEntity:
+            [self dropEntityChildrenRecursively:recursively];
+            break;
+        
+        case ODResourceKindCollection:
+            [self dropElementsOfCollectionRecursively:recursively];
+            break;
+        
+        default:;
+    }
+}
 
 @end
 

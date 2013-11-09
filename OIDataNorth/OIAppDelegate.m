@@ -12,7 +12,7 @@
 #import "ODFavorites.h"
 
 @implementation OIAppDelegate {
-    __weak ODExplorerViewController *fav;
+    ODExplorerViewController *fav;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -57,6 +57,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Saves changes in the application's managed object context before the application terminates.
+    fav = nil;
 }
 
 #pragma mark - Application's Documents directory

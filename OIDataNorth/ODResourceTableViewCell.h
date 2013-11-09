@@ -10,6 +10,7 @@
 
 @class ODResource;
 
+/// These are view objects in MVC framework. 
 @interface ODResourceTableViewCell : UITableViewCell
 @property (nonatomic) ODResource *resource;
 - (UITableViewCellStyle)cellStyle;

@@ -89,6 +89,7 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 /// This erases known data, but keeps type information.
 - (void)clean; // forget, clean, drop, unretrieve, nullify, break, free, unload?
+- (void)dropChildrenRecursively:(BOOL)recursively;
 
 /// Short description incldes only human-readable name, ideally 10-30 characters in length.
 - (NSString *)shortDescription;

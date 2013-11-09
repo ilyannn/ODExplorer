@@ -15,5 +15,5 @@
 - (LazyMutableArray *)childrenArrayForCollection;
 - (NSError *)parseFromJSONArray:(NSArray *)array;
 - (NSError *)parseServiceDocumentFromArray:(NSArray *)array;
-
+- (void)dropElementsOfCollectionRecursively:(BOOL)recursively;
 @end

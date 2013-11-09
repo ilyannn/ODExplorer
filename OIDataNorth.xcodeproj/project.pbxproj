@@ -38,10 +38,12 @@
 		B345450D181D500E0039BD67 /* ODOperationError.strings in Resources */ = {isa = PBXBuildFile; fileRef = B345450C181D500E0039BD67 /* ODOperationError.strings */; };
 		B3454510181D581E0039BD67 /* ODNotifyingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B345450F181D581E0039BD67 /* ODNotifyingManager.m */; };
 		B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */; };
-		B35A642B182A9D8A002CF425 /* ODResourceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A642A182A9D8A002CF425 /* ODResourceDataSource.m */; };
+		B35A642B182A9D8A002CF425 /* ODBaseResourceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A642A182A9D8A002CF425 /* ODBaseResourceDataSource.m */; };
 		B35A6430182AB21C002CF425 /* ODExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A642E182AA7F7002CF425 /* ODExplorerViewController.m */; };
 		B35A6436182AC838002CF425 /* ODFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A6435182AC838002CF425 /* ODFavorites.m */; };
 		B36C7D20182E392C00038420 /* ODMutableStructuredType.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7D1F182E392C00038420 /* ODMutableStructuredType.m */; };
+		B36C7D25182E7E1000038420 /* ODExplorerViewController+Notify.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7D24182E7E1000038420 /* ODExplorerViewController+Notify.m */; };
+		B36C7D28182E96F600038420 /* ODLoadingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7D27182E96F600038420 /* ODLoadingDataSource.m */; };
 		B384FC721826E104006C06D3 /* ODMetadataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC711826E104006C06D3 /* ODMetadataOperation.m */; };
 		B384FC741826E323006C06D3 /* TypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC731826E323006C06D3 /* TypesTests.m */; };
 		B384FC771826F49F006C06D3 /* ODAssociationEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC761826F49F006C06D3 /* ODAssociationEnd.m */; };
@@ -159,8 +161,8 @@
 		B345450F181D581E0039BD67 /* ODNotifyingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODNotifyingManager.m; sourceTree = "<group>"; };
 		B3454511181D61770039BD67 /* ODLoadingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODLoadingTableViewCell.h; sourceTree = "<group>"; };
 		B3454512181D61770039BD67 /* ODLoadingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLoadingTableViewCell.m; sourceTree = "<group>"; };
-		B35A6429182A9D8A002CF425 /* ODResourceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODResourceDataSource.h; sourceTree = "<group>"; };
-		B35A642A182A9D8A002CF425 /* ODResourceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODResourceDataSource.m; sourceTree = "<group>"; };
+		B35A6429182A9D8A002CF425 /* ODBaseResourceDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODBaseResourceDataSource.h; sourceTree = "<group>"; };
+		B35A642A182A9D8A002CF425 /* ODBaseResourceDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODBaseResourceDataSource.m; sourceTree = "<group>"; };
 		B35A642D182AA7F7002CF425 /* ODExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODExplorerViewController.h; sourceTree = "<group>"; };
 		B35A642E182AA7F7002CF425 /* ODExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODExplorerViewController.m; sourceTree = "<group>"; };
 		B35A6434182AC838002CF425 /* ODFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFavorites.h; sourceTree = "<group>"; };
@@ -170,6 +172,11 @@
 		B36C7D1E182E392C00038420 /* ODMutableStructuredType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMutableStructuredType.h; sourceTree = "<group>"; };
 		B36C7D1F182E392C00038420 /* ODMutableStructuredType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODMutableStructuredType.m; sourceTree = "<group>"; };
 		B36C7D21182E419F00038420 /* ODStructuredType_Mutable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODStructuredType_Mutable.h; sourceTree = "<group>"; };
+		B36C7D22182E7C7000038420 /* ODResourceDataSource_IDs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODResourceDataSource_IDs.h; sourceTree = "<group>"; };
+		B36C7D23182E7E1000038420 /* ODExplorerViewController+Notify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ODExplorerViewController+Notify.h"; sourceTree = "<group>"; };
+		B36C7D24182E7E1000038420 /* ODExplorerViewController+Notify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ODExplorerViewController+Notify.m"; sourceTree = "<group>"; };
+		B36C7D26182E96F600038420 /* ODLoadingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODLoadingDataSource.h; sourceTree = "<group>"; };
+		B36C7D27182E96F600038420 /* ODLoadingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLoadingDataSource.m; sourceTree = "<group>"; };
 		B384FC701826E104006C06D3 /* ODMetadataOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetadataOperation.h; sourceTree = "<group>"; };
 		B384FC711826E104006C06D3 /* ODMetadataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODMetadataOperation.m; sourceTree = "<group>"; };
 		B384FC731826E323006C06D3 /* TypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypesTests.m; sourceTree = "<group>"; };
@@ -370,7 +377,6 @@
 			isa = PBXGroup;
 			children = (
 				B32DE6B9182AF3BA00D208B0 /* ODResource_Protocol.h */,
-				B329A663181FF08400B2D8B9 /* ODRetrieving_Protocol.h */,
 				B36C7D18182D608E00038420 /* ODEntity_Protocol.h */,
 				B36C7D19182D612200038420 /* ODCollection_Protocol.h */,
 			);
@@ -407,6 +413,7 @@
 		B34544F1181B27DF0039BD67 /* Box "Retrieval" */ = {
 			isa = PBXGroup;
 			children = (
+				B329A663181FF08400B2D8B9 /* ODRetrieving_Protocol.h */,
 				B3900F491816765B007BCE33 /* ODManaging.h */,
 				B34544EE181B278D0039BD67 /* ODRetrieving_Objects.h */,
 				B34544EF181B278D0039BD67 /* ODRetrieving_Objects.m */,
@@ -462,7 +469,7 @@
 				B329A658181F991F00B2D8B9 /* Actions */,
 				B35A6431182AB5E5002CF425 /* Base */,
 				B34544D518195F990039BD67 /* Cells */,
-				B35A642C182A9D8E002CF425 /* Datasource */,
+				B35A642C182A9D8E002CF425 /* Datasources */,
 				B35A6432182AB702002CF425 /* Explorer */,
 				B35A6433182AB721002CF425 /* Favorites */,
 			);
@@ -501,13 +508,16 @@
 			name = Auxiliary;
 			sourceTree = "<group>";
 		};
-		B35A642C182A9D8E002CF425 /* Datasource */ = {
+		B35A642C182A9D8E002CF425 /* Datasources */ = {
 			isa = PBXGroup;
 			children = (
-				B35A6429182A9D8A002CF425 /* ODResourceDataSource.h */,
-				B35A642A182A9D8A002CF425 /* ODResourceDataSource.m */,
+				B36C7D22182E7C7000038420 /* ODResourceDataSource_IDs.h */,
+				B35A6429182A9D8A002CF425 /* ODBaseResourceDataSource.h */,
+				B35A642A182A9D8A002CF425 /* ODBaseResourceDataSource.m */,
+				B36C7D26182E96F600038420 /* ODLoadingDataSource.h */,
+				B36C7D27182E96F600038420 /* ODLoadingDataSource.m */,
 			);
-			name = Datasource;
+			name = Datasources;
 			sourceTree = "<group>";
 		};
 		B35A6431182AB5E5002CF425 /* Base */ = {
@@ -524,6 +534,8 @@
 			children = (
 				B35A642D182AA7F7002CF425 /* ODExplorerViewController.h */,
 				B35A642E182AA7F7002CF425 /* ODExplorerViewController.m */,
+				B36C7D23182E7E1000038420 /* ODExplorerViewController+Notify.h */,
+				B36C7D24182E7E1000038420 /* ODExplorerViewController+Notify.m */,
 			);
 			name = Explorer;
 			sourceTree = "<group>";
@@ -951,6 +963,7 @@
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B35A6430182AB21C002CF425 /* ODExplorerViewController.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
+				B36C7D28182E96F600038420 /* ODLoadingDataSource.m in Sources */,
 				B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */,
 				B34544C1181846340039BD67 /* ODActionOperation.m in Sources */,
 				B3454513181D61770039BD67 /* ODLoadingTableViewCell.m in Sources */,
@@ -959,6 +972,7 @@
 				B35A6436182AC838002CF425 /* ODFavorites.m in Sources */,
 				B3900F3A1815BA75007BCE33 /* LazyMutableArray.m in Sources */,
 				B3BDF59318258A32003CF414 /* ODPrimitiveTypeBinary.m in Sources */,
+				B36C7D25182E7E1000038420 /* ODExplorerViewController+Notify.m in Sources */,
 				B3BDF583182581CC003CF414 /* ODPrimitiveTypeDateTime.m in Sources */,
 				B3900EA918118129007BCE33 /* ODOperation.m in Sources */,
 				B3454509181C7CEA0039BD67 /* OperationWithSteps.m in Sources */,
@@ -971,7 +985,7 @@
 				B34544FD181BEA270039BD67 /* ODPlainOperation.m in Sources */,
 				B34544D418195E6B0039BD67 /* ODEntityTableViewCell.m in Sources */,
 				B3900E7518118102007BCE33 /* main.m in Sources */,
-				B35A642B182A9D8A002CF425 /* ODResourceDataSource.m in Sources */,
+				B35A642B182A9D8A002CF425 /* ODBaseResourceDataSource.m in Sources */,
 				B3900F3D1815C0AC007BCE33 /* ODCountOperation.m in Sources */,
 				B384FC771826F49F006C06D3 /* ODAssociationEnd.m in Sources */,
 				B34544D118195DFB0039BD67 /* ODResourceTableViewCell.m in Sources */,

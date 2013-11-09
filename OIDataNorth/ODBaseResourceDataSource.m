@@ -6,21 +6,23 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODResourceDataSource.h"
+#import "ODBaseResourceDataSource.h"
 
 #import "ODRetrieving_Objects.h"
+#import "ODResource+CollectionFields.h"
 
-#import "ODLoadingTableViewCell.h"
 #import "ODPropertyTableViewCell.h"
 #import "ODGenericTableViewCell.h"
 #import "ODEntityTableViewCell.h"
 
 NSString *const ODGenericCellReuseID = @"GenericCell";
-NSString *const ODLoadingCellReuseID = @"LoadingCell";
 NSString *const ODPrimitiveCellReuseID = @"PropertyCell";
 NSString *const ODBracketedCellReuseID = @"BracketedCell";
 
-@implementation ODResourceDataSource
+
+@implementation ODBaseResourceDataSource {
+    NSMutableArray *headlineProperties;
+}
 
 - (instancetype)initWithResource:(id<ODResource>)resource {
     if (self = [self init]) {
@@ -30,14 +32,10 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
 }
 
 - (NSDictionary *)cellClasses {
-    static NSDictionary *classes;
-    if (!classes) {
-        classes = @{ ODGenericCellReuseID : [ODGenericTableViewCell class],
-                     ODLoadingCellReuseID : [ODLoadingTableViewCell class],
+    return @{          ODGenericCellReuseID : [ODGenericTableViewCell class],
                      ODPrimitiveCellReuseID : [ODPropertyTableViewCell class],
-                     ODBracketedCellReuseID : [ODEntityTableViewCell class] };
-    }
-    return classes;
+                     ODBracketedCellReuseID : [ODEntityTableViewCell class]
+    };
 }
 
 - (NSString *)cellIDForResource:(ODResource *)child {
@@ -62,9 +60,22 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
     ODResourceTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[self cellIDForResource:resourceID]
                                                                     forIndexPath:indexPath];
     cell.resource = resourceID;
+    [self configureCell:cell];
     return cell;
 }
 
+- (void)configureCell:(id)cell {
+    if (self.resource.kind == ODResourceKindCollection
+        && [cell respondsToSelector:@selector(setHeadlineProperties:)]) {
+        
+        if (!headlineProperties) {
+            NSString *guess = [self.resource performSelector:@selector(guessMediumDescriptionProperty)];
+            headlineProperties = [@[guess] mutableCopy];
+        }
+        
+        [cell performSelector:@selector(setHeadlineProperties:) withObject:headlineProperties];
+    }
+}
 
 
 @end

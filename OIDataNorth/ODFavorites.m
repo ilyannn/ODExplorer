@@ -68,7 +68,7 @@
 }
 
 - (NSString *)shortDescription {
-    return @"Favorites";
+    return NSLocalizedString(@"Favorites", @"Description of favorites list");
 }
 
 

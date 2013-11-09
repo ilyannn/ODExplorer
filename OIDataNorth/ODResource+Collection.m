@@ -156,5 +156,19 @@
     return operation;
 }
 
+- (void)dropElementsOfCollectionRecursively:(BOOL)recursively { ODCollectionAssert
+    id object = self.childrenArray;
+    
+    if (![object respondsToSelector:@selector(cleanWeakElements)]) {
+        self.childrenArray = [LazyMutableArray arrayWithArray:object];
+    }
+    [object cleanWeakElements];
+
+    if (recursively) {
+        [object enumerateObjectsUsingBlock:^(id<ODResource> obj, NSUInteger idx, BOOL *stop) {
+            [obj dropChildrenRecursively:YES];
+        }];
+    }
+}
 
 @end

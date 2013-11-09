@@ -9,20 +9,15 @@
 #import "ODBaseResourceViewController.h"
 
 #import "ODResourceTableViewCell.h"
-#import "ODResourceDataSource.h"
+#import "ODBaseResourceDataSource.h"
 #import "ODResource+CollectionFields.h"
+#import "ODRetrieving_Protocol.h"
 
-@interface ODBaseResourceViewController ()
-@property ODResourceDataSource *resourceDataSource;
-@end
-
-@implementation ODBaseResourceViewController {
-    NSMutableArray *headlineProperties;
-}
+@implementation ODBaseResourceViewController
 
 #pragma mark - View Construction
 
-+ (instancetype)controllerForResource:(id <ODResource> )resource {
++ (instancetype)controllerForResource:(id <ODResource>)resource {
     return !resource ? nil : [[self alloc] initWithResource:resource];
 }
 
@@ -32,16 +27,6 @@
         [self configure];
     }
     return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [[self.resourceDataSource cellClasses] enumerateKeysAndObjectsUsingBlock:
-     ^(NSString *key, Class obj, BOOL *stop) {
-         [self.tableView registerClass:obj forCellReuseIdentifier:key];
-     }
-     ];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,16 +43,9 @@
     }
 }
 
-#pragma mark - Data Source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.resourceDataSource tableView:tableView numberOfRowsInSection:section];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell = [self.resourceDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
-    [self configureCell:cell];
-    return cell;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    [self.resource dropChildrenRecursively:YES];
 }
 
 #pragma mark - Updating data
@@ -85,7 +63,19 @@
 // If you redefine -configure to instantiate controller with different classes AND
 // call -setResource, then you should manually register those classes with tableView.
 - (void)configure {
-    self.resourceDataSource = [[ODResourceDataSource alloc] initWithResource:self.resource];
+    _resourceDataSource = [self resourceDataSourceFactory];
+    
+    [[self.resourceDataSource cellClasses] enumerateKeysAndObjectsUsingBlock:
+     ^(NSString *key, Class obj, BOOL *stop) {
+         [self.tableView registerClass:obj forCellReuseIdentifier:key];
+     }
+     ];
+
+    self.tableView.dataSource = self.resourceDataSource;
+}
+
+- (ODBaseResourceDataSource *)resourceDataSourceFactory {
+    return [[ODBaseResourceDataSource alloc] initWithResource:self.resource];
 }
 
 - (void)update {
@@ -100,22 +90,5 @@
     }
 }
 
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
-- (void)configureCell:(id)cell {
-    if (self.resource.kind == ODResourceKindCollection) {
-        SEL sel = @selector(setHeadlineProperties:);
-        SEL seld = @selector(guessMediumDescriptionProperty);
-        
-        if ([cell respondsToSelector:sel] && [self.resource respondsToSelector:seld]) {
-            if (!headlineProperties) {
-                headlineProperties = [[NSMutableArray alloc] initWithObjects:[self.resource performSelector:seld], nil];
-            }
-            
-            [cell performSelector:sel withObject:headlineProperties];
-        }
-    }
-}
 
 @end

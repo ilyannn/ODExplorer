@@ -129,4 +129,13 @@
     self.resourceValue = localProperties;
 }
 
+- (void)dropEntityChildrenRecursively:(BOOL)recursively {
+    self.childrenArray = nil;
+    if (recursively) {
+        [self.navigationProperties enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<ODResource> obj, BOOL *stop) {
+            [obj dropChildrenRecursively:YES];
+        }];
+    }
+}
+
 @end

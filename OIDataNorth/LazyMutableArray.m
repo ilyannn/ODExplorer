@@ -40,7 +40,7 @@
 
 -(void)setCount:(NSUInteger)count {
     @synchronized(self) {
-        if (!_objects && !!count) _objects = [NSPointerArray strongObjectsPointerArray];;
+        if (!_objects && !!count) _objects = [NSPointerArray strongObjectsPointerArray];
         _objects.count = count;
     }
 }
@@ -88,6 +88,14 @@
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
     [_objects removePointerAtIndex:index];
+}
+
+- (void)cleanWeakElements {
+    for (NSUInteger index = 0; index < _objects.count; index ++) {
+        __weak id pointer = [_objects pointerAtIndex:index];
+        if (pointer) [_objects removePointerAtIndex:index];
+        if (pointer) [_objects replacePointerAtIndex:index withPointer:(__bridge void*)pointer];
+    }
 }
 
 @end

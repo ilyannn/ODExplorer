@@ -17,7 +17,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.textLabel.text = @"loading...";
+        self.textLabel.text = NSLocalizedString(@"loading...", @"Loading row in the explorer table");
         
         self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         self.accessoryView = self.activityIndicator;

@@ -13,6 +13,7 @@
 /// Internal information about properties and methods of ODResource availible only for entities.
 @interface ODResource (Entity) <ODEntity>
 - (NSArray *)childrenArrayForEntity;
+- (void)dropEntityChildrenRecursively:(BOOL)recursively;
 @property (nonatomic) NSMutableDictionary *localProperties;
 
 @end

@@ -9,8 +9,10 @@
 #import "ODBaseResourceViewController.h"
 
 @interface ODExplorerViewController : ODBaseResourceViewController
+
+/// Action when pressed on a menu button.
 - (void)displayActionMenu;
 
-@property (nonatomic) BOOL loadingRowPresent;
+@property (nonatomic, getter = isCurrentlyLoading) BOOL currentlyLoading;
 
 @end

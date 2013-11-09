@@ -42,4 +42,8 @@
 /// Drops the internal storage.
 - (void)clean;
 
+/// Drops elements that have no strong references to them. This is done by converting internal
+/// storage to use weak elements.
+- (void)cleanWeakElements;
+
 @end

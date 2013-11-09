@@ -57,7 +57,8 @@
             formatted = [self stringFromDate:value];
             color = [UIColor brownColor];
         } else if ([value isKindOfClass:[NSData class]]) {
-            formatted = [NSString stringWithFormat:@"data (%lu bytes)", (unsigned long)[value length]];
+            formatted = [NSString stringWithFormat:NSLocalizedString(@"data (%lu bytes)", @"Property description for NSData"),
+                         (unsigned long)[value length]];
             color = [UIColor darkGrayColor];
         } else if ([value isKindOfClass:[NSURL class]]) {
             formatted = [value absoluteString];
