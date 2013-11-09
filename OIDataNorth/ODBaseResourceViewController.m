@@ -8,10 +8,7 @@
 
 #import "ODBaseResourceViewController.h"
 
-#import "ODExplorerViewActionsMenu.h"
 #import "ODResourceTableViewCell.h"
-
-#import "ODOperation.h"
 #import "ODResourceDataSource.h"
 #import "ODResource+CollectionFields.h"
 
@@ -25,8 +22,8 @@
 
 #pragma mark - View Construction
 
-+ (UIViewController *)controllerForResource:(id <ODResource> )resource {
-    return [[self alloc] initWithResource:resource];
++ (instancetype)controllerForResource:(id <ODResource> )resource {
+    return !resource ? nil : [[self alloc] initWithResource:resource];
 }
 
 - (instancetype)initWithResource:(id <ODResource> )resource {
@@ -53,11 +50,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
     id cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (![cell respondsToSelector:@selector(resource)]) return;
     
-    UIViewController *vc = [[self class] controllerForResource:[cell resource]];
-    if (vc) [self.navigationController pushViewController:vc animated:YES];
+    if ([cell respondsToSelector:@selector(resource)]) {
+        [self pushResource:[cell resource]];
+    }
 }
 
 #pragma mark - Data Source
@@ -92,6 +90,14 @@
 
 - (void)update {
     [self.tableView reloadData];
+}
+
+- (void)pushResource:(id<ODResource>)resource {
+    UIViewController *vc = [[self class] controllerForResource:resource];
+    if (vc) {
+        (void)[self.navigationController popToViewController:self animated:YES];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma clang diagnostic ignored "-Wundeclared-selector"

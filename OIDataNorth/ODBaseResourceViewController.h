@@ -11,20 +11,23 @@
 @class ODResourceTableViewCell;
 @protocol ODResource;
 
+/// All methods are overrideable.
 @interface ODBaseResourceViewController : UITableViewController
 
-#pragma mark - Instantiation
-
-+ (UIViewController *)controllerForResource:(id<ODResource>)resource;
 @property (readwrite, nonatomic) id<ODResource> resource;
 
-#pragma mark - Configuration
+/// Used to create a controller for a given resource. By default it returns controller of
+/// current class, but you're free to override it to return controllers of some different class.
++ (instancetype)controllerForResource:(id<ODResource>)resource;
 
 /// Method to configure view controller for resource.
 - (void)configure;
 
 /// Method to configure cell for resource.
 - (void)configureCell:(ODResourceTableViewCell *)cell;
+
+/// To override if different child view controllers are necessary.
+- (void)pushResource:(id<ODResource>)resource;
 @end
 
 

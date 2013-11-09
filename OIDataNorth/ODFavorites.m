@@ -8,7 +8,6 @@
 
 #import "ODFavorites.h"
 
-#import "ODResource_Internal.h"
 #import "ODRetrieving_Objects.h"
 #import "ODCollection.h"
 
@@ -25,9 +24,8 @@
 }
 
 - (instancetype)initFromDefaults {
-    self = [self init];
+    self = [self initWithRetrievalInfo:[ODRetrieveBase new]];
     if (self) {
-        self.retrievalInfo = [ODRetrieveBase new];
         self.kind = ODResourceKindCollection;
         [self loadFromDefaults];
     }

@@ -41,7 +41,6 @@
 		B35A642B182A9D8A002CF425 /* ODResourceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A642A182A9D8A002CF425 /* ODResourceDataSource.m */; };
 		B35A6430182AB21C002CF425 /* ODExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A642E182AA7F7002CF425 /* ODExplorerViewController.m */; };
 		B35A6436182AC838002CF425 /* ODFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A6435182AC838002CF425 /* ODFavorites.m */; };
-		B35A6439182AC9CC002CF425 /* ODFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A6438182AC9CC002CF425 /* ODFavoritesViewController.m */; };
 		B36C7D20182E392C00038420 /* ODMutableStructuredType.m in Sources */ = {isa = PBXBuildFile; fileRef = B36C7D1F182E392C00038420 /* ODMutableStructuredType.m */; };
 		B384FC721826E104006C06D3 /* ODMetadataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC711826E104006C06D3 /* ODMetadataOperation.m */; };
 		B384FC741826E323006C06D3 /* TypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B384FC731826E323006C06D3 /* TypesTests.m */; };
@@ -166,8 +165,6 @@
 		B35A642E182AA7F7002CF425 /* ODExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODExplorerViewController.m; sourceTree = "<group>"; };
 		B35A6434182AC838002CF425 /* ODFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFavorites.h; sourceTree = "<group>"; };
 		B35A6435182AC838002CF425 /* ODFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFavorites.m; sourceTree = "<group>"; };
-		B35A6437182AC9CC002CF425 /* ODFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFavoritesViewController.h; sourceTree = "<group>"; };
-		B35A6438182AC9CC002CF425 /* ODFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFavoritesViewController.m; sourceTree = "<group>"; };
 		B36C7D18182D608E00038420 /* ODEntity_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODEntity_Protocol.h; sourceTree = "<group>"; };
 		B36C7D19182D612200038420 /* ODCollection_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODCollection_Protocol.h; sourceTree = "<group>"; };
 		B36C7D1E182E392C00038420 /* ODMutableStructuredType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMutableStructuredType.h; sourceTree = "<group>"; };
@@ -372,7 +369,6 @@
 		B32DE6B8182AF36A00D208B0 /* Box "Abstract" */ = {
 			isa = PBXGroup;
 			children = (
-				B3BDF59A18259AA8003CF414 /* ODType.h */,
 				B32DE6B9182AF3BA00D208B0 /* ODResource_Protocol.h */,
 				B329A663181FF08400B2D8B9 /* ODRetrieving_Protocol.h */,
 				B36C7D18182D608E00038420 /* ODEntity_Protocol.h */,
@@ -385,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				B3900F48181675F7007BCE33 /* Managing */,
-				B34544F1181B27DF0039BD67 /* Retrieval */,
 				B3900F421815D84A007BCE33 /* Resources */,
 				B3900F411815D82B007BCE33 /* Operations */,
 			);
@@ -409,18 +404,20 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		B34544F1181B27DF0039BD67 /* Retrieval */ = {
+		B34544F1181B27DF0039BD67 /* Box "Retrieval" */ = {
 			isa = PBXGroup;
 			children = (
+				B3900F491816765B007BCE33 /* ODManaging.h */,
 				B34544EE181B278D0039BD67 /* ODRetrieving_Objects.h */,
 				B34544EF181B278D0039BD67 /* ODRetrieving_Objects.m */,
 			);
-			name = Retrieval;
+			name = "Box \"Retrieval\"";
 			sourceTree = "<group>";
 		};
 		B34544F2181B2E3E0039BD67 /* Box "Types" */ = {
 			isa = PBXGroup;
 			children = (
+				B3BDF59A18259AA8003CF414 /* ODType.h */,
 				B3BDF59B18259AA8003CF414 /* ODType.m */,
 				B30EF6E41826CDB80091C378 /* Type groups */,
 				B384FC89182A43E7006C06D3 /* Collection Types */,
@@ -536,8 +533,6 @@
 			children = (
 				B35A6434182AC838002CF425 /* ODFavorites.h */,
 				B35A6435182AC838002CF425 /* ODFavorites.m */,
-				B35A6437182AC9CC002CF425 /* ODFavoritesViewController.h */,
-				B35A6438182AC9CC002CF425 /* ODFavoritesViewController.m */,
 			);
 			name = Favorites;
 			sourceTree = "<group>";
@@ -695,6 +690,7 @@
 				B3454505181C0CE20039BD67 /* Box "UI" */,
 				B32DE6BA182AF47700D208B0 /* Box "Core" */,
 				B32DE6B8182AF36A00D208B0 /* Box "Abstract" */,
+				B34544F1181B27DF0039BD67 /* Box "Retrieval" */,
 				B34544F2181B2E3E0039BD67 /* Box "Types" */,
 				B345450A181D1F380039BD67 /* Box "Helpers" */,
 			);
@@ -754,7 +750,6 @@
 		B3900F48181675F7007BCE33 /* Managing */ = {
 			isa = PBXGroup;
 			children = (
-				B3900F491816765B007BCE33 /* ODManaging.h */,
 				B329A66C1820FC1E00B2D8B9 /* Requests */,
 				B329A66D1820FC3700B2D8B9 /* Observers */,
 			);
@@ -955,7 +950,6 @@
 				B384FC94182A84D9006C06D3 /* ODPrimitiveTypeSingle.m in Sources */,
 				B3900F5318168170007BCE33 /* ODBatchRequestManager.m in Sources */,
 				B35A6430182AB21C002CF425 /* ODExplorerViewController.m in Sources */,
-				B35A6439182AC9CC002CF425 /* ODFavoritesViewController.m in Sources */,
 				B34544D8181968370039BD67 /* ODPropertyTableViewCell.m in Sources */,
 				B329A653181E611400B2D8B9 /* NSData+Base64.m in Sources */,
 				B34544C1181846340039BD67 /* ODActionOperation.m in Sources */,

@@ -8,22 +8,31 @@
 
 #import "OIAppDelegate.h"
 
-#import "ODFavoritesViewController.h"
-#import "ODResource.h"
+#import "ODExplorerViewController.h"
+#import "ODFavorites.h"
 
-@implementation OIAppDelegate
+@implementation OIAppDelegate {
+    __weak ODExplorerViewController *fav;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    ODFavoritesViewController *fav = [ODFavoritesViewController new];
-    self.window.rootViewController = fav;
+    fav = [ODExplorerViewController controllerForResource:[ODFavorites sharedFavorites]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:fav];
     
-    NSURL *launchURL; // = [NSURL URLWithString:@"odata://services.odata.org/V3/OData/OData.svc/"];
-    if ((launchURL = launchOptions[UIApplicationLaunchOptionsURLKey])) {
-        if (![launchURL.scheme hasPrefix:@"http"]) {
-            launchURL = [[NSURL alloc] initWithScheme:@"http" host:[launchURL host] path:[launchURL path]];
-        }
-        [fav pushResource:[ODResource resourceWithURL:launchURL description:@"launch parameter"]];
+    (void)[self application:nil openURL:launchOptions[UIApplicationLaunchOptionsURLKey] sourceApplication:nil annotation:nil];
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    if (!url) return NO;
+
+    if (![url.scheme hasPrefix:@"http"]) {
+        url = [[NSURL alloc] initWithScheme:@"http" host:[url host] path:[url path]];
     }
+    
+    [fav pushResource: [ODResource resourceWithURL:url description:@"launch parameter"]];
     
     return YES;
 }
