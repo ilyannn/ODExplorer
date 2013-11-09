@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODBaseResourceViewController.h"
+#import "ODBasicViewController.h"
 
 #import "ODResourceTableViewCell.h"
 #import "ODBaseResourceDataSource.h"
 #import "ODResource+CollectionFields.h"
 #import "ODRetrieving_Protocol.h"
 
-@implementation ODBaseResourceViewController
+@implementation ODBasicViewController
 
 #pragma mark - View Construction
 

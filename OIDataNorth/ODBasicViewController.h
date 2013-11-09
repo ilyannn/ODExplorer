@@ -13,7 +13,7 @@
 
 /// This is a basic controller that displays resource data as a table. It doesn't do anything to load it, though.
 /// All methods are overrideable.
-@interface ODBaseResourceViewController : UITableViewController
+@interface ODBasicViewController : UITableViewController
 
 @property (readwrite, nonatomic) id<ODResource> resource;
 

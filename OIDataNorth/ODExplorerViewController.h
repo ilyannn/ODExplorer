@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODBaseResourceViewController.h"
+#import "ODBasicViewController.h"
 
-@interface ODExplorerViewController : ODBaseResourceViewController
+@interface ODExplorerViewController : ODBasicViewController
 
 /// Action when pressed on a menu button.
 - (void)displayActionMenu;
