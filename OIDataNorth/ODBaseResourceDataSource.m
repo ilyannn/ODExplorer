@@ -77,5 +77,8 @@ NSString *const ODBracketedCellReuseID = @"BracketedCell";
     }
 }
 
+- (BOOL)empty {
+    return !self.resource.childrenArray.count;
+}
 
 @end

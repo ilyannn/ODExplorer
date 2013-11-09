@@ -29,18 +29,27 @@
 @end
 
 
-@implementation ODExplorerViewActionsMenu
+@implementation ODExplorerViewActionsMenu {
+    UIActionSheet *_actionSheet;
+}
 
 - (void)setResource:(ODResource *)resource {
     if (resource != _resource) {
         _resource = resource;
-        [self buildMenu];
+        _actionSheet = nil;
     }
 }
 
 - (void)buildButton:(NSString *)title withAction:(dispatch_block_t)block {
     [self.actionSheet addButtonWithTitle: [[NSBundle mainBundle] localizedStringForKey:title value:@"" table:nil]];
     [self.actions addObject:block];
+}
+
+- (UIActionSheet *)actionSheet {
+    if (!_actionSheet) {
+        [self buildMenu];
+    }
+    return _actionSheet;
 }
 
 - (void)buildMenu {

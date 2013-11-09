@@ -20,8 +20,15 @@ NSString *const ODLoadingCellReuseID = @"LoadingCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUInteger count = [super tableView:tableView numberOfRowsInSection:section];
-    return count + (!count) * self.currentlyLoading;
+    return [super tableView:tableView numberOfRowsInSection:section] + [self hasLoadingRow];
+}
+
+- (BOOL)hasLoadingRow {
+    return [self empty] && self.currentlyLoading;
+}
+
+- (BOOL)isLoadingRowIndexPath:(NSIndexPath *)indexPath {
+    return [self hasLoadingRow] && (0 == indexPath.row);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -31,8 +38,5 @@ NSString *const ODLoadingCellReuseID = @"LoadingCell";
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (BOOL)isLoadingRowIndexPath:(NSIndexPath *)indexPath {
-    return self.currentlyLoading && 0 == indexPath.row;
-}
 
 @end

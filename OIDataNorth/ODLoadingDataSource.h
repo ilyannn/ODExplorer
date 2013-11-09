@@ -12,6 +12,7 @@
 
 /// Used to display or hide "loading row".
 @property (nonatomic, getter = isCurrentlyLoading) BOOL currentlyLoading;
+- (BOOL)hasLoadingRow;
 - (BOOL)isLoadingRowIndexPath:(NSIndexPath *)indexPath;
 
 @end

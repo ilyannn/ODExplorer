@@ -20,7 +20,10 @@
 - (ODLoadingDataSource *)resourceDataSourceFactory;
 @end
 
-@implementation ODExplorerViewController
+@implementation ODExplorerViewController {
+    // Strongly hold action menu instance.
+    ODExplorerViewActionsMenu *actionMenu;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +48,7 @@
 }
 
 - (void)displayActionMenu {
-    ODExplorerViewActionsMenu *actionMenu = [ODExplorerViewActionsMenu new];
+    actionMenu = [ODExplorerViewActionsMenu new];
     actionMenu.resource = self.resource;
     actionMenu.favorites = [ODFavorites sharedFavorites];
     [actionMenu.actionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];

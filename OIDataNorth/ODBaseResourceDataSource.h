@@ -14,6 +14,7 @@
 
 - (instancetype)initWithResource:(id<ODResource>)resource;
 @property (readonly) id<ODResource> resource;
+- (BOOL)empty;
 
 #pragma mark - Configuration
 

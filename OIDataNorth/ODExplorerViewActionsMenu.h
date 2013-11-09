@@ -10,7 +10,7 @@
 @class ODResourceList;
 @protocol ODResource;
 
-/// Menu of possible actions for a resource.
+/// Menu of possible actions for a resource. It's necessary to retain it.
 @interface ODExplorerViewActionsMenu : NSObject
 
 /// Menu can be different depending on resource
