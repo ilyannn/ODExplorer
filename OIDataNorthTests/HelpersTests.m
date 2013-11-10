@@ -130,8 +130,8 @@
     XCTAssertNotNil(weakSingleton, @"Held by lazy array");
     XCTAssertTrue(lazy.count == 2, @"Cleaning and adding objects");
     
-    // Needs autorelease, see my question at http://stackoverflow.com/questions/19883056/
-    @autoreleasepool
+    // Needed autorelease, see my question at http://stackoverflow.com/questions/19883056/
+    // @autoreleasepool
     {
         XCTAssertEqual(weakSingleton, lazy[0], @"Correct element storage");
         XCTAssertEqual(singleton, lazy[1], @"Correct element storage");
@@ -141,11 +141,6 @@
     
     XCTAssertNotNil(singleton, @"Not dropped by lazy array");
     XCTAssertNil(weakSingleton, @"Dropped by lazy array");
-    
-    //    [lazy cleanWeakElements]; // drop element with index 0
-    //    XCTAssertTrue(lazy.count == 2, @"Cleaning weak elements doesn't change count");
-    //    XCTAssertEqualObjects(lazy[0], @0, @"Now the delegate fills the array");
-    //    XCTAssertTrue(lazy[1] == singleton, @"Strongly referenced elements must not be dropped");
     
 }
 
