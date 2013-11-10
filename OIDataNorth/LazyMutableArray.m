@@ -68,8 +68,14 @@
         if (index >= self.count) {
             return nil;
         }
-        return [_objects pointerAtIndex:index];
+        __weak id object = [_objects pointerAtIndex:index];
+        if (object) {
+            return object;
+        }
     }
+    @throw([NSException exceptionWithName:NSObjectNotAvailableException
+                                   reason:@"Delegate was not able to provide a non-nil element to a lazy array"
+                                 userInfo:nil]);
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {;
