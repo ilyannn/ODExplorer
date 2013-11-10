@@ -63,18 +63,19 @@
     return operation;
 }
 
-- (void)array:(LazyMutableArray *)lazy missingObjectAtIndex:(NSUInteger)index { ODCollectionAssert
+- (NSArray *)array:(LazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index {
     ODQueryOperation *operation = [ODQueryOperation operationWithResource:self];
     NSUInteger batchSize = [self batchSize];
     NSUInteger totalCount = [lazy count];
     operation.top = batchSize;
     operation.skip = index;
     
+    NSMutableArray *results = [NSMutableArray new];
     for (NSUInteger batchIndex = 0; (batchIndex < batchSize) && (index + batchIndex < totalCount) ; batchIndex ++) {
         ODRetrievalByIndex *info = [ODRetrievalByIndex new];
         info.index = index + batchIndex;
         info.parent = self.retrievalInfo;
-        lazy[index + batchIndex] = [[ODEntity alloc] initWithRetrievalInfo:info];
+        [results addObject:[[ODEntity alloc] initWithRetrievalInfo:info]];
     }
     
     [operation addOperationStep:^NSError *(ODQueryOperation *op) {
@@ -85,6 +86,7 @@
     }];
 
     [self handleOperation:operation];
+    return results;
 }
 
 - (NSError *)parseFromJSONArray:(NSArray *)array { ODCollectionAssert

@@ -9,25 +9,24 @@
 
 /// Delegate is expected to do some magic so that values appear in the array.
 @protocol LazyMutableArrayDelegate
-- (void)array:(LazyMutableArray *)lazy missingObjectAtIndex:(NSUInteger)index;
+/// The returned range will be used to fill in array[index], array[index+1],...
+/// At least one element MUST be returned.
+- (NSArray *)array:(LazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index;
 @end
 
-/// We need to subclass an NSArray because the backing store is a pointer array which can expand dynamically.
+/// We need to subclass an NSArray because this implementation should be able to change its
+/// memory footprint dynamically.
 @interface LazyMutableArray : NSMutableArray
 
-/// Delegate is to be set at initializationd.
+/// Delegate is to be set at initialization.
 @property (readonly, weak) id<LazyMutableArrayDelegate> delegate;
 
 - (instancetype)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate; /* designated initializer */
 - (instancetype)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate contents:(NSArray *)array;
 
 // The standard NSArray methods.
-- (NSUInteger)count;
-
-// This method has a different memory semantics than its superclass.
-// See http://stackoverflow.com/questions/19883056/how-to-replicate-nsarray
+@property (readonly) NSUInteger count;
 - (id)objectAtIndex:(NSUInteger)index __attribute__((ns_returns_autoreleased));
-
 
 // NSMutableArray methods
 - (void)addObject:(id)anObject;
@@ -39,14 +38,17 @@
 /// With this class we can set count at will.
 - (void)setCount:(NSUInteger)count;
 
-/// We can replace objects using [] syntax.
-- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
+/// Size of currently held contents.
+@property NSUInteger size;
+
+// / We can replace objects using [] syntax.
+// - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 
 /// Drops the internal storage.
 - (void)clean;
 
-/// Drops elements that have no strong references to them. This is done by converting internal
-/// storage to use weak elements.
+/// Drops elements that have no other strong references to them. This is done by
+/// removing and inserting back elements of the array one-by-one.
 - (void)cleanWeakElements;
 
 @end

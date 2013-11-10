@@ -67,7 +67,7 @@
 
     lazy.count = 2; // can set count
     lazy[1] = @1; // correct assignment
-    lazy[2] = @5; // beyond boundary, nop
+//    lazy[3] = @5; // beyond boundary, nop
     
     XCTAssertEqualObjects([lazy lastObject], @1, @"Setting objects, retrieving objects, -lastObject");
     
@@ -101,6 +101,7 @@
 }
 
 - (void)testPointerArray {
+    // See http://stackoverflow.com/a/19884472/115200 for details.
     __weak id weakobject;
     @autoreleasepool
     {
@@ -119,7 +120,9 @@
     
     // Insert two objects into lazy array, one held weakly, one held strongly.
     
-    NSMutableArray * lazy = [LazyMutableArray new];
+    NSMutableArray * lazy = // [NSMutableArray new];
+                            [[LazyMutableArray alloc] initWithDelegate:self];
+
     id singleton = [NSMutableArray new];
     [lazy addObject:singleton];
 
@@ -130,8 +133,8 @@
     XCTAssertNotNil(weakSingleton, @"Held by lazy array");
     XCTAssertTrue(lazy.count == 2, @"Cleaning and adding objects");
     
-    // Needed autorelease, see my question at http://stackoverflow.com/questions/19883056/
-    // @autoreleasepool
+    // Needs release, see my question at http://stackoverflow.com/q/19883056/115200
+    @autoreleasepool
     {
         XCTAssertEqual(weakSingleton, lazy[0], @"Correct element storage");
         XCTAssertEqual(singleton, lazy[1], @"Correct element storage");
@@ -144,8 +147,8 @@
     
 }
 
-- (void)array:(LazyMutableArray *)lazy missingObjectAtIndex:(NSUInteger)index {
-    lazy[index] = @(index);
+-(NSArray *)array:(LazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index {
+    return @[@(index), @(index + 1), @(index + 2)];
 }
 
 
