@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Lib/../App/ODExplorerApp.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Lib/ODExplorerLib.xcodeproj">
    </FileRef>
    <FileRef
