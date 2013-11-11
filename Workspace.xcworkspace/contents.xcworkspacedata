@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Lib/../App/ODExplorerApp.xcodeproj">
+      location = "group:Result/ODExplorerApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Lib/ODExplorerLib.xcodeproj">
+      location = "group:Library/ODExplorerLib.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Dependencies/Pods/Pods.xcodeproj">
+      location = "group:0Dependencies/Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
