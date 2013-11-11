@@ -1,7 +1,4 @@
 //
-//  ODMetadataSource.m
-//  OIDataNorth
-//
 //  Created by ilya on 11/2/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
@@ -14,12 +11,12 @@
 #import "ODataParsingContext.h"
 
 #import "NSArray+ODHFunctional.h"
-
 #import "ODStructuredType_Mutable.h"
 
 @interface ODataModel ()
 
 @end
+
 
 @implementation ODataModel 
 

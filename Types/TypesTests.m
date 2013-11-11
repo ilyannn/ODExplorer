@@ -13,7 +13,9 @@
 
 #import "ODTypeLibrary.h"
 #import "ODNominalType.h"
-#import "NSArray+Functional.h"
+
+#import "NSArray+ODHFunctional.h"
+
 #import "ODStructuredType.h"
 #import "ODPrimitiveType.h"
 #import "ODPrimitiveTypeDateTime.h"
