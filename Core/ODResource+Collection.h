@@ -7,12 +7,12 @@
 //
 
 #import "ODCollection.h"
-#import "ODHLazyMutableArray.h"
+#import "ODLazyMutableArray.h"
 
 /// Internal information about properties and methods of ODResource availible only for collections.
-@interface ODResource (Collection) <ODCollection, LazyMutableArrayDelegate>
+@interface ODResource (Collection) <ODCollection, ODLazyMutableArrayDelegate>
 
-- (ODHLazyMutableArray *)childrenArrayForCollection;
+- (ODLazyMutableArray *)childrenArrayForCollection;
 - (NSError *)parseFromJSONArray:(NSArray *)array;
 - (NSError *)parseServiceDocumentFromArray:(NSArray *)array;
 - (void)dropElementsOfCollectionRecursively:(BOOL)recursively;

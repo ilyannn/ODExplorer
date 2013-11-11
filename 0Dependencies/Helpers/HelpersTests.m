@@ -7,9 +7,9 @@
 
 #import "NSData+Base64.h"
 #import "NSArray+ODHFunctional.h"
-#import "ODHLazyMutableArray.h"
+#import "ODLazyMutableArray.h"
 
-@interface HelpersTests : XCTestCase <LazyMutableArrayDelegate>
+@interface HelpersTests : XCTestCase <ODLazyMutableArrayDelegate>
 
 @end
 
@@ -58,7 +58,7 @@
 }
 
 - (void)testLazyMutableCorrectness {
-    ODHLazyMutableArray *lazy = [[ODHLazyMutableArray alloc] initWithDelegate:self contents:@[@0, @10, @20]];
+    ODLazyMutableArray *lazy = [[ODLazyMutableArray alloc] initWithDelegate:self contents:@[@0, @10, @20]];
     
     XCTAssertEqual(lazy.count, (unsigned)3, @"Just like regular array count");
 
@@ -119,7 +119,7 @@
     // Insert two objects into lazy array, one held weakly, one held strongly.
     
     NSMutableArray * lazy = // [NSMutableArray new];
-                            [[ODHLazyMutableArray alloc] initWithDelegate:self];
+                            [[ODLazyMutableArray alloc] initWithDelegate:self];
 
     id singleton = [NSMutableArray new];
     [lazy addObject:singleton];
@@ -145,7 +145,7 @@
     
 }
 
--(NSArray *)array:(ODHLazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index {
+-(NSArray *)array:(ODLazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index {
     return @[@(index), @(index + 1), @(index + 2)];
 }
 

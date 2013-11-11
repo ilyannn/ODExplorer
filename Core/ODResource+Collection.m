@@ -10,7 +10,7 @@
 #import "ODResource+Entity.h"
 #import "ODResource_Internal.h"
 
-#import "ODHLazyMutableArray.h"
+#import "ODLazyMutableArray.h"
 #import "ODRetrieving_Objects.h"
 
 #import "ODCountOperation.h"
@@ -27,8 +27,8 @@
 
 @implementation ODResource (Collection)
 
-- (ODHLazyMutableArray *)childrenArrayForCollection { ODCollectionAssert
-    return [[ODHLazyMutableArray alloc] initWithDelegate:self];
+- (ODLazyMutableArray *)childrenArrayForCollection { ODCollectionAssert
+    return [[ODLazyMutableArray alloc] initWithDelegate:self];
 }
 
 - (NSError *)updateFromJSONArray:(NSArray *)array { ODCollectionAssert
@@ -54,7 +54,7 @@
             if (![array respondsToSelector:@selector(setCount:)]) {
                 // This is the only place children become CollectionCache.
                 // In all other situations, NSArray is just fine.
-                self.childrenArray = array = [[ODHLazyMutableArray alloc] initWithDelegate:self contents:array];
+                self.childrenArray = array = [[ODLazyMutableArray alloc] initWithDelegate:self contents:array];
             }
             [array setCount:op.responseCount];
         }
@@ -63,7 +63,7 @@
     return operation;
 }
 
-- (NSArray *)array:(ODHLazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index {
+- (NSArray *)array:(ODLazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index {
     ODQueryOperation *operation = [ODQueryOperation operationWithResource:self];
     NSUInteger batchSize = [self batchSize];
     NSUInteger totalCount = [lazy count];
@@ -162,7 +162,7 @@
     id object = self.childrenArray;
     
     if (![object respondsToSelector:@selector(cleanWeakElements)]) {
-        self.childrenArray = [ODHLazyMutableArray arrayWithArray:object];
+        self.childrenArray = [ODLazyMutableArray arrayWithArray:object];
     }
     [object cleanWeakElements];
 

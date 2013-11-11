@@ -3,9 +3,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODHLazyMutableArray.h"
+#import "ODLazyMutableArray.h"
 
-@implementation ODHLazyMutableArray {
+@implementation ODLazyMutableArray {
     NSMutableArray *_objects; // Created lazily, only on -setCount:, insert/add object.
 }
 
@@ -13,14 +13,14 @@
     return [self initWithDelegate:nil];
 }
 
-- (id)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate {
+- (id)initWithDelegate:(id<ODLazyMutableArrayDelegate>)delegate {
     if (self = [super init]) {
         _delegate = delegate;
     }
     return self;
 }
 
-- (id)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate contents:(NSArray *)array {
+- (id)initWithDelegate:(id<ODLazyMutableArrayDelegate>)delegate contents:(NSArray *)array {
     if (self = [self initWithDelegate:delegate]) {
         _count = [array count];
         _objects = [array mutableCopy];

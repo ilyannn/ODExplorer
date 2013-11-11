@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODHOperationWithSteps.h"
+#import "ODOperationWithSteps.h"
 
 #import "ODResource.h"
 
 /// This class encapsulates an idea of operation with the OD* resources.
-@interface ODOperation : ODHOperationWithSteps
+@interface ODOperation : ODOperationWithSteps
 
 /// A factory to create operations.
 + (instancetype)operationWithResource:(id<ODResource>)resource;

@@ -6,7 +6,7 @@
 /// Operation whose main part can be represented as a series of steps.
 /// Each step can cancel further processing by returning an error.
 /// Steps can be added in subclasses by overriding -steps or on an instance by -addOperationStep:
-@interface ODHOperationWithSteps : NSOperation
+@interface ODOperationWithSteps : NSOperation
 
 /// Override this in subclasses instead of -main.
 - (NSArray *)steps;

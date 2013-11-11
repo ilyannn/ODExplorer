@@ -3,13 +3,13 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODHOperationWithSteps.h"
+#import "ODOperationWithSteps.h"
 
-@interface ODHOperationWithSteps ()
+@interface ODOperationWithSteps ()
 @property (atomic) NSMutableArray *allSteps;
 @end
 
-@implementation ODHOperationWithSteps
+@implementation ODOperationWithSteps
 
 - (id)init
 {

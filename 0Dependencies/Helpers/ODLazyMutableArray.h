@@ -3,14 +3,14 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODHLazyMutableArray;
+@class ODLazyMutableArray;
 
 /// Delegate is expected to do some magic so that values appear in the array.
-@protocol LazyMutableArrayDelegate
+@protocol ODLazyMutableArrayDelegate
 
 /// The returned range will be used to fill in array[index], array[index+1],...
 /// At least one element must be returned, otherwise an exception is raised.
-- (NSArray *)array:(ODHLazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index;
+- (NSArray *)array:(ODLazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index;
 
 @end
 
@@ -18,7 +18,7 @@
 /// However, it can have gaps of "null" values, which are expected to be filled
 /// by delegate. It's possible to set a specific element to "null" or change the count.
 /// This implementation changes its memory footprint dynamically.
-@interface ODHLazyMutableArray : NSMutableArray
+@interface ODLazyMutableArray : NSMutableArray
 
 // Memory semantics for this collection are slightly different compared to
 // it parent, NSMutableArray.
@@ -27,10 +27,10 @@
 /// Delegate is to be set at initialization.
 /// You can use array without a delegate, but it will result in exception once
 /// it becomes necessary.
-@property (weak) id<LazyMutableArrayDelegate> delegate;
+@property (weak) id<ODLazyMutableArrayDelegate> delegate;
 
-- (instancetype)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate; /* designated initializer */
-- (instancetype)initWithDelegate:(id<LazyMutableArrayDelegate>)delegate contents:(NSArray *)array;
+- (instancetype)initWithDelegate:(id<ODLazyMutableArrayDelegate>)delegate; /* designated initializer */
+- (instancetype)initWithDelegate:(id<ODLazyMutableArrayDelegate>)delegate contents:(NSArray *)array;
 
 // The standard NSArray methods.
 @property (readonly) NSUInteger count;

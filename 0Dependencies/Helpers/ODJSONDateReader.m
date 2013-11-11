@@ -3,9 +3,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODHJSONDateReader.h"
+#import "ODJSONDateReader.h"
 
-@implementation ODHJSONDateReader
+@implementation ODJSONDateReader
 
 /// Method to parse /Date(...)/ strings.
 /// Answer from http://stackoverflow.com/a/6065278/115200
