@@ -75,8 +75,9 @@
         XCTAssertEqualObjects(obj, @(idx), @"Enumeration using block + delegate");
     }];
     
-    [lazy clean]; // drops all elements
-
+    lazy.count = 0; // drops all elements
+    XCTAssertTrue(!lazy.size, @"Should have dropped the storage");
+    
     id singleton = [NSMutableArray new];
     [lazy addObject:singleton];
     

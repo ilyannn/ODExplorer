@@ -14,12 +14,15 @@
 
 @end
 
-/// This class is similar to NSMutableArray, which is in fact used as a backend.
+/// This class is similar to NSMutableArray (which is in fact used as a backend).
 /// However, it can have gaps of "null" values, which are expected to be filled
-/// by delegate.
-/// It's also possible to set element a specific element to "null".
+/// by delegate. It's possible to set a specific element to "null" or change the count.
 /// This implementation changes its memory footprint dynamically.
 @interface ODHLazyMutableArray : NSMutableArray
+
+// Memory semantics for this collection are slightly different compared to
+// it parent, NSMutableArray.
+// See http://stackoverflow.com/q/19883056/115200 for details.
 
 /// Delegate is to be set at initialization.
 /// You can use array without a delegate, but it will result in exception once
@@ -42,17 +45,11 @@
 /// anObject can be nil
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject;
 
-/// With this class we can set count at will.
+/// With this class we can set count at will. Array's contents will shrink if necessary.
 - (void)setCount:(NSUInteger)count;
 
 /// Real size of currently held contents.
 @property NSUInteger size;
-
-// / We can replace objects using [] syntax.
-// - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
-
-/// Drops the internal storage.
-- (void)clean;
 
 /// Drops elements that have no other strong references to them. This is done by
 /// removing and inserting back elements of the array one-by-one.

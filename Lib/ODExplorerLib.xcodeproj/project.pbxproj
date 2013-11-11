@@ -85,6 +85,7 @@
 		B3C7DE911830F75100D7D606 /* ODExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCDB041830F00D0071C2C3 /* ODExplorerViewController.m */; };
 		B3C7DE921830F75400D7D606 /* ODExplorerViewController+Notify.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCDB061830F00D0071C2C3 /* ODExplorerViewController+Notify.m */; };
 		B3C7DE931830F75800D7D606 /* ODFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCDB091830F00D0071C2C3 /* ODFavorites.m */; };
+		B3F19C981830FF030055C039 /* ODFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F19C971830FF030055C039 /* ODFavoritesViewController.m */; };
 		B3FCDAE71830EDE30071C2C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FCDAE61830EDE30071C2C3 /* SystemConfiguration.framework */; };
 		B3FCDAE81830EDF00071C2C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FCDAE61830EDE30071C2C3 /* SystemConfiguration.framework */; };
 		DAF92F273B7D4ABA98658DFD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2749E382BBD4F15A263C732 /* libPods.a */; };
@@ -260,6 +261,8 @@
 		B3AF68201830E927007FE80A /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		B3AF68211830E927007FE80A /* Supplier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Supplier.h; sourceTree = "<group>"; };
 		B3AF68221830E927007FE80A /* Supplier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Supplier.m; sourceTree = "<group>"; };
+		B3F19C961830FF030055C039 /* ODFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFavoritesViewController.h; sourceTree = "<group>"; };
+		B3F19C971830FF030055C039 /* ODFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFavoritesViewController.m; sourceTree = "<group>"; };
 		B3FCDAE61830EDE30071C2C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B3FCDAEC1830F00D0071C2C3 /* ODExplorerViewActionsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODExplorerViewActionsMenu.h; sourceTree = "<group>"; };
 		B3FCDAED1830F00D0071C2C3 /* ODExplorerViewActionsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODExplorerViewActionsMenu.m; sourceTree = "<group>"; };
@@ -599,6 +602,8 @@
 		B3AF68171830E927007FE80A /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				B3FCDB081830F00D0071C2C3 /* ODFavorites.h */,
+				B3FCDB091830F00D0071C2C3 /* ODFavorites.m */,
 				B3AF68181830E927007FE80A /* Northwind Service */,
 			);
 			name = Examples;
@@ -683,8 +688,8 @@
 		B3FCDB0A1830F00D0071C2C3 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				B3FCDB081830F00D0071C2C3 /* ODFavorites.h */,
-				B3FCDB091830F00D0071C2C3 /* ODFavorites.m */,
+				B3F19C961830FF030055C039 /* ODFavoritesViewController.h */,
+				B3F19C971830FF030055C039 /* ODFavoritesViewController.m */,
 			);
 			name = Favorites;
 			sourceTree = "<group>";
@@ -887,6 +892,7 @@
 				B3C7DE891830F72E00D7D606 /* ODExplorerViewActionsMenu.m in Sources */,
 				B302620A1830E03100DFDF03 /* ODMutableStructuredType.m in Sources */,
 				B3AF680D1830E4DA007FE80A /* ODOperationResponse.m in Sources */,
+				B3F19C981830FF030055C039 /* ODFavoritesViewController.m in Sources */,
 				B30262161830E03100DFDF03 /* ODPrimitiveTypeSByte.m in Sources */,
 				B3AF68151830E4DA007FE80A /* ODRetrieveOperation.m in Sources */,
 				B30262131830E03100DFDF03 /* ODPrimitiveTypeDouble.m in Sources */,

@@ -28,10 +28,6 @@
     return self;
 }
 
-- (void)clean {
-    self.count = 0;
-}
-
 - (void)setCount:(NSUInteger)count {
     if (self.size > count) {
         self.size = count;

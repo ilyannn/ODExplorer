@@ -5,38 +5,24 @@
 
 #import "ODExplorerAppDelegate.h"
 
-#import "ODExplorerViewController.h"
-#import "ODFavorites.h"
+#import "ODFavoritesViewController.h"
 
-@implementation ODExplorerAppDelegate {
-    ODExplorerViewController *favoritesVC;
-}
+@implementation ODExplorerAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    favoritesVC = [ODExplorerViewController controllerForResource:[ODFavorites sharedFavorites]];
-    [(UINavigationController *)self.window.rootViewController pushViewController:favoritesVC animated:NO];
     
+    self.window.rootViewController = [ODFavoritesViewController new];
+
     (void)[self application:application openURL:launchOptions[UIApplicationLaunchOptionsURLKey] sourceApplication:nil annotation:nil];
     
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
-    if (!url) return NO;
-
-    if (![url.scheme hasPrefix:@"http"]) {
-        url = [[NSURL alloc] initWithScheme:@"http" host:[url host] path:[url path]];
-    }
-    
-    [favoritesVC pushResource: [ODResource resourceWithURL:url description:@"launch parameter"]];
+        
+    [(ODFavoritesViewController*)self.window.rootViewController openURL:url];
     
     return YES;
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    favoritesVC = nil;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
