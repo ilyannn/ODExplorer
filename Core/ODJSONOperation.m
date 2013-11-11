@@ -21,7 +21,7 @@
     [odataTypes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSArray *components = @[core,
                                 [obj length]? [NSString stringWithFormat:@";odata=%@", obj] : @"",
-                                [NSString stringWithFormat:@";q=0.%d", 9 - idx]];
+                                [NSString stringWithFormat:@";q=0.%u", 9 - idx]];
         [strings addObject:[components componentsJoinedByString:@""]];
     }];
 

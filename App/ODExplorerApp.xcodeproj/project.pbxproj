@@ -36,27 +36,6 @@
 			remoteGlobalIDString = B3900E6218118102007BCE33;
 			remoteInfo = OIDataNorth;
 		};
-		B3FCDB1B1830F4770071C2C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B3FCDB161830F4770071C2C3 /* ODExplorerLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B30261501830D84200DFDF03;
-			remoteInfo = ODExplorerLib;
-		};
-		B3FCDB1D1830F4770071C2C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B3FCDB161830F4770071C2C3 /* ODExplorerLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B30261601830D84200DFDF03;
-			remoteInfo = ODExplorerLibTests;
-		};
-		B3FCDB1F1830F4830071C2C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B3FCDB161830F4770071C2C3 /* ODExplorerLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B302614F1830D84200DFDF03;
-			remoteInfo = ODExplorerLib;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -88,7 +67,6 @@
 		B3900F5518168C99007BCE33 /* Supplier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Supplier.m; sourceTree = "<group>"; };
 		B3C7DE951830F7DD00D7D606 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B3FCDB0C1830F2A40071C2C3 /* libODExplorerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libODExplorerLib.a; path = "../../../Library/Developer/Xcode/DerivedData/Workspace-eqdynkqzmliaveasichhbvvjhwlh/Build/Products/Debug-iphoneos/libODExplorerLib.a"; sourceTree = "<group>"; };
-		B3FCDB161830F4770071C2C3 /* ODExplorerLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ODExplorerLib.xcodeproj; path = ../Lib/ODExplorerLib.xcodeproj; sourceTree = "<group>"; };
 		B3FCDB211830F5A10071C2C3 /* ODExplorer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODExplorer-Prefix.pch"; sourceTree = "<group>"; };
 		B3FFA77F182FF8AA00B462AC /* Storyboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +103,6 @@
 				B3900E6E18118102007BCE33 /* ODExplorerApp */,
 				B3900E6518118102007BCE33 /* Frameworks */,
 				B3900E6418118102007BCE33 /* Products */,
-				B3FCDB161830F4770071C2C3 /* ODExplorerLib.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,15 +191,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		B3FCDB171830F4770071C2C3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B3FCDB1C1830F4770071C2C3 /* libODExplorerLib.a */,
-				B3FCDB1E1830F4770071C2C3 /* ODExplorerLibTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,7 +205,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B3FCDB201830F4830071C2C3 /* PBXTargetDependency */,
 			);
 			name = ODExplorerApp;
 			productName = OIDataNorth;
@@ -288,12 +255,6 @@
 			mainGroup = B3900E5A18118102007BCE33;
 			productRefGroup = B3900E6418118102007BCE33 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B3FCDB171830F4770071C2C3 /* Products */;
-					ProjectRef = B3FCDB161830F4770071C2C3 /* ODExplorerLib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B3900E6218118102007BCE33 /* ODExplorerApp */,
@@ -301,23 +262,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B3FCDB1C1830F4770071C2C3 /* libODExplorerLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libODExplorerLib.a;
-			remoteRef = B3FCDB1B1830F4770071C2C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B3FCDB1E1830F4770071C2C3 /* ODExplorerLibTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ODExplorerLibTests.xctest;
-			remoteRef = B3FCDB1D1830F4770071C2C3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B3900E6118118102007BCE33 /* Resources */ = {
@@ -369,11 +313,6 @@
 			isa = PBXTargetDependency;
 			target = B3900E6218118102007BCE33 /* ODExplorerApp */;
 			targetProxy = B3900E9218118102007BCE33 /* PBXContainerItemProxy */;
-		};
-		B3FCDB201830F4830071C2C3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ODExplorerLib;
-			targetProxy = B3FCDB1F1830F4830071C2C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

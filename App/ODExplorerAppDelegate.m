@@ -4,7 +4,6 @@
 //
 
 #import "ODExplorerAppDelegate.h"
-
 #import "ODFavoritesViewController.h"
 
 @implementation ODExplorerAppDelegate
@@ -12,7 +11,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window.rootViewController = [ODFavoritesViewController new];
-
     (void)[self application:application openURL:launchOptions[UIApplicationLaunchOptionsURLKey] sourceApplication:nil annotation:nil];
     
     return YES;
@@ -42,7 +40,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
-
 
 #pragma mark - Application's Documents directory
 

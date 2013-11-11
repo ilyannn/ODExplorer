@@ -34,7 +34,7 @@ NSString * const ODOperationErrorTable = @"ODOperationError";
 }
 
 - (NSString *)localizedDescription {
-    NSString *key = [NSString stringWithFormat:@"%i", self.code];
+    NSString *key = [NSString stringWithFormat:@"%li", (long)self.code];
     NSString *value = NSLocalizedStringFromTable(key, ODOperationErrorTable, nil);
     return value ? value : [super localizedDescription];
 }

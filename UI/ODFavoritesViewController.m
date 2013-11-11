@@ -12,7 +12,7 @@
 #import "ODFavorites.h"
 
 @interface ODFavoritesViewController ()
-
+@property ODExplorerViewController *rootViewController;
 @end
 
 @implementation ODFavoritesViewController
@@ -21,8 +21,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UIViewController *vc = [ODExplorerViewController controllerForResource:[self rootResourceList]];
-        [self pushViewController:vc animated:NO];
+        self.rootViewController = [ODExplorerViewController controllerForResource:[self rootResourceList]];
+        [self pushViewController:self.rootViewController animated:NO];
     }
     return self;
 }
@@ -45,12 +45,14 @@
 
 - (void)openURL:(NSURL *)url {
     if (url) {
+
         if (![url.scheme hasPrefix:@"http"]) {
             url = [[NSURL alloc] initWithScheme:@"http" host:[url host] path:[url path]];
         }
         
-        [(ODExplorerViewController *)self.topViewController
-         pushResource: [ODResource resourceWithURL:url description:[url absoluteString]]];
+        [self.rootViewController pushResource:
+            [ODResource resourceWithURL:url description:[url absoluteString]]
+         ];
     }
 }
 @end

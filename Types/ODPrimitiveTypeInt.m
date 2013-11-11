@@ -15,7 +15,7 @@
 }
 
 - (NSString *)primitiveName {
-    return [NSString stringWithFormat:@"Int%d", _bits];
+    return [NSString stringWithFormat:@"Int%lu", (unsigned long)_bits];
 }
 
 - (id)initWithBits:(NSUInteger)bits {
