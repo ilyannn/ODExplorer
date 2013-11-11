@@ -1,0 +1,4 @@
+platform :ios, '7.0'
+pod "AFNetworking/NSURLConnection", "~> 2.0"
+xcodeproj '../Library/ODExplorerLib'
+workspace '../Workspace'
