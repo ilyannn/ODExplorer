@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 /// Functional enhancements for an array class.
-@interface NSArray (Functional)
+@interface NSArray (ODHFunctional)
 
 - (NSArray *)arrayByMapping: (id(^)(id))func;
 - (NSArray *)arrayByFiltering: (BOOL(^)(id))func;

@@ -5,18 +5,18 @@
 
 #import <Foundation/Foundation.h>
 
-@class LazyMutableArray;
+@class ODHLazyMutableArray;
 
 /// Delegate is expected to do some magic so that values appear in the array.
 @protocol LazyMutableArrayDelegate
 /// The returned range will be used to fill in array[index], array[index+1],...
 /// At least one element MUST be returned.
-- (NSArray *)array:(LazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index;
+- (NSArray *)array:(ODHLazyMutableArray *)lazy missingObjectsFromIndex:(NSUInteger)index;
 @end
 
 /// We need to subclass an NSArray because this implementation should be able to change its
 /// memory footprint dynamically.
-@interface LazyMutableArray : NSMutableArray
+@interface ODHLazyMutableArray : NSMutableArray
 
 /// Delegate is to be set at initialization.
 @property (readonly, weak) id<LazyMutableArrayDelegate> delegate;

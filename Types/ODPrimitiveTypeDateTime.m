@@ -7,7 +7,7 @@
 //
 
 #import "ODPrimitiveTypeDateTime.h"
-#import "JSONDateReader.h"
+#import "ODHJSONDateReader.h"
 
 @implementation ODPrimitiveTypeDateTime
 
@@ -18,7 +18,7 @@
 - (id)dateTimeFormatterV2 {
     static id shared ;
     if (!shared) {
-        shared = [JSONDateReader new];
+        shared = [ODHJSONDateReader new];
     }
     return shared;
 }

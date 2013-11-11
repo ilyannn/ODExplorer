@@ -3,9 +3,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "LazyMutableArray.h"
+#import "ODHLazyMutableArray.h"
 
-@implementation LazyMutableArray {
+@implementation ODHLazyMutableArray {
     NSMutableArray *_objects; // Created lazily, only on -setCount:, insert/add object.
 }
 

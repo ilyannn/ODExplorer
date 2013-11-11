@@ -83,7 +83,7 @@
     }
 }
 
-- (void)setPropertiesObject:(ODType *)object withKey:(NSString *)key {
+- (void)setPropertiesObject:(id)object withKey:(NSString *)key {
     if (self.mutable) {
         [(NSMutableDictionary *)_properties setObject:object forKey:key];
     }

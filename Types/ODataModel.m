@@ -13,7 +13,7 @@
 #import "ODAssociationEnd.h"
 #import "ODataParsingContext.h"
 
-#import "NSArray+Functional.h"
+#import "NSArray+ODHFunctional.h"
 
 #import "ODStructuredType_Mutable.h"
 

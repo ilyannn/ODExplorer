@@ -3,9 +3,9 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "NSArray+Functional.h"
+#import "NSArray+ODHFunctional.h"
 
-@implementation NSArray (Functional)
+@implementation NSArray (ODHFunctional)
 
 - (NSArray *)arrayByMapping:(id (^)(id))func {
     NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[self count]];

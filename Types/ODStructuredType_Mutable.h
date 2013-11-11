@@ -13,6 +13,6 @@
 @property (getter = isMutable, nonatomic) BOOL mutable;
 
 - (void)addKeyPropertiesObject:(NSString *)object;
-- (void)setPropertiesObject:(ODType *)object withKey:(NSString *)key;
+- (void)setPropertiesObject:(id)object withKey:(NSString *)key;
 
 @end
