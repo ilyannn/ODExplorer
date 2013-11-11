@@ -3,8 +3,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /// Operation whose main part can be represented as a series of steps.
 /// Each step can cancel further processing by returning an error.
 /// Steps can be added in subclasses by overriding -steps or on an instance by -addOperationStep:

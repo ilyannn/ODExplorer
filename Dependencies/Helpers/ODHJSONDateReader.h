@@ -3,8 +3,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /// Use instead of NSDateFormatter to parse @"/Date(.../" into date.
 /// Answer from http://stackoverflow.com/a/6065278/115200
 @interface ODHJSONDateReader : NSObject

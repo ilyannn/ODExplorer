@@ -6,12 +6,13 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
+#import "Product.h"
+#import "Supplier.h"
+
 NSString *const kProduct_ProductName = @"ProductName";
 NSString *const kProduct_ProductID = @"ProductID";
 NSString *const kProduct_Supplier = @"Supplier";
 
-#import "Product.h"
-#import "Supplier.h"
 
 @implementation Product {
     __weak Supplier *_Supplier;

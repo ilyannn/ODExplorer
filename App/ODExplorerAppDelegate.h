@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
+@import UIKit;
 
 @interface ODExplorerAppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -3,8 +3,6 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /// Functional enhancements for an array class.
 @interface NSArray (ODHFunctional)
 

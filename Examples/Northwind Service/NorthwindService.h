@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
+@import Foundation;
+
 #import "ODCollection.h"
 
 @interface NorthwindService : ODCollection

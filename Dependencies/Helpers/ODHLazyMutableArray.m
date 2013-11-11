@@ -111,6 +111,10 @@
     
     [self growTo:index];
     
+    if (!anObject) {
+        anObject = [self singleton];
+    }
+    
     if (index == _objects.count) {
         [_objects addObject:anObject];
     } else {

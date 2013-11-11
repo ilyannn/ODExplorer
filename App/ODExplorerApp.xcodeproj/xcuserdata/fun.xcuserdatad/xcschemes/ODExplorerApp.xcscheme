@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3900EEB18153E46007BCE33"
-               BuildableName = "NorthwindGetter.app"
-               BlueprintName = "NorthwindGetter"
-               ReferencedContainer = "container:ODExplorer.xcodeproj">
+               BlueprintIdentifier = "B3900E6218118102007BCE33"
+               BuildableName = "ODExplorerApp.app"
+               BlueprintName = "ODExplorerApp"
+               ReferencedContainer = "container:ODExplorerApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3900EEB18153E46007BCE33"
-            BuildableName = "NorthwindGetter.app"
-            BlueprintName = "NorthwindGetter"
-            ReferencedContainer = "container:ODExplorer.xcodeproj">
+            BlueprintIdentifier = "B3900E6218118102007BCE33"
+            BuildableName = "ODExplorerApp.app"
+            BlueprintName = "ODExplorerApp"
+            ReferencedContainer = "container:ODExplorerApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3900EEB18153E46007BCE33"
-            BuildableName = "NorthwindGetter.app"
-            BlueprintName = "NorthwindGetter"
-            ReferencedContainer = "container:ODExplorer.xcodeproj">
+            BlueprintIdentifier = "B3900E6218118102007BCE33"
+            BuildableName = "ODExplorerApp.app"
+            BlueprintName = "ODExplorerApp"
+            ReferencedContainer = "container:ODExplorerApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3900EEB18153E46007BCE33"
-            BuildableName = "NorthwindGetter.app"
-            BlueprintName = "NorthwindGetter"
-            ReferencedContainer = "container:ODExplorer.xcodeproj">
+            BlueprintIdentifier = "B3900E6218118102007BCE33"
+            BuildableName = "ODExplorerApp.app"
+            BlueprintName = "ODExplorerApp"
+            ReferencedContainer = "container:ODExplorerApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
