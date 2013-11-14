@@ -20,7 +20,7 @@
 
 - (void)addResourceToList:(ODResource *)resource {
     ODOperation *operation = [ODOperation new];
-    [operation addOperationStep:^NSError *(id op) {
+    [operation addLastOperationStep:^NSError *(id op) {
         [self.childrenArray addObject:[ODResource resourceByURLCopy:resource in:self.retrievalInfo]];
         return nil;
     }];
@@ -29,7 +29,7 @@
 
 - (void)removeResourceFromList:(ODResource *)resource {
     ODOperation *operation = [ODOperation new];
-    [operation addOperationStep:^NSError *(id op) {
+    [operation addLastOperationStep:^NSError *(id op) {
         [self.childrenArray removeObject:resource];
         return nil;
     }];

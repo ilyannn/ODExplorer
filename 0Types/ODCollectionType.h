@@ -14,4 +14,6 @@
 - (instancetype)initWithElementType:(ODType *)elementType;
 @property (readonly) ODNominalType *elementType;
 
+- (BOOL)isEqual:(id)object;
+
 @end

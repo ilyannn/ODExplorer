@@ -10,8 +10,9 @@
 
 @interface ODMutableStructuredType : ODStructuredType 
 
-- (id)initWithName:(NSString *)name;
-@property (readonly) NSString *name;
+- (instancetype)initWithName:(NSString *)name;
+
+@property (readwrite, copy) NSString *name;
 @property (readonly) NSMutableDictionary *properties;
 @property (readonly) NSMutableArray *keyProperties;
 

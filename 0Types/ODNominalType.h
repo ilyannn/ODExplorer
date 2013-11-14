@@ -13,4 +13,6 @@
 @property (readonly) NSString *name;
 - (id)valueForJSONObject:(id)obj;
 
+- (BOOL)isEqual:(id)object;
+
 @end

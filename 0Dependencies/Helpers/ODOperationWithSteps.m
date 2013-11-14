@@ -7,26 +7,37 @@
 
 @interface ODOperationWithSteps ()
 @property (atomic) NSMutableArray *allSteps;
+@property (nonatomic) NSError *error;
 @end
 
 @implementation ODOperationWithSteps
 
-- (id)init
-{
+- (id)init {
     self = [super init];
-
+    
     if (self) {
         [self cleanOperationSteps];
     }
-
+    
     return self;
 }
 
-- (void)addOperationStep:(NSError *(^)(id))step {
-    __weak id weakSelf = self;
-    [self.allSteps addObject: ^() {
-        return step(weakSelf);
-    }];
+- (void)addLastOperationStep:(NSError *(^)(id))step {
+    if (![self isExecuting]) {
+        __weak id weakSelf = self;
+        [self.allSteps addObject: ^() {
+            return step(weakSelf);
+        }];
+    }
+}
+
+- (void)addFirstOperationStep:(NSError *(^)(id))step {
+    if (![self isExecuting]) {
+        __weak id weakSelf = self;
+        [self.allSteps insertObject: ^() {
+            return step(weakSelf);
+        } atIndex:0];
+    }
 }
 
 - (void)addCompletionBlock:(void (^)(id))added {
@@ -40,14 +51,15 @@
 }
 
 - (void)main {
-    _error = [self performSteps:self.allSteps];
+    [self performSteps:self.allSteps];
     [self cleanOperationSteps];
 }
 
-- (NSError *)handleError:(NSError *)error onStep:(NSUInteger)step {
-    NSLog(@"Operation %@ has reported on step %lu/%lu: %@", self, (unsigned long)step, (unsigned long)[_allSteps count], error);
-    return error;
-}
+/*- (void)handleError:(NSError *)error onStep:(NSUInteger)step {
+ NSLog(@"Operation %@ has reported on step %lu/%lu: %@", self, (unsigned long)step, (unsigned long)[_allSteps count], error);
+ return !!error;
+ }
+ */
 
 - (NSString *)description {
     return NSStringFromClass([self class]);
@@ -66,13 +78,10 @@
     self.allSteps = ([self isFinished] || [self isCancelled]) ? nil : [[self steps] mutableCopy];
 }
 
-- (NSError *)performSteps:(NSArray *)steps {
-    __block NSError *error;
+- (void)performSteps:(NSArray *)steps {
     [steps enumerateObjectsUsingBlock: ^(NSError * (^step)(), NSUInteger idx, BOOL *stop) {
-        *stop = [self isCancelled] ||( !!(error = step()) && (!!(error = [self handleError:error onStep:idx])) );
+        *stop = [self isCancelled] && !!(self.error = step());
     }];
-    return error ;
 }
-
 
 @end

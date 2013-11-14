@@ -11,7 +11,11 @@
 
 @implementation ODMutableStructuredType 
 
-- (id)initWithName:(NSString *)name {
+- (instancetype)init {
+    return [self initMutableWithName:nil];
+}
+
+- (instancetype)initWithName:(NSString *)name {
     return [super initMutableWithName:name];
 }
 

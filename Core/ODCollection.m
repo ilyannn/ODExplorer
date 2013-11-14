@@ -56,7 +56,7 @@
 
 - (void)retrieveCount { 
     ODCountOperation *operation = [ODCountOperation operationWithResource: self];
-    [operation addOperationStep:^NSError *(ODCountOperation *operation) {
+    [operation addLastOperationStep:^NSError *(ODCountOperation *operation) {
         self.resourceValue = @(operation.responseCount);
         return nil;
     }];

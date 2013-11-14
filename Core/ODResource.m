@@ -185,7 +185,7 @@
 
 - (ODRetrieveOperation *)retrieveOperation {
     ODRetrieveOperation *operation = [ODRetrieveOperation operationWithResource:self];
-    [operation addOperationStep:^NSError *(ODRetrieveOperation *op) {
+    [operation addLastOperationStep:^NSError *(ODRetrieveOperation *op) {
         ODAssertInModel(op.responseKind == self.kind || self.kind == ODResourceKindUnknown,
                      @"Expected a dictionary where array was given or vice versa.");
         self.kind = op.responseKind;
@@ -204,7 +204,7 @@
     
     // If the server returns first items in the collection, we need to ask it about
     // count as well.
-    [operation addOperationStep:^NSError *(ODRetrieveOperation *op) {
+    [operation addLastOperationStep:^NSError *(ODRetrieveOperation *op) {
         if (op.indeterminateCount && self.kind == ODResourceKindCollection) {
             [self countCollection];
         }

@@ -34,5 +34,17 @@
     return NO;
 }
 
+- (ODType *)parentType {
+    return nil;
+}
+
+- (BOOL)isSubtypeOf:(ODType *)parentType {
+    for (ODType *ancestor = self; ancestor; ancestor = [ancestor parentType]) {
+        if ([self isEqual: parentType]) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 @end

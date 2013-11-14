@@ -20,7 +20,6 @@
 /// This attribute holds names of key properties.
 @property (readonly) NSArray *keyProperties;
 
-
 // - (ODStructuredType *)copy;
 // - (ODMutableStructuredType *)mutableCopy;
 @end

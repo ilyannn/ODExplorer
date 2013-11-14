@@ -15,4 +15,6 @@
 - (void)addKeyPropertiesObject:(NSString *)object;
 - (void)setPropertiesObject:(id)object withKey:(NSString *)key;
 
+@property (readwrite, copy) NSString *name;
+
 @end

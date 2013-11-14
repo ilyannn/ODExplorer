@@ -47,7 +47,7 @@
 
 - (ODCountOperation *)countCollectionOperation { ODCollectionAssert
     ODCountOperation *operation = [ODCountOperation operationWithResource:self];
-    [operation addOperationStep:^NSError *(ODCountOperation *op) {
+    [operation addLastOperationStep:^NSError *(ODCountOperation *op) {
         self.resourceValue = @(op.responseCount);
         if ([self.childrenArray count] != op.responseCount) {
             id array = self.childrenArray;
@@ -78,7 +78,7 @@
         [results addObject:[[ODEntity alloc] initWithRetrievalInfo:info]];
     }
     
-    [operation addOperationStep:^NSError *(ODQueryOperation *op) {
+    [operation addLastOperationStep:^NSError *(ODQueryOperation *op) {
         [op.responseResults enumerateObjectsUsingBlock: ^(ODEntity *obj, NSUInteger resultIndex, BOOL *stop) {
             lazy[index + resultIndex] = obj;
         }];
@@ -145,7 +145,7 @@
 - (ODMetadataOperation *)retrieveMetadataOperation {
     
     ODMetadataOperation *operation = [ODMetadataOperation operationWithResource:self];
-    [operation addOperationStep:^NSError *(ODMetadataOperation * op) {
+    [operation addLastOperationStep:^NSError *(ODMetadataOperation * op) {
         if (![self.retrievalInfo respondsToSelector:@selector(setMetadataModel:)]) {
             ODRouteMetadata *route = [ODRouteMetadata new];
             route.parent = self.retrievalInfo;

@@ -89,4 +89,10 @@
     }
 }
 
+- (void)setName:(NSString *)name {
+    if (![name isEqualToString:_name] && _mutable) {
+        _name = [name copy];
+    }
+}
+
 @end

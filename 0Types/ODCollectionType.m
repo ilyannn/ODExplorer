@@ -29,4 +29,9 @@
     return [NSString stringWithFormat:@"Collection(%@)", self.elementType];
 }
 
+- (BOOL)isEqual:(ODCollectionType *)object {
+    return [object isKindOfClass:[ODCollectionType class]]
+           && [self.elementType isEqual:object.elementType];
+}
+
 @end

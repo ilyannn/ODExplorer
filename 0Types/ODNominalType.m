@@ -26,4 +26,9 @@
     return [NSString stringWithFormat:@"%@{name = %@}", [super description], [self name]];
 }
 
+- (BOOL)isEqual:(ODNominalType *)object {
+    return [object isKindOfClass:[ODNominalType class]] && [self.name isEqual:object.name];
+}
+
+
 @end

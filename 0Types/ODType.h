@@ -17,5 +17,9 @@
 - (BOOL) isEntity;
 - (BOOL) isNotImplemented;
 
+- (ODType *)parentType;
+
 - (BOOL) hasKeys;
+- (BOOL) isSubtypeOf:(ODType *)parentType;
+
 @end
