@@ -406,7 +406,7 @@
 				B30261831830DC1C00DFDF03 /* NSData_Base64 */,
 			);
 			name = "Library - Helpers";
-			path = ../0Dependencies/Helpers;
+			path = ../BaseHelpers;
 			sourceTree = "<group>";
 		};
 		B30261831830DC1C00DFDF03 /* NSData_Base64 */ = {
@@ -441,7 +441,7 @@
 				B302621E1830E03B00DFDF03 /* Nominal Types */,
 			);
 			name = "Library - Types";
-			path = ../0Types;
+			path = ../BaseTypes;
 			sourceTree = "<group>";
 		};
 		B302621E1830E03B00DFDF03 /* Nominal Types */ = {
