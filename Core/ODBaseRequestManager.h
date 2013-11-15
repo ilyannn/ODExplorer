@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODManaging.h"
+#import "ODManager.h"
 
 typedef NS_ENUM (NSInteger, ODPropertyChangeStrategy) {
     ODPropertyChangeIgnore,
@@ -22,7 +22,7 @@ typedef NS_ENUM (NSInteger, ODPropertyFaultStrategy) {
     ODPropertyUnfaultProperty
 };
 
-@interface ODBaseRequestManager : NSObject <ODManaging>
+@interface ODBaseRequestManager : ODManager <ODManaging>
 
 // New manager gets separate operations queue by default
 @property NSOperationQueue *operationQueue;

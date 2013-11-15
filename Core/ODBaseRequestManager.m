@@ -31,7 +31,7 @@
     }
 }
 
-- (BOOL)handleOperation:(ODOperation *)operation {
+- (BOOL)willHandle:(ODOperation *)operation {
     [operation addCompletionBlock: ^ (ODOperation * op) {
         if (op.error) {
             NSLog(@"%@", op.error);

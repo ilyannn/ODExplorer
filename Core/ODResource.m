@@ -18,6 +18,7 @@
 #import "ODOperationError+Parsing.h"
 
 #import "ODType.h"
+#import "ODManager.h"
 
 @implementation ODResource {
     NSArray *_childrenArray;
@@ -56,8 +57,8 @@
     return nil;
 }
 
-+ (instancetype)resourceWithInfo:(id<ODRetrieving>)info {
-    return [[self alloc] initWithRetrievalInfo:info];
++ (instancetype)resourceWithInfo:(id<ODRouting>)info {
+    return !info ? nil : [[self alloc] initWithRetrievalInfo:info];
 }
 
 + (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description {
@@ -75,11 +76,11 @@
     return [self resourceWithURL:[NSURL URLWithString:URLString] description:nil];
 }
 
-+ (instancetype)resourceByURLCopy:(id<ODResource>)resource in:(id<ODRetrieving>)parentInfo {
++ (instancetype)resourceByURLCopy:(id<ODResource>)resource in:(id<ODRouting>)parentInfo {
     ODRetrieveByURL *info = [ODRetrieveByURL new];
     info.URL = [resource URL];
     info.shortDescription = [resource shortDescription];
-    info.parent = parentInfo;
+    info.parentRoute = parentInfo;
     return [ODResource resourceWithInfo:info];
 }
 
@@ -126,10 +127,6 @@
 
 - (NSString *)shortDescription {
     return [self.retrievalInfo shortDescription];
-}
-
-- (void)handleOperation:(ODOperation *)operation {
-    [self.retrievalInfo handleOperation:operation];
 }
 
 - (void)clean {
@@ -185,6 +182,7 @@
 
 - (ODRetrieveOperation *)retrieveOperation {
     ODRetrieveOperation *operation = [ODRetrieveOperation operationWithResource:self];
+
     [operation addLastOperationStep:^NSError *(ODRetrieveOperation *op) {
         ODAssertInModel(op.responseKind == self.kind || self.kind == ODResourceKindUnknown,
                      @"Expected a dictionary where array was given or vice versa.");
@@ -227,6 +225,11 @@
         
         default:;
     }
+}
+
+- (id<ODManaging>)parentManager {
+    id manager = [super parentManager];
+    return manager ? manager : [ODManager sharedManager];
 }
 
 @end

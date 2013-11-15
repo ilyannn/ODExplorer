@@ -26,7 +26,7 @@
     return self;
 }
 
-- (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id <ODRetrieving> )parentInfo {
+- (instancetype)initFromDict:(NSDictionary *)dict parentInfo:(id <ODRouting> )parentInfo {
     ODRetrieveBase *info;
     return [self initWithRetrievalInfo:info];
 }
@@ -47,7 +47,7 @@
     //    target.retrievalInfo.parent = self.retrievalInfo;
     
     ODRetrievalOfProperty *retrievalInfo = [ODRetrievalOfProperty new];
-    retrievalInfo.parent = self.retrievalInfo;
+    retrievalInfo.parentRoute = self.retrievalInfo;
     retrievalInfo.propertyName = name;
     
 //    return [self.entityType entityWithInfo:retrievalInfo];

@@ -10,7 +10,6 @@
 @class ODOperation;
 
 @protocol ODManaging <NSObject>
-/// Returns YES if the operation has been handled and no further processing is necessary.
-- (BOOL)handleOperation:(ODOperation *)operation;
+- (void)handleOperation:(ODOperation *)operation;
 @end
 

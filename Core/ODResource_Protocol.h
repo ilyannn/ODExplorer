@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODType;
+@class ODType, ODManager;
 @class ODOperation, ODRetrieveOperation;
 
-@protocol ODRetrieving;
+@protocol ODRouting;
+
+#import "ODManaging.h"
 
 typedef NS_ENUM (NSInteger, ODResourceKind) {
     ODResourceKindUnknown = 0,
@@ -34,12 +36,12 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 /// Public information about properties and methods of ODResource that are common
 /// between entities and collections.
-@protocol ODResource <NSObject>
+@protocol ODResource <ODManaging>
 
 #pragma mark - (1) how to get a resource
 
 // We can create a resource object by different means.
-- (id<ODRetrieving>) retrievalInfo;
+- (id<ODRouting>) retrievalInfo;
 
 // In any case a resource has an URL and a description.
 @property (readonly, nonatomic) NSURL *URL;
@@ -51,7 +53,6 @@ typedef NS_ENUM (NSInteger, ODResourceKind) {
 
 // This is either this entity's entity type or collection's entity type.
 @property (nonatomic) ODType *type;
-
 
 #pragma mark - (3) and (4) values of resource and its children
 

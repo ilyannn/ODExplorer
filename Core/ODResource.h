@@ -7,6 +7,7 @@
 //
 
 #import "ODResource_Protocol.h"
+#import "ODManager.h"
 
 /// This class implements all of functionality for resources, but declares only the base part.
 
@@ -20,7 +21,7 @@
 /// One can drop information (3) about the resource by calling -clean. It's not possible to
 /// get rid of (2) except by creating a new object.
 
-@interface ODResource : NSObject <ODResource>
+@interface ODResource : ODManager <ODResource>
 
 // Use +new or +unique initializer in subclasses if you defined +resourceDict.
 + (instancetype)new;
@@ -29,9 +30,9 @@
 + (instancetype)resourceWithURL:(NSURL *)URL description:(NSString *)description;
 + (instancetype)resourceWithDict:(id)dict;
 + (instancetype)resourceWithURLString:(NSString *)URLString;
-+ (instancetype)resourceWithInfo:(id<ODRetrieving>)info;
-+ (instancetype)resourceByURLCopy:(id<ODResource>)resource in:(id<ODRetrieving>)parentInfo;
-- (instancetype)initWithRetrievalInfo:(id<ODRetrieving>)info;
++ (instancetype)resourceWithInfo:(id<ODRouting>)info;
++ (instancetype)resourceByURLCopy:(id<ODResource>)resource in:(id<ODRouting>)parentInfo;
+- (instancetype)initWithRetrievalInfo:(id<ODRouting>)info;
 
 + (NSDictionary *)resourceDict;
 

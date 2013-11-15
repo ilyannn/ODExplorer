@@ -74,7 +74,7 @@
     for (NSUInteger batchIndex = 0; (batchIndex < batchSize) && (index + batchIndex < totalCount) ; batchIndex ++) {
         ODRetrievalByIndex *info = [ODRetrievalByIndex new];
         info.index = index + batchIndex;
-        info.parent = self.retrievalInfo;
+        info.parentRoute = (id<ODRetrievingByPath>)self.retrievalInfo;
         [results addObject:[[ODEntity alloc] initWithRetrievalInfo:info]];
     }
     
@@ -82,6 +82,10 @@
         [op.responseResults enumerateObjectsUsingBlock: ^(ODEntity *obj, NSUInteger resultIndex, BOOL *stop) {
             lazy[index + resultIndex] = obj;
         }];
+        // Delete placeholder objects when response contains less elements than we expected.
+        for (NSUInteger notIndex = op.responseResults.count; notIndex < batchSize; notIndex ++) {
+            [lazy replaceObjectAtIndex:index + notIndex withObject:nil];
+        }
         return nil;
     }];
 
@@ -104,13 +108,13 @@
                 ODRetrievalOfEntitySet *info = [ODRetrievalOfEntitySet new];
                 info.entitySetPath = url;
                 info.shortDescription = name;
-                info.parent = self.retrievalInfo;
+                info.parentRoute = self.retrievalInfo;
                 [result addObject:[ODCollection resourceWithInfo:info]];
 
             } else {
                 
                 ODRetrievalByIndex *info = [ODRetrievalByIndex new];
-                info.parent = self.retrievalInfo;
+                info.parentRoute = self.retrievalInfo;
                 info.index = idx;
                 ODEntity *entity = [ODEntity resourceWithInfo:info];
                 NSError *error = [entity parseFromJSONDictionary:obj];
@@ -129,7 +133,7 @@
             ODRetrievalOfEntitySet *info = [ODRetrievalOfEntitySet new];
             info.entitySetPath = name;
             info.shortDescription = name;
-            info.parent = self.retrievalInfo;
+            info.parentRoute = self.retrievalInfo;
             [result addObject:[ODCollection resourceWithInfo:info]];
         }
     }];
@@ -148,7 +152,7 @@
     [operation addLastOperationStep:^NSError *(ODMetadataOperation * op) {
         if (![self.retrievalInfo respondsToSelector:@selector(setMetadataModel:)]) {
             ODRouteMetadata *route = [ODRouteMetadata new];
-            route.parent = self.retrievalInfo;
+            route.parentRoute = self.retrievalInfo;
             self.retrievalInfo = route;
         }
         [(ODRouteMetadata *)self.retrievalInfo setMetadataModel:op.responseModel];

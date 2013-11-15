@@ -1,32 +1,20 @@
 //
-//  ODRetrievalInfo.h
-//  OIDataNorth
-//
 //  Created by ilya on 10/26/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "ODManaging.h"
-#import "ODRetrieving_Protocol.h"
-
-@class ODataModel;
+#import "ODRouting.h"
 
 /// Base class to retrieve information about a resource within a context.
 /// It is kind of abstract. Since the URL is nil and can't be changed, the only
 /// way to get something useful from object of this class is by setting a non-trivial parent.
-/// So directly instantiating ODRetrievalInfo with a parent is a way to create a separate copy of the resource.
-@interface ODRetrieveBase : NSObject <ODRetrieving>
+/// So directly instantiating ODRetrievalInfo with a parent is a way to create a separate copy
+/// of the resource.
 
-+ (ODRetrieveBase *)sharedRoot;
-+ (void)setSharedRoot:(ODRetrieveBase *)info;
+@interface ODRetrieveBase : NSObject <ODRouting>
 
-@property id<ODRetrieving> parent;
+@property id<ODRouting> parentRoute;
 @property NSURL *knownURL;
-
-- (void)addManager:(id<ODManaging>)manager;
-@property (readonly) NSArray *managers;
-
-- (ODType *)metadataType;
 
 @end
 
@@ -38,7 +26,7 @@
 @end
 
 // Going from the root down, you can retrieve by relative path.
-@protocol ODRetrievingByPath <ODRetrieving>
+@protocol ODRetrievingByPath <ODRouting>
 - (NSString *)relativePath;
 @end
 
@@ -60,7 +48,7 @@
 // Sometimes we can retrieve by adding brackets to the existing URL.
 // This is possible only if the parent conforms to a stricter protocol.
 @interface ODRetrievalByBrackets : ODRetrieveBase
-@property id<ODRetrievingByPath> parent;
+@property id<ODRetrievingByPath> parentRoute;
 - (NSString *)bracketPart;
 @end
 
@@ -78,6 +66,13 @@
 @interface ODRetrievalByMutableKeys : ODRetrievalByBrackets
 @property NSMutableDictionary *keys;
 @end
+
+@interface ODRouteTypeDescriptor: ODRetrieveBase
+@property ODType *metadataType;
+@end
+
+// TODO
+#import "ODMetadataOperation.h"
 
 @interface ODRouteMetadata : ODRetrieveBase
 @property ODataModel *metadataModel;

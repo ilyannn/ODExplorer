@@ -42,7 +42,7 @@
 - (ODResource *)propertyForKey:(NSString *)key {
     ODRetrievalOfProperty *info = [ODRetrievalOfProperty new];
     info.propertyName = key;
-    info.parent = self.retrievalInfo;
+    info.parentRoute = self.retrievalInfo;
 
     ODResource *property =  [ODResource resourceWithInfo:info];
     property.resourceValue = self.localProperties[key];
@@ -63,7 +63,7 @@
         if ([key isEqualToString:@"odata.id"]) {
             if ([obj isKindOfClass:[NSString class]]) {
                 ODRetrieveByURL *info = [ODRetrieveByURL new];
-                info.parent = self.retrievalInfo;
+                info.parentRoute = self.retrievalInfo;
                 info.URL = [NSURL URLWithString:obj relativeToURL:[self URL]];
                 if (info.URL) self.retrievalInfo = info;
             }
@@ -83,7 +83,7 @@
             NSArray *components = [key componentsSeparatedByString:@"@"];
             if (components.count == 2 && [components[1] isEqualToString:@"odata.navigationLinkUrl"]) {
                 ODRetrievalOfProperty *info = [ODRetrievalOfProperty new];
-                info.parent = self.retrievalInfo;
+                info.parentRoute = self.retrievalInfo;
                 info.propertyName = components[0];
                 self.navigationProperties[components[0]] = [ODResource resourceWithInfo:info];
                 return;
@@ -96,7 +96,7 @@
         
         if ([obj isKindOfClass:NSDictionary.class]) {
             ODRetrievalOfProperty *retrieval = [ODRetrievalOfProperty new];
-            retrieval.parent = self.retrievalInfo;
+            retrieval.parentRoute = self.retrievalInfo;
             retrieval.propertyName = key;
             
             /* ODEntity *entity = [[ODEntity alloc] initFromDict:obj];

@@ -1,7 +1,4 @@
 //
-//  ODRetrievalInfo.m
-//  OIDataNorth
-//
 //  Created by ilya on 10/26/13.
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
@@ -9,71 +6,22 @@
 #import "ODRetrieving_Objects.h"
 #import "ODBaseRequestManager.h"
 
-@implementation ODRetrieveBase {
-    NSMutableArray *_managers;
-}
-
-static ODRetrieveBase *_sharedRootInfo;
-
-+ (ODRetrieveBase *)sharedRoot {
-    if (!_sharedRootInfo) {
-        _sharedRootInfo = [self new];
-        [_sharedRootInfo addManager: [ODBaseRequestManager new]];
-    }
-    return _sharedRootInfo;
-}
-
-+ (void)setSharedRoot:(ODRetrieveBase *)info {
-    _sharedRootInfo = info;
-}
+@implementation ODRetrieveBase
 
 - (BOOL)isRootURL {
     return NO;
 }
 
-- (NSArray *)managers {
-    return [_managers copy];
-}
-
-- (void)addManager:(id)manager {
-    [_managers insertObject:manager atIndex:0];
-}
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        _managers = [NSMutableArray new];
-    }
-    return self;
-}
-
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//- (id)getFromHierarchy:(SEL)selector {
-//    id value = [self performSelector:selector];
-//    if (value) return value;
-//    return [self.parent getFromHierarchy:selector];
-//}
-//#pragma clang diagnostic pop
-
-- (void)handleOperation:(id)operation {
-    for (id<ODManaging> manager in [self managers]) {
-        if ([manager handleOperation:operation]) return;
-    }
-    ODRetrieveBase *target = self.parent ? self.parent : [self.class sharedRoot];
-    [target handleOperation:operation];
-}
-
 - (NSURL *)URL {
-    return [self.parent URL];
+    return [self.parentRoute URL];
 }
 
 - (NSString *)shortDescription {
-    return [self.parent shortDescription];
+    return [self.parentRoute shortDescription];
 }
 
 - (ODType *)metadataType {
-    return [self.parent metadataType];
+    return [self.parentRoute metadataType];
 }
 
 @end
@@ -81,7 +29,7 @@ static ODRetrieveBase *_sharedRootInfo;
 @implementation ODRetrieveByURL
 
 - (BOOL)isRootURL {
-    return !!self.URL && ![self.parent URL];
+    return !!self.URL && ![self.parentRoute URL];
 }
 
 @end
@@ -89,7 +37,7 @@ static ODRetrieveBase *_sharedRootInfo;
 @implementation ODRetrievalByPath
 
 - (NSURL *)URL {
-    return [[self.parent URL] URLByAppendingPathComponent:[self relativePath]];
+    return [[self.parentRoute URL] URLByAppendingPathComponent:[self relativePath]];
 }
 
 - (NSString *)relativePath {
@@ -111,7 +59,7 @@ static ODRetrieveBase *_sharedRootInfo;
 }
 
 - (ODType *)metadataType {
-    ODType *type = [self.parent metadataType];
+    ODType *type = [self.parentRoute metadataType];
     if (![type respondsToSelector:@selector(model)]) {
         return nil;
     }
@@ -128,7 +76,7 @@ static ODRetrieveBase *_sharedRootInfo;
 }
 
 - (ODType *)metadataType {
-    ODType *type = [self.parent metadataType];
+    ODType *type = [self.parentRoute metadataType];
     if (![type respondsToSelector:@selector(properties)]) {
         return nil;
     }
@@ -152,8 +100,8 @@ static ODRetrieveBase *_sharedRootInfo;
 
 - (NSURL *)URL {
     if (self.knownURL) return self.knownURL;
-    NSString *relative = [NSString stringWithFormat:@"%@(%@)", [self.parent relativePath], [self bracketPart]];
-    return [[[self.parent URL] URLByDeletingLastPathComponent] URLByAppendingPathComponent:relative];
+    NSString *relative = [NSString stringWithFormat:@"%@(%@)", [self.parentRoute relativePath], [self bracketPart]];
+    return [[[self.parentRoute URL] URLByDeletingLastPathComponent] URLByAppendingPathComponent:relative];
 }
 
 
@@ -195,6 +143,9 @@ static ODRetrieveBase *_sharedRootInfo;
 
 @end
 
+@implementation ODRouteTypeDescriptor
+
+@end
 
 @implementation ODRouteMetadata
 

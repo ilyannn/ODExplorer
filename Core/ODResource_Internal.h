@@ -12,7 +12,7 @@
 
 @property id resourceValue;
 @property NSArray *childrenArray; 
-@property id<ODRetrieving> retrievalInfo;
+@property id<ODRouting> retrievalInfo;
 
 @property (nonatomic) NSMutableDictionary *remoteProperties;
 @property (nonatomic) NSMutableDictionary *navigationProperties;
