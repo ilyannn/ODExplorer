@@ -9,6 +9,7 @@
 /// Answer from http://stackoverflow.com/a/6065278/115200
 @interface ODJSONDateFormatter : ODDateFormatter
 
-+ (NSDate *)dateFromString:(NSString *)string; // custom method
+// this converter doesn't need instance data
++ (NSDate *)dateFromString:(NSString *)string;
 
 @end

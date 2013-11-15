@@ -25,7 +25,7 @@
 - (void)addLastOperationStep:(NSError *(^)(id))step {
     if (![self isExecuting]) {
         __weak id weakSelf = self;
-        [self.allSteps addObject: ^() {
+        [self.allSteps addObject: ^ {
             return step(weakSelf);
         }];
     }
@@ -34,7 +34,7 @@
 - (void)addFirstOperationStep:(NSError *(^)(id))step {
     if (![self isExecuting]) {
         __weak id weakSelf = self;
-        [self.allSteps insertObject: ^() {
+        [self.allSteps insertObject: ^ {
             return step(weakSelf);
         } atIndex:0];
     }
@@ -44,7 +44,7 @@
     __weak id weakSelf = self;
     void (^block)(void) = self.completionBlock;
     
-    self.completionBlock = ^() {
+    self.completionBlock = ^ {
         if (added) added(weakSelf);
         if (block) block();
     };

@@ -28,7 +28,7 @@
 
 - (NSArray *)steps {
     __weak id self_ = self;
-    return [[super steps] arrayByAddingObject: ^(){ return [self_ processPlainResponse]; }];
+    return [[super steps] arrayByAddingObject: ^ { return [self_ processPlainResponse]; }];
 }
 
 @end

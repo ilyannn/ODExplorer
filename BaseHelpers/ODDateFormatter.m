@@ -12,39 +12,6 @@
 
 @implementation ODDateFormatter
 
-- (void)setDateStyle:(NSDateFormatterStyle)style { MUTATES
-    [super setDateStyle:style];
-}
-
-- (void)setTimeStyle:(NSDateFormatterStyle)style { MUTATES
-    [super setTimeStyle:style];
-}
-
-- (void)setTimeZone:(NSTimeZone *)tz { MUTATES
-    [super setTimeZone:tz];
-}
-
-- (void)setLocale:(NSLocale *)locale { MUTATES
-    [super setLocale:locale];
-}
-
-- (void)setDateFormat:(NSString *)string { MUTATES
-    [super setDateFormat:string];
-}
-
-- (void)setFormatterBehavior:(NSDateFormatterBehavior)behavior { MUTATES
-    [super setFormatterBehavior:behavior];
-}
-
-- (void)setCalendar:(NSCalendar *)calendar { MUTATES
-    [super setCalendar:calendar];
-}
-
-- (void)setImmutable:(BOOL)immutable {
-    NSAssert(immutable, @"It's not possible to turn immutable back into mutable");
-    _immutable = immutable;
-}
-
 - (BOOL)testDate:(NSDate *)date {
     NSString *string = [self stringFromDate:date];
     if (!string) return NO;
@@ -58,6 +25,25 @@
 
 - (NSDate *)dateFromString:(NSString *)string {
     return nil;
+}
+
+- (NSString *)stringFromDate:(NSDate *)date {
+    return nil;
+}
+
+- (NSString *)stringForObjectValue:(id)obj {
+    return [obj isKindOfClass:[NSDate class]] ? [self stringFromDate:obj] : nil;
+}
+
+- (BOOL)getObjectValue:(id *)anObject forString:(NSString *)string errorDescription:(NSString **)error {
+    NSDate *date = [self dateFromString:string];
+    *anObject = date;
+
+    if (!date && error) {
+        *error = NSLocalizedString(@"Couldn’t convert string to date.", @"Error when converting");
+    }
+    
+    return !!date;
 }
 
 @end

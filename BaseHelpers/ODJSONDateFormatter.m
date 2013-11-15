@@ -9,14 +9,16 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.immutable = YES;
     }
     return self;
 }
 
 // Method to parse /Date(...)/ strings.
-// Answer from http://stackoverflow.com/a/6065278/115200
 + (NSDate *)dateFromString:(NSString *)string {
+    
+    if (!string.length || [string characterAtIndex:0] != '/') return nil;
+    
+    // Answer from http://stackoverflow.com/a/6065278/115200
     static NSRegularExpression *dateRegEx = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -38,6 +40,7 @@
         
         return [NSDate dateWithTimeIntervalSince1970:seconds];
     }
+    
     return nil;
 }
 

@@ -31,16 +31,13 @@ dispatch_once(&token, ^{block}); return singleton; }
     singleton = [ODISO8601DateFormatter new];
 })
 
+// We avoid creating any date formatters here, but rather call corresponding
+// functions directly. This sidesteps 'NSDateFormatter not thread-safe' problem.
 - (NSDate *)valueForJSONString:(NSString *)string {
-    if (![string length]) return nil;
-
-    // We avoid creating any date formatters here, but rather call corresponding
-    // functions directly. This sidesteps 'NSDateFormatter not thread-safe' problem.
-    if ([string characterAtIndex:0] == '/') {
-        return [ODJSONDateFormatter dateFromString:string];
-    } else {
-        return [ODISO8601DateFormatter dateFromString:string];
-    }
+    id date = [ODJSONDateFormatter dateFromString:string];
+    if (date) return date;
+    
+    return [ODISO8601DateFormatter dateFromString:string];
 }
 
 - (NSDate *)valueForJSONNumber:(NSNumber *)obj {

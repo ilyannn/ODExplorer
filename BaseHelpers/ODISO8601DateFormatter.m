@@ -10,13 +10,15 @@
 
 #import "CBLParseDate.h"
 
-@implementation ODISO8601DateFormatter
+@implementation ODISO8601DateFormatter {
+    NSDateFormatter *_outDateFormatter;
+}
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-        self.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
-        self.immutable = YES;
+        _outDateFormatter = [NSDateFormatter new];
+        _outDateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+        _outDateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
     }
     return self;
 }
@@ -28,6 +30,11 @@
 
 - (NSDate *)dateFromString:(NSString *)string {
     return [[self class] dateFromString:string];
+}
+
+- (NSString *)stringFromDate:(NSDate *)date {
+    // I hope at least this is thread-safe.
+    return [_outDateFormatter stringFromDate:date];
 }
 
 @end

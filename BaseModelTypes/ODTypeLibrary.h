@@ -6,7 +6,10 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-@class ODType, ODNominalType, ODStructuredType, ODCollectionType;
+#import "ODPrimitiveType.h"
+#import "ODCollectionType.h"
+#import "ODStructuredType.h"
+
 @class ODAssociationEnd;
 
 @interface ODTypeLibrary : NSObject
@@ -18,6 +21,7 @@
 
 @property (readonly) ODStructuredType *baseEntityType;
 @property (readonly) ODCollectionType *baseCollectionType;
+@property (readonly) ODPrimitiveType *unknownPrimitiveType;
 
 - (void)addNominalTypes:(NSSet *)objects;
 - (void)addNominalTypesObject:(ODNominalType *)type;

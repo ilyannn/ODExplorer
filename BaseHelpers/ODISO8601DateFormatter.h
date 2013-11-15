@@ -10,6 +10,7 @@
 /// Using http://github.com/couchbase/couchbase-lite-ios/blob/master/Source/CBLParseDate.c
 @interface ODISO8601DateFormatter : ODDateFormatter
 
-+ (NSDate *)dateFromString:(NSString *)string; // custom method
+// this converter doesn't need instance data
++ (NSDate *)dateFromString:(NSString *)string;
 
 @end

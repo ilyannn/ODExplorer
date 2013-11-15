@@ -13,8 +13,6 @@
 #import "ODStructuredType.h"
 #import "ODNominalTypeProxy.h"
 
-#import "ODType+Primitive.h"
-
 @interface ODTypeLibrary (BasicTypes)
 - (void)nameBasicTypes;
 @end
@@ -93,6 +91,9 @@
 @end
 
 
+#import "ODType+Primitive.h"
+#import "ODPrimitiveTypeUnknown.h"
+
 @implementation ODTypeLibrary (BasicTypes)
 
 - (void)nameBasicTypes {
@@ -100,6 +101,8 @@
 
     _baseEntityType = [[ODStructuredType alloc] initWithName:@"Edm.Entity" properties:nil keys:nil];
     [self addNominalTypesObject:_baseEntityType];
+
+    _unknownPrimitiveType = [ODPrimitiveTypeUnknown new];
 }
 
 @end

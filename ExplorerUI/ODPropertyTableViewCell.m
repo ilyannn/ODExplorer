@@ -11,6 +11,7 @@
 
 @implementation ODPropertyTableViewCell
 
+// To be called from main thread only.
 - (NSDateFormatter *)dateTimeFormatter {
     static NSDateFormatter *shared;
     if (!shared) {

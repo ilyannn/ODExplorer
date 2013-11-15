@@ -7,7 +7,7 @@
 //
 
 /// Instance of this object encapsulates an idea of an OData type. At the most basic level, a type can describe a collection
-/// or not. Type has a name iff it's not a collection type, so a type should be a  ODType is an abstract type
+/// or not. Type has a name iff it's not a collection type. ODType is an abstract type.
 @interface ODType : NSObject
 
 // Exactly one of those five should be true.
