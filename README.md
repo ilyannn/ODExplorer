@@ -1,7 +1,20 @@
 What is this?
 -----
 
-This is my attempt in creating an iOS SDK for interacting with OData services.
+This is my attempt in creating a modern, flexible, open-source iOS client SDK for interacting with OData services.
+
+
+What's so different about this SDK?
+---
+
+I intend it to be *flexible*, in other words it should be able to work with any OData service. This is possible because an OData service advertises its own metadata; other SDKs usually emphasize creating proxy classes in advance.
+
+To that effect, the demo app, `ODExplorer`, allows for connecting to and interacting with any OData service.
+Well, it's far from complete yet, but check it out – you can already browse arbitrary entity sets.
+
+I want to be **modern** and **native**, making heavy use of native Objective-C concepts, such as message forwading, class introspection.
+
+I build it to be **thin**, in particular I don't plan to add any synchronization or saving to Core Data. From my experience, those can be implemented in very different ways; different business requirements will lead to differing implementations. On, in other words, if we imagine a model of interacting with webservers, OData belongs to a transport abstraction level, and syncing is an abstraction level above.
 
 
 I've heard OData is bad, why use it?
@@ -50,6 +63,7 @@ SAP sells a mobile access stack called SUP, which includes an iOS SDK, and throw
 (As an aside, [their mobile *JavaScript* library](https://sapui5.hana.ondemand.com/sdk/) is in much better shape).
 
 Anyway, there probably are some people who are fine with those SDKs and they will not be interested in my project.
+
 
 
 Folder Structure
