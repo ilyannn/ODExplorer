@@ -14,7 +14,7 @@ Well, it's far from complete yet, but check it out – you can already browse ar
 
 I want to be **modern, not backwards-compatible** and **native, not universal** making heavy use of native Objective-C concepts, such as delegation, message forwading and class introspection.
 
-I build it to be **thin, not feature-complete**, in particular I don't plan to add any synchronization or saving to Core Data. From my experience, those can be implemented in very different ways; different business requirements will lead to differing implementations. On, in other words, if we imagine a model of interacting with webservers, OData belongs to a transport abstraction level, and syncing is an abstraction level above.
+I build it to be **thin, not feature-complete**, in particular I don't plan to add any synchronization or saving to Core Data. From my experience, those can be implemented in very different ways; different business requirements will lead to differing implementations. In other words, if we imagine a model of interacting with webservers, OData belongs to a transport abstraction level, and syncing is on an abstraction level above.
 
 
 I've heard OData is bad, why use it?

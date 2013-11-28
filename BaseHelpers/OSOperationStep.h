@@ -12,6 +12,10 @@
 + (OSOperationStep *)mainThreadStep:(NSString *)description withBlock:(NSError *(^)(id))block;
 
 - (NSString *)description;
+
+/// Upon receiving this message operation should do whatever it can to drop blocks.
+- (void)breakRetainCycles;
+
 - (BOOL)requiresMainThread;
 
 - (NSError *)perform:(id)op;

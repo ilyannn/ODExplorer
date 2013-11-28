@@ -43,6 +43,9 @@
 		B30262271830E21A00DFDF03 /* ODataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B30262241830E21A00DFDF03 /* ODataModel.m */; };
 		B30262281830E21A00DFDF03 /* ODataParsingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B30262261830E21A00DFDF03 /* ODataParsingContext.m */; };
 		B302622C1830E29600DFDF03 /* ODAssociationEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = B302622B1830E29600DFDF03 /* ODAssociationEnd.m */; };
+		B31C82C51847617E0079E5AC /* ODSJSONOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82C41847617E0079E5AC /* ODSJSONOperation.m */; };
+		B31C82CA1847C3470079E5AC /* OCOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82C91847C3470079E5AC /* OCOperation.m */; };
+		B31C82CD1847C37D0079E5AC /* OCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82CC1847C37D0079E5AC /* OCChannel.m */; };
 		B33C2F0A183660D100AB330E /* ODPrimitiveTypeUnknown.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F09183660D100AB330E /* ODPrimitiveTypeUnknown.m */; };
 		B33C2F0F1837DFE300AB330E /* OSOperationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F0E1837DFE300AB330E /* OSOperationStep.m */; };
 		B33C2F121837E14500AB330E /* OSBlockStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F111837E14500AB330E /* OSBlockStep.m */; };
@@ -205,6 +208,12 @@
 		B30262261830E21A00DFDF03 /* ODataParsingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODataParsingContext.m; sourceTree = "<group>"; };
 		B302622A1830E29600DFDF03 /* ODAssociationEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODAssociationEnd.h; sourceTree = "<group>"; };
 		B302622B1830E29600DFDF03 /* ODAssociationEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODAssociationEnd.m; sourceTree = "<group>"; };
+		B31C82C31847617E0079E5AC /* ODSJSONOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODSJSONOperation.h; sourceTree = "<group>"; };
+		B31C82C41847617E0079E5AC /* ODSJSONOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODSJSONOperation.m; sourceTree = "<group>"; };
+		B31C82C81847C3470079E5AC /* OCOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCOperation.h; sourceTree = "<group>"; };
+		B31C82C91847C3470079E5AC /* OCOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCOperation.m; sourceTree = "<group>"; };
+		B31C82CB1847C37D0079E5AC /* OCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCChannel.h; sourceTree = "<group>"; };
+		B31C82CC1847C37D0079E5AC /* OCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCChannel.m; sourceTree = "<group>"; };
 		B33C2F08183660D100AB330E /* ODPrimitiveTypeUnknown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveTypeUnknown.h; sourceTree = "<group>"; };
 		B33C2F09183660D100AB330E /* ODPrimitiveTypeUnknown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPrimitiveTypeUnknown.m; sourceTree = "<group>"; };
 		B33C2F0D1837DFE300AB330E /* OSOperationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSOperationStep.h; sourceTree = "<group>"; };
@@ -350,6 +359,8 @@
 		B30261471830D84200DFDF03 = {
 			isa = PBXGroup;
 			children = (
+				B31C82C31847617E0079E5AC /* ODSJSONOperation.h */,
+				B31C82C41847617E0079E5AC /* ODSJSONOperation.m */,
 				B30261691830D84200DFDF03 /* ODExplorerLibTests target */,
 				B30261551830D84200DFDF03 /* ODExplorerLib target */,
 				B3FCDB0B1830F00D0071C2C3 /* Explorer UI */,
@@ -428,6 +439,7 @@
 		B302617B1830DC1C00DFDF03 /* Base - Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B31C82C71847C2DE0079E5AC /* Channels */,
 				B33C2F0C1837DFB900AB330E /* Operation w/Steps */,
 				B3F0192818362839006A7783 /* Dates */,
 				B302617F1830DC1C00DFDF03 /* ODLazyMutableArray.h */,
@@ -570,6 +582,17 @@
 				B30262261830E21A00DFDF03 /* ODataParsingContext.m */,
 			);
 			name = "Parsing CSDL";
+			sourceTree = "<group>";
+		};
+		B31C82C71847C2DE0079E5AC /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				B31C82C81847C3470079E5AC /* OCOperation.h */,
+				B31C82C91847C3470079E5AC /* OCOperation.m */,
+				B31C82CB1847C37D0079E5AC /* OCChannel.h */,
+				B31C82CC1847C37D0079E5AC /* OCChannel.m */,
+			);
+			name = Channels;
 			sourceTree = "<group>";
 		};
 		B33C2F0C1837DFB900AB330E /* Operation w/Steps */ = {
@@ -958,6 +981,7 @@
 				B3AF68001830E4DA007FE80A /* ODBatchRequestManager.m in Sources */,
 				B3AF68141830E4DA007FE80A /* ODResourceList.m in Sources */,
 				B3AF68031830E4DA007FE80A /* ODCreateOperation.m in Sources */,
+				B31C82CD1847C37D0079E5AC /* OCChannel.m in Sources */,
 				B3AF67FD1830E4DA007FE80A /* ODActionOperation.m in Sources */,
 				B3AF680E1830E4DA007FE80A /* ODPlainOperation.m in Sources */,
 				B302621B1830E03100DFDF03 /* ODType+Primitive.m in Sources */,
@@ -997,9 +1021,11 @@
 				B3C7DE8B1830F73800D7D606 /* ODGenericTableViewCell.m in Sources */,
 				B3AF68081830E4DA007FE80A /* ODLinksOperation.m in Sources */,
 				B3E000BF183A0818009652A3 /* ODFavoriteActivity.m in Sources */,
+				B31C82C51847617E0079E5AC /* ODSJSONOperation.m in Sources */,
 				B30262271830E21A00DFDF03 /* ODataModel.m in Sources */,
 				B3C7DE901830F74D00D7D606 /* ODLoadingDataSource.m in Sources */,
 				B30262141830E03100DFDF03 /* ODPrimitiveTypeGuid.m in Sources */,
+				B31C82CA1847C3470079E5AC /* OCOperation.m in Sources */,
 				B30262181830E03100DFDF03 /* ODPrimitiveTypeString.m in Sources */,
 				B3F019211836236D006A7783 /* ODISO8601DateFormatter.m in Sources */,
 				B302620B1830E03100DFDF03 /* ODNominalType.m in Sources */,

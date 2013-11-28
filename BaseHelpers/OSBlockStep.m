@@ -8,17 +8,21 @@
 
 #import "OSBlockStep.h"
 
+@interface OSBlockStep ()
+@property (strong, atomic) OSBlockType step;
+
+@end
+
 @implementation OSBlockStep {
     NSString *_description;
     BOOL _requiresMainThread;
-    NSError * (^_step)(id op);
 }
 
-+ (instancetype)step:(NSString *)description withBlock:(NSError *(^)(id))block {
++ (instancetype)step:(NSString *)description withBlock:(OSBlockType)block {
     return [[self alloc] initWithBlock:block description:description mainThread:NO];
 }
 
-+ (instancetype)mainThreadStep:(NSString *)description withBlock:(NSError *(^)(id))block {
++ (instancetype)mainThreadStep:(NSString *)description withBlock:(OSBlockType)block {
     return [[self alloc] initWithBlock:block description:description mainThread:YES];
 }
 
@@ -37,6 +41,10 @@
 
 - (NSError *)perform:(id)op {
     return _step ? _step(op) : nil;
+}
+
+- (void)breakRetainCycles {
+    _step = NULL;
 }
 
 @end

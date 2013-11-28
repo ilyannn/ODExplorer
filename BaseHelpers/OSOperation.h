@@ -16,7 +16,7 @@
 /// Insert an operation step at position 0.
 - (void)addFirstOperationStep:(OSOperationStep *)step;
 
-@property (readonly, getter = isExecuting) BOOL executing;
-@property (readonly, getter = isFinished) BOOL finished;
+@property (atomic, readonly) BOOL isExecuting;
+@property (atomic, readonly) BOOL isFinished;
 
 @end

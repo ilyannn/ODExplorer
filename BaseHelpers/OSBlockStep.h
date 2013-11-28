@@ -8,9 +8,11 @@
 
 #import "OSOperationStep.h"
 
+typedef NSError * (^OSBlockType)(id op);
+
 @interface OSBlockStep : OSOperationStep
 
-+ (instancetype)step:(NSString *)description withBlock:(NSError *(^)(id))block;
-+ (instancetype)mainThreadStep:(NSString *)description withBlock:(NSError *(^)(id))block;
-- (instancetype)initWithBlock:(NSError *(^)(id))block description:(NSString *)description mainThread:(BOOL)mainThread;
++ (instancetype)step:(NSString *)description withBlock:(OSBlockType)block;
++ (instancetype)mainThreadStep:(NSString *)description withBlock:(OSBlockType)block;
+- (instancetype)initWithBlock:(OSBlockType)block description:(NSString *)description mainThread:(BOOL)mainThread;
 @end

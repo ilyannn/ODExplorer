@@ -15,8 +15,8 @@
 
 @property NSInteger currentStepIndex;
 
-@property (readwrite, getter = isExecuting) BOOL executing;
-@property (readwrite, getter = isFinished) BOOL finished;
+@property (atomic, readwrite) BOOL isExecuting;
+@property (atomic, readwrite) BOOL isFinished;
 
 @end
 
@@ -28,6 +28,10 @@
         self.allSteps = [NSMutableArray new];
     }
     return self;
+}
+
+- (BOOL)isConcurrent {
+    return YES;
 }
 
 - (void)addFirstOperationStep:(OSOperationStep *)step {
@@ -45,11 +49,11 @@
                                                       [self.allSteps[index] description]
                   ];
 
-    if (self.finished && !!self.error) {
+    if ([self isFinished] && !!self.error) {
         status = [NSString stringWithFormat:@"finished with error %@ on %@", self.error, status];
-    } else if (self.finished && !self.error) {
+    } else if ([self isFinished] && !self.error) {
         status = @"finished without errors";
-    } else if (self.executing) {
+    } else if ([self isExecuting]) {
         status = [NSString stringWithFormat:@"executing %@", status];
     } else {
         status = @"has not stated yet";
@@ -59,17 +63,17 @@
 
 - (void)completeOperation {
 
-    self.finished = YES;
-    self.executing = NO;
+    self.isFinished = YES;
+    self.isExecuting = NO;
     self.currentStepIndex = NSNotFound;
 
     // Drop strongly captured variables, if any.
-    self.allSteps = nil;
+    [self.allSteps makeObjectsPerformSelector:@selector(breakRetainCycles)];
 }
 
 - (void)start {
 
-    self.executing = YES;
+    self.isExecuting = YES;
 
     if ([self isCancelled]) {
         [self completeOperation];
