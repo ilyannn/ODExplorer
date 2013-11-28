@@ -7,7 +7,7 @@ This is my attempt in creating an iOS SDK for interacting with OData services.
 I've heard OData is bad, why use it?
 -----
 
-OData has been widely criticized in the developer community. I plan to write more on this topic, but for now suffice to say that most common criticisms pertain to a specific implementation in Microsoft's universe that makes it too easy to create a web service whose model is tightly coupled with underlying database implementation. While such tight coupling is definitely not the right way to go, I don't consider this to be a shortcoming of the protocol specification itself.
+OData has been widely criticized in the developer community. I plan to write more on this topic, but I basically agree that [most common criticisms pertain to a specific Micorosoft implementation](http://roysvork.wordpress.com/2013/06/24/is-using-odataiqueryable-in-your-web-api-an-inherently-bad-thing/) that makes it too easy to create 'unclean' web services (for example, whose model is tightly coupled with underlying database implementation). While those criticisms of the implementation are reasonable, those shortcoming are not of the protocol specification itself.
 
 In my opinion, the protocol has many strong features, while not as badly designed as some people think. For example, you have access to the service model document. It's in EDMX, which is easy to parse.
 
