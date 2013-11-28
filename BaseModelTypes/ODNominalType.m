@@ -30,6 +30,10 @@
     return [object isKindOfClass:[ODNominalType class]] && [self.name isEqual:object.name];
 }
 
+- (NSUInteger)hash {
+    return [self.name hash] + 1;
+}
+
 - (NSString *)primitiveName {
     return nil;
 }

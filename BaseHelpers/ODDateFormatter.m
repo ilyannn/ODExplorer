@@ -8,8 +8,6 @@
 
 #import "ODDateFormatter.h"
 
-#define MUTATES NSAssert(!self.immutable, @"This formatter is immutable");
-
 @implementation ODDateFormatter
 
 - (BOOL)testDate:(NSDate *)date {

@@ -33,7 +33,7 @@
 }
 
 - (NSString *)stringFromDate:(NSDate *)date {
-    // I hope at least this is thread-safe.
+    // I hope at least this is thread-safe?
     return [_outDateFormatter stringFromDate:date];
 }
 

@@ -9,7 +9,7 @@
 #import "ODExplorerViewController.h"
 #import "ODExplorerViewController+Notify.h"
 
-#import "ODExplorerViewActionsMenu.h"
+#import "ODExplorerActivities.h"
 #import "ODFavorites.h"
 #import "ODRetrieving_Objects.h"
 
@@ -22,7 +22,15 @@
 
 @implementation ODExplorerViewController {
     // Strongly hold action menu instance.
-    ODExplorerViewActionsMenu *actionMenu;
+    ODExplorerActivities *actionMenu;
+}
+
+- (ODResource *)resource {
+    return [super resource];
+}
+
+- (void)setResource:(id<ODResource>)resource {
+    [super setResource:resource];
 }
 
 - (void)viewDidLoad {
@@ -46,10 +54,9 @@
 }
 
 - (void)displayActionMenu {
-    actionMenu = [ODExplorerViewActionsMenu new];
-    actionMenu.resource = self.resource;
-    actionMenu.favorites = [ODFavorites sharedFavorites];
-    [actionMenu.actionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    // store strong reference!
+    actionMenu = [[ODExplorerActivities alloc] initWithResource:self.resource];
+    [self presentViewController:[actionMenu controller] animated:YES completion:nil];
 }
 
 - (void)setCurrentlyLoading:(BOOL)currentlyLoading {

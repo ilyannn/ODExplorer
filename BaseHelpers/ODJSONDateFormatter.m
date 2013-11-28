@@ -7,12 +7,6 @@
 
 @implementation ODJSONDateFormatter
 
-- (instancetype)init {
-    if (self = [super init]) {
-    }
-    return self;
-}
-
 // Method to parse /Date(...)/ strings.
 + (NSDate *)dateFromString:(NSString *)string {
     

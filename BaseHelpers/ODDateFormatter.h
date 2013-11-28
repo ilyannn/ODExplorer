@@ -4,15 +4,15 @@
 //
 
 /// This is a base class for formatters that have custom implementation of -dateFromString:.
-/// These formatters should be thread safe, unlike NSDateFormatter. I mean those are both *slow* and
-/// *thread unsafe*. Seriously, Apple?.
+/// These formatters should be immutable and thread safe. It so happens that NSDateFormatter's
+/// generic parsing method is both *slow* and *thread unsafe*. Seriously, Apple?
 @interface ODDateFormatter : NSFormatter
 
-// Override these two methods. 
-- (NSDate *)dateFromString:(NSString *)string;
-- (NSString *)stringFromDate:(NSDate *)date;
+// Override these two methods. Let's not change any state, ok?
+- (NSDate *)dateFromString:(NSString *)string __attribute__((const));
+- (NSString *)stringFromDate:(NSDate *)date __attribute__((const));
 
 /// Performs a transformation to string and back, then examines result.
-- (BOOL)testDate:(NSDate *)date;
+- (BOOL)testDate:(NSDate *)date __attribute__((const));
 
 @end

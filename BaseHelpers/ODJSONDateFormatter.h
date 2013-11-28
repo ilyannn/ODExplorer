@@ -10,6 +10,7 @@
 @interface ODJSONDateFormatter : ODDateFormatter
 
 // this converter doesn't need instance data
-+ (NSDate *)dateFromString:(NSString *)string;
+// although you're free to call instance method if you'd like that
++ (NSDate *)dateFromString:(NSString *)string __attribute__((const));
 
 @end

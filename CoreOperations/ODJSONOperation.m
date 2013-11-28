@@ -36,7 +36,8 @@
 
 - (NSError *)processResponse {
     NSError *error;
-    _responseJSON = [NSJSONSerialization JSONObjectWithData:self.response.data options:0 error:&error];
+    _responseJSON = ![self.response.data length] ? nil :
+                    [NSJSONSerialization JSONObjectWithData:self.response.data options:0 error:&error];
     return error;
 }
 

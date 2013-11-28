@@ -12,6 +12,25 @@
 
 @implementation ODOperationWithSteps
 
+#pragma mark - NSOperation
+
+- (NSString *)description {
+    return NSStringFromClass([self class]);
+}
+
+- (void)main {
+    [self performSteps:self.allSteps];
+    [self cleanOperationSteps];
+}
+
+
+- (void)cancel {
+    [self cleanOperationSteps];
+    [super cancel];
+}
+
+#pragma mark - Configuration
+
 - (id)init {
     self = [super init];
     
@@ -50,23 +69,8 @@
     };
 }
 
-- (void)main {
-    [self performSteps:self.allSteps];
-    [self cleanOperationSteps];
-}
 
-- (NSString *)description {
-    return NSStringFromClass([self class]);
-}
-
-- (void)cancel {
-    [self cleanOperationSteps];
-    [super cancel];
-}
-
-- (NSArray *)steps {
-    return @[];
-}
+#pragma mark - Running 
 
 - (void)cleanOperationSteps {
     self.allSteps = ([self isFinished] || [self isCancelled]) ? nil : [[self steps] mutableCopy];
@@ -77,5 +81,11 @@
         *stop = [self isCancelled] || !!(self.error = step());
     }];
 }
+
+/// This method is to be overridden.
+- (NSArray *)steps {
+    return @[];
+}
+
 
 @end

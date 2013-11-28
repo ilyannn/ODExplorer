@@ -67,14 +67,17 @@
                 info.URL = [NSURL URLWithString:obj relativeToURL:[self URL]];
                 if (info.URL) self.retrievalInfo = info;
             }
-            return;
         }
-
+        
         // Type annotation
         if ([key isEqualToString:@"odata.type"]) {
             if ([obj isKindOfClass:[NSString class]]) {
                 self.type = [[ODTypeLibrary shared] uniqueTypeFor:obj];
             }
+        }
+        
+        // This doesn't go into properties.
+        if ([key hasPrefix:@"odata."]) {
             return;
         }
         
@@ -91,6 +94,7 @@
                 return;
             } else {
                 NSLog(@"Unknown annotation: %@", key);
+                return;
             }
         }
         

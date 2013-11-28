@@ -34,4 +34,8 @@
            && [self.elementType isEqual:object.elementType];
 }
 
+- (NSUInteger)hash {
+    return [self.elementType hash] + 1;
+}
+
 @end

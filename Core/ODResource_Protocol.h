@@ -13,7 +13,7 @@
 
 #import "ODManaging.h"
 
-typedef NS_ENUM (NSInteger, ODResourceKind) {
+typedef NS_ENUM(NSInteger, ODResourceKind) {
     ODResourceKindUnknown = 0,
     ODResourceKindPrimitive,
     ODResourceKindEntity,
