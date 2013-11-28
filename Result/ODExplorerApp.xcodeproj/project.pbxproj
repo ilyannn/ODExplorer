@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B31C82C21847277B0079E5AC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B3900E6318118102007BCE33 /* ODExplorerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ODExplorerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3900E6618118102007BCE33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3900E6A18118102007BCE33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -100,6 +101,7 @@
 		B3900E5A18118102007BCE33 = {
 			isa = PBXGroup;
 			children = (
+				B31C82C21847277B0079E5AC /* README.md */,
 				B3900E6E18118102007BCE33 /* ODExplorerApp */,
 				B3900E6518118102007BCE33 /* Frameworks */,
 				B3900E6418118102007BCE33 /* Products */,
