@@ -7,14 +7,14 @@ This is my attempt in creating a modern, flexible, open-source iOS client SDK fo
 What's so different about this SDK?
 ---
 
-I intend it to be *flexible*, in other words it should be able to work with any OData service. This is possible because an OData service advertises its own metadata; other SDKs usually emphasize creating proxy classes in advance.
+I intend it to be **flexible**, in other words it should be able to work with any OData resource. This is possible because an OData service advertises its own metadata; other SDKs usually emphasize creating proxy classes in advance.
 
 To that effect, the demo app, `ODExplorer`, allows for connecting to and interacting with any OData service.
 Well, it's far from complete yet, but check it out – you can already browse arbitrary entity sets.
 
-I want to be **modern** and **native**, making heavy use of native Objective-C concepts, such as message forwading, class introspection.
+I want to be **modern, not backwards-compatible** and **native, not universal** making heavy use of native Objective-C concepts, such as delegation, message forwading and class introspection.
 
-I build it to be **thin**, in particular I don't plan to add any synchronization or saving to Core Data. From my experience, those can be implemented in very different ways; different business requirements will lead to differing implementations. On, in other words, if we imagine a model of interacting with webservers, OData belongs to a transport abstraction level, and syncing is an abstraction level above.
+I build it to be **thin, not feature-complete**, in particular I don't plan to add any synchronization or saving to Core Data. From my experience, those can be implemented in very different ways; different business requirements will lead to differing implementations. On, in other words, if we imagine a model of interacting with webservers, OData belongs to a transport abstraction level, and syncing is an abstraction level above.
 
 
 I've heard OData is bad, why use it?
@@ -22,7 +22,7 @@ I've heard OData is bad, why use it?
 
 OData has been widely criticized in the developer community. I plan to write more on this topic, but I basically agree that [most common criticisms pertain to a specific Micorosoft implementation](http://roysvork.wordpress.com/2013/06/24/is-using-odataiqueryable-in-your-web-api-an-inherently-bad-thing/) that makes it too easy to create 'unclean' web services (for example, whose model is tightly coupled with underlying database implementation). While those criticisms of the implementation are reasonable, those shortcoming are not of the protocol specification itself.
 
-In my opinion, the protocol has many strong features, while not as badly designed as some people think. For example, you have access to the service model document. It's in EDMX, which is easy to parse.
+In my opinion, the protocol has many strong features, while being not as badly designed as some people think. For example, you have access to the service model document. It is of EDMX type, which is easy to parse.
 
 
 But doesn't only Microsoft use OData?
