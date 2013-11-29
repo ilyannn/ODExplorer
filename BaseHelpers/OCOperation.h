@@ -6,12 +6,20 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "OCChannel.h"
 
 @interface OCOperation : NSOperation
 
-@property id input;
 @property (readonly) NSArray *channels;
+- (void)addFirstChannel:(OCChannel *)ch;
+- (void)addLastChannel:(OCChannel *)ch;
+
+
+@property id input;
+
+/// Number of bhannels that have already been torn down.
+/// Before operation started equals to 0. After operation finished equals to number of channels.
+@property (readonly) NSUInteger tearedDownCount;
 
 @property (readonly) NSError *error;
 

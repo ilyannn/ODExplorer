@@ -10,13 +10,7 @@
 
 @implementation OCChannel
 
-+ (Class)requiredInputClass {
-    return nil;
-}
-
-+ (Class)requiredOutputClass {
-    return nil;
-}
+#pragma mark - Things common to all channels
 
 - (void)send:(id)data {
     if (self.sendBlock) {
@@ -30,22 +24,14 @@
     }
 }
 
-- (NSOperation *)operationWith:(id)input {
-    return [NSBlockOperation blockOperationWithBlock:^{
-        [self process:input];
-    }];
+
+#pragma mark - Validation
++ (Class)requiredInputClass {
+    return nil;
 }
 
-- (void)process:(id)input {
-    
-}
-
-- (BOOL)requiresMainThread {
-    return NO;
-}
-
-- (NSString *)description {
-    return @"A channel";
++ (Class)requiredOutputClass {
+    return nil;
 }
 
 - (BOOL)validateInput:(id)input {
@@ -56,6 +42,27 @@
 - (BOOL)validateOutput:(id)output {
     Class class = [[self class] requiredOutputClass];
     return !class || [output isKindOfClass:class];
+}
+
+#pragma mark - Methods to override
+- (BOOL)requiresMainThread {
+    return NO;
+}
+
+- (void)setup {
+    
+}
+
+- (void)teardown {
+    
+}
+
+- (NSString *)description {
+    return @"A channel";
+}
+
+- (void)process:(id)input {
+    
 }
 
 

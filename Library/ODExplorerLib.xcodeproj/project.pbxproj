@@ -46,10 +46,12 @@
 		B31C82C51847617E0079E5AC /* ODSJSONOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82C41847617E0079E5AC /* ODSJSONOperation.m */; };
 		B31C82CA1847C3470079E5AC /* OCOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82C91847C3470079E5AC /* OCOperation.m */; };
 		B31C82CD1847C37D0079E5AC /* OCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82CC1847C37D0079E5AC /* OCChannel.m */; };
+		B3399DFC1847E12C00F17A67 /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B3399DFB1847E12C00F17A67 /* MAKVONotificationCenter.m */; };
 		B33C2F0A183660D100AB330E /* ODPrimitiveTypeUnknown.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F09183660D100AB330E /* ODPrimitiveTypeUnknown.m */; };
 		B33C2F0F1837DFE300AB330E /* OSOperationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F0E1837DFE300AB330E /* OSOperationStep.m */; };
 		B33C2F121837E14500AB330E /* OSBlockStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F111837E14500AB330E /* OSBlockStep.m */; };
 		B33C2F151837E28300AB330E /* OSOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F141837E28300AB330E /* OSOperation.m */; };
+		B35375BF1847F36D00860DB6 /* OperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375BE1847F36D00860DB6 /* OperationTests.m */; };
 		B3AF67BF1830E4CA007FE80A /* TypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B30261C31830DF8E00DFDF03 /* TypesTests.m */; };
 		B3AF67FD1830E4DA007FE80A /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AF67C21830E4D9007FE80A /* ODActionOperation.m */; };
 		B3AF67FE1830E4DA007FE80A /* ODBaseRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AF67C41830E4D9007FE80A /* ODBaseRequestManager.m */; };
@@ -98,7 +100,7 @@
 		B3F0192718362826006A7783 /* ODDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F0192618362825006A7783 /* ODDateFormatter.m */; };
 		B3F0192B18362C97006A7783 /* NSObject+ThreadLocalSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F0192A18362C97006A7783 /* NSObject+ThreadLocalSingleton.m */; };
 		B3F19C981830FF030055C039 /* ODFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F19C971830FF030055C039 /* ODFavoritesViewController.m */; };
-		B3F3D692184531D0006CEC5F /* OperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F3D691184531D0006CEC5F /* OperationTests.m */; };
+		B3F3D692184531D0006CEC5F /* OSOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F3D691184531D0006CEC5F /* OSOperationTests.m */; };
 		B3FCDAE71830EDE30071C2C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FCDAE61830EDE30071C2C3 /* SystemConfiguration.framework */; };
 		B3FCDAE81830EDF00071C2C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FCDAE61830EDE30071C2C3 /* SystemConfiguration.framework */; };
 		DAF92F273B7D4ABA98658DFD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2749E382BBD4F15A263C732 /* libPods.a */; };
@@ -214,6 +216,8 @@
 		B31C82C91847C3470079E5AC /* OCOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCOperation.m; sourceTree = "<group>"; };
 		B31C82CB1847C37D0079E5AC /* OCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCChannel.h; sourceTree = "<group>"; };
 		B31C82CC1847C37D0079E5AC /* OCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCChannel.m; sourceTree = "<group>"; };
+		B3399DFA1847E12C00F17A67 /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAKVONotificationCenter.h; path = ../0Dependencies/MAKVONotificationCenter/MAKVONotificationCenter.h; sourceTree = "<group>"; };
+		B3399DFB1847E12C00F17A67 /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAKVONotificationCenter.m; path = ../0Dependencies/MAKVONotificationCenter/MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		B33C2F08183660D100AB330E /* ODPrimitiveTypeUnknown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODPrimitiveTypeUnknown.h; sourceTree = "<group>"; };
 		B33C2F09183660D100AB330E /* ODPrimitiveTypeUnknown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODPrimitiveTypeUnknown.m; sourceTree = "<group>"; };
 		B33C2F0D1837DFE300AB330E /* OSOperationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSOperationStep.h; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 		B33C2F111837E14500AB330E /* OSBlockStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSBlockStep.m; sourceTree = "<group>"; };
 		B33C2F131837E28300AB330E /* OSOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSOperation.h; sourceTree = "<group>"; };
 		B33C2F141837E28300AB330E /* OSOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSOperation.m; sourceTree = "<group>"; };
+		B35375BE1847F36D00860DB6 /* OperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationTests.m; path = ../../BaseHelpers/OperationTests.m; sourceTree = "<group>"; };
 		B3AF67C11830E4D9007FE80A /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B3AF67C21830E4D9007FE80A /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
 		B3AF67C31830E4D9007FE80A /* ODBaseRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODBaseRequestManager.h; path = ../Core/ODBaseRequestManager.h; sourceTree = "<group>"; };
@@ -300,7 +305,7 @@
 		B3F0192A18362C97006A7783 /* NSObject+ThreadLocalSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ThreadLocalSingleton.m"; sourceTree = "<group>"; };
 		B3F19C961830FF030055C039 /* ODFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFavoritesViewController.h; sourceTree = "<group>"; };
 		B3F19C971830FF030055C039 /* ODFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODFavoritesViewController.m; sourceTree = "<group>"; };
-		B3F3D691184531D0006CEC5F /* OperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationTests.m; path = ../../BaseHelpers/OperationTests.m; sourceTree = "<group>"; };
+		B3F3D691184531D0006CEC5F /* OSOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OSOperationTests.m; path = ../../BaseHelpers/OSOperationTests.m; sourceTree = "<group>"; };
 		B3FCDAE61830EDE30071C2C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B3FCDAEC1830F00D0071C2C3 /* ODExplorerActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODExplorerActivities.h; sourceTree = "<group>"; };
 		B3FCDAED1830F00D0071C2C3 /* ODExplorerActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODExplorerActivities.m; sourceTree = "<group>"; };
@@ -370,7 +375,7 @@
 				B3F019171834DEBC006A7783 /* Core - Operations */,
 				B3F019151834DD2B006A7783 /* Base - Routing */,
 				B30261C61830DFEF00DFDF03 /* Base - Types */,
-				B302617B1830DC1C00DFDF03 /* Base - Helpers */,
+				B302617B1830DC1C00DFDF03 /* Base - Helpers & Dependencies */,
 				B30261521830D84200DFDF03 /* Frameworks */,
 				B30261511830D84200DFDF03 /* Products */,
 				1F349132C69D41FA8BF248F3 /* Pods.xcconfig */,
@@ -418,7 +423,8 @@
 		B30261691830D84200DFDF03 /* ODExplorerLibTests target */ = {
 			isa = PBXGroup;
 			children = (
-				B3F3D691184531D0006CEC5F /* OperationTests.m */,
+				B35375BE1847F36D00860DB6 /* OperationTests.m */,
+				B3F3D691184531D0006CEC5F /* OSOperationTests.m */,
 				B30261C31830DF8E00DFDF03 /* TypesTests.m */,
 				B30261791830DBED00DFDF03 /* HelpersTests.m */,
 				B302616A1830D84200DFDF03 /* Supporting Files */,
@@ -436,9 +442,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B302617B1830DC1C00DFDF03 /* Base - Helpers */ = {
+		B302617B1830DC1C00DFDF03 /* Base - Helpers & Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B3399DFD1847E13100F17A67 /* Mike Ash */,
 				B31C82C71847C2DE0079E5AC /* Channels */,
 				B33C2F0C1837DFB900AB330E /* Operation w/Steps */,
 				B3F0192818362839006A7783 /* Dates */,
@@ -452,7 +459,7 @@
 				B3F0192918362C97006A7783 /* NSObject+ThreadLocalSingleton.h */,
 				B3F0192A18362C97006A7783 /* NSObject+ThreadLocalSingleton.m */,
 			);
-			name = "Base - Helpers";
+			name = "Base - Helpers & Dependencies";
 			path = ../BaseHelpers;
 			sourceTree = "<group>";
 		};
@@ -593,6 +600,15 @@
 				B31C82CC1847C37D0079E5AC /* OCChannel.m */,
 			);
 			name = Channels;
+			sourceTree = "<group>";
+		};
+		B3399DFD1847E13100F17A67 /* Mike Ash */ = {
+			isa = PBXGroup;
+			children = (
+				B3399DFA1847E12C00F17A67 /* MAKVONotificationCenter.h */,
+				B3399DFB1847E12C00F17A67 /* MAKVONotificationCenter.m */,
+			);
+			name = "Mike Ash";
 			sourceTree = "<group>";
 		};
 		B33C2F0C1837DFB900AB330E /* Operation w/Steps */ = {
@@ -1017,6 +1033,7 @@
 				B3AF68151830E4DA007FE80A /* ODRetrieveOperation.m in Sources */,
 				B30262131830E03100DFDF03 /* ODPrimitiveTypeDouble.m in Sources */,
 				B30261911830DC1C00DFDF03 /* NSArray+ODHFunctional.m in Sources */,
+				B3399DFC1847E12C00F17A67 /* MAKVONotificationCenter.m in Sources */,
 				B3AF68011830E4DA007FE80A /* ODCollection.m in Sources */,
 				B3C7DE8B1830F73800D7D606 /* ODGenericTableViewCell.m in Sources */,
 				B3AF68081830E4DA007FE80A /* ODLinksOperation.m in Sources */,
@@ -1048,9 +1065,10 @@
 				B3AF68281830E949007FE80A /* Customer.m in Sources */,
 				B3AF682B1830E952007FE80A /* Product.m in Sources */,
 				B3AF682C1830E955007FE80A /* Supplier.m in Sources */,
+				B35375BF1847F36D00860DB6 /* OperationTests.m in Sources */,
 				B3AF67BF1830E4CA007FE80A /* TypesTests.m in Sources */,
 				B3AF682A1830E94F007FE80A /* NorthwindService.m in Sources */,
-				B3F3D692184531D0006CEC5F /* OperationTests.m in Sources */,
+				B3F3D692184531D0006CEC5F /* OSOperationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

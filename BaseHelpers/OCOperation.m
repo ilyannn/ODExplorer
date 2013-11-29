@@ -9,7 +9,9 @@
 #import "OCOperation.h"
 #import "OCChannel.h"
 
-#define EXECUTING_KEYPATH @"isExecuting"
+// #import "MAKVONotificationCenter.h"
+
+#define FINISHED_KEYPATH @"isFinished"
 
 @interface OCOperation ()
 @property (nonatomic) NSError *error;
@@ -18,20 +20,19 @@
 @property (atomic, readwrite) BOOL isExecuting;
 @property (atomic, readwrite) BOOL isFinished;
 
-@property (readonly) NSUInteger currentIndex;
-
 @end
 
 @implementation OCOperation {
     NSMutableArray *_channels;
-    NSMutableArray *_channelOperations;
+    NSMutableArray *_currentOperations;
+    NSMutableArray *_teardownOperations;
 }
 
 - (id)init {
     if (self = [super init]) {
         _channels = [NSMutableArray new];
         _operationQueue = [NSOperationQueue new];
-        _currentIndex = NSNotFound;
+        _operationQueue.name = [NSString stringWithFormat:@"com.ilya.%@", [OCOperation class]];
     }
     return self;
 }
@@ -52,6 +53,10 @@
 
 - (void)addLastChannel:(OCChannel *)ch {
     @synchronized (self) {
+        if ([self isFinished]) {
+            [NSException raise:@"Cannot add a channel at the last index"
+                        format:@"Operation %@ is already finished", self];
+        }
         [_channels addObject:ch];
     }
 }
@@ -80,7 +85,9 @@
 }
 
 - (void)completeOperation {
+    [self willChangeValueForKey:FINISHED_KEYPATH];
     self.isFinished = YES;
+    [self didChangeValueForKey:FINISHED_KEYPATH];
     self.isExecuting = NO;
 }
 
@@ -88,59 +95,96 @@
     return [ch requiresMainThread] ? [NSOperationQueue mainQueue] : _operationQueue;
 }
 
-- (BOOL)testCurrentChannelIndex {
+- (NSUInteger)tearedDownCount {
     @synchronized (self) {
-        return self.currentIndex == [_channels indexOfObjectPassingTest:^BOOL(NSOperation *obj, NSUInteger idx, BOOL *stop) {
-            return [obj isExecuting];
+        return [_teardownOperations indexOfObjectPassingTest:^BOOL(NSOperation *obj, NSUInteger idx, BOOL *stop) {
+            return ![obj isFinished] || idx == _teardownOperations.count - 1;
         }];
     }
 }
 
 - (void)start {
-    self.isExecuting = YES;
-    
-    if ([self isCancelled]) {
-        [self completeOperation];
-        return;
-    }
+    @synchronized(self) {
+        self.isExecuting = YES;
+        
+        if ([self isCancelled]) {
+            [self completeOperation];
+            return;
+        }
 
-    _channelOperations = [[NSMutableArray alloc] initWithCapacity:_channels.count];
-    [_channels enumerateObjectsUsingBlock:^(OCChannel *ch, NSUInteger idx, BOOL *stop) {
-        ch.sendBlock = ^(id data, BOOL error) {
-            @synchronized (self) {
-                if (![self isCancelled]) {
-                    if (error) {
-                        _error = data;
-                        [self cancel];
-                    } else {
-                        [self scheduleIndex:idx+1 with:data];
-                    }
+        [_operationQueue setSuspended:YES];
+        
+        _currentOperations = [[NSMutableArray alloc] initWithCapacity:_channels.count];
+        _teardownOperations = [[NSMutableArray alloc] initWithCapacity:_channels.count];
+
+        // Start with defining setup and teardown operations.
+        [_channels enumerateObjectsUsingBlock:^(OCChannel *ch, NSUInteger index, BOOL *stop) {
+            ch.sendBlock = [self sendBlockFor:ch atIndex:index];
+            _currentOperations[index] = [[NSInvocationOperation alloc] initWithTarget:ch selector:@selector(setup) object:nil];
+            _teardownOperations[index] = [[NSInvocationOperation alloc] initWithTarget:ch selector:@selector(teardown) object:nil];
+        }];
+        
+        // There is also a special operation that finishes current operation.
+        [_teardownOperations addObject:[[NSInvocationOperation alloc] initWithTarget:self
+                                                                            selector:@selector(completeOperation)
+                                                                              object:nil]];
+
+        // Now add operations to the suspended queue.
+        [_operationQueue addOperations:_currentOperations waitUntilFinished:NO];
+        [_operationQueue addOperations:_teardownOperations waitUntilFinished:NO];
+
+        // Setup operations occur from last to first channel.
+        for (NSInteger index = 1; index < _currentOperations.count; index++) {
+            [_currentOperations[index-1] addDependency:_currentOperations[index]];
+        }
+        
+        // Teardown operations occur from first to last channel + special.
+        for (NSInteger index = 1; index < _teardownOperations.count; index++) {
+            [_teardownOperations[index] addDependency:_teardownOperations[index-1]];
+        }
+        
+        // Inject first operation into dependencies.
+        [self scheduleIndex:0 with:self.input];
+        
+        // And go!
+        [_operationQueue setSuspended:NO];
+    }
+}
+
+- (void(^)(id, BOOL))sendBlockFor:(OCChannel *)ch atIndex:(NSUInteger)index {
+
+    return  ^(id data, BOOL error) {
+        @synchronized (self) {
+    
+            if (![self isCancelled]) {
+                if (error) {
+                    _error = data;
+                    [self cancel];
+                } else {
+                    [self scheduleIndex:index+1 with:data];
                 }
             }
-        };
-
-        NSOperation *op = [NSBlockOperation blockOperationWithBlock:^{ [ch setup]; }];
-        [_channelOperations addObject:op];
-        [[self queueFor:ch] addOperation: op];
-    }];
+            
+        }
+    };
     
-    [self scheduleIndex:0 with:self.input];
+
 }
 
 - (void)scheduleIndex:(NSUInteger)index with:(id)input {
-    OCChannel *ch = _channels[index];
-    NSOperation *op = [ch operationWith:input];
-    [op addDependency:_channelOperations[index]];
-//    [op addObserver:self forKeyPath:EXECUTING_KEYPATH options:0 context:(NSInteger)];
+    // last channel's output is ignored
+    if (index == _channels.count) {
+        return;
+    }
     
-    [[self queueFor:ch] addOperation: (_channelOperations[index] = op)];
+    OCChannel *ch = _channels[index];
+    NSOperation *op = [[NSInvocationOperation alloc] initWithTarget:ch selector:@selector(process:) object:input];
+    
+    [op addDependency:_currentOperations[index]];
+    [_teardownOperations[index] addDependency:op];
+    
+     _currentOperations[index] = op;
+    [[self queueFor:ch] addOperation: op];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:EXECUTING_KEYPATH]) {
-//        if ([object isExecuting] && _currentIndex < )
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
 @end
