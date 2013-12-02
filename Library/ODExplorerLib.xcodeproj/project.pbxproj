@@ -52,6 +52,10 @@
 		B33C2F121837E14500AB330E /* OSBlockStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F111837E14500AB330E /* OSBlockStep.m */; };
 		B33C2F151837E28300AB330E /* OSOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F141837E28300AB330E /* OSOperation.m */; };
 		B35375BF1847F36D00860DB6 /* OperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375BE1847F36D00860DB6 /* OperationTests.m */; };
+		B35375C3184B7D1E00860DB6 /* OCHTTPRequestChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C2184B7D1E00860DB6 /* OCHTTPRequestChannel.m */; };
+		B35375C6184B822000860DB6 /* OCHTTPRequestChannelOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C5184B822000860DB6 /* OCHTTPRequestChannelOperation.m */; };
+		B35375C9184C7E1E00860DB6 /* OCDummyOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C8184C7E1E00860DB6 /* OCDummyOutputStream.m */; };
+		B35375CC184C8C8600860DB6 /* OCJSONParserChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375CB184C8C8600860DB6 /* OCJSONParserChannel.m */; };
 		B3AF67BF1830E4CA007FE80A /* TypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B30261C31830DF8E00DFDF03 /* TypesTests.m */; };
 		B3AF67FD1830E4DA007FE80A /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AF67C21830E4D9007FE80A /* ODActionOperation.m */; };
 		B3AF67FE1830E4DA007FE80A /* ODBaseRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AF67C41830E4D9007FE80A /* ODBaseRequestManager.m */; };
@@ -227,6 +231,14 @@
 		B33C2F131837E28300AB330E /* OSOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSOperation.h; sourceTree = "<group>"; };
 		B33C2F141837E28300AB330E /* OSOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSOperation.m; sourceTree = "<group>"; };
 		B35375BE1847F36D00860DB6 /* OperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationTests.m; path = ../../BaseHelpers/OperationTests.m; sourceTree = "<group>"; };
+		B35375C1184B7D1D00860DB6 /* OCHTTPRequestChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCHTTPRequestChannel.h; sourceTree = "<group>"; };
+		B35375C2184B7D1E00860DB6 /* OCHTTPRequestChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCHTTPRequestChannel.m; sourceTree = "<group>"; };
+		B35375C4184B822000860DB6 /* OCHTTPRequestChannelOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCHTTPRequestChannelOperation.h; sourceTree = "<group>"; };
+		B35375C5184B822000860DB6 /* OCHTTPRequestChannelOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCHTTPRequestChannelOperation.m; sourceTree = "<group>"; };
+		B35375C7184C7E1E00860DB6 /* OCDummyOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDummyOutputStream.h; sourceTree = "<group>"; };
+		B35375C8184C7E1E00860DB6 /* OCDummyOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDummyOutputStream.m; sourceTree = "<group>"; };
+		B35375CA184C8C8600860DB6 /* OCJSONParserChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCJSONParserChannel.h; sourceTree = "<group>"; };
+		B35375CB184C8C8600860DB6 /* OCJSONParserChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCJSONParserChannel.m; sourceTree = "<group>"; };
 		B3AF67C11830E4D9007FE80A /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B3AF67C21830E4D9007FE80A /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
 		B3AF67C31830E4D9007FE80A /* ODBaseRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODBaseRequestManager.h; path = ../Core/ODBaseRequestManager.h; sourceTree = "<group>"; };
@@ -598,6 +610,7 @@
 				B31C82C91847C3470079E5AC /* OCOperation.m */,
 				B31C82CB1847C37D0079E5AC /* OCChannel.h */,
 				B31C82CC1847C37D0079E5AC /* OCChannel.m */,
+				B35375CD184C8C9100860DB6 /* Specific channels */,
 			);
 			name = Channels;
 			sourceTree = "<group>";
@@ -622,6 +635,21 @@
 				B33C2F141837E28300AB330E /* OSOperation.m */,
 			);
 			name = "Operation w/Steps";
+			sourceTree = "<group>";
+		};
+		B35375CD184C8C9100860DB6 /* Specific channels */ = {
+			isa = PBXGroup;
+			children = (
+				B35375C1184B7D1D00860DB6 /* OCHTTPRequestChannel.h */,
+				B35375C2184B7D1E00860DB6 /* OCHTTPRequestChannel.m */,
+				B35375CA184C8C8600860DB6 /* OCJSONParserChannel.h */,
+				B35375CB184C8C8600860DB6 /* OCJSONParserChannel.m */,
+				B35375C4184B822000860DB6 /* OCHTTPRequestChannelOperation.h */,
+				B35375C5184B822000860DB6 /* OCHTTPRequestChannelOperation.m */,
+				B35375C7184C7E1E00860DB6 /* OCDummyOutputStream.h */,
+				B35375C8184C7E1E00860DB6 /* OCDummyOutputStream.m */,
+			);
+			name = "Specific channels";
 			sourceTree = "<group>";
 		};
 		B3AF67C01830E4D9007FE80A /* Core - Resources */ = {
@@ -995,11 +1023,13 @@
 				B30262111830E03100DFDF03 /* ODPrimitiveTypeDateTime.m in Sources */,
 				B3AF68101830E4DA007FE80A /* ODResource+Collection.m in Sources */,
 				B3AF68001830E4DA007FE80A /* ODBatchRequestManager.m in Sources */,
+				B35375C3184B7D1E00860DB6 /* OCHTTPRequestChannel.m in Sources */,
 				B3AF68141830E4DA007FE80A /* ODResourceList.m in Sources */,
 				B3AF68031830E4DA007FE80A /* ODCreateOperation.m in Sources */,
 				B31C82CD1847C37D0079E5AC /* OCChannel.m in Sources */,
 				B3AF67FD1830E4DA007FE80A /* ODActionOperation.m in Sources */,
 				B3AF680E1830E4DA007FE80A /* ODPlainOperation.m in Sources */,
+				B35375C9184C7E1E00860DB6 /* OCDummyOutputStream.m in Sources */,
 				B302621B1830E03100DFDF03 /* ODType+Primitive.m in Sources */,
 				B3C7DE8C1830F73800D7D606 /* ODPropertyTableViewCell.m in Sources */,
 				B30262121830E03100DFDF03 /* ODPrimitiveTypeDecimal.m in Sources */,
@@ -1010,6 +1040,7 @@
 				B302622C1830E29600DFDF03 /* ODAssociationEnd.m in Sources */,
 				B3AF68091830E4DA007FE80A /* ODMetadataOperation.m in Sources */,
 				B30262101830E03100DFDF03 /* ODPrimitiveTypeByte.m in Sources */,
+				B35375C6184B822000860DB6 /* OCHTTPRequestChannelOperation.m in Sources */,
 				B33C2F0F1837DFE300AB330E /* OSOperationStep.m in Sources */,
 				B3AF68071830E4DA007FE80A /* ODJSONOperation.m in Sources */,
 				B33C2F151837E28300AB330E /* OSOperation.m in Sources */,
@@ -1048,6 +1079,7 @@
 				B302620B1830E03100DFDF03 /* ODNominalType.m in Sources */,
 				B3F0192718362826006A7783 /* ODDateFormatter.m in Sources */,
 				B3C7DE861830F72600D7D606 /* ODBaseResourceViewController.m in Sources */,
+				B35375CC184C8C8600860DB6 /* OCJSONParserChannel.m in Sources */,
 				B302618F1830DC1C00DFDF03 /* ODJSONDateFormatter.m in Sources */,
 				B302621A1830E03100DFDF03 /* ODStructuredType.m in Sources */,
 				B3AF68021830E4DA007FE80A /* ODCountOperation.m in Sources */,

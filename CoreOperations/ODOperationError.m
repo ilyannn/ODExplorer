@@ -8,7 +8,7 @@
 
 #import "ODOperationError.h"
 
-NSString * const ODOperationErrorDomain = @"com.ilya";
+NSString * const ODOperationErrorDomain = @"com.ilya.OD";
 NSString * const ODOperationErrorTable = @"ODOperationError";
 
 @implementation ODOperationError
