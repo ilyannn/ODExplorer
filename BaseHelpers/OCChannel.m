@@ -24,24 +24,26 @@
     }
 }
 
-
-#pragma mark - Validation
-+ (Class)requiredInputClass {
-    return nil;
+- (NSOperation *)setUpOperation {
+    return [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(setUp) object:nil];
 }
 
-+ (Class)requiredOutputClass {
-    return nil;
+- (NSOperation *)tearDownOperation {
+    return [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(tearDown) object:nil];
 }
 
-- (BOOL)validateInput:(id)input {
-    Class class = [[self class] requiredInputClass];
-    return !class || [input isKindOfClass:class];
-}
-
-- (BOOL)validateOutput:(id)output {
-    Class class = [[self class] requiredOutputClass];
-    return !class || [output isKindOfClass:class];
+// This is a synchronous operation.
+- (NSOperation *)processOperationFor:(id)input {
+    return [NSBlockOperation blockOperationWithBlock:^{
+        NSError *error;
+        @try {
+            [self process:input];
+        }
+        @catch (NSException *exception) {
+            error = [NSError errorWithDomain:OCChannelErrorDomain code:kOCChannelErrorInternalException userInfo:nil];
+        }
+        if (error) [self error:error];
+    }];
 }
 
 #pragma mark - Methods to override
@@ -49,20 +51,32 @@
     return NO;
 }
 
-- (void)setup {
-    
-}
-
-- (void)teardown {
-    
-}
-
 - (NSString *)description {
-    return @"A channel";
+    return @"Some channel";
+}
+
+- (NSString *)inputDescription {
+    return @"Unspecified input";
+}
+
+- (NSString *)outputDescription {
+    return @"Unspecified output";
+}
+
+- (NSString *)fullDescription {
+    return [NSString stringWithFormat:@"%@ : %@ -> %@", [self description], [self inputDescription], [self outputDescription]];
+}
+
+- (void)setUp {
+    
+}
+
+- (void)tearDown {
+    
 }
 
 - (void)process:(id)input {
-    
+
 }
 
 

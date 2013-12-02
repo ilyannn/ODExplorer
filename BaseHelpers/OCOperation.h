@@ -11,19 +11,25 @@
 @interface OCOperation : NSOperation
 
 @property (readonly) NSArray *channels;
-- (void)addFirstChannel:(OCChannel *)ch;
-- (void)addLastChannel:(OCChannel *)ch;
+- (void)addInputChannel:(OCChannel *)ch;
+- (void)addOutputChannel:(OCChannel *)ch;
 
+- (NSString *)description;
 
 @property id input;
 
-/// Number of bhannels that have already been torn down.
-/// Before operation started equals to 0. After operation finished equals to number of channels.
-@property (readonly) NSUInteger tearedDownCount;
+/// Called if the last channel in the list performs a -send:
+- (void)output:(id)output;
 
-@property (readonly) NSError *error;
+/// Number of channels that have already been torn down.
+/// Before operation started equals to 0. After operation finished equals to number of channels.
+@property (readonly) NSUInteger tornDownCount;
+
+@property (readonly, nonatomic) NSError *error;
 
 @property (atomic, readonly) BOOL isExecuting;
 @property (atomic, readonly) BOOL isFinished;
+
+- (NSError *)synchronouslyPerformFor:(id)input;
 
 @end
