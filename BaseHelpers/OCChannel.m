@@ -8,7 +8,7 @@
 
 #import "OCChannel.h"
 
-@implementation OCChannel
+@implementation OCChannel 
 
 #pragma mark - Things common to all channels
 
@@ -19,7 +19,7 @@
 }
 
 - (void)error:(NSError *)error {
-    if (self.sendBlock) {
+    if (self.sendBlock && error) {
         self.sendBlock(error, YES);
     }
 }
@@ -40,7 +40,7 @@
             [self process:input];
         }
         @catch (NSException *exception) {
-            error = [NSError errorWithDomain:OCChannelErrorDomain code:kOCChannelErrorInternalException userInfo:nil];
+            error = [NSError errorWithDomain:OCErrorDomain code:kOCChannelErrorInternalException userInfo:nil];
         }
         if (error) [self error:error];
     }];
@@ -56,11 +56,11 @@
 }
 
 - (NSString *)inputDescription {
-    return @"Unspecified input";
+    return @"anything";
 }
 
 - (NSString *)outputDescription {
-    return @"Unspecified output";
+    return @"void";
 }
 
 - (NSString *)fullDescription {

@@ -7,9 +7,8 @@
 //
 
 #import "OCOperation.h"
-#import "OCChannel.h"
 
-NSString * const OCChannelErrorDomain = @"com.ilya.OC";
+NSString * const OCErrorDomain = @"com.ilya.OC";
 
 #define FINISHED_KEYPATH @"isFinished"
 
@@ -26,13 +25,14 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
     NSMutableArray *_channels;
     NSMutableArray *_currentOperations;
     NSMutableArray *_teardownOperations;
+    NSOperation *_finalOperation;
 }
 
 - (id)init {
     if (self = [super init]) {
         _channels = [NSMutableArray new];
         _operationQueue = [NSOperationQueue new];
-        _operationQueue.name = OCChannelErrorDomain;
+        _operationQueue.name = OCErrorDomain;
     }
     return self;
 }
@@ -41,7 +41,7 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
     return [_channels copy];
 }
 
-- (void)addInputChannel:(OCChannel *)ch {
+- (void)addInputChannel:(id<OCChannel>)ch {
     @synchronized(self) {
         if ([self isExecuting]) {
             [NSException raise:@"Cannot add a channel at index 0"
@@ -51,13 +51,20 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
     }
 }
 
-- (void)addOutputChannel:(OCChannel *)ch {
+- (void)addOutputChannel:(id<OCChannel>)ch {
     @synchronized (self) {
         if ([self isFinished]) {
             [NSException raise:@"Cannot add a channel at the last index"
                         format:@"Operation %@ is already finished", self];
         }
-        [_channels addObject:ch];
+
+        NSUInteger index = _channels.count;
+        _channels[index] = ch;
+        
+        if ([self isExecuting]) {
+            [self activateChannel:ch atIndex:index]; // also adds setup operation to the queue
+            [[self queueFor:ch] addOperation:_teardownOperations.lastObject];
+        }
     }
 }
 
@@ -92,7 +99,7 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
     self.isExecuting = NO;
 }
 
-- (NSOperationQueue *)queueFor:(OCChannel *)ch {
+- (NSOperationQueue *)queueFor:(id<OCChannel>)ch {
     return [ch requiresMainThread] ? [NSOperationQueue mainQueue] : _operationQueue;
 }
 
@@ -111,6 +118,21 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
     return self.error;
 }
 
+- (void)activateChannel:(id<OCChannel>)ch atIndex:(NSUInteger)index {
+    [ch setSendBlock:[self sendBlockFor:ch atIndex:index] ];
+    
+    NSOperation *teardownOp = [ch tearDownOperation];
+    _teardownOperations[index] = teardownOp;
+    
+    if (index) {
+        [teardownOp addDependency:_teardownOperations[index-1]];
+    }
+    
+    [_finalOperation addDependency:teardownOp];
+
+    [[self queueFor:ch] addOperation:(_currentOperations[index] = [ch setUpOperation])];
+}
+
 - (void)start {
     @synchronized(self) {
         NSAssert(![self isExecuting] && ![self isFinished], @"Operation cannot be re-started!");
@@ -125,30 +147,25 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
         _currentOperations = [[NSMutableArray alloc] initWithCapacity:_channels.count];
         _teardownOperations = [[NSMutableArray alloc] initWithCapacity:_channels.count];
 
-        // Start with defining setup and teardown operations. Also add setup operations.
-        [_channels enumerateObjectsUsingBlock:^(OCChannel *ch, NSUInteger index, BOOL *stop) {
-            ch.sendBlock = [self sendBlockFor:ch atIndex:index];
-            _teardownOperations[index] = [ch tearDownOperation];
-            [[self queueFor:ch] addOperation:(_currentOperations[index] = [ch setUpOperation])];
-        }];
-        
         // There is also a special operation that finishes current operation.
-        [_teardownOperations addObject:[[NSInvocationOperation alloc] initWithTarget:self
-                                                                            selector:@selector(completeOperation)
-                                                                              object:nil]];
+        _finalOperation  = [[NSInvocationOperation alloc] initWithTarget:self
+                                                                selector:@selector(completeOperation)
+                                                                  object:nil];
 
-        // Teardown operations occur from first to last channel + special.
-        for (NSInteger index = 0; index < _channels.count; index++) {
-            [_teardownOperations[index + 1] addDependency:_teardownOperations[index]];
-        }
+        // Now define setup and teardown operations. Also add setup operations to the queue.
+        [_channels enumerateObjectsUsingBlock:^(id<OCChannel>ch, NSUInteger index, BOOL *stop) {
+            [self activateChannel:ch atIndex:index];
+        }];
         
         // Inject operation with input into dependencies.
         [self scheduleIndex:0 with:self.input];
 
         // Insert teardown operations last, or they will be executed immediately.
         [_teardownOperations enumerateObjectsUsingBlock:^(NSOperation *obj, NSUInteger idx, BOOL *stop) {
-            [(idx == _channels.count ? _operationQueue : [self queueFor:_channels[idx]]) addOperation:obj];
+            [[self queueFor:_channels[idx]] addOperation:obj];
         }];
+        
+        [_operationQueue addOperation:_finalOperation];
     }
 }
 
@@ -161,14 +178,17 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
     }
 }
 
-- (void(^)(id, BOOL))sendBlockFor:(OCChannel *)ch atIndex:(NSUInteger)index {
+- (void(^)(id, BOOL))sendBlockFor:(id<OCChannel>)ch atIndex:(NSUInteger)index {
+    __weak id weakSelf = self;
     return  ^(id data, BOOL error) {
-        @synchronized (self) {
-            if (![self isCancelled]) {
-                if (error) {
-                    self.error = data;
-                } else {
-                    [self scheduleIndex:index+1 with:data];
+        if (weakSelf) {
+            @synchronized (weakSelf) {
+                if (![weakSelf isCancelled]) {
+                    if (error) {
+                        [weakSelf setError:data];
+                    } else {
+                        [weakSelf scheduleIndex:index+1 with:data];
+                    }
                 }
             }
         }
@@ -178,7 +198,7 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
 - (void)cancel {
     [super cancel];
     if (!self.error) {
-        self.error = [NSError errorWithDomain:OCChannelErrorDomain
+        self.error = [NSError errorWithDomain:OCErrorDomain
                                          code:kOCOperationWasCanceled
                                      userInfo:nil];
     }
@@ -192,7 +212,7 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
     
     } else {
         
-        OCChannel *ch = _channels[index];
+        id<OCChannel> ch = _channels[index];
         NSOperation *op = [ch processOperationFor:input];
         
         [op addDependency:_currentOperations[index]];
@@ -204,7 +224,7 @@ NSString * const OCChannelErrorDomain = @"com.ilya.OC";
 }
 
 - (void)output:(id)output {
-    self.error = [NSError errorWithDomain:OCChannelErrorDomain code:kOCChannelErrorUnexpectedOutput
+    self.error = [NSError errorWithDomain:OCErrorDomain code:kOCChannelErrorUnexpectedOutput
                                  userInfo:@{@"output":output}];
 }
 

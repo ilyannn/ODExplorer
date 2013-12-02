@@ -6,29 +6,23 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "OCHTTPRequestChannelOperation.h"
+#import "OCURLRequestChannelOperation.h"
 
-@implementation OCHTTPRequestChannelOperation
+@implementation OCURLRequestChannelOperation
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [super connection:connection didReceiveData:data];
-    if (self.sendBlock) {
-        self.sendBlock(data);
-    }
+    self.sendBlock(data, NO);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     [super connection:connection didReceiveResponse:response];
-    if (self.sendBlock) {
-        self.sendBlock(response);
-    }
+    self.sendBlock(response, NO);
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [super connection:connection didFailWithError:error];
-    if (self.errorBlock) {
-        self.errorBlock(error);
-    }
+    self.sendBlock(error, YES);
 }
 
 @end

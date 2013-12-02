@@ -8,6 +8,6 @@
 
 #import "OCChannel.h"
 
-@interface OCHTTPRequestChannel : OCChannel
+@interface OCURLRequestChannel : OCChannel
 
 @end

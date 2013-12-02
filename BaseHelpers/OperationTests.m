@@ -9,6 +9,7 @@
 @import XCTest;
 
 #import "OCOperation.h"
+#import "OCChannel.h"
 
 @interface IncrementChannel : OCChannel
 @property NSInteger increment;
@@ -79,6 +80,40 @@
 }
 
 @end
+
+@interface DynamicChannel : OCChannel
+@property (weak) OCOperation *operation;
+@property (weak) OCChannel *channel;
+@end
+
+@implementation DynamicChannel
+
+- (instancetype)initWithOp:(OCOperation *)op channel:(OCChannel *)channel {
+    if (self = [super init]) {
+        _operation = op;
+        _channel = channel;
+    }
+    return self;
+}
+
+- (NSString *)inputDescription {
+    return @"id";
+}
+
+- (NSString *)outputDescription {
+    return @"id + (dynamic)";
+}
+
+- (void)setUp {
+    [self.operation addOutputChannel:self.channel];
+}
+
+- (void)process:(id)input {
+    [self send:input];
+}
+
+@end
+
 
 @interface SaveChannel : OCChannel
 - (instancetype)initWithRef:(NSInteger *)ref;
@@ -198,5 +233,21 @@
         XCTAssertTrue([description rangeOfString:fragment].location != NSNotFound, @"Description isn't good enough");
     }
 }
+
+- (void)testDynamicChannels {
+    NSInteger total;
+    
+    OCOperation *operation = [OCOperation new];
+    OCChannel *final = [[SaveChannel alloc] initWithRef:&total]; // needs strongref
+    [operation addOutputChannel:[[DynamicChannel alloc] initWithOp:operation channel:final]];
+    
+    NSString *description = [operation description];
+    [operation synchronouslyPerformFor:@10];
+
+    XCTAssertNotEqualObjects(description, [operation description], @"Operation should have changed");
+    XCTAssertTrue(operation.channels.count == 2, @"Channel should have been added");
+    XCTAssertTrue(total == 10, @"SaveChannel should have worked to save input value");
+}
+
 
 @end

@@ -10,7 +10,6 @@
 		B30261541830D84200DFDF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30261531830D84200DFDF03 /* Foundation.framework */; };
 		B30261621830D84200DFDF03 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30261611830D84200DFDF03 /* XCTest.framework */; };
 		B30261631830D84200DFDF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30261531830D84200DFDF03 /* Foundation.framework */; };
-		B30261651830D84200DFDF03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30261641830D84200DFDF03 /* UIKit.framework */; };
 		B30261681830D84200DFDF03 /* libODExplorerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B30261501830D84200DFDF03 /* libODExplorerLib.a */; };
 		B302616E1830D84200DFDF03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B302616C1830D84200DFDF03 /* InfoPlist.strings */; };
 		B302617A1830DBED00DFDF03 /* HelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B30261791830DBED00DFDF03 /* HelpersTests.m */; };
@@ -43,6 +42,8 @@
 		B30262271830E21A00DFDF03 /* ODataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B30262241830E21A00DFDF03 /* ODataModel.m */; };
 		B30262281830E21A00DFDF03 /* ODataParsingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B30262261830E21A00DFDF03 /* ODataParsingContext.m */; };
 		B302622C1830E29600DFDF03 /* ODAssociationEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = B302622B1830E29600DFDF03 /* ODAssociationEnd.m */; };
+		B3133549184CAC9200008662 /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35375DC184C9B3C00860DB6 /* YAJLiOS.framework */; };
+		B3133551184CBDCA00008662 /* OperationMainQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3133550184CBDCA00008662 /* OperationMainQueueTests.m */; };
 		B31C82C51847617E0079E5AC /* ODSJSONOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82C41847617E0079E5AC /* ODSJSONOperation.m */; };
 		B31C82CA1847C3470079E5AC /* OCOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82C91847C3470079E5AC /* OCOperation.m */; };
 		B31C82CD1847C37D0079E5AC /* OCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31C82CC1847C37D0079E5AC /* OCChannel.m */; };
@@ -52,10 +53,12 @@
 		B33C2F121837E14500AB330E /* OSBlockStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F111837E14500AB330E /* OSBlockStep.m */; };
 		B33C2F151837E28300AB330E /* OSOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B33C2F141837E28300AB330E /* OSOperation.m */; };
 		B35375BF1847F36D00860DB6 /* OperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375BE1847F36D00860DB6 /* OperationTests.m */; };
-		B35375C3184B7D1E00860DB6 /* OCHTTPRequestChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C2184B7D1E00860DB6 /* OCHTTPRequestChannel.m */; };
-		B35375C6184B822000860DB6 /* OCHTTPRequestChannelOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C5184B822000860DB6 /* OCHTTPRequestChannelOperation.m */; };
+		B35375C3184B7D1E00860DB6 /* OCURLRequestChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C2184B7D1E00860DB6 /* OCURLRequestChannel.m */; };
+		B35375C6184B822000860DB6 /* OCURLRequestChannelOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C5184B822000860DB6 /* OCURLRequestChannelOperation.m */; };
 		B35375C9184C7E1E00860DB6 /* OCDummyOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375C8184C7E1E00860DB6 /* OCDummyOutputStream.m */; };
 		B35375CC184C8C8600860DB6 /* OCJSONParserChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375CB184C8C8600860DB6 /* OCJSONParserChannel.m */; };
+		B35375DD184C9B3C00860DB6 /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35375DC184C9B3C00860DB6 /* YAJLiOS.framework */; };
+		B35375E0184C9D8D00860DB6 /* OCHTTPResponseAnalyzerChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B35375DF184C9D8D00860DB6 /* OCHTTPResponseAnalyzerChannel.m */; };
 		B3AF67BF1830E4CA007FE80A /* TypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B30261C31830DF8E00DFDF03 /* TypesTests.m */; };
 		B3AF67FD1830E4DA007FE80A /* ODActionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AF67C21830E4D9007FE80A /* ODActionOperation.m */; };
 		B3AF67FE1830E4DA007FE80A /* ODBaseRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AF67C41830E4D9007FE80A /* ODBaseRequestManager.m */; };
@@ -125,6 +128,27 @@
 			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
 			remoteInfo = base64;
 		};
+		B35375D5184C912400860DB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B35375CE184C912300860DB6 /* YAJLiOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0065977C11BEEF4000E89ABD;
+			remoteInfo = "YAJLiOS (Device)";
+		};
+		B35375D7184C912400860DB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B35375CE184C912300860DB6 /* YAJLiOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 006597AC11BEEF4800E89ABD;
+			remoteInfo = "YAJLiOS (Simulator)";
+		};
+		B35375D9184C912400860DB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B35375CE184C912300860DB6 /* YAJLiOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 006597EA11BEEF5400E89ABD;
+			remoteInfo = Tests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -146,7 +170,6 @@
 		B30261571830D84200DFDF03 /* ODExplorerLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODExplorerLib-Prefix.pch"; sourceTree = "<group>"; };
 		B30261601830D84200DFDF03 /* ODExplorerLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ODExplorerLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B30261611830D84200DFDF03 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B30261641830D84200DFDF03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		B302616B1830D84200DFDF03 /* ODExplorerLibTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ODExplorerLibTests-Info.plist"; sourceTree = "<group>"; };
 		B302616D1830D84200DFDF03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B30261791830DBED00DFDF03 /* HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpersTests.m; path = ../../BaseHelpers/HelpersTests.m; sourceTree = "<group>"; };
@@ -214,6 +237,8 @@
 		B30262261830E21A00DFDF03 /* ODataParsingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODataParsingContext.m; sourceTree = "<group>"; };
 		B302622A1830E29600DFDF03 /* ODAssociationEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODAssociationEnd.h; sourceTree = "<group>"; };
 		B302622B1830E29600DFDF03 /* ODAssociationEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODAssociationEnd.m; sourceTree = "<group>"; };
+		B313354F184CB16A00008662 /* OCProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCProtocols.h; sourceTree = "<group>"; };
+		B3133550184CBDCA00008662 /* OperationMainQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationMainQueueTests.m; sourceTree = "<group>"; };
 		B31C82C31847617E0079E5AC /* ODSJSONOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODSJSONOperation.h; sourceTree = "<group>"; };
 		B31C82C41847617E0079E5AC /* ODSJSONOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODSJSONOperation.m; sourceTree = "<group>"; };
 		B31C82C81847C3470079E5AC /* OCOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCOperation.h; sourceTree = "<group>"; };
@@ -231,14 +256,18 @@
 		B33C2F131837E28300AB330E /* OSOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSOperation.h; sourceTree = "<group>"; };
 		B33C2F141837E28300AB330E /* OSOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSOperation.m; sourceTree = "<group>"; };
 		B35375BE1847F36D00860DB6 /* OperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperationTests.m; path = ../../BaseHelpers/OperationTests.m; sourceTree = "<group>"; };
-		B35375C1184B7D1D00860DB6 /* OCHTTPRequestChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCHTTPRequestChannel.h; sourceTree = "<group>"; };
-		B35375C2184B7D1E00860DB6 /* OCHTTPRequestChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCHTTPRequestChannel.m; sourceTree = "<group>"; };
-		B35375C4184B822000860DB6 /* OCHTTPRequestChannelOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCHTTPRequestChannelOperation.h; sourceTree = "<group>"; };
-		B35375C5184B822000860DB6 /* OCHTTPRequestChannelOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCHTTPRequestChannelOperation.m; sourceTree = "<group>"; };
+		B35375C1184B7D1D00860DB6 /* OCURLRequestChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCURLRequestChannel.h; sourceTree = "<group>"; };
+		B35375C2184B7D1E00860DB6 /* OCURLRequestChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCURLRequestChannel.m; sourceTree = "<group>"; };
+		B35375C4184B822000860DB6 /* OCURLRequestChannelOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCURLRequestChannelOperation.h; sourceTree = "<group>"; };
+		B35375C5184B822000860DB6 /* OCURLRequestChannelOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCURLRequestChannelOperation.m; sourceTree = "<group>"; };
 		B35375C7184C7E1E00860DB6 /* OCDummyOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCDummyOutputStream.h; sourceTree = "<group>"; };
 		B35375C8184C7E1E00860DB6 /* OCDummyOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCDummyOutputStream.m; sourceTree = "<group>"; };
 		B35375CA184C8C8600860DB6 /* OCJSONParserChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCJSONParserChannel.h; sourceTree = "<group>"; };
 		B35375CB184C8C8600860DB6 /* OCJSONParserChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCJSONParserChannel.m; sourceTree = "<group>"; };
+		B35375CE184C912300860DB6 /* YAJLiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YAJLiOS.xcodeproj; path = "../0Dependencies/yajl-objc/Project-iOS/YAJLiOS.xcodeproj"; sourceTree = "<group>"; };
+		B35375DC184C9B3C00860DB6 /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLiOS.framework; path = "../0Dependencies/yajl-objc/Project-iOS/build/Framework/YAJLiOS.framework"; sourceTree = "<group>"; };
+		B35375DE184C9D8D00860DB6 /* OCHTTPResponseAnalyzerChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCHTTPResponseAnalyzerChannel.h; sourceTree = "<group>"; };
+		B35375DF184C9D8D00860DB6 /* OCHTTPResponseAnalyzerChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCHTTPResponseAnalyzerChannel.m; sourceTree = "<group>"; };
 		B3AF67C11830E4D9007FE80A /* ODActionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODActionOperation.h; sourceTree = "<group>"; };
 		B3AF67C21830E4D9007FE80A /* ODActionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODActionOperation.m; sourceTree = "<group>"; };
 		B3AF67C31830E4D9007FE80A /* ODBaseRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODBaseRequestManager.h; path = ../Core/ODBaseRequestManager.h; sourceTree = "<group>"; };
@@ -352,6 +381,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35375DD184C9B3C00860DB6 /* YAJLiOS.framework in Frameworks */,
 				B3FCDAE81830EDF00071C2C3 /* SystemConfiguration.framework in Frameworks */,
 				B30261541830D84200DFDF03 /* Foundation.framework in Frameworks */,
 				DAF92F273B7D4ABA98658DFD /* libPods.a in Frameworks */,
@@ -362,9 +392,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3133549184CAC9200008662 /* YAJLiOS.framework in Frameworks */,
 				B3FCDAE71830EDE30071C2C3 /* SystemConfiguration.framework in Frameworks */,
 				B30261621830D84200DFDF03 /* XCTest.framework in Frameworks */,
-				B30261651830D84200DFDF03 /* UIKit.framework in Frameworks */,
 				B30261631830D84200DFDF03 /* Foundation.framework in Frameworks */,
 				B30261681830D84200DFDF03 /* libODExplorerLib.a in Frameworks */,
 			);
@@ -406,10 +436,10 @@
 		B30261521830D84200DFDF03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B35375DC184C9B3C00860DB6 /* YAJLiOS.framework */,
 				B3FCDAE61830EDE30071C2C3 /* SystemConfiguration.framework */,
 				B30261531830D84200DFDF03 /* Foundation.framework */,
 				B30261611830D84200DFDF03 /* XCTest.framework */,
-				B30261641830D84200DFDF03 /* UIKit.framework */,
 				E2749E382BBD4F15A263C732 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -435,6 +465,7 @@
 		B30261691830D84200DFDF03 /* ODExplorerLibTests target */ = {
 			isa = PBXGroup;
 			children = (
+				B3133550184CBDCA00008662 /* OperationMainQueueTests.m */,
 				B35375BE1847F36D00860DB6 /* OperationTests.m */,
 				B3F3D691184531D0006CEC5F /* OSOperationTests.m */,
 				B30261C31830DF8E00DFDF03 /* TypesTests.m */,
@@ -457,6 +488,7 @@
 		B302617B1830DC1C00DFDF03 /* Base - Helpers & Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B35375CE184C912300860DB6 /* YAJLiOS.xcodeproj */,
 				B3399DFD1847E13100F17A67 /* Mike Ash */,
 				B31C82C71847C2DE0079E5AC /* Channels */,
 				B33C2F0C1837DFB900AB330E /* Operation w/Steps */,
@@ -606,11 +638,12 @@
 		B31C82C71847C2DE0079E5AC /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				B313354F184CB16A00008662 /* OCProtocols.h */,
 				B31C82C81847C3470079E5AC /* OCOperation.h */,
 				B31C82C91847C3470079E5AC /* OCOperation.m */,
 				B31C82CB1847C37D0079E5AC /* OCChannel.h */,
 				B31C82CC1847C37D0079E5AC /* OCChannel.m */,
-				B35375CD184C8C9100860DB6 /* Specific channels */,
+				B35375CD184C8C9100860DB6 /* Request -> HTTP -> JSON  */,
 			);
 			name = Channels;
 			sourceTree = "<group>";
@@ -637,19 +670,31 @@
 			name = "Operation w/Steps";
 			sourceTree = "<group>";
 		};
-		B35375CD184C8C9100860DB6 /* Specific channels */ = {
+		B35375CD184C8C9100860DB6 /* Request -> HTTP -> JSON  */ = {
 			isa = PBXGroup;
 			children = (
-				B35375C1184B7D1D00860DB6 /* OCHTTPRequestChannel.h */,
-				B35375C2184B7D1E00860DB6 /* OCHTTPRequestChannel.m */,
+				B35375C1184B7D1D00860DB6 /* OCURLRequestChannel.h */,
+				B35375C2184B7D1E00860DB6 /* OCURLRequestChannel.m */,
+				B35375C4184B822000860DB6 /* OCURLRequestChannelOperation.h */,
+				B35375C5184B822000860DB6 /* OCURLRequestChannelOperation.m */,
+				B35375DE184C9D8D00860DB6 /* OCHTTPResponseAnalyzerChannel.h */,
+				B35375DF184C9D8D00860DB6 /* OCHTTPResponseAnalyzerChannel.m */,
 				B35375CA184C8C8600860DB6 /* OCJSONParserChannel.h */,
 				B35375CB184C8C8600860DB6 /* OCJSONParserChannel.m */,
-				B35375C4184B822000860DB6 /* OCHTTPRequestChannelOperation.h */,
-				B35375C5184B822000860DB6 /* OCHTTPRequestChannelOperation.m */,
 				B35375C7184C7E1E00860DB6 /* OCDummyOutputStream.h */,
 				B35375C8184C7E1E00860DB6 /* OCDummyOutputStream.m */,
 			);
-			name = "Specific channels";
+			name = "Request -> HTTP -> JSON ";
+			sourceTree = "<group>";
+		};
+		B35375CF184C912300860DB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B35375D6184C912400860DB6 /* libYAJLiOSDevice.a */,
+				B35375D8184C912400860DB6 /* libYAJLiOSSimulator.a */,
+				B35375DA184C912400860DB6 /* Tests.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B3AF67C01830E4D9007FE80A /* Core - Resources */ = {
@@ -934,6 +979,10 @@
 					ProductGroup = B30261871830DC1C00DFDF03 /* Products */;
 					ProjectRef = B30261861830DC1C00DFDF03 /* base64.xcodeproj */;
 				},
+				{
+					ProductGroup = B35375CF184C912300860DB6 /* Products */;
+					ProjectRef = B35375CE184C912300860DB6 /* YAJLiOS.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -949,6 +998,27 @@
 			fileType = "compiled.mach-o.executable";
 			path = base64;
 			remoteRef = B30261961830DC1C00DFDF03 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B35375D6184C912400860DB6 /* libYAJLiOSDevice.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libYAJLiOSDevice.a;
+			remoteRef = B35375D5184C912400860DB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B35375D8184C912400860DB6 /* libYAJLiOSSimulator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libYAJLiOSSimulator.a;
+			remoteRef = B35375D7184C912400860DB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B35375DA184C912400860DB6 /* Tests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Tests.app;
+			remoteRef = B35375D9184C912400860DB6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1023,7 +1093,7 @@
 				B30262111830E03100DFDF03 /* ODPrimitiveTypeDateTime.m in Sources */,
 				B3AF68101830E4DA007FE80A /* ODResource+Collection.m in Sources */,
 				B3AF68001830E4DA007FE80A /* ODBatchRequestManager.m in Sources */,
-				B35375C3184B7D1E00860DB6 /* OCHTTPRequestChannel.m in Sources */,
+				B35375C3184B7D1E00860DB6 /* OCURLRequestChannel.m in Sources */,
 				B3AF68141830E4DA007FE80A /* ODResourceList.m in Sources */,
 				B3AF68031830E4DA007FE80A /* ODCreateOperation.m in Sources */,
 				B31C82CD1847C37D0079E5AC /* OCChannel.m in Sources */,
@@ -1040,7 +1110,7 @@
 				B302622C1830E29600DFDF03 /* ODAssociationEnd.m in Sources */,
 				B3AF68091830E4DA007FE80A /* ODMetadataOperation.m in Sources */,
 				B30262101830E03100DFDF03 /* ODPrimitiveTypeByte.m in Sources */,
-				B35375C6184B822000860DB6 /* OCHTTPRequestChannelOperation.m in Sources */,
+				B35375C6184B822000860DB6 /* OCURLRequestChannelOperation.m in Sources */,
 				B33C2F0F1837DFE300AB330E /* OSOperationStep.m in Sources */,
 				B3AF68071830E4DA007FE80A /* ODJSONOperation.m in Sources */,
 				B33C2F151837E28300AB330E /* OSOperation.m in Sources */,
@@ -1077,6 +1147,7 @@
 				B30262181830E03100DFDF03 /* ODPrimitiveTypeString.m in Sources */,
 				B3F019211836236D006A7783 /* ODISO8601DateFormatter.m in Sources */,
 				B302620B1830E03100DFDF03 /* ODNominalType.m in Sources */,
+				B35375E0184C9D8D00860DB6 /* OCHTTPResponseAnalyzerChannel.m in Sources */,
 				B3F0192718362826006A7783 /* ODDateFormatter.m in Sources */,
 				B3C7DE861830F72600D7D606 /* ODBaseResourceViewController.m in Sources */,
 				B35375CC184C8C8600860DB6 /* OCJSONParserChannel.m in Sources */,
@@ -1092,6 +1163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3133551184CBDCA00008662 /* OperationMainQueueTests.m in Sources */,
 				B302617A1830DBED00DFDF03 /* HelpersTests.m in Sources */,
 				B3AF68291830E94C007FE80A /* Employee.m in Sources */,
 				B3AF68281830E949007FE80A /* Customer.m in Sources */,
@@ -1129,7 +1201,7 @@
 		B30261711830D84200DFDF03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1158,6 +1230,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/fun/Code/ODExplorer/0Dependencies/yajl-objc/Classes",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-Wall";
@@ -1168,7 +1245,7 @@
 		B30261721830D84200DFDF03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1191,6 +1268,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/fun/Code/ODExplorer/0Dependencies/yajl-objc/Classes",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = (
 					"-Werror",
@@ -1206,6 +1288,10 @@
 			baseConfigurationReference = 1F349132C69D41FA8BF248F3 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/ODExplorerLib.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/fun/Code/ODExplorer/0Dependencies/yajl-objc/Project-iOS/build/Framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ODExplorerLib/ODExplorerLib-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -1219,6 +1305,10 @@
 			baseConfigurationReference = 1F349132C69D41FA8BF248F3 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/ODExplorerLib.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/fun/Code/ODExplorer/0Dependencies/yajl-objc/Project-iOS/build/Framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ODExplorerLib/ODExplorerLib-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -1235,6 +1325,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/fun/Code/ODExplorer/0Dependencies/yajl-objc/Project-iOS/build/Framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ODExplorerLib/ODExplorerLib-Prefix.pch";
@@ -1262,6 +1353,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"/Users/fun/Code/ODExplorer/0Dependencies/yajl-objc/Project-iOS/build/Framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ODExplorerLib/ODExplorerLib-Prefix.pch";

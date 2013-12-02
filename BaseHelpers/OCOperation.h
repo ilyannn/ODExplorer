@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Ilya Nikokoshev. All rights reserved.
 //
 
-#import "OCChannel.h"
+#import "OCProtocols.h"
 
 @interface OCOperation : NSOperation
 
 @property (readonly) NSArray *channels;
-- (void)addInputChannel:(OCChannel *)ch;
-- (void)addOutputChannel:(OCChannel *)ch;
+- (void)addInputChannel:(id<OCChannel>)ch;
+- (void)addOutputChannel:(id<OCChannel>)ch;
 
 - (NSString *)description;
 
